@@ -1,0 +1,842 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="TextHelper" lang="en" name="title" />
+<meta content="The TextHelper contains methods to make text more usable and friendly in your views." lang="en" name="description" />
+<meta content="text helper,autoLinkEmails,autoLinkUrls,autoLink,excerpt,highlight,stripLinks,truncate,string text" lang="en" name="keywords" />
+
+    <title>Text - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../../pt/views/helpers/text.html" /><link rel="alternate" hreflang="es" href="../../../es/views/helpers/text.html" /><link rel="alternate" hreflang="ja" href="../../../ja/views/helpers/text.html" /><link rel="alternate" hreflang="fr" href="../../../fr/views/helpers/text.html" /><link rel="alternate" hreflang="zh" href="../../../zh/views/helpers/text.html" /><link rel="alternate" hreflang="tr" href="../../../tr/views/helpers/text.html" /><link rel="alternate" hreflang="ru" href="../../../ru/views/helpers/text.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../../index.html" />
+    <link rel="up" title="Helpers" href="../helpers.html" />
+    <link rel="next" title="Time" href="time.html" />
+    <link rel="prev" title="Session" href="session.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../pt/views/helpers/text.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/views/helpers/text.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/views/helpers/text.html">ja</a></li>
+                                            
+                                                <li><a href="../../../fr/views/helpers/text.html">fr</a></li>
+                                            
+                                                <li><a href="../../../zh/views/helpers/text.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/views/helpers/text.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/views/helpers/text.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/views/helpers/text.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Text</a><ul>
+<li><a class="reference internal" href="#linking-email-addresses">Linking Email addresses</a></li>
+<li><a class="reference internal" href="#linking-urls">Linking URLs</a></li>
+<li><a class="reference internal" href="#linking-both-urls-and-email-addresses">Linking Both URLs and Email Addresses</a></li>
+<li><a class="reference internal" href="#converting-text-into-paragraphs">Converting Text into Paragraphs</a></li>
+<li><a class="reference internal" href="#highlighting-substrings">Highlighting Substrings</a></li>
+<li><a class="reference internal" href="#removing-links">Removing Links</a></li>
+<li><a class="reference internal" href="#truncating-text">Truncating Text</a></li>
+<li><a class="reference internal" href="#truncating-the-tail-of-a-string">Truncating the Tail of a String</a></li>
+<li><a class="reference internal" href="#extracting-an-excerpt">Extracting an Excerpt</a></li>
+<li><a class="reference internal" href="#converting-an-array-to-sentence-form">Converting an Array to Sentence Form</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\View\Helper">
+<span id="text"></span><h1>Text<a class="headerlink" href="#namespace-Cake\View\Helper" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Cake\View\Helper\TextHelper">
+<em class="property">class </em><code class="descclassname">Cake\View\Helper\</code><code class="descname">TextHelper</code><span class="sig-paren">(</span><em>View $view</em>, <em>array $config = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The TextHelper contains methods to make text more usable and
+friendly in your views. It aids in enabling links, formatting URLs,
+creating excerpts of text around chosen words or phrases,
+highlighting key words in blocks of text, and gracefully
+truncating long stretches of text.</p>
+<div class="section" id="linking-email-addresses">
+<h2>Linking Email addresses<a class="headerlink" href="#linking-email-addresses" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::autoLinkEmails">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">autoLinkEmails</code><span class="sig-paren">(</span><em>string $text</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::autoLinkEmails" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Adds links to the well-formed email addresses in $text, according
+to any options defined in <code class="docutils literal"><span class="pre">$options</span></code> (see
+<a class="reference internal" href="html.html#Cake\View\Helper\HtmlHelper::link" title="Cake\View\Helper\HtmlHelper::link"><code class="xref php php-meth docutils literal"><span class="pre">HtmlHelper::link()</span></code></a>).</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$myText</span> <span class="o">=</span> <span class="s1">&#39;For more information regarding our world-famous &#39;</span> <span class="o">.</span>
+    <span class="s1">&#39;pastries and desserts, contact info@example.com&#39;</span><span class="p">;</span>
+<span class="nv">$linkedText</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">autoLinkEmails</span><span class="p">(</span><span class="nv">$myText</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">For</span> <span class="nx">more</span> <span class="nx">information</span> <span class="nx">regarding</span> <span class="nx">our</span> <span class="nx">world</span><span class="o">-</span><span class="nx">famous</span> <span class="nx">pastries</span> <span class="k">and</span> <span class="nx">desserts</span><span class="p">,</span>
+<span class="nx">contact</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;mailto:info@example.com&quot;</span><span class="o">&gt;</span><span class="nx">info</span><span class="o">@</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This method automatically escapes its input. Use the <code class="docutils literal"><span class="pre">escape</span></code>
+option to disable this if necessary.</p>
+</div>
+<div class="section" id="linking-urls">
+<h2>Linking URLs<a class="headerlink" href="#linking-urls" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::autoLinkUrls">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">autoLinkUrls</code><span class="sig-paren">(</span><em>string $text</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::autoLinkUrls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Same as <code class="docutils literal"><span class="pre">autoLinkEmails()</span></code>, only this method searches for
+strings that start with https, http, ftp, or nntp and links them
+appropriately.</p>
+<p>This method automatically escapes its input. Use the <code class="docutils literal"><span class="pre">escape</span></code>
+option to disable this if necessary.</p>
+</div>
+<div class="section" id="linking-both-urls-and-email-addresses">
+<h2>Linking Both URLs and Email Addresses<a class="headerlink" href="#linking-both-urls-and-email-addresses" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::autoLink">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">autoLink</code><span class="sig-paren">(</span><em>string $text</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::autoLink" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Performs the functionality in both <code class="docutils literal"><span class="pre">autoLinkUrls()</span></code> and
+<code class="docutils literal"><span class="pre">autoLinkEmails()</span></code> on the supplied <code class="docutils literal"><span class="pre">$text</span></code>. All URLs and emails
+are linked appropriately given the supplied <code class="docutils literal"><span class="pre">$options</span></code>.</p>
+<p>This method automatically escapes its input. Use the <code class="docutils literal"><span class="pre">escape</span></code>
+option to disable this if necessary.</p>
+</div>
+<div class="section" id="converting-text-into-paragraphs">
+<h2>Converting Text into Paragraphs<a class="headerlink" href="#converting-text-into-paragraphs" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::autoParagraph">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">autoParagraph</code><span class="sig-paren">(</span><em>string $text</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::autoParagraph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Adds proper &lt;p&gt; around text where double-line returns are found, and &lt;br&gt; where
+single-line returns are found.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$myText</span> <span class="o">=</span> <span class="s1">&#39;For more information</span>
+<span class="s1">regarding our world-famous pastries and desserts.</span>
+
+<span class="s1">contact info@example.com&#39;</span><span class="p">;</span>
+<span class="nv">$formattedText</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">autoParagraph</span><span class="p">(</span><span class="nv">$myText</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">For</span> <span class="nx">more</span> <span class="nx">information</span><span class="o">&lt;</span><span class="nx">br</span> <span class="o">/&gt;</span>
+<span class="nx">regarding</span> <span class="nx">our</span> <span class="nx">world</span><span class="o">-</span><span class="nx">famous</span> <span class="nx">pastries</span> <span class="k">and</span> <span class="nx">desserts</span><span class="o">.&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">contact</span> <span class="nx">info</span><span class="o">@</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="highlighting-substrings">
+<h2>Highlighting Substrings<a class="headerlink" href="#highlighting-substrings" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::highlight">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">highlight</code><span class="sig-paren">(</span><em>string $haystack</em>, <em>string $needle</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::highlight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Highlights <code class="docutils literal"><span class="pre">$needle</span></code> in <code class="docutils literal"><span class="pre">$haystack</span></code> using the <code class="docutils literal"><span class="pre">$options['format']</span></code> string
+specified or a default string.</p>
+<p>Options:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">format</span></code> string - The piece of HTML with the phrase that will be
+highlighted</li>
+<li><code class="docutils literal"><span class="pre">html</span></code> bool - If <code class="docutils literal"><span class="pre">true</span></code>, will ignore any HTML tags, ensuring that only
+the correct text is highlighted</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Called as TextHelper</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">highlight</span><span class="p">(</span>
+    <span class="nv">$lastSentence</span><span class="p">,</span>
+    <span class="s1">&#39;using&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;format&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;span class=&quot;highlight&quot;&gt;\1&lt;/span&gt;&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Called as Text</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Text</span><span class="o">::</span><span class="na">highlight</span><span class="p">(</span>
+    <span class="nv">$lastSentence</span><span class="p">,</span>
+    <span class="s1">&#39;using&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;format&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;span class=&quot;highlight&quot;&gt;\1&lt;/span&gt;&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Highlights</span> <span class="nv">$needle</span> <span class="nx">in</span> <span class="nv">$haystack</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;highlight&quot;</span><span class="o">&gt;</span><span class="nx">using</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;</span> <span class="nx">the</span>
+<span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="nx">string</span> <span class="nx">specified</span>  <span class="k">or</span> <span class="nx">a</span> <span class="k">default</span> <span class="nx">string</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="removing-links">
+<h2>Removing Links<a class="headerlink" href="#removing-links" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::stripLinks">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">stripLinks</code><span class="sig-paren">(</span><em>$text</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::stripLinks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Strips the supplied <code class="docutils literal"><span class="pre">$text</span></code> of any HTML links.</p>
+</div>
+<div class="section" id="truncating-text">
+<h2>Truncating Text<a class="headerlink" href="#truncating-text" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::truncate">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">truncate</code><span class="sig-paren">(</span><em>string $text</em>, <em>int $length = 100</em>, <em>array $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::truncate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If <code class="docutils literal"><span class="pre">$text</span></code> is longer than <code class="docutils literal"><span class="pre">$length</span></code>, this method truncates it at <code class="docutils literal"><span class="pre">$length</span></code>
+and adds a suffix consisting of <code class="docutils literal"><span class="pre">'ellipsis'</span></code>, if defined. If <code class="docutils literal"><span class="pre">'exact'</span></code> is
+passed as <code class="docutils literal"><span class="pre">false</span></code>, the truncation will occur at the first whitespace after the
+point at which <code class="docutils literal"><span class="pre">$length</span></code> is exceeded. If <code class="docutils literal"><span class="pre">'html'</span></code> is passed as <code class="docutils literal"><span class="pre">true</span></code>,
+HTML tags will be respected and will not be cut off.</p>
+<p><code class="docutils literal"><span class="pre">$options</span></code> is used to pass all extra parameters, and has the following
+possible keys by default, all of which are optional:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">&#39;html&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Called as TextHelper</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">(</span>
+    <span class="s1">&#39;The killer crept forward and tripped on the rug.&#39;</span><span class="p">,</span>
+    <span class="mi">22</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Called as Text</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Text</span><span class="o">::</span><span class="na">truncate</span><span class="p">(</span>
+    <span class="s1">&#39;The killer crept forward and tripped on the rug.&#39;</span><span class="p">,</span>
+    <span class="mi">22</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">The</span> <span class="nx">killer</span> <span class="nx">crept</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="truncating-the-tail-of-a-string">
+<h2>Truncating the Tail of a String<a class="headerlink" href="#truncating-the-tail-of-a-string" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::tail">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">tail</code><span class="sig-paren">(</span><em>string $text</em>, <em>int $length = 100</em>, <em>array $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::tail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If <code class="docutils literal"><span class="pre">$text</span></code> is longer than <code class="docutils literal"><span class="pre">$length</span></code>, this method removes an initial
+substring with length consisting of the difference and prepends a prefix
+consisting of <code class="docutils literal"><span class="pre">'ellipsis'</span></code>, if defined. If <code class="docutils literal"><span class="pre">'exact'</span></code> is passed as <code class="docutils literal"><span class="pre">false</span></code>,
+the truncation will occur at the first whitespace prior to the point at which
+truncation would otherwise take place.</p>
+<p><code class="docutils literal"><span class="pre">$options</span></code> is used to pass all extra parameters, and has the following
+possible keys by default, all of which are optional:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$sampleText</span> <span class="o">=</span> <span class="s1">&#39;I packed my bag and in it I put a PSP, a PS3, a TV, &#39;</span> <span class="o">.</span>
+    <span class="s1">&#39;a C# program that can divide by zero, death metal t-shirts&#39;</span>
+
+<span class="c1">// Called as TextHelper</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">tail</span><span class="p">(</span>
+    <span class="nv">$sampleText</span><span class="p">,</span>
+    <span class="mi">70</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Called as Text</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Text</span><span class="o">::</span><span class="na">tail</span><span class="p">(</span>
+    <span class="nv">$sampleText</span><span class="p">,</span>
+    <span class="mi">70</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;ellipsis&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exact&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">...</span><span class="nx">a</span> <span class="nx">TV</span><span class="p">,</span> <span class="nx">a</span> <span class="nx">C</span><span class="c1"># program that can divide by zero, death metal t-shirts</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extracting-an-excerpt">
+<h2>Extracting an Excerpt<a class="headerlink" href="#extracting-an-excerpt" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::excerpt">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">excerpt</code><span class="sig-paren">(</span><em>string $haystack</em>, <em>string $needle</em>, <em>integer $radius=100</em>, <em>string $ellipsis=&quot;...&quot;</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::excerpt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Extracts an excerpt from <code class="docutils literal"><span class="pre">$haystack</span></code> surrounding the <code class="docutils literal"><span class="pre">$needle</span></code> with a number
+of characters on each side determined by <code class="docutils literal"><span class="pre">$radius</span></code>, and prefix/suffix with
+<code class="docutils literal"><span class="pre">$ellipsis</span></code>. This method is especially handy for search results. The query
+string or keywords can be shown within the resulting document.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Called as TextHelper</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">excerpt</span><span class="p">(</span><span class="nv">$lastParagraph</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">);</span>
+
+<span class="c1">// Called as Text</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Text</span><span class="o">::</span><span class="na">excerpt</span><span class="p">(</span><span class="nv">$lastParagraph</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="nx">by</span> <span class="nv">$radius</span><span class="p">,</span> <span class="k">and</span> <span class="nx">prefix</span><span class="o">/</span><span class="nx">suffix</span> <span class="nx">with</span> <span class="nv">$ellipsis</span><span class="o">.</span> <span class="k">This</span> <span class="nx">method</span> <span class="nx">is</span> <span class="nx">especially</span>
+<span class="nx">handy</span> <span class="k">for</span> <span class="nx">search</span> <span class="nx">results</span><span class="o">.</span> <span class="nx">The</span> <span class="nx">query</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-an-array-to-sentence-form">
+<h2>Converting an Array to Sentence Form<a class="headerlink" href="#converting-an-array-to-sentence-form" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\View\Helper\TextHelper::toList">
+<code class="descclassname">Cake\View\Helper\TextHelper::</code><code class="descname">toList</code><span class="sig-paren">(</span><em>array $list</em>, <em>$and='and'</em>, <em>$separator='</em>, <em>'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\View\Helper\TextHelper::toList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Creates a comma-separated list where the last two items are joined with &#8216;and&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;indigo&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">];</span>
+
+<span class="c1">// Called as TextHelper</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">toList</span><span class="p">(</span><span class="nv">$colors</span><span class="p">);</span>
+
+<span class="c1">// Called as Text</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nx">Text</span><span class="o">::</span><span class="na">toList</span><span class="p">(</span><span class="nv">$colors</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">red</span><span class="p">,</span> <span class="nx">orange</span><span class="p">,</span> <span class="nx">yellow</span><span class="p">,</span> <span class="nx">green</span><span class="p">,</span> <span class="nx">blue</span><span class="p">,</span> <span class="nx">indigo</span> <span class="k">and</span> <span class="nx">violet</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../views.html">Views</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cells.html">View Cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../themes.html">Themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../json-and-xml-views.html">JSON and XML views</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../helpers.html">Helpers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="breadcrumbs.html">Breadcrumbs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flash.html">Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="form.html">Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="html.html">Html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="paginator.html">Paginator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rss.html">Rss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="session.html">Session</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html">Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="url.html">Url</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Caching" lang="en" name="title" />
+<meta content="uniform api,xcache,cache engine,cache system,atomic operations,php class,disk storage,static methods,php extension,consistent manner,similar features,apc,memcache,queries,cakephp,elements,servers,memory" lang="en" name="keywords" />
+
+    <title>Caching - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/caching.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/caching.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/caching.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/caching.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/caching.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/caching.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/caching.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Console Tools, Shells &amp; Tasks" href="../console-and-shells.html" />
+    <link rel="prev" title="Extending Bake" href="../bake/development.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/caching.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/caching.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/caching.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/caching.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/caching.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/caching.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/caching.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/caching.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Caching</a><ul>
+<li><a class="reference internal" href="#configuring-cache-class">Configuring Cache Class</a><ul>
+<li><a class="reference internal" href="#configuring-cache-fallbacks">Configuring Cache Fallbacks</a></li>
+<li><a class="reference internal" href="#removing-configured-cache-engines">Removing Configured Cache Engines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-to-a-cache">Writing to a Cache</a><ul>
+<li><a class="reference internal" href="#writing-multiple-keys-at-once">Writing Multiple Keys at Once</a></li>
+<li><a class="reference internal" href="#read-through-caching">Read Through Caching</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reading-from-a-cache">Reading From a Cache</a><ul>
+<li><a class="reference internal" href="#reading-multiple-keys-at-once">Reading Multiple Keys at Once</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deleting-from-a-cache">Deleting From a Cache</a><ul>
+<li><a class="reference internal" href="#deleting-multiple-keys-at-once">Deleting Multiple Keys at Once</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clearing-cached-data">Clearing Cached Data</a></li>
+<li><a class="reference internal" href="#using-cache-to-store-counters">Using Cache to Store Counters</a></li>
+<li><a class="reference internal" href="#using-cache-to-store-common-query-results">Using Cache to Store Common Query Results</a></li>
+<li><a class="reference internal" href="#using-groups">Using Groups</a></li>
+<li><a class="reference internal" href="#globally-enable-or-disable-cache">Globally Enable or Disable Cache</a></li>
+<li><a class="reference internal" href="#creating-a-storage-engine-for-cache">Creating a Storage Engine for Cache</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Cache">
+<span id="caching"></span><h1>Caching<a class="headerlink" href="#namespace-Cake\Cache" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Cake\Cache\Cache">
+<em class="property">class </em><code class="descclassname">Cake\Cache\</code><code class="descname">Cache</code><a class="headerlink" href="#Cake\Cache\Cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Caching is frequently used to reduce the time it takes to create or read from
+other resources. Caching is often used to make reading from expensive
+resources less expensive. You can store the results of expensive queries,
+or remote webservice access that doesn&#8217;t frequently change in a cache. Once
+in the cache, re-reading the stored resource from the cache is much cheaper
+than accessing the remote resource.</p>
+<p>Caching in CakePHP is primarily facilitated by the <code class="docutils literal"><span class="pre">Cache</span></code> class.
+This class provides a set of static methods that provide a uniform API to
+dealing with all different types of Caching implementations. CakePHP
+comes with several cache engines built-in, and provides an easy system
+to implement your own caching systems. The built-in caching engines are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FileCache</span></code> File cache is a simple cache that uses local files. It
+is the slowest cache engine, and doesn&#8217;t provide as many features for
+atomic operations. However, since disk storage is often quite cheap,
+storing large objects, or elements that are infrequently written
+work well in files.</li>
+<li><code class="docutils literal"><span class="pre">ApcCache</span></code> APC cache uses the PHP <a class="reference external" href="http://php.net/apcu">APCu</a> extension.
+This extension uses shared memory on the webserver to store objects.
+This makes it very fast, and able to provide atomic read/write features.</li>
+<li><code class="docutils literal"><span class="pre">Wincache</span></code> Wincache uses the <a class="reference external" href="http://php.net/wincache">Wincache</a>
+extension. Wincache is similar to APC in features and performance, but
+optimized for Windows and IIS.</li>
+<li><code class="docutils literal"><span class="pre">XcacheEngine</span></code> <a class="reference external" href="http://xcache.lighttpd.net/">Xcache</a>
+is a PHP extension that provides similar features to APC.</li>
+<li><code class="docutils literal"><span class="pre">MemcachedEngine</span></code> Uses the <a class="reference external" href="http://php.net/memcached">Memcached</a>
+extension.</li>
+<li><code class="docutils literal"><span class="pre">RedisEngine</span></code> Uses the <a class="reference external" href="https://github.com/nicolasff/phpredis">phpredis</a>
+extension. Redis provides a fast and persistent cache system similar to
+Memcached, also provides atomic operations.</li>
+</ul>
+<p>Regardless of the CacheEngine you choose to use, your application interacts with
+<a class="reference internal" href="#Cake\Cache\Cache" title="Cake\Cache\Cache"><code class="xref php php-class docutils literal"><span class="pre">Cake\Cache\Cache</span></code></a> in a consistent manner. You can swap cache
+engines as your application grows.</p>
+<div class="section" id="configuring-cache-class">
+<span id="cache-configuration"></span><h2>Configuring Cache Class<a class="headerlink" href="#configuring-cache-class" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::config">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">config</code><span class="sig-paren">(</span><em>$key</em>, <em>$config = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Configuring the Cache class can be done anywhere, but generally you will want to
+configure Cache during bootstrapping.  The <strong>config/app.php</strong> file is the
+conventional location to do this.  You can configure as many cache
+configurations as you need, and use any mixture of cache engines.  CakePHP uses
+two cache configurations internally.  <code class="docutils literal"><span class="pre">_cake_core_</span></code> is used for storing file
+maps, and parsed results of
+<a class="reference internal" href="internationalization-and-localization.html"><span class="doc">Internationalization &amp; Localization</span></a> files.
+<code class="docutils literal"><span class="pre">_cake_model_</span></code>, is used to store schema descriptions for your applications
+models. If you are using APC or Memcached you should make sure to set unique keys
+for the core caches.  This will prevent multiple applications from overwriting
+each other&#8217;s cached data.</p>
+<p>Using multiple configurations also lets you incrementally change the storage as
+needed. For example in your <strong>config/app.php</strong> you could put the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="s1">&#39;Cache&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;short&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 hours&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">CACHE</span><span class="p">,</span>
+        <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cake_short_&#39;</span>
+    <span class="p">],</span>
+    <span class="c1">// Using a fully namespaced name.</span>
+    <span class="s1">&#39;long&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Cache\Engine\FileEngine&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 week&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;probability&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">CACHE</span> <span class="o">.</span> <span class="s1">&#39;long&#39;</span> <span class="o">.</span> <span class="nx">DS</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>Configuration options can also be provided as a <a class="reference internal" href="../appendices/glossary.html#term-dsn"><span class="xref std std-term">DSN</span></a> string. This is
+useful when working with environment variables or <a class="reference internal" href="../appendices/glossary.html#term-paas"><span class="xref std std-term">PaaS</span></a> providers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;short&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;memcached://user:password@cache-host/?timeout=3600&amp;prefix=myapp_&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>When using a DSN string you can define any additional parameters/options as
+query string arguments.</p>
+<p>You can also configure Cache engines at runtime:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Using a short name</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;short&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 hours&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">CACHE</span><span class="p">,</span>
+    <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cake_short_&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Using a fully namespaced name.</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Cache\Engine\FileEngine&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 week&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;probability&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">CACHE</span> <span class="o">.</span> <span class="s1">&#39;long&#39;</span> <span class="o">.</span> <span class="nx">DS</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="c1">// Using a constructed object.</span>
+<span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileEngine</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="nv">$object</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The name of these configurations &#8216;short&#8217; or &#8216;long&#8217; is used as the <code class="docutils literal"><span class="pre">$config</span></code>
+parameter for <a class="reference internal" href="#Cake\Cache\Cache::write" title="Cake\Cache\Cache::write"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::write()</span></code></a> and
+<a class="reference internal" href="#Cake\Cache\Cache::read" title="Cake\Cache\Cache::read"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::read()</span></code></a>. When configuring Cache engines you can
+refer to the class name using the following syntaxes:</p>
+<ul class="simple">
+<li>Short classname without &#8216;Engine&#8217; or a namespace.  This will infer that you
+want to use a Cache engine in <code class="docutils literal"><span class="pre">Cake\Cache\Engine</span></code> or <code class="docutils literal"><span class="pre">App\Cache\Engine</span></code>.</li>
+<li>Using <a class="reference internal" href="../appendices/glossary.html#term-plugin-syntax"><span class="xref std std-term">plugin syntax</span></a> which allows you to load engines from a specific
+plugin.</li>
+<li>Using a fully qualified namespaced classname.  This allows you to use
+classes located outside of the conventional locations.</li>
+<li>Using an object that extends the <code class="docutils literal"><span class="pre">CacheEngine</span></code> class.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When using the FileEngine you might need to use the <code class="docutils literal"><span class="pre">mask</span></code> option to
+ensure cache files are made with the correct permissions.</p>
+</div>
+<div class="section" id="configuring-cache-fallbacks">
+<span id="cache-configuration-fallback"></span><h3>Configuring Cache Fallbacks<a class="headerlink" href="#configuring-cache-fallbacks" title="Permalink to this headline">¶</a></h3>
+<p>In the event that an engine is not available, such as the <code class="docutils literal"><span class="pre">FileEngine</span></code> trying
+to write to an unwritable folder or the <code class="docutils literal"><span class="pre">RedisEngine</span></code> failing to connect to
+Redis, the engine will fall back to the noop <code class="docutils literal"><span class="pre">NullEngine</span></code> and trigger a loggable
+error. This prevents the application from throwing an uncaught exception due to
+cache failure.</p>
+<p>You can configure Cache configurations to fall back to a specified config using
+the <code class="docutils literal"><span class="pre">fallback</span></code> configuration key:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Redis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 hours&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cake_redis_&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">,</span>
+    <span class="s1">&#39;fallback&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>If the Redis server unexpectedly failed, writing to the <code class="docutils literal"><span class="pre">redis</span></code> cache
+configuration would fall back to writing to the <code class="docutils literal"><span class="pre">default</span></code> cache configuration.
+If writing to the <code class="docutils literal"><span class="pre">default</span></code> cache configuration <em>also</em> failed in this scenario, the
+engine would fall back once again to the <code class="docutils literal"><span class="pre">NullEngine</span></code> and prevent the application
+from throwing an uncaught exception.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span>Cache engine fallbacks were added.</p>
+</div>
+</div>
+<div class="section" id="removing-configured-cache-engines">
+<h3>Removing Configured Cache Engines<a class="headerlink" href="#removing-configured-cache-engines" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::drop">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">drop</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::drop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Once a configuration is created you cannot change it. Instead you should drop
+the configuration and re-create it using <a class="reference internal" href="#Cake\Cache\Cache::drop" title="Cake\Cache\Cache::drop"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::drop()</span></code></a> and
+<a class="reference internal" href="#Cake\Cache\Cache::config" title="Cake\Cache\Cache::config"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::config()</span></code></a>. Dropping a cache engine will remove
+the config and destroy the adapter if it was constructed.</p>
+</div>
+</div>
+<div class="section" id="writing-to-a-cache">
+<h2>Writing to a Cache<a class="headerlink" href="#writing-to-a-cache" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::write">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">write</code><span class="sig-paren">(</span><em>$key</em>, <em>$value</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">Cache::write()</span></code> will write a $value to the Cache. You can read or
+delete this value later by referring to it by <code class="docutils literal"><span class="pre">$key</span></code>. You may
+specify an optional configuration to store the cache in as well. If
+no <code class="docutils literal"><span class="pre">$config</span></code> is specified, default will be used. <code class="docutils literal"><span class="pre">Cache::write()</span></code>
+can store any type of object and is ideal for storing results of
+model finds:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">((</span><span class="nv">$posts</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">))</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$posts</span> <span class="o">=</span> <span class="nv">$someService</span><span class="o">-&gt;</span><span class="na">getAllPosts</span><span class="p">();</span>
+    <span class="nx">Cache</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="nv">$posts</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal"><span class="pre">Cache::write()</span></code> and <code class="docutils literal"><span class="pre">Cache::read()</span></code> to reduce the number
+of trips made to the database to fetch posts.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you plan to cache the result of queries made with the CakePHP ORM,
+it is better to use the built-in cache capabilities of the Query object
+as described in the <a class="reference internal" href="../orm/query-builder.html#caching-query-results"><span class="std std-ref">Caching Loaded Results</span></a> section</p>
+</div>
+<div class="section" id="writing-multiple-keys-at-once">
+<h3>Writing Multiple Keys at Once<a class="headerlink" href="#writing-multiple-keys-at-once" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::writeMany">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">writeMany</code><span class="sig-paren">(</span><em>$data</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::writeMany" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You may find yourself needing to write multiple cache keys at once. While you
+can use multiple calls to <code class="docutils literal"><span class="pre">write()</span></code>, <code class="docutils literal"><span class="pre">writeMany()</span></code> allows CakePHP to use
+more efficient storage API&#8217;s where available. For example using <code class="docutils literal"><span class="pre">writeMany()</span></code>
+save multiple network connections when using Memcached:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">writeMany</span><span class="p">([</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="p">,</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span> <span class="o">.</span> <span class="s1">&#39;-comments&#39;</span> <span class="o">=&gt;</span> <span class="nv">$comments</span>
+<span class="p">]);</span>
+
+<span class="c1">// $result will contain</span>
+<span class="p">[</span><span class="s1">&#39;article-first-post&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;article-first-post-comments&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-through-caching">
+<h3>Read Through Caching<a class="headerlink" href="#read-through-caching" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::remember">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">remember</code><span class="sig-paren">(</span><em>$key</em>, <em>$callable</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::remember" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Cache makes it easy to do read-through caching. If the named cache key exists,
+it will be returned. If the key does not exist, the callable will be invoked
+and the results stored in the cache at the provided key.</p>
+<p>For example, you often want to cache remote service call results. You could use
+<code class="docutils literal"><span class="pre">remember()</span></code> to make this simple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IssueService</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">allIssues</span><span class="p">(</span><span class="nv">$repo</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">remember</span><span class="p">(</span><span class="nv">$repo</span> <span class="o">.</span> <span class="s1">&#39;-issues&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$repo</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="nv">$repo</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-from-a-cache">
+<h2>Reading From a Cache<a class="headerlink" href="#reading-from-a-cache" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::read">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">read</code><span class="sig-paren">(</span><em>$key</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">Cache::read()</span></code> is used to read the cached value stored under
+<code class="docutils literal"><span class="pre">$key</span></code> from the <code class="docutils literal"><span class="pre">$config</span></code>. If <code class="docutils literal"><span class="pre">$config</span></code> is null the default
+config will be used. <code class="docutils literal"><span class="pre">Cache::read()</span></code> will return the cached value
+if it is a valid cache or <code class="docutils literal"><span class="pre">false</span></code> if the cache has expired or
+doesn&#8217;t exist. The contents of the cache might evaluate false, so
+make sure you use the strict comparison operators: <code class="docutils literal"><span class="pre">===</span></code> or
+<code class="docutils literal"><span class="pre">!==</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$cloud</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;cloud&#39;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$cloud</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$cloud</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Generate cloud data</span>
+<span class="c1">// ...</span>
+
+<span class="c1">// Store data in cache</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;cloud&#39;</span><span class="p">,</span> <span class="nv">$cloud</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$cloud</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="reading-multiple-keys-at-once">
+<h3>Reading Multiple Keys at Once<a class="headerlink" href="#reading-multiple-keys-at-once" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::readMany">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">readMany</code><span class="sig-paren">(</span><em>$keys</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::readMany" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>After you&#8217;ve written multiple keys at once, you&#8217;ll probably want to read them as
+well. While you could use multiple calls to <code class="docutils literal"><span class="pre">read()</span></code>, <code class="docutils literal"><span class="pre">readMany()</span></code> allows
+CakePHP to use more efficient storage API&#8217;s where available. For example using
+<code class="docutils literal"><span class="pre">readMany()</span></code> save multiple network connections when using Memcached:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">readMany</span><span class="p">([</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span><span class="p">,</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span> <span class="o">.</span> <span class="s1">&#39;-comments&#39;</span>
+<span class="p">]);</span>
+<span class="c1">// $result will contain</span>
+<span class="p">[</span><span class="s1">&#39;article-first-post&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span> <span class="s1">&#39;article-first-post-comments&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;...&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="deleting-from-a-cache">
+<h2>Deleting From a Cache<a class="headerlink" href="#deleting-from-a-cache" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::delete">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">delete</code><span class="sig-paren">(</span><em>$key</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">Cache::delete()</span></code> will allow you to completely remove a cached
+object from the store:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Remove a key</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;my_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="deleting-multiple-keys-at-once">
+<h3>Deleting Multiple Keys at Once<a class="headerlink" href="#deleting-multiple-keys-at-once" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::deleteMany">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">deleteMany</code><span class="sig-paren">(</span><em>$keys</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::deleteMany" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>After you&#8217;ve written multiple keys at once, you may want to delete them.  While
+you could use multiple calls to <code class="docutils literal"><span class="pre">delete()</span></code>, <code class="docutils literal"><span class="pre">deleteMany()</span></code> allows CakePHP to use
+more efficient storage API&#8217;s where available. For example using <code class="docutils literal"><span class="pre">deleteMany()</span></code>
+save multiple network connections when using Memcached:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">deleteMany</span><span class="p">([</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span><span class="p">,</span>
+    <span class="s1">&#39;article-&#39;</span> <span class="o">.</span> <span class="nv">$slug</span> <span class="o">.</span> <span class="s1">&#39;-comments&#39;</span>
+<span class="p">]);</span>
+<span class="c1">// $result will contain</span>
+<span class="p">[</span><span class="s1">&#39;article-first-post&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;article-first-post-comments&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="clearing-cached-data">
+<h2>Clearing Cached Data<a class="headerlink" href="#clearing-cached-data" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::clear">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">clear</code><span class="sig-paren">(</span><em>$check</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Destroy all cached values for a cache configuration. In engines like: Apc,
+Memcached, and Wincache, the cache configuration&#8217;s prefix is used to remove
+cache entries. Make sure that different cache configurations have different
+prefixes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Will only clear expired keys.</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">clear</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Will clear all keys.</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">clear</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::gc">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">gc</code><span class="sig-paren">(</span><em>$config</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::gc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Garbage collects entries in the cache configuration. This is primarily
+used by FileEngine. It should be implemented by any Cache engine
+that requires manual eviction of cached data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Because APC and Wincache use isolated caches for webserver and CLI they
+have to be cleared separately (CLI cannot clear webserver and vice versa).</p>
+</div>
+</div>
+<div class="section" id="using-cache-to-store-counters">
+<h2>Using Cache to Store Counters<a class="headerlink" href="#using-cache-to-store-counters" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::increment">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">increment</code><span class="sig-paren">(</span><em>$key</em>, <em>$offset = 1</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::increment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::decrement">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">decrement</code><span class="sig-paren">(</span><em>$key</em>, <em>$offset = 1</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::decrement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Counters in your application are good candidates for storage in a cache.  As an
+example, a simple countdown for remaining &#8216;slots&#8217; in a contest could be stored
+in Cache. The Cache class exposes atomic ways to increment/decrement counter
+values in an easy way. Atomic operations are important for these values as it
+reduces the risk of contention, and ability for two users to simultaneously
+lower the value by one, resulting in an incorrect value.</p>
+<p>After setting an integer value you can manipulate it using <code class="docutils literal"><span class="pre">increment()</span></code> and
+<code class="docutils literal"><span class="pre">decrement()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;initial_count&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="c1">// Later on</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">decrement</span><span class="p">(</span><span class="s1">&#39;initial_count&#39;</span><span class="p">);</span>
+
+<span class="c1">// Or</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;initial_count&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Incrementing and decrementing do not work with FileEngine. You should use
+APC, Wincache, Redis or Memcached instead.</p>
+</div>
+</div>
+<div class="section" id="using-cache-to-store-common-query-results">
+<h2>Using Cache to Store Common Query Results<a class="headerlink" href="#using-cache-to-store-common-query-results" title="Permalink to this headline">¶</a></h2>
+<p>You can greatly improve the performance of your application by putting results
+that infrequently change, or that are subject to heavy reads into the cache.
+A perfect example of this are the results from
+<a class="reference internal" href="../orm/retrieving-data-and-resultsets.html#Cake\ORM\Table::find" title="Cake\ORM\Table::find"><code class="xref php php-meth docutils literal"><span class="pre">Cake\ORM\Table::find()</span></code></a>. The Query object allows you to cache
+results using the <code class="docutils literal"><span class="pre">cache()</span></code> method. See the <a class="reference internal" href="../orm/query-builder.html#caching-query-results"><span class="std std-ref">Caching Loaded Results</span></a> section
+for more information.</p>
+</div>
+<div class="section" id="using-groups">
+<h2>Using Groups<a class="headerlink" href="#using-groups" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you will want to mark multiple cache entries to belong to certain
+group or namespace. This is a common requirement for mass-invalidating keys
+whenever some information changes that is shared among all entries in the same
+group. This is possible by declaring the groups in cache configuration:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;site_home&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Redis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+999 days&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;groups&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="s1">&#39;article&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Cache\Cache::clearGroup">
+<code class="descclassname">Cake\Cache\Cache::</code><code class="descname">clearGroup</code><span class="sig-paren">(</span><em>$group</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::clearGroup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Let&#8217;s say you want to store the HTML generated for your homepage in cache, but
+would also want to automatically invalidate this cache every time a comment or
+post is added to your database. By adding the groups <code class="docutils literal"><span class="pre">comment</span></code> and <code class="docutils literal"><span class="pre">article</span></code>,
+we have effectively tagged any key stored into this cache configuration with
+both group names.</p>
+<p>For instance, whenever a new post is added, we could tell the Cache engine to
+remove all entries associated to the <code class="docutils literal"><span class="pre">article</span></code> group:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Table/ArticlesTable.php</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">afterSave</span><span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$entity</span><span class="p">,</span> <span class="nv">$options</span> <span class="o">=</span> <span class="p">[])</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">Cache</span><span class="o">::</span><span class="na">clearGroup</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="s1">&#39;site_home&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::groupConfigs">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">groupConfigs</code><span class="sig-paren">(</span><em>$group = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\Cache::groupConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">groupConfigs()</span></code> can be used to retrieve mapping between group and
+configurations, i.e.: having the same group:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Table/ArticlesTable.php</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * A variation of previous example that clears all Cache configurations</span>
+<span class="sd"> * having the same group</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">afterSave</span><span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$entity</span><span class="p">,</span> <span class="nv">$options</span> <span class="o">=</span> <span class="p">[])</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nv">$configs</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">groupConfigs</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">);</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$configs</span><span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$config</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Cache</span><span class="o">::</span><span class="na">clearGroup</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Groups are shared across all cache configs using the same engine and same
+prefix. If you are using groups and want to take advantage of group deletion,
+choose a common prefix for all your configs.</p>
+</div>
+<div class="section" id="globally-enable-or-disable-cache">
+<h2>Globally Enable or Disable Cache<a class="headerlink" href="#globally-enable-or-disable-cache" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::disable">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">disable</code><a class="headerlink" href="#Cake\Cache\Cache::disable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You may need to disable all Cache read &amp; writes when trying to figure out cache
+expiration related issues. You can do this using <code class="docutils literal"><span class="pre">enable()</span></code> and
+<code class="docutils literal"><span class="pre">disable()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Disable all cache reads, and cache writes.</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">disable</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Once disabled, all reads and writes will return <code class="docutils literal"><span class="pre">null</span></code>.</p>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::enable">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">enable</code><a class="headerlink" href="#Cake\Cache\Cache::enable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Once disabled, you can use <code class="docutils literal"><span class="pre">enable()</span></code> to re-enable caching:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Re-enable all cache reads, and cache writes.</span>
+<span class="nx">Cache</span><span class="o">::</span><span class="na">enable</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="staticmethod">
+<dt id="Cake\Cache\Cache::enabled">
+<em class="property">static </em><code class="descclassname">Cake\Cache\Cache::</code><code class="descname">enabled</code><a class="headerlink" href="#Cake\Cache\Cache::enabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If you need to check on the state of Cache, you can use <code class="docutils literal"><span class="pre">enabled()</span></code>.</p>
+</div>
+<div class="section" id="creating-a-storage-engine-for-cache">
+<h2>Creating a Storage Engine for Cache<a class="headerlink" href="#creating-a-storage-engine-for-cache" title="Permalink to this headline">¶</a></h2>
+<p>You can provide custom <code class="docutils literal"><span class="pre">Cache</span></code> adapters in <code class="docutils literal"><span class="pre">App\Cache\Engine</span></code> as well
+as in plugins using <code class="docutils literal"><span class="pre">$plugin\Cache\Engine</span></code>. src/plugin cache engines can
+also override the core engines. Cache adapters must be in a cache
+directory. If you had a cache engine named <code class="docutils literal"><span class="pre">MyCustomCacheEngine</span></code>
+it would be placed in either <strong>src/Cache/Engine/MyCustomCacheEngine.php</strong>
+as an app/libs. Or in <strong>plugin/Cache/Engine/MyCustomCacheEngine.php</strong> as
+part of a plugin. Cache configs from plugins need to use the plugin
+dot syntax.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CachePack.MyCustomCache&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Custom Cache engines must extend <a class="reference internal" href="#Cake\Cache\CacheEngine" title="Cake\Cache\CacheEngine"><code class="xref php php-class docutils literal"><span class="pre">Cake\Cache\CacheEngine</span></code></a> which
+defines a number of abstract methods as well as provides a few initialization
+methods.</p>
+<p>The required API for a CacheEngine is</p>
+<dl class="class">
+<dt id="Cake\Cache\CacheEngine">
+<em class="property">class </em><code class="descclassname">Cake\Cache\</code><code class="descname">CacheEngine</code><a class="headerlink" href="#Cake\Cache\CacheEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for all cache engines used with Cache.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::write">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">write</code><span class="sig-paren">(</span><em>$key</em>, <em>$value</em>, <em>$config = 'default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::write" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">boolean for success.</td>
+</tr>
+</tbody>
+</table>
+<p>Write value for a key into cache, optional string $config
+specifies configuration name to write to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::read">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">read</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::read" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The cached value or <code class="docutils literal"><span class="pre">false</span></code> for failure.</td>
+</tr>
+</tbody>
+</table>
+<p>Read a key from the cache. Return <code class="docutils literal"><span class="pre">false</span></code> to indicate
+the entry has expired or does not exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::delete">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">delete</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::delete" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean <code class="docutils literal"><span class="pre">true</span></code> on success.</td>
+</tr>
+</tbody>
+</table>
+<p>Delete a key from the cache. Return <code class="docutils literal"><span class="pre">false</span></code> to indicate that
+the entry did not exist or could not be deleted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::clear">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">clear</code><span class="sig-paren">(</span><em>$check</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::clear" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean <code class="docutils literal"><span class="pre">true</span></code> on success.</td>
+</tr>
+</tbody>
+</table>
+<p>Delete all keys from the cache. If $check is <code class="docutils literal"><span class="pre">true</span></code>, you should
+validate that each value is actually expired.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::clearGroup">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">clearGroup</code><span class="sig-paren">(</span><em>$group</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::clearGroup" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean <code class="docutils literal"><span class="pre">true</span></code> on success.</td>
+</tr>
+</tbody>
+</table>
+<p>Delete all keys from the cache belonging to the same group.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::decrement">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">decrement</code><span class="sig-paren">(</span><em>$key</em>, <em>$offset = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::decrement" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean <code class="docutils literal"><span class="pre">true</span></code> on success.</td>
+</tr>
+</tbody>
+</table>
+<p>Decrement a number under the key and return decremented value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::increment">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">increment</code><span class="sig-paren">(</span><em>$key</em>, <em>$offset = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::increment" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean <code class="docutils literal"><span class="pre">true</span></code> on success.</td>
+</tr>
+</tbody>
+</table>
+<p>Increment a number under the key and return incremented value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Cache\CacheEngine::gc">
+<code class="descclassname">Cake\Cache\CacheEngine::</code><code class="descname">gc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Cache\CacheEngine::gc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not required, but used to do clean up when resources expire.
+FileEngine uses this to delete files containing expired content.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

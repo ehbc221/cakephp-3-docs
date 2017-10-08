@@ -1,0 +1,1039 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Logging" lang="en" name="title" />
+<meta content="Log CakePHP data to the disk to help debug your application over longer periods of time." lang="en" name="description" />
+<meta content="cakephp logging,log errors,debug,logging data,cakelog class,ajax logging,soap logging,debugging,logs" lang="en" name="keywords" />
+
+    <title>Logging - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/logging.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/logging.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/logging.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/logging.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/logging.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/logging.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/logging.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Modelless Forms" href="form.html" />
+    <link rel="prev" title="Internationalization &amp; Localization" href="internationalization-and-localization.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/logging.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/logging.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/logging.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/logging.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/logging.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/logging.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/logging.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/logging.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Logging</a><ul>
+<li><a class="reference internal" href="#logging-configuration">Logging Configuration</a><ul>
+<li><a class="reference internal" href="#creating-log-adapters">Creating Log Adapters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-and-exception-logging">Error and Exception Logging</a></li>
+<li><a class="reference internal" href="#interacting-with-log-streams">Interacting with Log Streams</a></li>
+<li><a class="reference internal" href="#using-the-filelog-adapter">Using the FileLog Adapter</a></li>
+<li><a class="reference internal" href="#logging-to-syslog">Logging to Syslog</a></li>
+<li><a class="reference internal" href="#writing-to-logs">Writing to Logs</a><ul>
+<li><a class="reference internal" href="#using-levels">Using Levels</a></li>
+<li><a class="reference internal" href="#logging-scopes">Logging Scopes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#namespace-Cake\Log">Log API</a><ul>
+<li><a class="reference internal" href="#convenience-methods">Convenience Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logging-trait">Logging Trait</a></li>
+<li><a class="reference internal" href="#using-monolog">Using Monolog</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="logging">
+<h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<p>While CakePHP core Configure Class settings can really help you see
+what&#8217;s happening under the hood, there are certain times that
+you&#8217;ll need to log data to the disk in order to find out what&#8217;s
+going on. With technologies like SOAP, AJAX, and REST APIs, debugging can be
+rather difficult.</p>
+<p>Logging can also be a way to find out what&#8217;s been going on in your
+application over time. What search terms are being used? What sorts
+of errors are my users being shown? How often is a particular query
+being executed?</p>
+<p>Logging data in CakePHP is easy - the log() function is provided by the
+<code class="docutils literal"><span class="pre">LogTrait</span></code>, which is the common ancestor for many CakePHP classes. If
+the context is a CakePHP class (Controller, Component, View,...),
+you can log your data.  You can also use <code class="docutils literal"><span class="pre">Log::write()</span></code> directly.
+See <a class="reference internal" href="#writing-to-logs"><span class="std std-ref">Writing to Logs</span></a>.</p>
+<div class="section" id="logging-configuration">
+<span id="log-configuration"></span><h2>Logging Configuration<a class="headerlink" href="#logging-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Configuring <code class="docutils literal"><span class="pre">Log</span></code> should be done during your application&#8217;s bootstrap phase.
+The <strong>config/app.php</strong> file is intended for just this.  You can define
+as many or as few loggers as your application needs.  Loggers should be
+configured using <code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Log</span></code>. An example would be:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Log\Log</span><span class="p">;</span>
+
+<span class="c1">// Short classname</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">LOGS</span><span class="p">,</span>
+    <span class="s1">&#39;levels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;notice&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="c1">// Fully namespaced name.</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Log\Engine\FileLog&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">LOGS</span><span class="p">,</span>
+    <span class="s1">&#39;levels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;alert&#39;</span><span class="p">,</span> <span class="s1">&#39;emergency&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above creates two loggers.  One named <code class="docutils literal"><span class="pre">debug</span></code> the other named <code class="docutils literal"><span class="pre">error</span></code>.
+Each is configured to handle different levels of messages. They also store their
+log messages in separate files, so it&#8217;s easy to separate debug/notice/info logs
+from more serious errors. See the section on <a class="reference internal" href="#logging-levels"><span class="std std-ref">Using Levels</span></a> for more
+information on the different levels and what they mean.</p>
+<p>Once a configuration is created you cannot change it. Instead you should drop
+the configuration and re-create it using <a class="reference internal" href="#Cake\Log\Log::drop" title="Cake\Log\Log::drop"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::drop()</span></code></a> and
+<a class="reference internal" href="#Cake\Log\Log::config" title="Cake\Log\Log::config"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::config()</span></code></a>.</p>
+<p>It is also possible to create loggers by providing a closure. This is useful
+when you need full control over how the logger object is built. The closure
+has to return the constructed logger instance. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;special&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">\Cake\Log\Engine\FileLog</span><span class="p">([</span><span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">LOGS</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;log&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Configuration options can also be provided as a <a class="reference internal" href="../appendices/glossary.html#term-dsn"><span class="xref std std-term">DSN</span></a> string. This is
+useful when working with environment variables or <a class="reference internal" href="../appendices/glossary.html#term-paas"><span class="xref std std-term">PaaS</span></a> providers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;file:///?levels[]=warning&amp;levels[]=error&amp;file=error&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Loggers are required to implement the <code class="docutils literal"><span class="pre">Psr\Log\LoggerInterface</span></code> interface.</p>
+</div>
+<div class="section" id="creating-log-adapters">
+<h3>Creating Log Adapters<a class="headerlink" href="#creating-log-adapters" title="Permalink to this headline">¶</a></h3>
+<p>Log adapters can be part of your application, or part of
+plugins. If for example you had a database logger called
+<code class="docutils literal"><span class="pre">DatabaseLog</span></code>. As part of your application it would be placed in
+<strong>src/Log/Engine/DatabaseLog.php</strong>. As part of a plugin it would be placed in
+<strong>plugins/LoggingPack/src/Log/Engine/DatabaseLog.php</strong>. To configure log
+adapters you should use <a class="reference internal" href="#Cake\Log\Log::config" title="Cake\Log\Log::config"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::config()</span></code></a>.  For example
+configuring our DatabaseLog would look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// For src/Log</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;otherFile&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Database&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;model&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;LogEntry&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+<span class="p">]);</span>
+
+<span class="c1">// For plugin called LoggingPack</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;otherFile&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;LoggingPack.Database&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;model&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;LogEntry&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>When configuring a log adapter the <code class="docutils literal"><span class="pre">className</span></code> parameter is used to
+locate and load the log handler. All of the other configuration
+properties are passed to the log adapter&#8217;s constructor as an array.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Log\Engine</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Log\Engine\BaseLog</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DatabaseLog</span> <span class="k">extends</span> <span class="nx">BaseLog</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$options</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="c1">// Write to the database.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>CakePHP requires that all logging adapters implement <code class="docutils literal"><span class="pre">Psr\Log\LoggerInterface</span></code>.
+The class <code class="xref php php-class docutils literal"><span class="pre">CakeLogEngineBaseLog</span></code> is an easy way to satisfy the
+interface as it only requires you to implement the <code class="docutils literal"><span class="pre">log()</span></code> method.</p>
+<p id="file-log"><code class="docutils literal"><span class="pre">FileLog</span></code> engine takes the following options:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">size</span></code> Used to implement basic log file rotation. If log file size
+reaches specified size the existing file is renamed by appending timestamp
+to filename and new log file is created. Can be integer bytes value or
+human readable string values like &#8216;10MB&#8217;, &#8216;100KB&#8217; etc. Defaults to 10MB.</li>
+<li><code class="docutils literal"><span class="pre">rotate</span></code> Log files are rotated specified times before being removed.
+If value is 0, old versions are removed rather then rotated. Defaults to 10.</li>
+<li><code class="docutils literal"><span class="pre">mask</span></code> Set the file permissions for created files. If left empty the default
+permissions are used.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Engines have the suffix <code class="docutils literal"><span class="pre">Log</span></code>. You should avoid class names like <code class="docutils literal"><span class="pre">SomeLogLog</span></code>
+which include the suffix twice at the end.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You should configure loggers during bootstrapping. <strong>config/app.php</strong> is the
+conventional place to configure log adapters.</p>
+<p class="last">In debug mode missing directories will be automatically created to avoid unnecessary
+errors thrown when using the FileEngine.</p>
+</div>
+</div>
+</div>
+<div class="section" id="error-and-exception-logging">
+<h2>Error and Exception Logging<a class="headerlink" href="#error-and-exception-logging" title="Permalink to this headline">¶</a></h2>
+<p>Errors and Exceptions can also be logged. By configuring the co-responding
+values in your app.php file.  Errors will be displayed when debug &gt; 0 and logged
+when debug is <code class="docutils literal"><span class="pre">false</span></code>. To log uncaught exceptions, set the <code class="docutils literal"><span class="pre">log</span></code> option to
+<code class="docutils literal"><span class="pre">true</span></code>. See <a class="reference internal" href="../development/configuration.html"><span class="doc">Configuration</span></a> for more information.</p>
+</div>
+<div class="section" id="interacting-with-log-streams">
+<h2>Interacting with Log Streams<a class="headerlink" href="#interacting-with-log-streams" title="Permalink to this headline">¶</a></h2>
+<p>You can introspect the configured streams with
+<a class="reference internal" href="#Cake\Log\Log::configured" title="Cake\Log\Log::configured"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::configured()</span></code></a>. The return of <code class="docutils literal"><span class="pre">configured()</span></code> is an
+array of all the currently configured streams. You can remove
+streams using <a class="reference internal" href="#Cake\Log\Log::drop" title="Cake\Log\Log::drop"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::drop()</span></code></a>. Once a log stream has been
+dropped it will no longer receive messages.</p>
+</div>
+<div class="section" id="using-the-filelog-adapter">
+<h2>Using the FileLog Adapter<a class="headerlink" href="#using-the-filelog-adapter" title="Permalink to this headline">¶</a></h2>
+<p>As its name implies FileLog writes log messages to files. The level of log
+message being written determines the name of the file the message is stored in.
+If a level is not supplied, <code class="xref php php-const docutils literal"><span class="pre">LOG_ERR</span></code> is used which writes to the
+error log. The default log location is <code class="docutils literal"><span class="pre">logs/$level.log</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Executing this inside a CakePHP class</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="s2">&quot;Something didn&#39;t work!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Results in this being appended to logs/error.log</span>
+<span class="c1">// 2007-11-02 10:22:02 Error: Something didn&#39;t work!</span>
+</pre></div>
+</div>
+<p>The configured directory must be writable by the web server user in
+order for logging to work correctly.</p>
+<p>You can configure additional/alternate FileLog locations when configuring
+a logger.FileLog accepts a <code class="docutils literal"><span class="pre">path</span></code> which allows for
+custom paths to be used:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;custom_path&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/custom/place/&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you do not configure a logging adapter, log messages will not be stored.</p>
+</div>
+</div>
+<div class="section" id="logging-to-syslog">
+<span id="syslog-log"></span><h2>Logging to Syslog<a class="headerlink" href="#logging-to-syslog" title="Permalink to this headline">¶</a></h2>
+<p>In production environments it is highly recommended that you setup your system to
+use syslog instead of the files logger. This will perform much better as any
+writes will be done in a (almost) non-blocking fashion and your operating  system
+logger can be configured separately to rotate files, pre-process writes or use
+a completely different storage for your logs.</p>
+<p>Using syslog is pretty much like using the default FileLog engine, you just need
+to specify <code class="docutils literal"><span class="pre">Syslog</span></code> as the engine to be used for logging. The following
+configuration snippet will replace the default logger with syslog, this should
+be done in the <strong>bootstrap.php</strong> file:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Syslog&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The configuration array accepted for the Syslog logging engine understands the
+following keys:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">format</span></code>: An sprintf template strings with two placeholders, the first one
+for the error level, and the second for the message itself. This key is
+useful to add additional information about the server or process in the
+logged message. For example: <code class="docutils literal"><span class="pre">%s</span> <span class="pre">-</span> <span class="pre">Web</span> <span class="pre">Server</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">%s</span></code> will look like
+<code class="docutils literal"><span class="pre">error</span> <span class="pre">-</span> <span class="pre">Web</span> <span class="pre">Server</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">An</span> <span class="pre">error</span> <span class="pre">occurred</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">request</span></code> after
+replacing the placeholders.</li>
+<li><code class="docutils literal"><span class="pre">prefix</span></code>: An string that will be prefixed to every logged message.</li>
+<li><code class="docutils literal"><span class="pre">flag</span></code>: An integer flag to be used for opening the connection to the
+logger, by default <code class="docutils literal"><span class="pre">LOG_ODELAY</span></code> will be used. See <code class="docutils literal"><span class="pre">openlog</span></code> documentation
+for more options</li>
+<li><code class="docutils literal"><span class="pre">facility</span></code>: The logging slot to use in syslog. By default <code class="docutils literal"><span class="pre">LOG_USER</span></code> is
+used. See <code class="docutils literal"><span class="pre">syslog</span></code> documentation for more options</li>
+</ul>
+</div>
+<div class="section" id="writing-to-logs">
+<span id="id1"></span><h2>Writing to Logs<a class="headerlink" href="#writing-to-logs" title="Permalink to this headline">¶</a></h2>
+<p>Writing to the log files can be done in 2 different ways. The first
+is to use the static <a class="reference internal" href="#Cake\Log\Log::write" title="Cake\Log\Log::write"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::write()</span></code></a> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;Something did not work&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The second is to use the log() shortcut function available on any
+using the <code class="docutils literal"><span class="pre">LogTrait</span></code> Calling log() will internally call
+<code class="docutils literal"><span class="pre">Log::write()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Executing this inside a class using LogTrait</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="s2">&quot;Something did not work!&quot;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>All configured log streams are written to sequentially each time
+<a class="reference internal" href="#Cake\Log\Log::write" title="Cake\Log\Log::write"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::write()</span></code></a> is called. If you have not configured any
+logging adapters <code class="docutils literal"><span class="pre">log()</span></code> will return <code class="docutils literal"><span class="pre">false</span></code> and no log messages will be
+written.</p>
+<div class="section" id="using-levels">
+<span id="logging-levels"></span><h3>Using Levels<a class="headerlink" href="#using-levels" title="Permalink to this headline">¶</a></h3>
+<p>CakePHP supports the standard POSIX set of logging levels. Each level represents
+an increasing level of severity:</p>
+<ul class="simple">
+<li>Emergency: system is unusable</li>
+<li>Alert: action must be taken immediately</li>
+<li>Critical: critical conditions</li>
+<li>Error: error conditions</li>
+<li>Warning: warning conditions</li>
+<li>Notice: normal but significant condition</li>
+<li>Info: informational messages</li>
+<li>Debug: debug-level messages</li>
+</ul>
+<p>You can refer to these levels by name when configuring loggers, and when writing
+log messages. Alternatively, you can use convenience methods like
+<a class="reference internal" href="#Cake\Log\Log::error" title="Cake\Log\Log::error"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::error()</span></code></a> to clearly indicate the logging
+level. Using a level that is not in the above levels will result in an
+exception.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <code class="docutils literal"><span class="pre">levels</span></code> is set to an empty value in a logger&#8217;s configuration, it
+will take messages of any level.</p>
+</div>
+</div>
+<div class="section" id="logging-scopes">
+<span id="id2"></span><h3>Logging Scopes<a class="headerlink" href="#logging-scopes" title="Permalink to this headline">¶</a></h3>
+<p>Often times you&#8217;ll want to configure different logging behavior for different
+subsystems or parts of your application. Take for example an e-commerce shop.
+You&#8217;ll probably want to handle logging for orders and payments differently than
+you do other less critical logs.</p>
+<p>CakePHP exposes this concept as logging scopes. When log messages are written
+you can include a scope name. If there is a configured logger for that scope,
+the log messages will be directed to those loggers. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Configure logs/shops.log to receive all levels, but only</span>
+<span class="c1">// those with `orders` and `payments` scope.</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;shops&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">LOGS</span><span class="p">,</span>
+    <span class="s1">&#39;levels&#39;</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+    <span class="s1">&#39;scopes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;orders&#39;</span><span class="p">,</span> <span class="s1">&#39;payments&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;shops.log&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="c1">// Configure logs/payments.log to receive all levels, but only</span>
+<span class="c1">// those with `payments` scope.</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;payments&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">LOGS</span><span class="p">,</span>
+    <span class="s1">&#39;levels&#39;</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+    <span class="s1">&#39;scopes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;payments&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;payments.log&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">&#39;this gets written only to shops.log&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;orders&#39;</span><span class="p">]]);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">&#39;this gets written to both shops.log and payments.log&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;payments&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>Scopes can also be passed as a single string or a numerically indexed array.
+Note that using this form will limit the ability to pass more data as context:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;orders&#39;</span><span class="p">]);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning&#39;</span><span class="p">,</span> <span class="s1">&#39;payments&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <code class="docutils literal"><span class="pre">scopes</span></code> is set to an empty array or <code class="docutils literal"><span class="pre">null</span></code> in a logger&#8217;s
+configuration, it will take messages of any scope. Setting it to <code class="docutils literal"><span class="pre">false</span></code>
+will only match messages without scope.</p>
+</div>
+</div>
+</div>
+<div class="section" id="namespace-Cake\Log">
+<span id="log-api"></span><h2>Log API<a class="headerlink" href="#namespace-Cake\Log" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Log\Log">
+<em class="property">class </em><code class="descclassname">Cake\Log\</code><code class="descname">Log</code><a class="headerlink" href="#Cake\Log\Log" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple class for writing to logs.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::config">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">config</code><span class="sig-paren">(</span><em>$key</em>, <em>$config</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::config" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$name</strong> (<em>string</em>) &#8211; Name for the logger being connected, used
+to drop a logger later on.</li>
+<li><strong>$config</strong> (<em>array</em>) &#8211; Array of configuration information and
+constructor arguments for the logger.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get or set the configuration for a Logger. See <a class="reference internal" href="#log-configuration"><span class="std std-ref">Logging Configuration</span></a> for
+more information.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::configured">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">configured</code><a class="headerlink" href="#Cake\Log\Log::configured" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An array of configured loggers.</td>
+</tr>
+</tbody>
+</table>
+<p>Get the names of the configured loggers.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::drop">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">drop</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::drop" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>$name</strong> (<em>string</em>) &#8211; Name of the logger you wish to no longer receive
+messages.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::write">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">write</code><span class="sig-paren">(</span><em>$level</em>, <em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a message into all the configured loggers.
+<code class="docutils literal"><span class="pre">$level</span></code> indicates the level of log message being created.
+<code class="docutils literal"><span class="pre">$message</span></code> is the message of the log entry being written to.
+<code class="docutils literal"><span class="pre">$scope</span></code> is the scope(s) a log message is being created in.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::levels">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">levels</code><a class="headerlink" href="#Cake\Log\Log::levels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Call this method without arguments, eg: <cite>Log::levels()</cite> to obtain current
+level configuration.</p>
+<div class="section" id="convenience-methods">
+<h3>Convenience Methods<a class="headerlink" href="#convenience-methods" title="Permalink to this headline">¶</a></h3>
+<p>The following convenience methods were added to log <cite>$message</cite> with the
+appropriate log level.</p>
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::emergency">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">emergency</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::emergency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::alert">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">alert</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::alert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::critical">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">critical</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::error">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">error</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::warning">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">warning</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::notice">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">notice</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::notice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::debug">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">debug</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Log\Log::info">
+<em class="property">static </em><code class="descclassname">Cake\Log\Log::</code><code class="descname">info</code><span class="sig-paren">(</span><em>$message</em>, <em>$scope = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\Log::info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="logging-trait">
+<h2>Logging Trait<a class="headerlink" href="#logging-trait" title="Permalink to this headline">¶</a></h2>
+<dl class="trait">
+<dt id="Cake\Log\LogTrait">
+<em class="property">trait </em><code class="descclassname">Cake\Log\</code><code class="descname">LogTrait</code><a class="headerlink" href="#Cake\Log\LogTrait" title="Permalink to this definition">¶</a></dt>
+<dd><p>A trait that provides shortcut methods for logging</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Log\LogTrait::log">
+<code class="descclassname">Cake\Log\LogTrait::</code><code class="descname">log</code><span class="sig-paren">(</span><em>$msg</em>, <em>$level = LOG_ERR</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Log\LogTrait::log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a message to the logs.  By default messages are logged as
+ERROR messages.  If <code class="docutils literal"><span class="pre">$msg</span></code> isn&#8217;t a string it will be converted with
+<code class="docutils literal"><span class="pre">print_r</span></code> before being logged.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="using-monolog">
+<h2>Using Monolog<a class="headerlink" href="#using-monolog" title="Permalink to this headline">¶</a></h2>
+<p>Monolog is a popular logger for PHP. Since it implements the same interfaces as
+the CakePHP loggers, it is easy to use in your application as the default
+logger.</p>
+<p>After installing Monolog using composer, configure the logger using the
+<code class="docutils literal"><span class="pre">Log::config()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// config/bootstrap.php</span>
+
+<span class="k">use</span> <span class="nx">Monolog\Logger</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Handler\StreamHandler</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$log</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Logger</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">);</span>
+    <span class="nv">$log</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="k">new</span> <span class="nx">StreamHandler</span><span class="p">(</span><span class="s1">&#39;path/to/your/combined.log&#39;</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nv">$log</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// Optionally stop using the now redundant default loggers</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">drop</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">drop</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Use similar methods if you want to configure a different logger for your console:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// config/bootstrap_cli.php</span>
+
+<span class="k">use</span> <span class="nx">Monolog\Logger</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Handler\StreamHandler</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$log</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Logger</span><span class="p">(</span><span class="s1">&#39;cli&#39;</span><span class="p">);</span>
+    <span class="nv">$log</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="k">new</span> <span class="nx">StreamHandler</span><span class="p">(</span><span class="s1">&#39;path/to/your/combined-cli.log&#39;</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nv">$log</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// Optionally stop using the now redundant default CLI loggers</span>
+<span class="nx">Configure</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;Log.debug&#39;</span><span class="p">);</span>
+<span class="nx">Configure</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;Log.error&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When using a console specific logger, make sure to conditionally configure
+your application logger. This will prevent duplicate log entries.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

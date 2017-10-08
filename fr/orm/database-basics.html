@@ -1,0 +1,1567 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Notions de Base de Base de Données" lang="fr" name="title" />
+<meta content="SQL,MySQL,MariaDB,PostGres,Postgres,postgres,PostgreSQL,PostGreSQL,postGreSql,select,insert,update,delete,statement,configuration,connection,base de données,data,types,custom,,executing,queries,transactions,prepared,statements,binding,fetching,row,count,error,codes,query,logging,identifier,quoting,metadata,cache" lang="fr" name="keywords" />
+
+    <title>Notions de Base de Base de Données - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/orm/database-basics.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/orm/database-basics.html" /><link rel="alternate" hreflang="es" href="../../es/orm/database-basics.html" /><link rel="alternate" hreflang="ja" href="../../ja/orm/database-basics.html" /><link rel="alternate" hreflang="zh" href="../../zh/orm/database-basics.html" /><link rel="alternate" hreflang="tr" href="../../tr/orm/database-basics.html" /><link rel="alternate" hreflang="ru" href="../../ru/orm/database-basics.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="Accès Base de Données &amp; ORM" href="../orm.html" />
+    <link rel="next" title="Query Builder" href="query-builder.html" />
+    <link rel="prev" title="Accès Base de Données &amp; ORM" href="../orm.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/orm/database-basics.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/orm/database-basics.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/orm/database-basics.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/orm/database-basics.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/orm/database-basics.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/orm/database-basics.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/orm/database-basics.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/orm/database-basics.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Notions de Base de Base de Données</a><ul>
+<li><a class="reference internal" href="#tour-rapide">Tour Rapide</a><ul>
+<li><a class="reference internal" href="#bases-de-donnees-supportees">Bases de Données Supportées</a></li>
+<li><a class="reference internal" href="#executer-des-instructions-select">Exécuter des Instructions Select</a></li>
+<li><a class="reference internal" href="#executer-des-instructions-insert">Exécuter des Instructions Insert</a></li>
+<li><a class="reference internal" href="#executer-des-instructions-update">Exécuter des Instructions Update</a></li>
+<li><a class="reference internal" href="#executer-des-instructions-delete">Exécuter des Instructions Delete</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#gerer-les-connexions">Gérer les Connexions</a><ul>
+<li><a class="reference internal" href="#acceder-a-des-connexions">Accéder à des Connexions</a></li>
+<li><a class="reference internal" href="#creer-des-connexions-a-l-execution">Créer des Connexions à l&#8217;exécution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#types-de-donnees">Types de Données</a><ul>
+<li><a class="reference internal" href="#ajouter-des-types-personnalises">Ajouter des Types Personnalisés</a></li>
+<li><a class="reference internal" href="#faire-correspondre-des-types-de-donnees-personnalises-aux-expressions-sql">Faire correspondre des types de données personnalisés aux expressions SQL</a></li>
+<li><a class="reference internal" href="#activer-les-objets-datetime-immutables">Activer les Objets DateTime Immutables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#les-classes-de-connection">Les Classes de Connection</a><ul>
+<li><a class="reference internal" href="#l-execution-des-requetes">L&#8217;exécution des Requêtes</a></li>
+<li><a class="reference internal" href="#utiliser-les-transactions">Utiliser les Transactions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interagir-avec-les-requetes">Interagir avec les Requêtes</a><ul>
+<li><a class="reference internal" href="#preparer-une-requete">Préparer une Requête</a></li>
+<li><a class="reference internal" href="#lier-les-valeurs-binding">Lier les Valeurs (Binding)</a></li>
+<li><a class="reference internal" href="#executer-recuperer-les-colonnes">Executer &amp; Récupérer les Colonnes</a></li>
+<li><a class="reference internal" href="#recuperer-les-compteurs-de-ligne">Récupérer les Compteurs de Ligne</a></li>
+<li><a class="reference internal" href="#verifier-les-codes-d-erreur">Vérifier les Codes d&#8217;Erreur</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#faire-des-logs-de-requete">Faire des Logs de Requête</a></li>
+<li><a class="reference internal" href="#identifier-quoting">Identifier Quoting</a></li>
+<li><a class="reference internal" href="#la-mise-en-cache-de-metadata">La Mise en Cache de Metadata</a></li>
+<li><a class="reference internal" href="#creer-des-bases-de-donnees">Créer des Bases de Données</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="notions-de-base-de-base-de-donnees">
+<h1>Notions de Base de Base de Données<a class="headerlink" href="#notions-de-base-de-base-de-donnees" title="Lien permanent vers ce titre">¶</a></h1>
+<p>La couche d&#8217;accès à la base de données de CakePHP fournit une abstraction et
+aide avec la plupart des aspects du traitement des bases de données
+relationnelles telles que, le maintien des connexions au serveur, la
+construction de requêtes, la protection contre les injections SQL, l&#8217;inspection
+et la modification des schémas, et avec le débogage et le profilage les requêtes
+envoyées à la base de données.</p>
+<div class="section" id="tour-rapide">
+<h2>Tour Rapide<a class="headerlink" href="#tour-rapide" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les fonctions décrites dans ce chapitre illustrent les possibilités de l&#8217;API
+d&#8217;accès à la base de données de plus bas niveau. Si vous souhaitez plutôt en
+apprendre plus sur l&#8217;ORM complet, vous pouvez lire les sections portant sur le
+<a class="reference internal" href="query-builder.html"><span class="doc">Query Builder</span></a> et <a class="reference internal" href="table-objects.html"><span class="doc">Les Objets Table</span></a>.</p>
+<p>La manière la plus simple de créer une connexion à la base de données est
+d&#8217;utiliser une chaine <code class="docutils literal"><span class="pre">DSN</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+
+<span class="nv">$dsn</span> <span class="o">=</span> <span class="s1">&#39;mysql://root:password@localhost/my_database&#39;</span><span class="p">;</span>
+<span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nv">$dsn</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Une fois créé, vous pouvez accéder à l&#8217;objet Connection pour commencer à
+l&#8217;utiliser:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$connection</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="bases-de-donnees-supportees">
+<h3>Bases de Données Supportées<a class="headerlink" href="#bases-de-donnees-supportees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>CakePHP supporte les serveurs de base de données relationnelles suivants:</p>
+<ul class="simple">
+<li>MySQL 5.1+</li>
+<li>SQLite 3</li>
+<li>PostgreSQL 8+</li>
+<li>SQLServer 2008+</li>
+<li>Oracle (avec un plugin créé par la communauté)</li>
+</ul>
+<p>Pour chacun des drivers de base de données ci-dessus, assurez-vous d&#8217;avoir
+la bonne extension PDO installée. Les API procédurales ne sont pas supportées.</p>
+<p>La base de données Oracle est supportée via le
+<a class="reference external" href="https://github.com/CakeDC/cakephp-oracle-driver">Driver pour les bases de données Oracle</a> du plugin créé par la
+communauté.</p>
+</div>
+<div class="section" id="executer-des-instructions-select">
+<span id="running-select-statements"></span><h3>Exécuter des Instructions Select<a class="headerlink" href="#executer-des-instructions-select" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Exécuter une instruction SQL pur est un jeu d&#8217;enfant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM articles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez utiliser des instructions préparées pour insérer des paramètres:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$connection</span>
+    <span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM articles WHERE id = :id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>il est également possible d&#8217;utiliser des types de données complexes en tant
+qu&#8217;arguments:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$connection</span>
+    <span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT * FROM articles WHERE created &gt;= :created&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;1 day ago&#39;</span><span class="p">)],</span>
+        <span class="p">[</span><span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;datetime&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Au lieu d&#8217;écrire du SQL manuellement, vous pouvez utiliser le générateur de
+requêtes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$connection</span>
+    <span class="o">-&gt;</span><span class="na">newQuery</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;created &gt;&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;1 day ago&#39;</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;datetime&#39;</span><span class="p">]])</span>
+    <span class="o">-&gt;</span><span class="na">order</span><span class="p">([</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DESC&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">execute</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="executer-des-instructions-insert">
+<h3>Exécuter des Instructions Insert<a class="headerlink" href="#executer-des-instructions-insert" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Insérer une ligne dans une base de données est habituellement l&#8217;affaire
+de quelques lignes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A New Article&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">)</span>
+<span class="p">],</span> <span class="p">[</span><span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;datetime&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="executer-des-instructions-update">
+<h3>Exécuter des Instructions Update<a class="headerlink" href="#executer-des-instructions-update" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Mettre à jour une ligne de base de données est aussi intuitif, l&#8217;exemple suivant
+procédera à la mise à jour de l&#8217;article comportant l&#8217;<strong>id</strong> 10:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New title&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="executer-des-instructions-delete">
+<h3>Exécuter des Instructions Delete<a class="headerlink" href="#executer-des-instructions-delete" title="Lien permanent vers ce titre">¶</a></h3>
+<p>De même, la méthode <code class="docutils literal"><span class="pre">delete()</span></code> est utilisée pour supprimer des lignes de la
+base de données, l&#8217;exemple suivant procédera à suppression de l&#8217;article
+comportant l&#8217;<strong>id</strong> 10:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<span id="database-configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par convention, les connexions à la base de données sont configurées dans
+<strong>config/app.php</strong>. L&#8217;information de connexion définie dans ce fichier
+est envoyée au <code class="xref php php-class docutils literal"><span class="pre">Cake\DataSource\ConnectionManager</span></code> créant la
+configuration de la connexion que votre application utilisera. Un exemple
+d&#8217;information sur la connexion se trouve dans <strong>config/app.default.php</strong>.
+Un exemple d&#8217;information sur la configuration ressemblera à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Datasources&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Connection&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Driver\Mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;persistent&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sekret&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;encoding&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;timezone&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UTC&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cacheMetadata&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus va créer une connexion &#8216;default&#8217;, avec les paramètres
+fournis. Vous pouvez définir autant de connexions que vous le souhaitez dans
+votre fichier de configuration. Vous pouvez aussi définir des connexions
+supplémentaires à la volée en utilisant
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\DataSource\ConnectionManager::config()</span></code>. Un exemple de ceci
+serait:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\DataSource\ConnectionManager</span><span class="p">;</span>
+
+<span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Connection&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Driver\Mysql&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;persistent&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sekret&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;encoding&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;timezone&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UTC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cacheMetadata&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Les options de configuration peuvent également être fournies en tant que chaine
+<a class="reference internal" href="../appendices/glossary.html#term-dsn"><span class="xref std std-term">DSN</span></a>. C&#8217;est utile lorsque vous travaillez avec des variables
+d&#8217;environnement ou des fournisseurs <a class="reference internal" href="../appendices/glossary.html#term-paas"><span class="xref std std-term">PaaS</span></a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://my_app:sekret@localhost/my_app?encoding=utf8&amp;timezone=UTC&amp;cacheMetadata=true&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Lorsque vous utilisez une chaine DSN, vous pouvez définir des paramètres/options
+supplémentaires en tant qu&#8217;arguments de query string.</p>
+<p>Par défaut, tous les objets Table vont utiliser la connexion <code class="docutils literal"><span class="pre">default</span></code>. Pour
+utiliser une autre connexion, reportez-vous à
+<a class="reference internal" href="table-objects.html#configuring-table-connections"><span class="std std-ref">la configuration des connexions</span></a>.</p>
+<p>Il y a un certain nombre de clés supportées dans la configuration de la base
+de données. Voici la liste complète:</p>
+<dl class="docutils">
+<dt>className</dt>
+<dd>Nom de classe complète (incluant le <em>namespace</em>) de la classe qui
+représente une connexion au serveur de base de données.
+Cette classe a pour rôle de charger le driver de base de données, de
+fournir les mécanismes de transaction et de préparer les requêtes SQL
+(entres autres choses).</dd>
+<dt>driver</dt>
+<dd>Le nom de la classe du driver utilisée pour implémenter les spécificités
+du moteur de base de données. Cela peut être soit un nom de classe court
+en utilisant la <a class="reference internal" href="../appendices/glossary.html#term-syntaxe-de-plugin"><span class="xref std std-term">syntaxe de plugin</span></a>, un nom complet en namespace,
+soit être une instance de driver construite. Les exemples de noms de classe
+courts sont Mysql, Sqlite, Postgres, et Sqlserver.</dd>
+<dt>persistent</dt>
+<dd>S&#8217;il faut utiliser ou non une connexion persistante à la base de données.</dd>
+<dt>host</dt>
+<dd>Le nom d&#8217;hôte du serveur de base de données (ou une adresse IP).</dd>
+<dt>username</dt>
+<dd>Le nom d&#8217;utilisateur pour votre compte.</dd>
+<dt>password</dt>
+<dd>Le mot de passe pour le compte.</dd>
+<dt>database</dt>
+<dd>Le nom de la base de données à utiliser pour cette connexion. Éviter
+d&#8217;utiliser <code class="docutils literal"><span class="pre">.</span></code> dans votre nom de base de données. Comme cela complique
+l&#8217;identifier quoting, CakePHP ne supporte pas <code class="docutils literal"><span class="pre">.</span></code> dans les noms de base de
+données. Les chemins vers vos bases de données SQLite doivent être absolus
+(par exemple <code class="docutils literal"><span class="pre">ROOT</span> <span class="pre">.</span> <span class="pre">DS</span> <span class="pre">.</span> <span class="pre">'my_app.db'</span></code>) pour éviter les erreurs de chemins
+incorrects à cause de chemins relatifs.</dd>
+<dt>port (<em>optionnel</em>)</dt>
+<dd>Le port TCP ou le socket Unix utilisé pour se connecter au serveur.</dd>
+<dt>encoding</dt>
+<dd>Indique le jeu de caractères à utiliser lors de l&#8217;envoi d&#8217;instructions SQL
+au serveur. L&#8217;encodage par défaut est celui de la base de données
+pour toutes les bases de données autres que DB2. Si vous souhaitez utiliser
+l&#8217;encodage UTF-8 avec les connexions MySQL, vous devez utiliser
+&#8216;utf8&#8217; sans trait d&#8217;union.</dd>
+<dt>timezone</dt>
+<dd>La définition du timezone du serveur.</dd>
+<dt>schema</dt>
+<dd>Utilisé pour spécifier le schema à utiliser pour les bases de données
+PostgreSQL.</dd>
+<dt>unix_socket</dt>
+<dd>Utilisé par les drivers qui le supportent pour se connecter via les fichiers
+socket Unix. Si vous utilisez PostgreSQL et que vous voulez utiliser les
+sockets Unix, laissez la clé host vide.</dd>
+<dt>ssl_key</dt>
+<dd>Le chemin du fichier vers la clé du fichier SSL. (supporté seulement par
+MySQL).</dd>
+<dt>ssl_cert</dt>
+<dd>Le chemin du fichier vers le fichier du certificat SSL. (supporté seulement
+par MySQL).</dd>
+<dt>ssl_ca</dt>
+<dd>Le chemin du fichier vers l&#8217;autorité de certification SSL. (supporté
+seulement par MySQL).</dd>
+<dt>init</dt>
+<dd>Une liste de requêtes qui doivent être envoyées au serveur de la base de
+données lorsque la connexion est créée.</dd>
+<dt>log</dt>
+<dd>Défini à <code class="docutils literal"><span class="pre">true</span></code> pour activer les logs des requêtes. Si activé,
+les requêtes seront écrites au niveau <code class="docutils literal"><span class="pre">debug</span></code> avec le scope
+<code class="docutils literal"><span class="pre">queriesLog</span></code>.</dd>
+<dt>quoteIdentifiers</dt>
+<dd>Défini à <code class="docutils literal"><span class="pre">true</span></code> si vous utilisez les mots réservés ou les caractères
+spéciaux avec les noms de tables ou de colonnes. Activer
+cette configuration va entraîner la construction des requêtes en utilisant
+le <a class="reference internal" href="query-builder.html"><span class="doc">Query Builder</span></a> avec les identifiers quotés lors de la création
+de SQL. Notez que ceci diminue la performance parce que chaque requête a
+besoin d&#8217;être traversée et manipulée avant d&#8217;être exécutée.</dd>
+<dt>flags</dt>
+<dd>Un tableau associatif de constantes PDO qui doivent être passées
+à l&#8217;instance PDO sous-jacente. Regardez la documentation de PDO pour les
+flags supportés par le driver que vous utilisez.</dd>
+<dt>cacheMetadata</dt>
+<dd>Soit un booléen <code class="docutils literal"><span class="pre">true</span></code>, soit une chaîne contenant la configuration du
+cache pour stocker les meta données. Désactiver la mise en cache des
+metadata n&#8217;est pas conseillé et peut entraîner de faibles performances.
+Consultez la section sur <a class="reference internal" href="#database-metadata-cache"><span class="std std-ref">La Mise en Cache de Metadata</span></a> pour plus
+d&#8217;information.</dd>
+<dt>mask</dt>
+<dd>Définit les droits sur le fichier de base de données généré (seulement supporté
+par SQLite)</dd>
+</dl>
+<p>Au point où nous sommes, vous pouvez aller voir
+<a class="reference internal" href="../intro/conventions.html"><span class="doc">Conventions de CakePHP</span></a>. Le nommage correct pour vos
+tables (et pour quelques colonnes) peut vous offrir des
+fonctionnalités gratuites et vous aider à éviter la configuration. Par
+exemple, si vous nommez votre table de base de données big_boxes, votre table
+BigBoxesTable, et votre controller BigBoxesController, tout fonctionnera
+ensemble automatiquement. Par convention, utilisez les underscores, les
+minuscules et les formes plurielles pour vos noms de table de la base de
+données - par exemple: bakers, pastry_stores, et savory_cakes.</p>
+<span class="target" id="namespace-Cake\Datasource"></span></div>
+<div class="section" id="gerer-les-connexions">
+<h2>Gérer les Connexions<a class="headerlink" href="#gerer-les-connexions" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Datasource\ConnectionManager">
+<em class="property">class </em><code class="descclassname">Cake\Datasource\</code><code class="descname">ConnectionManager</code><a class="headerlink" href="#Cake\Datasource\ConnectionManager" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>La classe <code class="docutils literal"><span class="pre">ConnectionManager</span></code> agit comme un registre pour accéder aux
+connexions à la base de données que votre application. Elle fournit
+un endroit où les autres objets peuvent obtenir des références aux connexions
+existantes.</p>
+<div class="section" id="acceder-a-des-connexions">
+<h3>Accéder à des Connexions<a class="headerlink" href="#acceder-a-des-connexions" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Datasource\ConnectionManager::get">
+<em class="property">static </em><code class="descclassname">Cake\Datasource\ConnectionManager::</code><code class="descname">get</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Datasource\ConnectionManager::get" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Une fois configurées, les connexions peuvent être récupérées en utilisant
+<a class="reference internal" href="#Cake\Datasource\ConnectionManager::get" title="Cake\Datasource\ConnectionManager::get"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Datasource\ConnectionManager::get()</span></code></a>. Cette méthode va
+construire et charger une connexion si elle n&#8217;a pas été déjà construite
+avant, ou retourner la connexion connue existante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Datasource\ConnectionManager</span><span class="p">;</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La tentative de chargement de connexions qui n&#8217;existent pas va lancer une
+exception.</p>
+</div>
+<div class="section" id="creer-des-connexions-a-l-execution">
+<h3>Créer des Connexions à l&#8217;exécution<a class="headerlink" href="#creer-des-connexions-a-l-execution" title="Lien permanent vers ce titre">¶</a></h3>
+<p>En utilisant <code class="docutils literal"><span class="pre">config()</span></code> et <code class="docutils literal"><span class="pre">get()</span></code> vous pouvez créer à tout moment de
+nouvelles connexions qui ne sont pas défines dans votre fichier de
+configuration:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;my_connection&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="nx">ConnectionManager</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;my_connection&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Consultez le chapitre sur la <a class="reference internal" href="#database-configuration"><span class="std std-ref">configuration</span></a>
+pour plus d&#8217;informations sur les données de configuration utilisées lors de
+la création de connexions.</p>
+<span class="target" id="namespace-Cake\Database"><span id="database-data-types"></span></span></div>
+</div>
+<div class="section" id="types-de-donnees">
+<h2>Types de Données<a class="headerlink" href="#types-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Database\Type">
+<em class="property">class </em><code class="descclassname">Cake\Database\</code><code class="descname">Type</code><a class="headerlink" href="#Cake\Database\Type" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Puisque tous les fournisseurs de base de données n&#8217;intègrent pas la même
+définition des types de données, ou les mêmes noms pour des types de données
+similaires, CakePHP fournit un ensemble de types de données abstraites à
+utiliser avec la couche de la base de données. Les types supportés par CakePHP
+sont:</p>
+<dl class="docutils">
+<dt>string</dt>
+<dd>Généralement construit en colonnes CHAR ou VARCHAR. Utiliser l&#8217;option
+<code class="docutils literal"><span class="pre">fixed</span></code> va forcer une colonne CHAR. Dans SQL Server, les types NCHAR et
+NVARCHAR sont utilisés.</dd>
+<dt>text</dt>
+<dd>Correspond aux types TEXT.</dd>
+<dt>uuid</dt>
+<dd>Correspond au type UUID si une base de données en fournit un, sinon cela
+générera un champ CHAR(36).</dd>
+<dt>integer</dt>
+<dd>Correspond au type INTEGER fourni par la base de données. BIT n&#8217;est pour
+l&#8217;instant pas supporté.</dd>
+<dt>smallinteger</dt>
+<dd>Correspond au type SMALLINT fourni par la base de données.</dd>
+<dt>tinyinteger</dt>
+<dd>Correspond au type TINYINT (ou SMALLINT) fourni par la base de données. Sur MySQL
+<code class="docutils literal"><span class="pre">TINYINT(1)</span></code> sera traité comme un booléen.</dd>
+<dt>biginteger</dt>
+<dd>Correspond au type BIGINT fourni par la base de données.</dd>
+<dt>float</dt>
+<dd>Correspond soit à DOUBLE, soit à FLOAT selon la base de données.
+L&#8217;option <code class="docutils literal"><span class="pre">precision</span></code> peut être utilisée pour définir la précision
+utilisée.</dd>
+<dt>decimal</dt>
+<dd>Correspond au type DECIMAL. Supporte les options <code class="docutils literal"><span class="pre">length</span></code> et
+<code class="docutils literal"><span class="pre">precision</span></code>.</dd>
+<dt>boolean</dt>
+<dd>Correspond au BOOLEAN sauf pour MySQL, où TINYINT(1) est utilisé pour
+représenter les booléens. BIT(1) n&#8217;est pour l&#8217;instant pas supporté.</dd>
+<dt>binary</dt>
+<dd>Correspond au type BLOB ou BYTEA fourni par la base de données.</dd>
+<dt>date</dt>
+<dd>Correspond au type de colonne DATE sans timezone. La valeur de retour de ce
+type de colonne est <code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\Date</span></code> qui étend la classe
+native <code class="docutils literal"><span class="pre">DateTime</span></code>.</dd>
+<dt>datetime</dt>
+<dd>Correspond au type de colonne DATETIME sans timezone. Dans PostgreSQL et
+SQL Server, ceci retourne un type TIMESTAMP. La valeur retournée par défaut
+de ce type de colonne est <a class="reference internal" href="../core-libraries/time.html#Cake\I18n\Time" title="Cake\I18n\Time"><code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\Time</span></code></a> qui étend
+les classes intégrées <code class="docutils literal"><span class="pre">DateTime</span></code> et
+<a class="reference external" href="https://github.com/cakephp/chronos">Chronos</a>.</dd>
+<dt>timestamp</dt>
+<dd>Correspond au type TIMESTAMP.</dd>
+<dt>time</dt>
+<dd>Correspond au type TIME dans toutes les bases de données.</dd>
+<dt>json</dt>
+<dd>Correspond au type JSON s&#8217;il est disponible, sinon il correspond à TEXT. Le
+type &#8216;json&#8217; a été ajouté dans la version 3.3.0.</dd>
+</dl>
+<p>Ces types sont utilisés à la fois pour les fonctionnalités de reflection de
+schema fournies par CakePHP, et pour les fonctionnalités de génération de schema
+que CakePHP utilise lors des fixtures de test.</p>
+<p>Chaque type peut aussi fournir des fonctions de traduction entre les
+représentations PHP et SQL. Ces méthodes sont invoquées selon le type hints
+fourni lorsque les requêtes sont faites. Par exemple une colonne qui est marquée
+en &#8216;datetime&#8217; va automatiquement convertir les paramètres d&#8217;input d&#8217;instances
+<code class="docutils literal"><span class="pre">DateTime</span></code> en timestamp ou chaines de dates formatées. Egalement, les
+colonnes &#8216;binary&#8217; vont accepter un fichier qui gère, et génère le fichier lors
+de la lecture des données.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Modifié dans la version 3.3.0: </span>Le type <code class="docutils literal"><span class="pre">json</span></code> a été ajouté.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Modifié dans la version 3.5.0: </span>Les types <code class="docutils literal"><span class="pre">smallinteger</span></code> et <code class="docutils literal"><span class="pre">tinyinteger</span></code> ont été ajoutés.</p>
+</div>
+<div class="section" id="ajouter-des-types-personnalises">
+<span id="adding-custom-database-types"></span><h3>Ajouter des Types Personnalisés<a class="headerlink" href="#ajouter-des-types-personnalises" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Database\Type::map">
+<em class="property">static </em><code class="descclassname">Cake\Database\Type::</code><code class="descname">map</code><span class="sig-paren">(</span><em>$name</em>, <em>$class</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Database\Type::map" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Si vous avez besoin d&#8217;utiliser des types spécifiques qui ne sont pas
+fournis CakePHP, vous pouvez ajouter des nouveaux types supplémentaires
+au système de type de CakePHP. Ces classes de type s&#8217;attendent à implémenter
+les méthodes suivantes:</p>
+<ul class="simple">
+<li>toPHP</li>
+<li>toDatabase</li>
+<li>toStatement</li>
+<li>marshal</li>
+</ul>
+<p>Une façon facile de remplir l&#8217;interface basique est d&#8217;étendre
+<a class="reference internal" href="#Cake\Database\Type" title="Cake\Database\Type"><code class="xref php php-class docutils literal"><span class="pre">Cake\Database\Type</span></code></a>. Par exemple, si vous souhaitez ajouter un
+type JSON, nous pourrions faire la classe type suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans src/Database/Type/JsonType.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Database\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Database\Driver</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Type</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">PDO</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">JsonType</span> <span class="k">extends</span> <span class="nx">Type</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toPHP</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nx">Driver</span> <span class="nv">$driver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">marshal</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$value</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toDatabase</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nx">Driver</span> <span class="nv">$driver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toStatement</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nx">Driver</span> <span class="nv">$driver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">PDO</span><span class="o">::</span><span class="na">PARAM_NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">PDO</span><span class="o">::</span><span class="na">PARAM_STR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Par défaut, la méthode <code class="docutils literal"><span class="pre">toStatement</span></code> va traiter les valeurs en chaines qui
+vont fonctionner pour notre nouveau type. Une fois que nous avons créé notre
+nouveau type, nous avons besoin de l&#8217;ajouter dans la correspondance de type.
+Pendant le bootstrap de notre application, nous devrions faire ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Database\Type</span><span class="p">;</span>
+
+<span class="nx">Type</span><span class="o">::</span><span class="na">map</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;Cake\Database\Type\JsonType&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Nous pouvons ensuite surcharger les données de schema reflected pour utiliser
+notre nouveau type, et la couche de base de données de CakePHP va
+automatiquement convertir nos données JSON lors de la création de requêtes.
+Vous pouvez utiliser les types personnalisés créés en faisant la correspondance
+des types dans la <a class="reference internal" href="saving-data.html#saving-complex-types"><span class="std std-ref">méthode _initializeSchema()</span></a> de
+votre Table:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Database\Schema\TableSchema</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">WidgetsTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_initializeSchema</span><span class="p">(</span><span class="nx">TableSchema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+
+        <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">columnType</span><span class="p">(</span><span class="s1">&#39;widget_prefs&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$schema</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="faire-correspondre-des-types-de-donnees-personnalises-aux-expressions-sql">
+<span id="mapping-custom-datatypes-to-sql-expressions"></span><h3>Faire correspondre des types de données personnalisés aux expressions SQL<a class="headerlink" href="#faire-correspondre-des-types-de-donnees-personnalises-aux-expressions-sql" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.3.0: </span>Le support pour le mappage des types de données personnalisés aux expressions SQL a été ajouté dans la version 3.3.0.</p>
+</div>
+<p>L&#8217;exemple précédent fait correspondre un type de données personnalisé pour une
+colonne de type &#8216;json&#8217; qui est facilement représenté sous la forme d&#8217;une chaîne
+dans une instruction SQL. Les types de données complexes ne peuvent pas être
+représentées sous la forme de chaînes/entiers dans des requêtes SQL. Quand vous
+travaillez avec ces types de données, votre class Type doit implémenter l&#8217;interface
+<code class="docutils literal"><span class="pre">Cake\Database\Type\ExpressionTypeInterface</span></code>. Cette interface permet de
+représenter une valeur de votre type de données personnalisé comme une expression SQL.
+Comme exemple, nous allons construire une simple classe Type pour manipuler le type de
+données <code class="docutils literal"><span class="pre">POINT</span></code> de MysQL. Premièrement, nous allons définir un objet &#8216;value&#8217; que nous
+allons pouvoir utiliser pour représenter les données de <code class="docutils literal"><span class="pre">POINT</span></code> en PHP:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in src/Database/Point.php</span>
+<span class="k">namespace</span> <span class="nx">App\Database</span><span class="p">;</span>
+
+<span class="c1">// Our value object is immutable.</span>
+<span class="k">class</span> <span class="nc">Point</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$_lat</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$_long</span><span class="p">;</span>
+
+    <span class="c1">// Factory method.</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">parse</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Parse the data from MySQL.</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="k">static</span><span class="p">(</span><span class="nv">$value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nv">$value</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$lat</span><span class="p">,</span> <span class="nv">$long</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_lat</span> <span class="o">=</span> <span class="nv">$lat</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_long</span> <span class="o">=</span> <span class="nv">$long</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">lat</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_lat</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">long</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_long</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Maintenant que notre objet &#8216;value&#8217; créé, nous avons besoin d&#8217;une classe Type pour
+faire correspondre les données dans cet objet et les expressions SQL:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Database\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Database\Point</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Expression\FunctionExpression</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Type</span> <span class="k">as</span> <span class="nx">BaseType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Type\ExpressionTypeInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PointType</span> <span class="k">extends</span> <span class="nx">BaseType</span> <span class="k">implements</span> <span class="nx">ExpressionTypeInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toPHP</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nx">Driver</span> <span class="nv">$d</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Point</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">marshal</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$value</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="nv">$value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nv">$value</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toExpression</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="nx">instanceof</span> <span class="nx">Point</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">FunctionExpression</span><span class="p">(</span>
+                <span class="s1">&#39;POINT&#39;</span><span class="p">,</span>
+                <span class="p">[</span>
+                    <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lat</span><span class="p">(),</span>
+                    <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">long</span><span class="p">()</span>
+                <span class="p">]</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">FunctionExpression</span><span class="p">(</span><span class="s1">&#39;POINT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nv">$value</span><span class="p">[</span><span class="mi">1</span><span class="p">]]);</span>
+        <span class="p">}</span>
+        <span class="c1">// Handle other cases.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La classe ci-dessus fait quelques éléments intéressants :</p>
+<ul class="simple">
+<li>La méthode <code class="docutils literal"><span class="pre">toPHP</span></code> se charge du parsing des résulats de la requête SQL dans un objet &#8216;value&#8217;.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">marshal</span></code> se charge de convertir, comme celles données dans la requête, dans notre objet &#8216;value&#8217;.
+Nous allons accepter des chaînes comme <code class="docutils literal"><span class="pre">'10.24,12.34</span></code> ainsi que des tableaux.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">toExpression</span></code> se charge de convertir notre objet &#8216;value&#8217; dans des expressions SQL équivalentes.
+Dans notre exemple, le SQL résultant devrait être quelque choise comme <code class="docutils literal"><span class="pre">POINT(10.24,</span> <span class="pre">12.34)</span></code>.</li>
+</ul>
+<p>Une fois que nous avons construit notre type personnalisé, nous allons <a class="reference internal" href="saving-data.html#saving-complex-types"><span class="std std-ref">connecter notre type à
+notre class de table</span></a>.</p>
+</div>
+<div class="section" id="activer-les-objets-datetime-immutables">
+<span id="immutable-datetime-mapping"></span><h3>Activer les Objets DateTime Immutables<a class="headerlink" href="#activer-les-objets-datetime-immutables" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.2: </span>les objets date/heure immutables ont été ajoutés en 3.2.</p>
+</div>
+<p>Puisque les objets Date/Time sont facilement mutables en place, CakePHP vous
+permet d&#8217;activer les objets immutables. le meilleur endroit pour cela est le
+fichier <strong>config/bootstrap.php</strong></p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useImmutable</span><span class="p">();</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useImmutable</span><span class="p">();</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useImmutable</span><span class="p">();</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useImmutable</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les nouvelles applications auront les objets immutables activés par défaut.</p>
+</div>
+</div>
+</div>
+<div class="section" id="les-classes-de-connection">
+<h2>Les Classes de Connection<a class="headerlink" href="#les-classes-de-connection" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Database\Connection">
+<em class="property">class </em><code class="descclassname">Cake\Database\</code><code class="descname">Connection</code><a class="headerlink" href="#Cake\Database\Connection" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les classes de Connection fournissent une interface simple pour interagir avec
+les connexions à la base de données d&#8217;une façon pratique. Elles ont pour
+objectif d&#8217;être une interface plus abstraite à la couche de driver et de fournir
+des fonctionnalités pour l&#8217;exécution des requêtes, le logging des requêtes, et
+de faire des opérations transactionnelles.</p>
+<div class="section" id="l-execution-des-requetes">
+<span id="database-queries"></span><h3>L&#8217;exécution des Requêtes<a class="headerlink" href="#l-execution-des-requetes" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Database\Connection::query">
+<code class="descclassname">Cake\Database\Connection::</code><code class="descname">query</code><span class="sig-paren">(</span><em>$sql</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Database\Connection::query" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Une fois que vous avez un objet Connection, vous voudrez probablement réaliser
+quelques requêtes avec. La couche d&#8217;abstraction de CakePHP fournit des
+fonctionnalités au-dessus de PDO et des drivers natifs. Ces fonctionnalités
+fournissent une interface similaire à PDO. Il y a quelques différentes façons
+de lancer les requêtes selon le type de requête que vous souhaitez lancer et
+selon le type de résultats que vous souhaitez en retour. La méthode la plus
+basique est <code class="docutils literal"><span class="pre">query()</span></code> qui vous permet de lancer des requêtes SQL déjà
+complètes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;UPDATE posts SET published = 1 WHERE id = 2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Database\Connection::execute">
+<code class="descclassname">Cake\Database\Connection::</code><code class="descname">execute</code><span class="sig-paren">(</span><em>$sql</em>, <em>$params</em>, <em>$types</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Database\Connection::execute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>La méthode <code class="docutils literal"><span class="pre">query</span></code> n&#8217;accepte pas de paramètres supplémentaires. Si vous
+avez besoin de paramètres supplémentaires, vous devrez utiliser la méthode
+<code class="docutils literal"><span class="pre">execute()</span></code>, ce qui permet aux placeholders d&#8217;être utilisés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span>
+    <span class="s1">&#39;UPDATE posts SET published = ? WHERE id = ?&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Sans aucun typage des informations, <code class="docutils literal"><span class="pre">execute</span></code> va supposer que tous les
+placeholders sont des chaînes de valeur. Si vous avez besoin de lier des types
+spécifiques de données, vous pouvez utiliser leur nom de type abstrait lors
+de la création d&#8217;une requête:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span>
+    <span class="s1">&#39;UPDATE posts SET published_date = ? WHERE id = ?&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Database\Connection::newQuery">
+<code class="descclassname">Cake\Database\Connection::</code><code class="descname">newQuery</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Database\Connection::newQuery" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Cela vous permet d&#8217;utiliser des types de données riches dans vos applications
+et de les convertir convenablement en instructions SQL. La dernière manière
+la plus flexible de créer des requêtes est d&#8217;utiliser <a class="reference internal" href="query-builder.html"><span class="doc">Query Builder</span></a>.
+Cette approche vous permet de construire des requêtes expressives complexes sans
+avoir à utiliser une plateforme SQL spécifique:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">newQuery</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Quand vous utilisez le query builder, aucun SQL ne sera envoyé au serveur
+de base de données jusqu&#8217;à ce que la méthode <code class="docutils literal"><span class="pre">execute()</span></code> soit appelée, ou
+que la requête soit itérée. Itérer une requête va d&#8217;abord l&#8217;exécuter et ensuite
+démarrer l&#8217;itération sur l&#8217;ensemble des résultats:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">newQuery</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Faire quelque chose avec la ligne.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Quand vous avez une instance de <a class="reference internal" href="query-builder.html#Cake\ORM\Query" title="Cake\ORM\Query"><code class="xref php php-class docutils literal"><span class="pre">Cake\ORM\Query</span></code></a>, vous pouvez
+utiliser <code class="docutils literal"><span class="pre">all()</span></code> pour récupérer l&#8217;ensemble de résultats pour les requêtes
+SELECT.</p>
+</div>
+</div>
+<div class="section" id="utiliser-les-transactions">
+<h3>Utiliser les Transactions<a class="headerlink" href="#utiliser-les-transactions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les objets de connexion vous fournissent quelques manières simples pour que
+vous fassiez des transactions de base de données. La façon la plus basique de
+faire des transactions est avec les méthodes <code class="docutils literal"><span class="pre">begin</span></code>, <code class="docutils literal"><span class="pre">commit</span></code> et
+<code class="docutils literal"><span class="pre">rollback</span></code>, qui correspondent à leurs équivalents SQL:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">begin</span><span class="p">();</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;UPDATE posts SET published = ? WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="k">true</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;UPDATE posts SET published = ? WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="k">false</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Database\Connection::transactional">
+<code class="descclassname">Cake\Database\Connection::</code><code class="descname">transactional</code><span class="sig-paren">(</span><em>callable $callback</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Database\Connection::transactional" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>En plus de cette interface, les instances de connexion fournissent aussi la
+méthode <code class="docutils literal"><span class="pre">transactional</span></code> ce qui simplifie la gestion des appels
+begin/commit/rollback:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$conn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;UPDATE posts SET published = ? WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="k">true</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;UPDATE posts SET published = ? WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="k">false</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En plus des requêtes basiques, vous pouvez exécuter des requêtes plus complexes
+en utilisant soit <a class="reference internal" href="query-builder.html"><span class="doc">Query Builder</span></a>, soit <a class="reference internal" href="table-objects.html"><span class="doc">Les Objets Table</span></a>. La
+méthode transactionnelle fera ce qui suit:</p>
+<ul class="simple">
+<li>Appel de <code class="docutils literal"><span class="pre">begin</span></code>.</li>
+<li>Appelle la fermeture fournie.</li>
+<li>Si la fermeture lance une exception, un rollback sera délivré. L&#8217;exception
+originelle sera relancée.</li>
+<li>Si la fermeture retourne <code class="docutils literal"><span class="pre">false</span></code>, un rollback sera délivré.</li>
+<li>Si la fermeture s&#8217;exécute avec succès, la transaction sera réalisée.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="interagir-avec-les-requetes">
+<h2>Interagir avec les Requêtes<a class="headerlink" href="#interagir-avec-les-requetes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lors de l&#8217;utilisation de l&#8217;API de plus bas niveau, vous rencontrerez souvent des
+objets statement (requête). Ces objets vous permettent de manipuler les
+requêtes préparées sous-jacentes du driver. Après avoir créé et exécuté un objet
+query, ou en utilisant <code class="docutils literal"><span class="pre">execute()</span></code>, vous devriez avoir une instance
+<code class="docutils literal"><span class="pre">StatementDecorator</span></code>. Elle enveloppe l&#8217;objet statement (instruction) basique
+sous-jacent et fournit quelques fonctionnalités supplémentaires.</p>
+<div class="section" id="preparer-une-requete">
+<h3>Préparer une Requête<a class="headerlink" href="#preparer-une-requete" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez créer un objet statement (requête) en utilisant <code class="docutils literal"><span class="pre">execute()</span></code>, ou
+<code class="docutils literal"><span class="pre">prepare()</span></code>. La méthode <code class="docutils literal"><span class="pre">execute()</span></code> retourne une requête avec les valeurs
+fournies en les liant à lui. Alors que <code class="docutils literal"><span class="pre">prepare()</span></code> retourne une requête
+incomplète:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Les requêtes à partir de execute auront des valeurs leur étant déjà liées.</span>
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span>
+    <span class="s1">&#39;SELECT * FROM articles WHERE published = ?&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="k">true</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Les Requêtes à partir de prepare seront des paramètres pour les placeholders.</span>
+<span class="c1">// Vous avez besoin de lier les paramètres avant d&#39;essayer de l&#39;exécuter.</span>
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM articles WHERE published = ?&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Une fois que vous avez préparé une requête, vous pouvez lier les données
+supplémentaires et l&#8217;exécuter.</p>
+</div>
+<div class="section" id="lier-les-valeurs-binding">
+<span id="database-basics-binding-values"></span><h3>Lier les Valeurs (Binding)<a class="headerlink" href="#lier-les-valeurs-binding" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Une fois que vous avez créé une requête préparée, vous voudrez peut-être
+lier des données supplémentaires. Vous pouvez lier plusieurs valeurs en une
+fois en utilisant la méthode <code class="docutils literal"><span class="pre">bind</span></code>, ou lier les éléments individuels
+en utilisant <code class="docutils literal"><span class="pre">bindValue</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span>
+    <span class="s1">&#39;SELECT * FROM articles WHERE published = ? AND created &gt; ?&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// Lier plusieurs valeurs</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span>
+    <span class="p">[</span><span class="k">true</span><span class="p">,</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">)],</span>
+    <span class="p">[</span><span class="s1">&#39;boolean&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Lier une valeur unique</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindValue</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindValue</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">),</span> <span class="s1">&#39;date&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors de la création de requêtes, vous pouvez aussi utiliser les clés nommées
+de tableau plutôt que des clés de position:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span>
+    <span class="s1">&#39;SELECT * FROM articles WHERE published = :published AND created &gt; :created&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// Lier plusieurs valeurs</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">)],</span>
+    <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Lier une valeur unique</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindValue</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bindValue</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">),</span> <span class="s1">&#39;date&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Vous ne pouvez pas mixer les clés de position et les clés nommées de tableau
+dans la même requête.</p>
+</div>
+</div>
+<div class="section" id="executer-recuperer-les-colonnes">
+<h3>Executer &amp; Récupérer les Colonnes<a class="headerlink" href="#executer-recuperer-les-colonnes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Après la préparation d&#8217;une requête et après avoir lié les données à celle-ci,
+vous pouvez l&#8217;exécuter et récupérer les lignes. Les requêtes devront être
+exécutées en utilisant la méthode <code class="docutils literal"><span class="pre">execute()</span></code>. Une fois exécutée, les
+résultats peuvent être récupérés en utilisant <code class="docutils literal"><span class="pre">fetch()</span></code>, <code class="docutils literal"><span class="pre">fetchAll()</span></code> ou
+en faisant une itération de la requête:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+<span class="c1">// Lire une ligne.</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+
+<span class="c1">// Lire toutes les lignes.</span>
+<span class="nv">$rows</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetchAll</span><span class="p">(</span><span class="s1">&#39;assoc&#39;</span><span class="p">);</span>
+
+<span class="c1">// Lire les lignes en faisant une itération.</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$stmt</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Faire quelque chose</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Lire les lignes avec une itération va récupérer les lignes dans les &#8216;deux&#8217;
+modes. Cela signifie que vous aurez à la fois les résultats indexés
+numériquement et de manière associative.</p>
+</div>
+</div>
+<div class="section" id="recuperer-les-compteurs-de-ligne">
+<h3>Récupérer les Compteurs de Ligne<a class="headerlink" href="#recuperer-les-compteurs-de-ligne" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Après avoir exécuté une requête, vous pouvez récupérer le nombre de lignes
+affectées:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$rowCount</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">);</span>
+<span class="nv">$rowCount</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">rowCount</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verifier-les-codes-d-erreur">
+<h3>Vérifier les Codes d&#8217;Erreur<a class="headerlink" href="#verifier-les-codes-d-erreur" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si votre requête n&#8217;est pas réussie, vous pouvez obtenir des informations liées
+à l&#8217;erreur en utilisant les méthodes <code class="docutils literal"><span class="pre">errorCode()</span></code> et <code class="docutils literal"><span class="pre">errorInfo()</span></code>. Ces
+méthodes fonctionnent de la même façon que celles fournies par PDO:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$code</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">errorCode</span><span class="p">();</span>
+<span class="nv">$info</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">errorInfo</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="faire-des-logs-de-requete">
+<span id="database-query-logging"></span><h2>Faire des Logs de Requête<a class="headerlink" href="#faire-des-logs-de-requete" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le logs de Requête peuvent être activés lors de la configuration de votre
+connexion en définissant l&#8217;option <code class="docutils literal"><span class="pre">log</span></code> à <code class="docutils literal"><span class="pre">true</span></code>. Vous pouvez changer le
+log de requête à la volée, en utilisant <code class="docutils literal"><span class="pre">logQueries</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Active les logs des requêtes.</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">logQueries</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Stoppe les logs des requêtes</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">logQueries</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Quand les logs des requêtes sont activés, les requêtes sont enregistrées dans
+<a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log" title="Cake\Log\Log"><code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Log</span></code></a> en utilisant le niveau de &#8216;debug&#8217;, et le scope
+de &#8216;queriesLog&#8217;. Vous aurez besoin d&#8217;avoir un logger configuré pour capter
+ce niveau &amp; scope. Faire des logs vers <code class="docutils literal"><span class="pre">stderr</span></code> peut être utile lorsque vous
+travaillez sur les tests unitaires, et les logs de fichiers/syslog peuvent être
+utiles lorsque vous travaillez avec des requêtes web:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Log\Log</span><span class="p">;</span>
+
+<span class="c1">// Logs de la Console</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;queries&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Console&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stream&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php://stderr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scopes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;queriesLog&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+
+<span class="c1">// Logs des Fichiers</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;queries&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;File&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;queries.log&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scopes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;queriesLog&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les logs des requêtes sont seulement à utiliser pour le
+debuggage/development. Vous ne devriez jamais laisser les logs de requêtes
+activées en production puisque cela va avoir un impact négatif sur les
+performances de votre application.</p>
+</div>
+</div>
+<div class="section" id="identifier-quoting">
+<span id="id1"></span><h2>Identifier Quoting<a class="headerlink" href="#identifier-quoting" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut CakePHP <strong>ne</strong> quote <strong>pas</strong> les identifiers dans les requêtes SQL
+générées. La raison pour ceci est que l&#8217;ajout de quote autour des identifiers
+a quelques inconvénients:</p>
+<ul class="simple">
+<li>Par dessus tout la Performance - Ajouter des quotes est bien plus lent et
+complexe que de ne pas le faire.</li>
+<li>Pas nécessaire dans la plupart des cas - Dans des bases de données récentes
+qui suivent les conventions de CakePHP, il n&#8217;y a pas de raison de quoter les
+identifiers.</li>
+</ul>
+<p>Si vous utilisez un schema datant un peu qui nécessite de quoter les
+identifiers, vous pouvez l&#8217;activer en utilisant le paramètre
+<code class="docutils literal"><span class="pre">quoteIdentifiers</span></code> dans votre <a class="reference internal" href="#database-configuration"><span class="std std-ref">Configuration</span></a>. Vous pouvez
+aussi activer cette fonctionnalité à la volée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">driver</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">autoQuoting</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Quand elle est activée, l&#8217;identifier quoting va entrainer des requêtes
+supplémentaires traversales qui convertissent tous les identifiers en objets
+<code class="docutils literal"><span class="pre">IdentifierExpression</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les portions de code SQL contenues dans les objets QueryExpression ne seront
+pas modifiées.</p>
+</div>
+</div>
+<div class="section" id="la-mise-en-cache-de-metadata">
+<span id="database-metadata-cache"></span><h2>La Mise en Cache de Metadata<a class="headerlink" href="#la-mise-en-cache-de-metadata" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;ORM de CakePHP utilise la reflection de base de données pour déterminer
+le schema, les indices et les clés étrangères de votre application. Comme
+cette metadata change peu fréquemment et peut être lourde à accéder, elle est
+habituellement mise en cache. Par défaut, les metadata sont stockées dans la
+configuration du cache <code class="docutils literal"><span class="pre">_cake_model_</span></code>. Vous pouvez définir une configuration
+de cache personnalisée en utilisant l&#8217;option <code class="docutils literal"><span class="pre">cacheMetatdata</span></code> dans la
+configuration de la source de données:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Datasources&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// Autres clés ici.</span>
+
+        <span class="c1">// Utilise la config de cache &#39;orm_metadata&#39; pour les metadata.</span>
+        <span class="s1">&#39;cacheMetadata&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;orm_metadata&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi configurer les metadata mises en cache à l&#8217;exécution avec la
+méthode <code class="docutils literal"><span class="pre">cacheMetadata()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Désactive le cache</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">cacheMetadata</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// Active le cache</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">cacheMetadata</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Utilise une config de cache personnalisée</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">cacheMetadata</span><span class="p">(</span><span class="s1">&#39;orm_metadata&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>CakePHP intègre aussi un outil CLI pour gérer les mises en cache de metadata.
+Consultez le chapitre <a class="reference internal" href="../console-and-shells/orm-cache.html"><span class="doc">Shell du Cache de l&#8217;ORM</span></a> pour plus
+d&#8217;information.</p>
+</div>
+<div class="section" id="creer-des-bases-de-donnees">
+<h2>Créer des Bases de Données<a class="headerlink" href="#creer-des-bases-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous voulez créer une connexion (Connection) sans sélectionner de base de
+données, vous pouvez omettre le nom de la base de données:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$dsn</span> <span class="o">=</span> <span class="s1">&#39;mysql://root:password@localhost/&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Vous pouvez maintenant utiliser votre objet Connection pour exécuter des
+requêtes qui créent/modifient les bases de données. Par exemple pour créer une
+base de données:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;CREATE DATABASE IF NOT EXISTS my_database&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Lorsque vous créez une base de données, il est recommandé de définir le jeu
+de caractères ainsi que les paramètres de collation. Si ces valeurs sont
+manquantes, la base de données utilisera les valeurs par défaut du système
+quelles qu&#8217;elles soient.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Notions de Base de Base de Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query-builder.html">Query Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table-objects.html">Les Objets Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieving-data-and-resultsets.html">Récupérer les Données et les Ensembles de Résultats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Valider des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving-data.html">Sauvegarder les Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deleting-data.html">Supprimer des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="associations.html">Associations - Lier les Tables Ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviors.html">Behaviors (Comportements)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schema-system.html">Système de Schéma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../console-and-shells/orm-cache.html">Shell du Cache de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

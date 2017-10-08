@@ -1,0 +1,1209 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Blog Tutoriel Ajouter la logique" lang="fr" name="title" />
+<meta content="doc models,vérification validation,controller actions,model article,php class,classe model,objet model,business logic,table base de données,convention de nommage,bread et butter,callbacks,prefixes,nutshell,intéraction,array,cakephp,interface,applications,suppression" lang="fr" name="keywords" />
+
+    <title>Tutoriel d’un Blog - Partie 2 - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../../en/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="pt_BR" href="../../../pt/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="es" href="../../../es/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="ja" href="../../../ja/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="zh" href="../../../zh/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="tr" href="../../../tr/tutorials-and-examples/blog/part-two.html" /><link rel="alternate" hreflang="ru" href="../../../ru/tutorials-and-examples/blog/part-two.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../../index.html" />
+    <link rel="up" title="Tutoriels et exemples" href="../../tutorials-and-examples.html" />
+    <link rel="next" title="Tutoriel d’un Blog - Partie 3" href="part-three.html" />
+    <link rel="prev" title="Tutoriel d’un Blog" href="blog.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../../en/tutorials-and-examples/blog/part-two.html">en</a></li>
+                                            
+                                                <li><a href="../../../pt/tutorials-and-examples/blog/part-two.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/tutorials-and-examples/blog/part-two.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/tutorials-and-examples/blog/part-two.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../zh/tutorials-and-examples/blog/part-two.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/tutorials-and-examples/blog/part-two.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/tutorials-and-examples/blog/part-two.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/tutorials-and-examples/blog/part-two.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Tutoriel d&#8217;un Blog - Partie 2</a><ul>
+<li><a class="reference internal" href="#creer-un-model-article">Créer un Model Article</a></li>
+<li><a class="reference internal" href="#creer-le-controller-articles">Créer le controller Articles</a></li>
+<li><a class="reference internal" href="#creer-les-vues-des-articles">Créer les Vues des Articles</a></li>
+<li><a class="reference internal" href="#ajouter-des-articles">Ajouter des Articles</a></li>
+<li><a class="reference internal" href="#valider-les-donnees">Valider les Données</a></li>
+<li><a class="reference internal" href="#editer-des-articles">Editer des Articles</a></li>
+<li><a class="reference internal" href="#supprimer-des-articles">Supprimer des Articles</a></li>
+<li><a class="reference internal" href="#routes">Routes</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a><ul>
+<li><a class="reference internal" href="#prochaines-lectures-suggerees">Prochaines lectures suggérées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="tutoriel-d-un-blog-partie-2">
+<h1>Tutoriel d&#8217;un Blog - Partie 2<a class="headerlink" href="#tutoriel-d-un-blog-partie-2" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="creer-un-model-article">
+<h2>Créer un Model Article<a class="headerlink" href="#creer-un-model-article" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les Models sont le pain quotidien des applications CakePHP. En
+créant un model CakePHP qui interagira avec notre base de données,
+nous aurons mis en place les fondations nécessaires pour faire plus
+tard nos opérations de lecture, d&#8217;insertion, d&#8217;édition et de suppression.</p>
+<p>Les fichiers des classes de model de CakePHP sont séparés entre des objets
+<code class="docutils literal"><span class="pre">Table</span></code> et <code class="docutils literal"><span class="pre">Entity</span></code>. Les objets <code class="docutils literal"><span class="pre">Table</span></code> fournissent un accès à la
+collection des entities stockées dans une table spécifique et vont dans
+<strong>src/Model/Table</strong>. Le fichier que nous allons créer sera sauvegardé dans
+<strong>src/Model/Table/ArticlesTable.php</strong>. Le fichier complété devrait ressembler
+à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Table/ArticlesTable.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La convention de nommage est vraiment très importante dans CakePHP. En nommant
+notre objet Table <code class="docutils literal"><span class="pre">ArticlesTable</span></code>, CakePHP va automatiquement supposer que
+cet objet Table sera utilisé dans le <code class="docutils literal"><span class="pre">ArticlesController</span></code>, et sera lié à une
+table de la base de données appelée <code class="docutils literal"><span class="pre">articles</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CakePHP créera dynamiquement un objet model pour vous, s&#8217;il ne trouve
+pas le fichier correspondant dans <strong>src/Model/Table</strong>. Cela veut aussi dire
+que si vous n&#8217;avez pas nommé correctement votre fichier (par ex.
+articlestable.php ou ArticleTable.php). CakePHP ne reconnaîtra pas votre
+configuration et utilisera les objets par défaut.</p>
+</div>
+<p>Pour plus d&#8217;informations sur les models, comme les callbacks et la validation,
+consultez le chapitre <a class="reference internal" href="../../orm.html"><span class="doc">Accès Base de Données &amp; ORM</span></a> du manuel.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Si vous avez terminé la <a class="reference internal" href="blog.html"><span class="doc">Partie 1 du Tutoriel du blog</span></a> et créé la table <code class="docutils literal"><span class="pre">articles</span></code> dans
+notre base de données Blog, vous pouvez utiliser la console bake de CakePHP
+et la possibilité de générer du code pour créer le model <code class="docutils literal"><span class="pre">ArticlesTable</span></code>:</p>
+<div class="last highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">model</span> <span class="nx">Articles</span>
+</pre></div>
+</div>
+</div>
+<p>Pour plus d&#8217;informations sur bake et les fonctionnalités de génération de code,
+vous pouvez allez voir <a class="reference internal" href="../../bake/usage.html"><span class="doc">Génération de Code avec Bake</span></a>.</p>
+</div>
+<div class="section" id="creer-le-controller-articles">
+<h2>Créer le controller Articles<a class="headerlink" href="#creer-le-controller-articles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous allons maintenant créer un controller pour nos articles. Le controller est
+l&#8217;endroit où toute interaction avec les articles va se faire. En un mot, c&#8217;est
+l&#8217;endroit où vous jouerez avec les models et où vous ferez les tâches liées aux
+articles. Nous placerons ce nouveau controller dans un fichier appelé
+<strong>ArticlesController.php</strong> à l&#8217;intérieur du dossier <strong>src/Controller</strong>. Voici
+à quoi devrait ressembler le controller de base:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Maintenant, ajoutons une action à notre controller. Les actions représentent
+souvent une simple fonction ou une interface dans une application. Par exemple,
+quand les utilisateurs requêtent www.exemple.com/articles/index (qui est
+également la même chose que www.exemple.com/articles/), ils pourraient
+s&#8217;attendre à voir une liste d&#8217;articles. Le code pour cette action devrait
+ressembler à quelque chose comme ça:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En définissant la fonction <code class="docutils literal"><span class="pre">index()</span></code> dans notre <code class="docutils literal"><span class="pre">ArticlesController</span></code>, les
+utilisateurs peuvent maintenant accéder à cette logique en demandant
+www.exemple.com/articles/index. De la même façon, si nous devions définir une
+fonction appelée <code class="docutils literal"><span class="pre">foobar()</span></code>, les utilisateurs pourrait y accéder en demandant
+www.exemple.com/articles/foobar.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Vous pourriez être tenté de nommer vos controllers et vos actions d&#8217;une
+certaine manière pour obtenir une certaine URL. Résistez à cette tentation.
+Suivez les <a class="reference internal" href="../../intro/conventions.html"><span class="doc">Conventions de CakePHP</span></a> de CakePHP (le nom des controllers au
+pluriel, etc.) et nommez vos actions de façon lisible et compréhensible.
+Vous pouvez lier les URLs à votre code en utilisant ce qu&#8217;on appelle le
+<a class="reference internal" href="../../development/routing.html"><span class="doc">Routing</span></a>, on le verra plus tard.</p>
+</div>
+<p>La seule instruction que cette action utilise est <code class="docutils literal"><span class="pre">set()</span></code>, pour transmettre
+les données du controller à la vue (que nous créerons à la prochaine étape).
+La ligne définit la variable de vue appelée &#8216;articles&#8217; qui est égale à la valeur
+de retour de la méthode <code class="docutils literal"><span class="pre">find('all')</span></code> de l&#8217;objet table Articles.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Si vous avez terminé la <a class="reference internal" href="blog.html"><span class="doc">Partie 1 du Tutoriel du blog</span></a> et créé la table <code class="docutils literal"><span class="pre">articles</span></code> dans
+notre base de données Blog, vous pouvez utiliser la console bake de CakePHP
+et la possibilité de générer du code pour créer le controller ArticlesController:</p>
+<div class="last highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">controller</span> <span class="nx">Articles</span>
+</pre></div>
+</div>
+</div>
+<p>Pour plus d&#8217;informations sur bake et les fonctionnalités de génération de code,
+vous pouvez allez voir <a class="reference internal" href="../../bake/usage.html"><span class="doc">Génération de Code avec Bake</span></a>.</p>
+<p>Pour en apprendre plus sur les controllers de CakePHP, consultez le chapitre
+<a class="reference internal" href="../../controllers.html"><span class="doc">Controllers (Contrôleurs)</span></a>.</p>
+</div>
+<div class="section" id="creer-les-vues-des-articles">
+<h2>Créer les Vues des Articles<a class="headerlink" href="#creer-les-vues-des-articles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Maintenant que nous avons nos données en provenance du model, ainsi que la
+logique applicative et les flux définis par notre controller, nous allons créer
+une vue pour l&#8217;action &#8220;index&#8221; que nous avons créé ci-dessus.</p>
+<p>Les vues de CakePHP sont juste des fragments de présentation &#8220;assaisonnée&#8221;,
+qui s&#8217;intègrent au sein d&#8217;un layout applicatif. Pour la plupart des
+applications, elles sont un mélange de HTML et PHP, mais les vues peuvent aussi
+être constituées de XML, CSV ou même de données binaires.</p>
+<p>Un Layout est un code de présentation, encapsulé autour d&#8217;une vue. Ils peuvent
+être définis et interchangés, mais pour le moment, utilisons juste celui par
+défaut.</p>
+<p>Vous souvenez-vous, dans la dernière section, comment nous avions assigné
+la variable &#8216;articles&#8217; à la vue en utilisant la méthode <code class="docutils literal"><span class="pre">set()</span></code> ?
+Cela devrait transmettre l&#8217;objet query à la vue  pour être invoqué par une
+itération <code class="docutils literal"><span class="pre">foreach</span></code>.</p>
+<p>Les fichiers de template de CakePHP sont stockés dans <strong>src/Template</strong> à
+l&#8217;intérieur d&#8217;un dossier dont le nom correspond à celui du controller (nous
+aurons à créer un dossier appelé &#8216;Articles&#8217; dans ce cas). Pour mettre en forme
+les données de ces articles dans un joli tableau, le code de notre vue devrait
+ressembler à quelque chose comme cela:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/index.ctp --&gt;</span>
+
+<span class="x">&lt;h1&gt;Tous les articles du Blog&lt;/h1&gt;</span>
+<span class="x">&lt;table&gt;</span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;th&gt;Id&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Title&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Created&lt;/th&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+
+<span class="x">    &lt;!-- Ici se trouve l&#39;itération sur l&#39;objet query de nos $articles, l&#39;affichage des infos des articles --&gt;</span>
+
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">created</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_RFC850</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">&lt;/table&gt;</span>
+</pre></div>
+</div>
+<p>Espérons que cela vous semble simple.</p>
+<p>Vous avez sans doute remarqué l&#8217;utilisation d&#8217;un objet appelé <code class="docutils literal"><span class="pre">$this-&gt;Html</span></code>.
+C&#8217;est une instance de la classe CakePHP
+<a class="reference internal" href="../../views/helpers/html.html#Cake\View\Helper\HtmlHelper" title="Cake\View\Helper\HtmlHelper"><code class="xref php php-class docutils literal"><span class="pre">Cake\View\Helper\HtmlHelper</span></code></a>. CakePHP est livré avec un ensemble
+de &#8220;helpers&#8221; (des assistants) pour les vues, qui réalisent en un clin d&#8217;œil
+des choses comme le &#8220;linking&#8221; (mettre les liens dans un texte), l&#8217;affichage des
+formulaires, du JavaScript et de l&#8217;AJAX. Vous pouvez en apprendre plus sur la
+manière de les utiliser dans le chapitre <a class="reference internal" href="../../views/helpers.html"><span class="doc">Helpers (Assistants)</span></a>, mais ce qu&#8217;il
+est important de noter ici, c&#8217;est que la méthode <code class="docutils literal"><span class="pre">link()</span></code> génèrera un
+lien HTML à partir d&#8217;un titre (le premier paramètre) et d&#8217;une URL (le second
+paramètre).</p>
+<p>Lorsque vous indiquez des URLs dans CakePHP, il est recommandé d&#8217;utiliser les
+tableaux. Ceci est expliqué dans le chapitre des Routes. Utiliser les tableaux
+dans les URLs vous permet de tirer profit des capacités de CakePHP à
+ré-inverser les routes. Vous pouvez aussi utiliser les URLs relatives depuis
+la base de l&#8217;application sous la forme <code class="docutils literal"><span class="pre">/controller/action/param1/param2</span></code> ou
+en utilisant les <a class="reference internal" href="../../development/routing.html#named-routes"><span class="std std-ref">routes nommées</span></a>.</p>
+<p>A ce stade, vous devriez être en mesure de pointer votre navigateur sur la
+page <a class="reference external" href="http://www.exemple.com/articles/index">http://www.exemple.com/articles/index</a>. Vous devriez voir votre vue,
+correctement formatée avec le titre et le tableau listant les articles.</p>
+<p>Si vous avez essayé de cliquer sur l&#8217;un des liens que nous avons créés dans
+cette vue (le lien sur le titre d&#8217;un article mène à l&#8217;URL
+<code class="docutils literal"><span class="pre">/articles/view/un_id_quelconque</span></code>), vous avez sûrement été informé par CakePHP
+que l&#8217;action n&#8217;a pas encore été définie. Si vous n&#8217;avez pas été informé, soit
+quelque chose s&#8217;est mal passé, soit en fait vous aviez déjà défini l&#8217;action,
+auquel cas vous êtes vraiment sournois ! Sinon, nous allons la créer sans plus
+tarder dans le Controller Articles:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controller\AppController</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>L&#8217;appel de <code class="docutils literal"><span class="pre">set()</span></code> devrait vous être familier. Notez que nous utilisons
+<code class="docutils literal"><span class="pre">get()</span></code> plutôt que <code class="docutils literal"><span class="pre">find('all')</span></code> parce que nous voulons seulement
+récupérer les informations d&#8217;un seul article.</p>
+<p>Notez que notre action &#8220;view&#8221; prend un paramètre : l&#8217;ID de l&#8217;article que nous
+aimerions voir. Ce paramètre est transmis à l&#8217;action grâce à l&#8217;URL demandée.
+Si un utilisateur demande <code class="docutils literal"><span class="pre">/articles/view/3</span></code>, alors la valeur &#8216;3&#8217; est
+transmise à la variable <code class="docutils literal"><span class="pre">$id</span></code>.</p>
+<p>Nous faisons aussi une petite vérification d&#8217;erreurs pour nous assurer qu&#8217;un
+utilisateur accède bien à l&#8217;enregistrement. Si un utilisateur requête
+<code class="docutils literal"><span class="pre">/articles/view</span></code>, nous lancerons un <code class="docutils literal"><span class="pre">NotFoundException</span></code> et laisserons
+le Gestionnaire d&#8217;Erreur de CakePHP ErrorHandler prendre le dessus. En utilisant
+la fonction <code class="docutils literal"><span class="pre">get()</span></code> dans la table Articles, nous faisons aussi une
+vérification similaire pour nous assurer que l&#8217;utilisateur a accès à
+l&#8217;enregistrement qui existe. Dans le cas où l&#8217;article requêté n&#8217;est pas présent
+dans la base de données, la fonction <code class="docutils literal"><span class="pre">get()</span></code> va lancer une
+<code class="docutils literal"><span class="pre">NotFoundException</span></code>.</p>
+<p>Maintenant, créons la vue pour notre nouvelle action &#8216;view&#8217; et plaçons-la
+dans <strong>src/Template/Articles/view.ctp</strong>.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/view.ctp --&gt;</span>
+
+<span class="x">&lt;h1&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">h</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h1&gt;</span>
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">h</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="x">&lt;p&gt;&lt;small&gt;Created: </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">created</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_RFC850</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/small&gt;&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>Vérifiez que cela fonctionne en testant les liens de la page <code class="docutils literal"><span class="pre">/articles/index</span></code>
+ou en affichant manuellement un article via <code class="docutils literal"><span class="pre">/articles/view/{id}</span></code>.</p>
+</div>
+<div class="section" id="ajouter-des-articles">
+<h2>Ajouter des Articles<a class="headerlink" href="#ajouter-des-articles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lire depuis la base de données et nous afficher les articles est un bon début,
+mais lançons-nous dans l&#8217;ajout de nouveaux articles.</p>
+<p>Premièrement, commençons par créer une action <code class="docutils literal"><span class="pre">add()</span></code> dans le
+<code class="docutils literal"><span class="pre">ArticlesController</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controller\AppController</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Flash&#39;</span><span class="p">);</span> <span class="c1">// Charge le FlashComponent</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Votre article a été sauvegardé.&#39;</span><span class="p">));</span>
+                <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Impossible d\&#39;ajouter votre article.&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Vous avez besoin d&#8217;inclure le component <a class="reference internal" href="../../controllers/components/flash.html"><span class="doc">FlashComponent</span></a>
+dans chaque controller où vous voulez les utiliser. Si nécessaire,
+incluez-les dans le controller principal (<code class="docutils literal"><span class="pre">AppController</span></code>).</p>
+</div>
+<p>Voici ce que fait l&#8217;action <code class="docutils literal"><span class="pre">add()</span></code> : si la requête HTTP est de type POST,
+essayez de sauvegarder les données en utilisant le model &#8220;Articles&#8221;. Si pour une
+raison quelconque, la sauvegarde a échouée, affichez simplement la vue. Cela
+nous donne une chance de voir les erreurs de validation de l&#8217;utilisateur et
+d&#8217;autres avertissements.</p>
+<p>Chaque requête de CakePHP contient un objet <code class="docutils literal"><span class="pre">ServerRequest</span></code> qui est accessible
+en utilisant <code class="docutils literal"><span class="pre">$this-&gt;request</span></code>. Cet objet contient des informations utiles
+sur la requête qui vient d&#8217;être reçue, et permet de contrôler les flux de votre
+application. Dans ce cas, nous utilisons la méthode
+<a class="reference internal" href="../../controllers/request-response.html#Cake\Http\ServerRequest::is" title="Cake\Http\ServerRequest::is"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::is()</span></code></a> pour vérifier que la requête est de
+type POST.</p>
+<p>Lorsqu&#8217;un utilisateur utilise un formulaire pour poster des données dans votre
+application, ces informations sont disponibles dans <code class="docutils literal"><span class="pre">$this-&gt;request-&gt;getData()</span></code>.
+Vous pouvez utiliser les fonctions <a class="reference internal" href="../../core-libraries/global-constants-and-functions.html#pr" title="pr"><code class="xref php php-func docutils literal"><span class="pre">pr()</span></code></a> ou <a class="reference internal" href="../../core-libraries/global-constants-and-functions.html#debug" title="debug"><code class="xref php php-func docutils literal"><span class="pre">debug()</span></code></a> pour
+les afficher si vous voulez voir à quoi cela ressemble.</p>
+<p>Nous utilisons les méthodes <code class="docutils literal"><span class="pre">success()</span></code> et <code class="docutils literal"><span class="pre">error()</span></code> pour définir un
+message dans une variable de session. Ces méthodes sont fournies via la
+<a class="reference external" href="http://php.net/manual/fr/language.oop5.overloading.php#object.call">méthode magique _call()</a>
+de PHP. Les messages Flash seront affichés dans la page juste après la
+redirection. Dans le layout, nous avons <code class="docutils literal"><span class="pre">&lt;?=</span> <span class="pre">$this-&gt;Flash-&gt;render()</span> <span class="pre">?&gt;</span></code> qui
+permet d&#8217;afficher et d&#8217;effacer la variable correspondante. La méthode
+<a class="reference internal" href="../../controllers.html#Cake\Controller\Controller::redirect" title="Cake\Controller\Controller::redirect"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Controller\Controller::redirect</span></code></a> du controller permet de
+rediriger vers une autre URL. Le paramètre <code class="docutils literal"><span class="pre">['action'</span> <span class="pre">=&gt;</span> <span class="pre">'index']</span></code> sera
+traduit vers l&#8217;URL /articles, c&#8217;est à dire l&#8217;action &#8220;index&#8221; du controller
+Articles (ArticlesController). Vous pouvez vous référer à l&#8217;
+<a class="reference external" href="https://api.cakephp.org">API</a> de la fonction
+<a class="reference internal" href="../../development/routing.html#Cake\Routing\Router::url" title="Cake\Routing\Router::url"><code class="xref php php-func docutils literal"><span class="pre">Cake\Routing\Router::url()</span></code></a> pour voir les différents formats
+d&#8217;URL acceptés dans les différentes fonctions de CakePHP.</p>
+<p>L&#8217;appel de la méthode <code class="docutils literal"><span class="pre">save()</span></code> vérifiera les erreurs de validation et
+interrompra l&#8217;enregistrement si une erreur survient. Nous verrons
+la façon dont les erreurs sont traitées dans les sections suivantes.</p>
+</div>
+<div class="section" id="valider-les-donnees">
+<h2>Valider les Données<a class="headerlink" href="#valider-les-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cake place la barre très haute pour briser la monotonie de la validation des
+champs de formulaires. Tout le monde déteste le développement de formulaires
+interminables et leurs routines de validations. Cake rend tout cela plus facile
+et plus rapide.</p>
+<p>Pour tirer profit des fonctionnalités de validation, vous devez utiliser
+le helper &#8220;Form&#8221; (FormHelper) dans vos vues.
+<a class="reference internal" href="../../views/helpers/form.html#Cake\View\Helper\FormHelper" title="Cake\View\Helper\FormHelper"><code class="xref php php-class docutils literal"><span class="pre">Cake\View\Helper\FormHelper</span></code></a> est disponible par défaut dans
+toutes les vues avec la variables <code class="docutils literal"><span class="pre">$this-&gt;Form</span></code>.</p>
+<p>Voici le code de notre vue &#8220;add&#8221; (ajout):</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/add.ctp --&gt;</span>
+
+<span class="x">&lt;h1&gt;Ajouter un article&lt;/h1&gt;</span>
+<span class="cp">&lt;?php</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rows&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;3&#39;</span><span class="p">]);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">button</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s2">&quot;Sauvegarder l&#39;article&quot;</span><span class="p">));</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">end</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Nous utilisons le <code class="xref php php-class docutils literal"><span class="pre">FormHelper</span></code> pour générer la balise
+d&#8217;ouverture d&#8217;un formulaire HTML. Voici le code HTML généré par
+<code class="docutils literal"><span class="pre">$this-&gt;Form-&gt;create()</span></code>:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/articles/add&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Si <code class="docutils literal"><span class="pre">create()</span></code> est appelée sans aucun paramètre, CakePHP suppose que vous
+construisez un formulaire qui envoie les données en POST à l&#8217;action <code class="docutils literal"><span class="pre">add()</span></code>
+(ou <code class="docutils literal"><span class="pre">edit()</span></code> quand <code class="docutils literal"><span class="pre">id</span></code> est dans les données du formulaire) du controller
+actuel.</p>
+<p>La méthode <code class="docutils literal"><span class="pre">$this-&gt;Form-&gt;control()</span></code> est utilisée pour créer des éléments de
+formulaire du même nom. Le premier paramètre dit à CakePHP à quels champs ils
+correspondent et le second paramètre vous permet de spécifier un large éventail
+d&#8217;options - dans ce cas, le nombre de lignes du textarea. Il y a un peu
+d&#8217;introspection et &#8220;d&#8217;automagie&#8221; ici : <code class="docutils literal"><span class="pre">control()</span></code> affichera différents
+éléments de formulaire selon le champ spécifié du model.</p>
+<p>L&#8217;appel de la méthode <code class="docutils literal"><span class="pre">$this-&gt;Form-&gt;end()</span></code> cloture le formulaire. Affiche les
+champs cachés si la protection de falsification de formulaire et/ou CRSF est
+activée.</p>
+<p>A présent, revenons en arrière et modifions notre vue
+<strong>src/Template/Articles/index.ctp</strong> pour ajouter un lien &#8220;Ajouter un article&#8221;.
+Ajoutez la ligne suivante avant <code class="docutils literal"><span class="pre">&lt;table&gt;</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s1">&#39;Ajouter un article&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;add&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Vous vous demandez peut-être : comment je fais pour indiquer à CakePHP mes
+exigences de validation ? Les règles de validation sont définies dans le
+model. Retournons donc à notre model Articles et procédons à quelques
+ajustements:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Table/ArticlesTable.php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">validationDefault</span><span class="p">(</span><span class="nx">Validator</span> <span class="nv">$validator</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$validator</span>
+            <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$validator</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Le méthode <code class="docutils literal"><span class="pre">validationDefault()</span></code> indique à CakePHP comment valider vos données
+lorsque la méthode <code class="docutils literal"><span class="pre">save()</span></code> est appelée. Ici, j&#8217;ai spécifié que les deux
+champs &#8220;body&#8221; et &#8220;title&#8221; ne doivent pas être vides et que ces champs sont requis
+à la fois pour les opérations de création et de mise à jour. Le moteur de
+validation de CakePHP est puissant, il dispose d&#8217;un certain nombre de règles
+intégrées (code de carte bancaire, adresse emails, etc.) et d&#8217;une souplesse pour
+ajouter vos propres règles de validation. Pour plus d&#8217;informations sur cette
+configuration, consultez le chapitre <a class="reference internal" href="../../core-libraries/validation.html"><span class="doc">Validation</span></a>.</p>
+<p>Maintenant que vos règles de validation sont en place, utilisez l&#8217;application
+pour essayer d&#8217;ajouter un article avec un titre et un contenu vide afin de voir
+comment cela fonctionne. Puisque que nous avons utilisé la méthode
+<a class="reference internal" href="../../views/helpers/form.html#Cake\View\Helper\FormHelper::control" title="Cake\View\Helper\FormHelper::control"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\Helper\FormHelper::control()</span></code></a> du helper &#8220;Form&#8221; pour
+créer nos éléments de formulaire, nos messages d&#8217;erreurs de validation seront
+affichés automatiquement.</p>
+</div>
+<div class="section" id="editer-des-articles">
+<h2>Editer des Articles<a class="headerlink" href="#editer-des-articles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;édition de articles : nous y voilà. Vous êtes un pro de CakePHP maintenant,
+vous devriez donc avoir adopté le principe. Créez d&#8217;abord l&#8217;action puis la vue.
+Voici à quoi l&#8217;action <code class="docutils literal"><span class="pre">edit()</span></code> du controller Articles (<code class="docutils literal"><span class="pre">ArticlesController</span></code>)
+devrait ressembler:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">edit</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">([</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;put&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Votre article a été mis à jour.&#39;</span><span class="p">));</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Impossible de mettre à jour votre article.&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette action s&#8217;assure d&#8217;abord que l&#8217;utilisateur a essayé d&#8217;accéder à un
+enregistrement existant. S&#8217;il n&#8217;y a pas de paramètre <code class="docutils literal"><span class="pre">$id</span></code> passé, ou si le
+article n&#8217;existe pas, nous lançons une <code class="docutils literal"><span class="pre">NotFoundException</span></code> pour que le
+gestionnaire d&#8217;Erreurs ErrorHandler de CakePHP s&#8217;en occupe.</p>
+<p>Ensuite l&#8217;action vérifie si la requête est une requête POST ou PUT. Si elle
+l&#8217;est, alors nous utilisons les données POST pour mettre à jour notre
+entity article en utilisant la méthode <code class="docutils literal"><span class="pre">patchEntity()</span></code>. Finalement nous
+utilisons l&#8217;objet table pour sauvegarder l&#8217;entity back ou kick back et montrer
+les erreurs de validation de l&#8217;utilisateur.</p>
+<p>La vue d&#8217;édition devrait ressembler à quelque chose comme cela:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/edit.ctp --&gt;</span>
+
+<span class="x">&lt;h1&gt;Modifier un article&lt;/h1&gt;</span>
+<span class="cp">&lt;?php</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rows&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;3&#39;</span><span class="p">]);</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">button</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Sauvegarder l\&#39;article&#39;</span><span class="p">));</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">end</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Cette vue affiche le formulaire d&#8217;édition (avec les données pré-remplies) avec
+les messages d&#8217;erreur de validation nécessaires.</p>
+<p>CakePHP déterminera si un <code class="docutils literal"><span class="pre">save()</span></code> doit générer une insertion un article ou
+la mise à jour d&#8217;un article existant.</p>
+<p>Vous pouvez maintenant mettre à jour votre vue index avec des liens pour
+éditer des articles :</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/index.ctp  (liens de modification ajoutés) --&gt;</span>
+
+<span class="x">&lt;h1&gt;Blog articles&lt;/h1&gt;</span>
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s2">&quot;Ajouter un Article&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;add&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="x">&lt;table&gt;</span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;th&gt;Id&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Title&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Created&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Action&lt;/th&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+
+<span class="x">&lt;!-- C&#39;est ici que nous itérons à travers notre objet query $articles, --&gt;</span>
+<span class="x">&lt;!-- en affichant les informations de l&#39;article --&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">created</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_RFC850</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s1">&#39;Modifier&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">&lt;/table&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supprimer-des-articles">
+<h2>Supprimer des Articles<a class="headerlink" href="#supprimer-des-articles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>A présent, mettons en place un moyen de supprimer les articles pour les
+utilisateurs. Démarrons avec une action <code class="docutils literal"><span class="pre">delete()</span></code> dans le controller
+Articles (<code class="docutils literal"><span class="pre">ArticlesController</span></code>):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/ArticlesController.php</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">allowMethod</span><span class="p">([</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]);</span>
+
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s2">&quot;L&#39;article avec l&#39;id: {0} a été supprimé.&quot;</span><span class="p">,</span> <span class="nx">h</span><span class="p">(</span><span class="nv">$id</span><span class="p">)));</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette logique supprime l&#8217;article spécifié par <code class="docutils literal"><span class="pre">$id</span></code>, et utilise
+<code class="docutils literal"><span class="pre">$this-&gt;Flash-&gt;success()</span></code> pour afficher à l&#8217;utilisateur un message de
+confirmation après l&#8217;avoir redirigé sur <code class="docutils literal"><span class="pre">/articles</span></code>. Si l&#8217;utilisateur tente
+une suppression en utilisant une requête GET, une exception est levée.
+Les exceptions manquées sont capturées par le gestionnaire d&#8217;exceptions de
+CakePHP et un joli message d&#8217;erreur est affiché. Il y a plusieurs
+<a class="reference internal" href="../../development/errors.html"><span class="doc">Exceptions</span></a> intégrées qui peuvent être utilisées
+pour indiquer les différentes erreurs HTTP que votre application pourrait
+rencontrer.</p>
+<p>Etant donné que nous exécutons juste un peu de logique et de redirection,
+cette action n&#8217;a pas de vue. Vous voudrez peut-être mettre à jour votre vue
+index avec des liens pour permettre aux utilisateurs de supprimer des
+articles, ainsi :</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">&lt;!-- File: src/Template/Articles/index.ctp --&gt;</span>
+
+<span class="x">&lt;h1&gt;Blog articles&lt;/h1&gt;</span>
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s1">&#39;Ajouter un Article&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;add&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="x">&lt;table&gt;</span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;th&gt;Id&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Title&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Created&lt;/th&gt;</span>
+<span class="x">        &lt;th&gt;Actions&lt;/th&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+
+<span class="x">&lt;!-- C&#39;est ici que nous itérons à travers notre objet query $articles, --&gt;</span>
+<span class="x">&lt;!-- en affichant les informations de l&#39;article --&gt;</span>
+
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$articles</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">created</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_RFC850</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">postLink</span><span class="p">(</span>
+                <span class="s1">&#39;Supprimer&#39;</span><span class="p">,</span>
+                <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;confirm&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Etes-vous sûr?&#39;</span><span class="p">])</span>
+            <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">            </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s1">&#39;Modifier&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">        &lt;/td&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">&lt;/table&gt;</span>
+</pre></div>
+</div>
+<p>Utiliser <a class="reference internal" href="../../views/helpers/form.html#Cake\View\Helper\FormHelper::postLink" title="Cake\View\Helper\FormHelper::postLink"><code class="xref php php-meth docutils literal"><span class="pre">View\Helper\FormHelper::postLink()</span></code></a> permet de
+créer un lien qui utilise du JavaScript pour supprimer notre article en faisant
+une requête POST.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Autoriser la suppression par une requête GET est dangereux à cause des
+robots d&#8217;indexation qui peuvent tous les supprimer.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ce code de vue utilise aussi le helper <code class="docutils literal"><span class="pre">FormHelper</span></code> pour demander à
+l&#8217;utilisateur une confirmation JavaScript avant de supprimer un article.</p>
+</div>
+</div>
+<div class="section" id="routes">
+<h2>Routes<a class="headerlink" href="#routes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour certains, le routage par défaut de CakePHP fonctionne suffisamment bien.
+Les développeurs qui sont sensibles à la facilité d&#8217;utilisation et à la
+compatibilité avec les moteurs de recherches apprécieront la manière dont
+CakePHP lie des URLs à des actions spécifiques. Nous allons donc faire une
+rapide modification des routes dans ce tutoriel.</p>
+<p>Pour plus d&#8217;informations sur les techniques de routages, consultez le chapitre
+<a class="reference internal" href="../../development/routing.html#routes-configuration"><span class="std std-ref">Connecter les Routes</span></a>.</p>
+<p>Par défaut, CakePHP effectue une redirection d&#8217;une personne visitant la racine
+de votre site (par ex: <a class="reference external" href="http://www.exemple.com">http://www.exemple.com</a>) vers le controller Pages
+(<code class="docutils literal"><span class="pre">PagesController</span></code>) et affiche le rendu de la vue appelée &#8220;home&#8221;. Au lieu de
+cela, nous voudrions la remplacer avec notre controller Articles
+(<code class="docutils literal"><span class="pre">ArticlesController</span></code>).</p>
+<p>Le routage de CakePHP se trouve dans <strong>config/routes.php</strong>. Vous devrez
+commenter ou supprimer la ligne qui définit la route par défaut. Elle
+ressemble à cela:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">$routes-&gt;connect(&#39;/&#39;, [&#39;controller&#39; =&gt; &#39;Pages&#39;, &#39;action&#39; =&gt; &#39;display&#39;, &#39;home&#39;]);</span>
+</pre></div>
+</div>
+<p>Cette ligne connecte l&#8217;URL &#8216;/&#8217; à la page d&#8217;accueil par défaut de CakePHP. Nous
+voulons que cette URL soit connectée à notre propre controller, remplacez donc
+la ligne par celle-ci:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">$routes-&gt;connect(&#39;/&#39;, [&#39;controller&#39; =&gt; &#39;Articles&#39;, &#39;action&#39; =&gt; &#39;index&#39;]);</span>
+</pre></div>
+</div>
+<p>Cela devrait connecter les utilisateurs demandant &#8216;/&#8217; à l&#8217;action <code class="docutils literal"><span class="pre">index()</span></code> de
+notre controller Articles (<code class="docutils literal"><span class="pre">ArticlesController</span></code>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CakePHP peut aussi faire du &#8216;reverse routing&#8217; (ou routage inversé).
+Par exemple, pour la route définie plus haut, en ajoutant
+<code class="docutils literal"><span class="pre">['controller'</span> <span class="pre">=&gt;</span> <span class="pre">'Articles',</span> <span class="pre">'action'</span> <span class="pre">=&gt;</span> <span class="pre">'index']</span></code> à la fonction
+retournant un tableau, l&#8217;URL &#8216;/&#8217; sera utilisée. Il est d&#8217;ailleurs bien
+avisé de toujours utiliser un tableau pour les URLs afin que vos routes
+définissent où vont les URLs, mais aussi pour s&#8217;assurer qu&#8217;elles aillent
+dans la même direction.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Créer des applications de cette manière vous apportera, paix, honneur, amour
+et argent au-delà même de vos fantasmes les plus fous. Simple n&#8217;est ce pas ?
+Gardez à l&#8217;esprit que ce tutoriel était très basique. CakePHP a <em>beaucoup</em> plus
+de fonctionnalités à offrir et il est aussi souple dans d&#8217;autres domaines que
+nous n&#8217;avons pas souhaité couvrir ici pour simplifier les choses. Utilisez
+le reste de ce manuel comme un guide pour développer des applications plus
+riches en fonctionnalités.</p>
+<p>Maintenant que vous avez créé une application CakePHP basique, vous pouvez soit
+continuer vers <a class="reference internal" href="part-three.html"><span class="doc">Tutoriel d&#8217;un Blog - Partie 3</span></a>, ou commencer
+votre propre projet. Vous pouvez aussi lire attentivement les
+<a class="reference internal" href="../../topics.html"><span class="doc">Utiliser CakePHP</span></a> ou l&#8217;<cite>API &lt;https://api.cakephp.org&gt;</cite> pour en
+apprendre plus sur CakePHP.</p>
+<p>Si vous avez besoin d&#8217;aide, il y a plusieurs façons d&#8217;obtenir de l&#8217;aide -
+merci de regarder la page <a class="reference internal" href="../../intro/where-to-get-help.html"><span class="doc">Où obtenir de l&#8217;aide</span></a>
+Bienvenue sur CakePHP !</p>
+<div class="section" id="prochaines-lectures-suggerees">
+<h3>Prochaines lectures suggérées<a class="headerlink" href="#prochaines-lectures-suggerees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Voici les différents chapitres que les gens veulent souvent lire après:</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="../../views.html#view-layouts"><span class="std std-ref">Layouts</span></a>: Personnaliser les Layouts de votre application.</li>
+<li><a class="reference internal" href="../../views.html#view-elements"><span class="std std-ref">Elements</span></a>: Inclure et réutiliser les portions de vues.</li>
+<li><a class="reference internal" href="../../bake/usage.html"><span class="doc">Génération de Code avec Bake</span></a> Générer un code CRUD basique.</li>
+<li><a class="reference internal" href="../blog-auth-example/auth.html"><span class="doc">Tutoriel d&#8217;un Blog - Authentification et Autorisations</span></a>: Tutoriel sur l&#8217;enregistrement et la connexion d&#8217;utilisateurs.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorials-and-examples.html">Tutoriels et exemples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bookmarks/intro.html">Tutoriel de Bookmarker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bookmarks/part-two.html">Tutoriel de Bookmarker Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blog.html">Tutoriel d&#8217;un Blog</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutoriel d&#8217;un Blog - Partie 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part-three.html">Tutoriel d&#8217;un Blog - Partie 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog-auth-example/auth.html">Tutoriel d&#8217;un Blog - Authentification et Autorisations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

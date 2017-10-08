@@ -1,0 +1,951 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Sessions" lang="en" name="title" />
+<meta content="session defaults,session classes,utility features,session timeout,session ids,persistent data,session key,session cookie,session data,last session,core database,security level,useragent,security reasons,session id,attr,countdown,regeneration,sessions,config" lang="en" name="keywords" />
+
+    <title>Sessions - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/development/sessions.html" /><link rel="alternate" hreflang="es" href="../../es/development/sessions.html" /><link rel="alternate" hreflang="ja" href="../../ja/development/sessions.html" /><link rel="alternate" hreflang="fr" href="../../fr/development/sessions.html" /><link rel="alternate" hreflang="zh" href="../../zh/development/sessions.html" /><link rel="alternate" hreflang="tr" href="../../tr/development/sessions.html" /><link rel="alternate" hreflang="ru" href="../../ru/development/sessions.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="Security" href="../core-libraries/security.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/development/sessions.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/development/sessions.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/development/sessions.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/development/sessions.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/development/sessions.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/development/sessions.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/development/sessions.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/development/sessions.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Sessions</a><ul>
+<li><a class="reference internal" href="#session-configuration">Session Configuration</a></li>
+<li><a class="reference internal" href="#built-in-session-handlers-configuration">Built-in Session Handlers &amp; Configuration</a><ul>
+<li><a class="reference internal" href="#session-handlers">Session Handlers</a></li>
+<li><a class="reference internal" href="#database-sessions">Database Sessions</a></li>
+<li><a class="reference internal" href="#cache-sessions">Cache Sessions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-ini-directives">Setting ini directives</a></li>
+<li><a class="reference internal" href="#creating-a-custom-session-handler">Creating a Custom Session Handler</a></li>
+<li><a class="reference internal" href="#accessing-the-session-object">Accessing the Session Object</a></li>
+<li><a class="reference internal" href="#reading-writing-session-data">Reading &amp; Writing Session Data</a></li>
+<li><a class="reference internal" href="#destroying-the-session">Destroying the Session</a></li>
+<li><a class="reference internal" href="#rotating-session-identifiers">Rotating Session Identifiers</a></li>
+<li><a class="reference internal" href="#flash-messages">Flash Messages</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="sessions">
+<h1>Sessions<a class="headerlink" href="#sessions" title="Permalink to this headline">¶</a></h1>
+<p>CakePHP provides a wrapper and suite of utility features on top of PHP&#8217;s native
+<code class="docutils literal"><span class="pre">session</span></code> extension. Sessions allow you to identify unique users across
+requests and store persistent data for specific users. Unlike Cookies, session
+data is not available on the client side. Usage of <code class="docutils literal"><span class="pre">$_SESSION</span></code> is generally
+avoided in CakePHP, and instead usage of the Session classes is preferred.</p>
+<div class="section" id="session-configuration">
+<span id="id1"></span><h2>Session Configuration<a class="headerlink" href="#session-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Session configuration is generally defined in <code class="docutils literal"><span class="pre">/config/app.php</span></code>. The available
+options are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Session.timeout</span></code> - The number of <em>minutes</em> before CakePHP&#8217;s session
+handler expires the session.</li>
+<li><code class="docutils literal"><span class="pre">Session.defaults</span></code> - Allows you to use the built-in default session
+configurations as a base for your session configuration. See below for the
+built-in defaults.</li>
+<li><code class="docutils literal"><span class="pre">Session.handler</span></code> - Allows you to define a custom session handler. The core
+database and cache session handlers use this. See below for additional
+information on Session handlers.</li>
+<li><code class="docutils literal"><span class="pre">Session.ini</span></code> - Allows you to set additional session ini settings for your
+config. This combined with <code class="docutils literal"><span class="pre">Session.handler</span></code> replace the custom session
+handling features of previous versions</li>
+<li><code class="docutils literal"><span class="pre">Session.cookie</span></code> - The name of the cookie to use. Defaults to &#8216;CAKEPHP&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">Session.cookiePath</span></code> - The url path for which session cookie is set. Maps to
+the <code class="docutils literal"><span class="pre">session.cookie_path</span></code> php.ini config. Defaults to base path of app.</li>
+</ul>
+<p>CakePHP&#8217;s defaults <code class="docutils literal"><span class="pre">session.cookie_secure</span></code> to <code class="docutils literal"><span class="pre">true</span></code>, when your application
+is on an SSL protocol. If your application serves from both SSL and non-SSL
+protocols, then you might have problems with sessions being lost. If you need
+access to the session on both SSL and non-SSL domains you will want to disable
+this:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;session.cookie_secure&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The session cookie path defaults to app&#8217;s base path. To change this you can use
+the <code class="docutils literal"><span class="pre">session.cookie_path</span></code> ini value. For example if you want your session to
+persist across all subdomains you can do:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;session.cookie_path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;session.cookie_domain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;.yourdomain.com&#39;</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>By default PHP sets the session cookie to expire as soon as the browser is
+closed, regardless of the configured <code class="docutils literal"><span class="pre">Session.timeout</span></code> value. The cookie
+timeout is controlled by the <code class="docutils literal"><span class="pre">session.cookie_lifetime</span></code> ini value and can be
+configured using:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// Invalidate the cookie after 30 minutes without visiting</span>
+        <span class="c1">// any page on the site.</span>
+        <span class="s1">&#39;session.cookie_lifetime&#39;</span> <span class="o">=&gt;</span> <span class="mi">1800</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The difference between <code class="docutils literal"><span class="pre">Session.timeout</span></code> and the <code class="docutils literal"><span class="pre">session.cookie_lifetime</span></code>
+value is that the latter relies on the client telling the truth about the
+cookie. If you require stricter timeout checking, without relying on what the
+client reports, you should use <code class="docutils literal"><span class="pre">Session.timeout</span></code>.</p>
+<p>Please note that <code class="docutils literal"><span class="pre">Session.timeout</span></code> corresponds to the total time of
+inactivity for a user (i.e. the time without visiting any page where the session
+is used), and does not limit the total amount of minutes a user can stay
+on the site.</p>
+</div>
+<div class="section" id="built-in-session-handlers-configuration">
+<h2>Built-in Session Handlers &amp; Configuration<a class="headerlink" href="#built-in-session-handlers-configuration" title="Permalink to this headline">¶</a></h2>
+<p>CakePHP comes with several built-in session configurations. You can either use
+these as the basis for your session configuration, or you can create a fully
+custom solution. To use defaults, simply set the &#8216;defaults&#8217; key to the name of
+the default you want to use. You can then override any sub setting by declaring
+it in your Session config:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above will use the built-in &#8216;php&#8217; session configuration. You could augment
+part or all of it by doing the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cookie&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_app&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">4320</span> <span class="c1">// 3 days</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above overrides the timeout and cookie name for the &#8216;php&#8217; session
+configuration. The built-in configurations are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">php</span></code> - Saves sessions with the standard settings in your php.ini file.</li>
+<li><code class="docutils literal"><span class="pre">cake</span></code> - Saves sessions as files inside <code class="docutils literal"><span class="pre">tmp/sessions</span></code>. This is a
+good option when on hosts that don&#8217;t allow you to write outside your own home
+dir.</li>
+<li><code class="docutils literal"><span class="pre">database</span></code> - Use the built-in database sessions. See below for more
+information.</li>
+<li><code class="docutils literal"><span class="pre">cache</span></code> - Use the built-in cache sessions. See below for more information.</li>
+</ul>
+<div class="section" id="session-handlers">
+<h3>Session Handlers<a class="headerlink" href="#session-handlers" title="Permalink to this headline">¶</a></h3>
+<p>Session handlers can also be defined in the session config array.  By defining
+the &#8216;handler.engine&#8217; config key, you can name the class name, or provide
+a handler instance.  The class/object must implement the
+native PHP <code class="docutils literal"><span class="pre">SessionHandlerInterface</span></code>. Implementing this interface will allow
+<code class="docutils literal"><span class="pre">Session</span></code> to automatically map the methods for the handler. Both the core
+Cache and Database session handlers use this method for saving sessions.
+Additional settings for the handler should be placed inside the handler array.
+You can then read those values out from inside your handler:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Session&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DatabaseSession&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;model&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CustomSessions&#39;</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The above shows how you could setup the Database session handler with an
+application model. When using class names as your handler.engine, CakePHP will
+expect to find your class in the <code class="docutils literal"><span class="pre">Network\Session</span></code> namespace. For example, if
+you had an <code class="docutils literal"><span class="pre">AppSessionHandler</span></code> class,  the file should be
+<strong>src/Network/Session/AppSessionHandler.php</strong>, and the class name should be
+<code class="docutils literal"><span class="pre">App\Network\Session\AppSessionHandler</span></code>. You can also use session handlers
+from inside plugins. By setting the engine to <code class="docutils literal"><span class="pre">MyPlugin.PluginSessionHandler</span></code>.</p>
+</div>
+<div class="section" id="database-sessions">
+<h3>Database Sessions<a class="headerlink" href="#database-sessions" title="Permalink to this headline">¶</a></h3>
+<p>If you need to use a database to store your session data, configure as follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Session&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;database&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>This configuration requires a database table, having this schema:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="sb">`sessions`</span> <span class="p">(</span>
+  <span class="sb">`id`</span> <span class="nx">char</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="nx">CHARACTER</span> <span class="nx">SET</span> <span class="nx">ascii</span> <span class="nx">COLLATE</span> <span class="nx">ascii_bin</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="sb">`created`</span> <span class="nx">datetime</span> <span class="k">DEFAULT</span> <span class="nx">CURRENT_TIMESTAMP</span><span class="p">,</span> <span class="o">--</span> <span class="nx">Optional</span>
+  <span class="sb">`modified`</span> <span class="nx">datetime</span> <span class="k">DEFAULT</span> <span class="nx">CURRENT_TIMESTAMP</span> <span class="nx">ON</span> <span class="nx">UPDATE</span> <span class="nx">CURRENT_TIMESTAMP</span><span class="p">,</span> <span class="o">--</span> <span class="nx">Optional</span>
+  <span class="sb">`data`</span> <span class="nx">blob</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span> <span class="o">--</span> <span class="k">for</span> <span class="nx">PostgreSQL</span> <span class="k">use</span> <span class="nx">bytea</span> <span class="nx">instead</span> <span class="nx">of</span> <span class="nx">blob</span>
+  <span class="sb">`expires`</span> <span class="nx">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="nx">unsigned</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="sb">`id`</span><span class="p">)</span>
+<span class="p">)</span> <span class="nx">ENGINE</span><span class="o">=</span><span class="nx">InnoDB</span> <span class="k">DEFAULT</span> <span class="nx">CHARSET</span><span class="o">=</span><span class="nx">utf8</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can find a copy of the schema for the sessions table in the <a class="reference external" href="https://github.com/cakephp/app">application skeleton</a> in <code class="docutils literal"><span class="pre">config/schema/sessions.sql</span></code>.</p>
+<p>You can also use your own <code class="docutils literal"><span class="pre">Table</span></code> class to handle the saving of the sessions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Session&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;database&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DatabaseSession&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;model&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CustomSessions&#39;</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The above will tell Session to use the built-in &#8216;database&#8217; defaults, and
+specify that a Table called <code class="docutils literal"><span class="pre">CustomSessions</span></code> will be the delegate for saving
+session information to the database.</p>
+</div>
+<div class="section" id="cache-sessions">
+<h3>Cache Sessions<a class="headerlink" href="#cache-sessions" title="Permalink to this headline">¶</a></h3>
+<p>The Cache class can be used to store sessions as well. This allows you to store
+sessions in a cache like APC, Memcached, or XCache. There are some caveats to
+using cache sessions, in that if you exhaust the cache space, sessions will
+start to expire as records are evicted.</p>
+<p>To use Cache based sessions you can configure you Session config like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;config&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;session&#39;</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>This will configure Session to use the <code class="docutils literal"><span class="pre">CacheSession</span></code> class as the
+delegate for saving the sessions. You can use the &#8216;config&#8217; key which cache
+configuration to use. The default cache configuration is <code class="docutils literal"><span class="pre">'default'</span></code>.</p>
+</div>
+</div>
+<div class="section" id="setting-ini-directives">
+<h2>Setting ini directives<a class="headerlink" href="#setting-ini-directives" title="Permalink to this headline">¶</a></h2>
+<p>The built-in defaults attempt to provide a common base for session
+configuration. You may need to tweak specific ini flags as well. CakePHP
+exposes the ability to customize the ini settings for both default
+configurations, as well as custom ones. The <code class="docutils literal"><span class="pre">ini</span></code> key in the session settings,
+allows you to specify individual configuration values. For example you can use
+it to control settings like <code class="docutils literal"><span class="pre">session.gc_divisor</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;session.cookie_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyCookie&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;session.cookie_lifetime&#39;</span> <span class="o">=&gt;</span> <span class="mi">1800</span><span class="p">,</span> <span class="c1">// Valid for 30 minutes</span>
+        <span class="s1">&#39;session.gc_divisor&#39;</span> <span class="o">=&gt;</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s1">&#39;session.cookie_httponly&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-custom-session-handler">
+<h2>Creating a Custom Session Handler<a class="headerlink" href="#creating-a-custom-session-handler" title="Permalink to this headline">¶</a></h2>
+<p>Creating a custom session handler is straightforward in CakePHP. In this
+example we&#8217;ll create a session handler that stores sessions both in the Cache
+(APC) and the database. This gives us the best of fast IO of APC,
+without having to worry about sessions evaporating when the cache fills up.</p>
+<p>First we&#8217;ll need to create our custom class and put it in
+<strong>src/Network/Session/ComboSession.php</strong>. The class should look
+something like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Network\Session</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Cache\Cache</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Core\Configure</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Network\Session\DatabaseSession</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ComboSession</span> <span class="k">extends</span> <span class="nx">DatabaseSession</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$cacheKey</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cacheKey</span> <span class="o">=</span> <span class="nx">Configure</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;Session.handler.cache&#39;</span><span class="p">);</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Read data from the session.</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">read</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cacheKey</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$result</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Write data into the session.</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">write</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">Cache</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cacheKey</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Destroy a session.</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">destroy</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">Cache</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cacheKey</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">destroy</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Removes expired sessions.</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">gc</span><span class="p">(</span><span class="nv">$expires</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">gc</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cacheKey</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">parent</span><span class="o">::</span><span class="na">gc</span><span class="p">(</span><span class="nv">$expires</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our class extends the built-in <code class="docutils literal"><span class="pre">DatabaseSession</span></code> so we don&#8217;t have to duplicate
+all of its logic and behavior. We wrap each operation with
+a <a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache" title="Cake\Cache\Cache"><code class="xref php php-class docutils literal"><span class="pre">Cake\Cache\Cache</span></code></a> operation. This lets us fetch sessions from
+the fast cache, and not have to worry about what happens when we fill the cache.
+Using this session handler is also easy. In your <strong>app.php</strong> make the session
+block look like the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;Session&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;defaults&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;database&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ComboSession&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;model&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Session&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cache&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;apc&#39;</span>
+    <span class="p">]</span>
+<span class="p">],</span>
+<span class="c1">// Make sure to add a apc cache config</span>
+<span class="s1">&#39;Cache&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;apc&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;engine&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Apc&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Now our application will start using our custom session handler for reading and
+writing session data.</p>
+<dl class="class">
+<dt id="Session">
+<em class="property">class </em><code class="descname">Session</code><a class="headerlink" href="#Session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="accessing-the-session-object">
+<span id="accessing-session-object"></span><h2>Accessing the Session Object<a class="headerlink" href="#accessing-the-session-object" title="Permalink to this headline">¶</a></h2>
+<p>You can access the session data any place you have access to a request object.
+This means the session is accessible from:</p>
+<ul class="simple">
+<li>Controllers</li>
+<li>Views</li>
+<li>Helpers</li>
+<li>Cells</li>
+<li>Components</li>
+</ul>
+<p>In addition to the basic session object, you can also use the
+<a class="reference internal" href="../views/helpers/session.html#Cake\View\Helper\SessionHelper" title="Cake\View\Helper\SessionHelper"><code class="xref php php-class docutils literal"><span class="pre">Cake\View\Helper\SessionHelper</span></code></a> to interact with the session in
+your views. A basic example of session usage would be:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">session</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;User.name&#39;</span><span class="p">);</span>
+
+<span class="c1">// If you are accessing the session multiple times,</span>
+<span class="c1">// you will probably want a local variable.</span>
+<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">session</span><span class="p">();</span>
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;User.name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading-writing-session-data">
+<h2>Reading &amp; Writing Session Data<a class="headerlink" href="#reading-writing-session-data" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Session::read">
+<code class="descclassname">Session::</code><code class="descname">read</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Session::read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can read values from the session using <code class="xref php php-meth docutils literal"><span class="pre">Hash::extract()</span></code>
+compatible syntax:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;Config.language&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Session::write">
+<code class="descclassname">Session::</code><code class="descname">write</code><span class="sig-paren">(</span><em>$key</em>, <em>$value</em><span class="sig-paren">)</span><a class="headerlink" href="#Session::write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">$key</span></code> should be the dot separated path you wish to write <code class="docutils literal"><span class="pre">$value</span></code> to:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Config.language&#39;</span><span class="p">,</span> <span class="s1">&#39;en&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You may also specify one or multiple hashes like so:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">([</span>
+  <span class="s1">&#39;Config.theme&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Config.language&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Session::delete">
+<code class="descclassname">Session::</code><code class="descname">delete</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Session::delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>When you need to delete data from the session, you can use <code class="docutils literal"><span class="pre">delete()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;Some.value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="staticmethod">
+<dt id="Session::consume">
+<em class="property">static </em><code class="descclassname">Session::</code><code class="descname">consume</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Session::consume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>When you need to read and delete data from the session, you can use
+<code class="docutils literal"><span class="pre">consume()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">consume</span><span class="p">(</span><span class="s1">&#39;Some.value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Session::check">
+<code class="descclassname">Session::</code><code class="descname">check</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Session::check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If you want to see if data exists in the session, you can use <code class="docutils literal"><span class="pre">check()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">check</span><span class="p">(</span><span class="s1">&#39;Config.language&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Config.language exists and is not null.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="destroying-the-session">
+<h2>Destroying the Session<a class="headerlink" href="#destroying-the-session" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Session::destroy">
+<code class="descclassname">Session::</code><code class="descname">destroy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Session::destroy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Destroying the session is useful when users log out. To destroy a session, use
+the <code class="docutils literal"><span class="pre">destroy()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">destroy</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Destroying a session will remove all serverside data in the session, but will
+<strong>not</strong> remove the session cookie.</p>
+</div>
+<div class="section" id="rotating-session-identifiers">
+<h2>Rotating Session Identifiers<a class="headerlink" href="#rotating-session-identifiers" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Session::renew">
+<code class="descclassname">Session::</code><code class="descname">renew</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Session::renew" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>While <code class="docutils literal"><span class="pre">AuthComponent</span></code> automatically renews the session id when users login and
+logout, you may need to rotate the session id&#8217;s manually. To do this use the
+<code class="docutils literal"><span class="pre">renew()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$session</span><span class="o">-&gt;</span><span class="na">renew</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="flash-messages">
+<h2>Flash Messages<a class="headerlink" href="#flash-messages" title="Permalink to this headline">¶</a></h2>
+<p>Flash messages are small messages displayed to end users once. They are often
+used to present error messages, or confirm that actions took place successfully.</p>
+<p>To set and display flash messages you should use
+<a class="reference internal" href="../controllers/components/flash.html"><span class="doc">Flash</span></a> and
+<a class="reference internal" href="../views/helpers/flash.html"><span class="doc">Flash</span></a></p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Installation" lang="fr" name="title" />
+<meta content="apache mod rewrite,serveur sql microsoft,tar bz2,répertoire tmp,stockage de base de données,copie d'archive,tar gz,source application,versions courantes,serveurs web,microsoft iis,copyright notices,moteur de base de données,bug fixes,lighthttpd,dépôt,améliorations,code source,cakephp,incorporate" lang="fr" name="keywords" />
+
+    <title>Installation - 3.x</title>
+    <link href="_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../en/installation.html" /><link rel="alternate" hreflang="pt_BR" href="../pt/installation.html" /><link rel="alternate" hreflang="es" href="../es/installation.html" /><link rel="alternate" hreflang="ja" href="../ja/installation.html" /><link rel="alternate" hreflang="zh" href="../zh/installation.html" /><link rel="alternate" hreflang="tr" href="../tr/installation.html" /><link rel="alternate" hreflang="ru" href="../ru/installation.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="index.html" />
+    <link rel="next" title="Configuration" href="development/configuration.html" />
+    <link rel="prev" title="Guide de Compatibilité Rétroactive" href="contributing/backwards-compatibility.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../en/installation.html">en</a></li>
+                                            
+                                                <li><a href="../pt/installation.html">pt</a></li>
+                                            
+                                                <li><a href="../es/installation.html">es</a></li>
+                                            
+                                                <li><a href="../ja/installation.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../zh/installation.html">zh</a></li>
+                                            
+                                                <li><a href="../tr/installation.html">tr</a></li>
+                                            
+                                                <li><a href="../ru/installation.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/installation.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#conditions-requises">Conditions requises</a></li>
+<li><a class="reference internal" href="#installer-cakephp">Installer CakePHP</a><ul>
+<li><a class="reference internal" href="#installer-composer">Installer Composer</a></li>
+<li><a class="reference internal" href="#creer-un-projet-cakephp">Créer un Projet CakePHP</a></li>
+<li><a class="reference internal" href="#rester-a-jour-avec-les-derniers-changements-de-cakephp">Rester à jour avec les Derniers Changements de CakePHP</a></li>
+<li><a class="reference internal" href="#installation-en-utilisant-oven">Installation en utilisant Oven</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#permissions">Permissions</a></li>
+<li><a class="reference internal" href="#serveur-de-developpement">Serveur de Développement</a></li>
+<li><a class="reference internal" href="#production">Production</a></li>
+<li><a class="reference internal" href="#a-vous-de-jouer">A vous de jouer !</a></li>
+<li><a class="reference internal" href="#url-rewriting">URL Rewriting</a><ul>
+<li><a class="reference internal" href="#apache">Apache</a></li>
+<li><a class="reference internal" href="#nginx">nginx</a></li>
+<li><a class="reference internal" href="#iis7-serveurs-windows">IIS7 (serveurs Windows)</a></li>
+<li><a class="reference internal" href="#je-ne-veux-ne-peux-utiliser-l-url-rewriting">Je ne veux / ne peux utiliser l&#8217;URL rewriting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CakePHP est rapide et facile à installer. Les conditions minimum requises sont
+un serveur web et une copie de CakePHP, c&#8217;est tout! Bien que ce manuel se
+focalise principalement sur la configuration avec Apache (parce que c&#8217;est le
+plus utilisé couramment), vous pouvez configurer CakePHP pour lancer une
+diversité de serveurs web tels que LightHTTPD ou Microsoft IIS.</p>
+<div class="section" id="conditions-requises">
+<h2>Conditions requises<a class="headerlink" href="#conditions-requises" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>HTTP Server. Par exemple: Apache. mod_rewrite est préférable, mais en
+aucun cas nécessaire</li>
+<li>PHP 5.6.0 ou plus (y compris PHP 7.1)</li>
+<li>extension PHP mbstring</li>
+<li>extension PHP intl</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Avec XAMPP et WAMP, l&#8217;extension mbstring fonctionne par défaut.</p>
+<p>Dans XAMPP, l&#8217;extension intl est incluse mais vous devez décommenter
+<code class="docutils literal"><span class="pre">extension=php_intl.dll</span></code> dans <strong>php.ini</strong> et redémarrer le serveur dans
+le Panneau de Contrôle de XAMPP.</p>
+<p class="last">Dans WAMP, l&#8217;extension intl est &#8220;activée&#8221; par défaut mais ne fonctionne pas.
+Pour la faire fonctionner, vous devez aller dans le dossier php (par défaut)
+<strong>C:\wamp\bin\php\php{version}</strong>, copiez tous les fichiers qui
+ressemblent à <strong>icu*.dll</strong> et collez les dans le répertoire bin d&#8217;apache
+<strong>C:\wamp\bin\apache\apache{version}\bin</strong>. Ensuite redémarrez tous les
+services et tout devrait être OK.</p>
+</div>
+<p>Techniquement, un moteur de base de données n&#8217;est pas nécessaire, mais nous
+imaginons que la plupart des applications vont en utiliser un. CakePHP
+supporte une diversité de moteurs de stockage de données:</p>
+<ul class="simple">
+<li>MySQL (5.1.10 ou supérieur)</li>
+<li>PostgreSQL</li>
+<li>Microsoft SQL Server (2008 ou supérieur)</li>
+<li>SQLite 3</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Tous les drivers intégrés requièrent PDO. Vous devez vous assurer que vous
+avez les bonnes extensions PDO installées.</p>
+</div>
+</div>
+<div class="section" id="installer-cakephp">
+<h2>Installer CakePHP<a class="headerlink" href="#installer-cakephp" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Avant de commencer, vous devez vous assurer que vous avez une version de PHP
+mise à jour:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php -v
+</pre></div>
+</div>
+<p>Vous devez avoir installé au moins avoir PHP 5.6.0 (CLI) ou supérieur. La
+version de PHP du serveur web doit être la version 5.6.0 ou supérieur, et doit
+être la même version que la version de PHP de votre ligne de commande (CLI).</p>
+<div class="section" id="installer-composer">
+<h3>Installer Composer<a class="headerlink" href="#installer-composer" title="Lien permanent vers ce titre">¶</a></h3>
+<p>CakePHP utilise <a class="reference external" href="http://getcomposer.org">Composer</a>, un outil de gestion de
+dépendances comme méthode officielle supportée pour l&#8217;installation.</p>
+<ul>
+<li><p class="first">Installer Composer sur Linux et macOS</p>
+<ol class="arabic">
+<li><p class="first">Exécutez le script d&#8217;installation comme décrit dans la
+<a class="reference external" href="https://getcomposer.org/download/">documentation officielle de Composer</a>
+et suivez les instructions pour installer Composer.</p>
+</li>
+<li><p class="first">Exécutez la commande suivante pour déplacer composer.phar vers un
+répertoire qui est dans votre path:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">mv</span> <span class="nx">composer</span><span class="o">.</span><span class="nx">phar</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">composer</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p class="first">Installer Composer sur Windows</p>
+<p>Pour les systèmes Windows, vous pouvez télécharger l&#8217;installeur Windows de
+Composer <a class="reference external" href="https://github.com/composer/windows-setup/releases/">ici</a>.
+D&#8217;autres instructions pour l&#8217;installeur Windows de Composer se trouvent dans
+le <a class="reference external" href="https://github.com/composer/windows-setup">README</a>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="creer-un-projet-cakephp">
+<h3>Créer un Projet CakePHP<a class="headerlink" href="#creer-un-projet-cakephp" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Maintenant que vous avez téléchargé et installé Composer, imaginons que vous
+souhaitiez créer une nouvelle application CakePHP dans le dossier my_app_name.
+Pour ceci vous pouvez lancer la commande suivante:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php composer.phar create-project --prefer-dist cakephp/app my_app_name
+</pre></div>
+</div>
+<p>Ou si Composer est installé globalement:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>composer self-update <span class="o">&amp;&amp;</span> composer create-project --prefer-dist cakephp/app my_app_name
+</pre></div>
+</div>
+<p>Une fois que Composer finit le téléchargement du squelette de l&#8217;application et
+du cœur de la librairie de CakePHP, vous devriez avoir maintenant une
+application CakePHP qui fonctionne, installée via Composer. Assurez-vous de
+garder les fichiers composer.json et composer.lock avec le reste de votre code
+source.</p>
+<p>Vous devriez être maintenant capable de visiter le chemin où vous avez installé
+votre application CakePHP et voir la page d&#8217;accueil par défaut. Pour changer
+le contenu de cette page, modifiez: <strong>src/Template/Pages/home.ctp</strong>.</p>
+<p>Bien que composer soit la méthode d&#8217;installation recommandée, il existe des
+versions pré-installables disponibles sur
+<a class="reference external" href="https://github.com/cakephp/cakephp/tags">Github</a>.
+Ces téléchargements contiennent le squelette d&#8217;une app avec tous les packages
+installés dans vendor.
+Aussi le <code class="docutils literal"><span class="pre">composer.phar</span></code> est inclus donc vous avez tout ce dont vous avez
+besoin pour continuer à l&#8217;utiliser.</p>
+</div>
+<div class="section" id="rester-a-jour-avec-les-derniers-changements-de-cakephp">
+<h3>Rester à jour avec les Derniers Changements de CakePHP<a class="headerlink" href="#rester-a-jour-avec-les-derniers-changements-de-cakephp" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Par défaut c&#8217;est ce à quoi le <strong>composer.json</strong> de votre application ressemble:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;cakephp/cakephp&quot;</span><span class="o">:</span> <span class="s2">&quot;3.5.*&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A chaque fois que vous lancez <code class="docutils literal"><span class="pre">php</span> <span class="pre">composer.phar</span> <span class="pre">update</span></code>, vous allez
+recevoir la dernière version contenant les dernières corrections de bugs pour
+cette version mineure. Si vous souhaitez également recevoir les dernières
+versions stables de la branche <code class="docutils literal"><span class="pre">3.x</span></code>, vous pouvez changer la contrainte de
+version par <code class="docutils literal"><span class="pre">~3.5</span></code>.</p>
+<p>Si vous voulez rester à jour avec les derniers changements de CakePHP non
+stables, vous pouvez changer le <strong>composer.json</strong> de votre application:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;cakephp/cakephp&quot;</span><span class="o">:</span> <span class="s2">&quot;dev-master&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notez que ce n&#8217;est pas recommandé, puisque votre application peut casser quand
+la prochaine version majeure sort. De plus, composer ne met pas en cache les
+branches de développement, donc cela ralentit les installs/updates consécutifs
+de composer.</p>
+</div>
+<div class="section" id="installation-en-utilisant-oven">
+<h3>Installation en utilisant Oven<a class="headerlink" href="#installation-en-utilisant-oven" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Une autre manière rapide d&#8217;installer CakePHP est d&#8217;utiliser <a class="reference external" href="https://github.com/CakeDC/oven">Oven</a>.
+Il s&#8217;agit d&#8217;un simple script PHP qui vérifie si vous respectez les
+recommandations systèmes, installe le squelette d&#8217;application CakePHP et met
+en place l&#8217;environnement de développement.</p>
+<p>Après l&#8217;installation, votre application CakePHP est prête !</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">IMPORTANT : Ceci n&#8217;est pas un script de déploiement. Il s&#8217;agit d&#8217;une aide à
+l&#8217;installation de CakePHP. Il permet de mettre en place un environnement de
+développement rapidement. Les environnements de production doivent
+également prendre en compte d&#8217;autres facteurs comme les permissions de
+fichiers, les configurations de vhost, etc.</p>
+</div>
+</div>
+</div>
+<div class="section" id="permissions">
+<h2>Permissions<a class="headerlink" href="#permissions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>CakePHP utilise le répertoire <strong>tmp</strong> pour un certain nombre d&#8217;opérations.
+Les descriptions de Model, les vues mises en cache, et les informations de
+session en sont juste quelques exemples.
+Le répertoire <strong>logs</strong> est utilisé pour écrire les fichiers de log par le
+moteur par défaut <code class="docutils literal"><span class="pre">FileLog</span></code>.</p>
+<p>De même, assurez-vous que les répertoires <strong>logs</strong>, <strong>tmp</strong> et tous ses
+sous-répertoires dans votre installation Cake sont accessibles en écriture pour
+l&#8217;utilisateur du serveur web. Le processus d&#8217;installation avec Composer va
+rendre <strong>tmp</strong> et ses sous-dossiers accessibles en écriture pour récupérer et
+lancer rapidement, mais vous pouvez mettre à jour les permissions pour une
+meilleur sécurité et les garder en écriture seulement pour l&#8217;utilisateur du
+serveur web.</p>
+<p>Un problème habituel est que les répertoires <strong>logs</strong> et <strong>tmp</strong> et les
+sous-répertoires doivent être accessibles en écriture à la fois pour le serveur
+web et pour l&#8217;utilisateur des lignes de commande. Sur un système UNIX, si
+votre serveur web est différent à partir de l&#8217;utilisateur en ligne de commande,
+vous pouvez lancer les commandes suivantes juste une fois dans votre projet
+pour vous assurer que les permissions sont bien configurées:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">HTTPDUSER</span><span class="o">=</span><span class="sb">`</span>ps aux <span class="p">|</span> grep -E <span class="s1">&#39;[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx&#39;</span> <span class="p">|</span> grep -v root <span class="p">|</span> head -1 <span class="p">|</span> cut -d<span class="se">\ </span> -f1<span class="sb">`</span>
+setfacl -R -m u:<span class="si">${</span><span class="nv">HTTPDUSER</span><span class="si">}</span>:rwx tmp
+setfacl -R -d -m u:<span class="si">${</span><span class="nv">HTTPDUSER</span><span class="si">}</span>:rwx tmp
+setfacl -R -m u:<span class="si">${</span><span class="nv">HTTPDUSER</span><span class="si">}</span>:rwx logs
+setfacl -R -d -m u:<span class="si">${</span><span class="nv">HTTPDUSER</span><span class="si">}</span>:rwx logs
+</pre></div>
+</div>
+<p>Si vous souhaitez utiliser les outils de la console CakePHP, vous devez vous
+assurer que le fichier <code class="docutils literal"><span class="pre">bin/cake</span></code> (ou <code class="docutils literal"><span class="pre">bin/cake.php</span></code>) est exécutable. Sur
+*nix ou macOS, vous pouvez simplement exécuter la commande suivante (sur
+windows, le fichier <strong>.bat</strong> devrait déjà être exécutable) :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod +x bin/cake
+</pre></div>
+</div>
+<p>Si vous utilisez Vagrant ou un autre environnement de développement virtualisé,
+tous les dossiers partagés devront être partagés avec des permissions
+d&#8217;exécutions. (Veuillez vous référer à la documentation de votre environnement
+de virtualisation pour savoir comment procéder).</p>
+<p>Si, pour une quelconque raison, vous ne pouvez pas changer les permissions du
+fichier <code class="docutils literal"><span class="pre">bin/cake</span></code>, vous pouvez lancer la console CakePHP avec la commande
+suivante :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php bin/cake.php
+</pre></div>
+</div>
+</div>
+<div class="section" id="serveur-de-developpement">
+<h2>Serveur de Développement<a class="headerlink" href="#serveur-de-developpement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une installation &#8220;développement&#8221; est la méthode la plus rapide pour lancer
+CakePHP. Dans cet exemple, nous utiliserons la console de CakePHP pour exécuter
+le serveur web PHP intégré qui va rendre votre application disponible sur
+<strong>http://host:port</strong>. A partir du répertoire de l&#8217;app, lancez:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bin/cake server
+</pre></div>
+</div>
+<p>Par défaut, sans aucun argument fourni, cela va afficher votre application
+sur <strong>http://localhost:8765/</strong>.</p>
+<p>Si vous avez quelque chose qui rentre en conflit avec <strong>localhost</strong> ou le
+port 8765, vous pouvez dire à la console CakePHP de lancer le serveur web
+sur un hôte spécifique et/ou un port utilisant les arguments suivants:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bin/cake server -H <span class="m">192</span>.168.13.37 -p <span class="m">5673</span>
+</pre></div>
+</div>
+<p>Cela affichera votre application sur <strong>http://192.168.13.37:5673/</strong>.</p>
+<p>C&#8217;est tout! Votre application CakePHP est ok et elle est lancée sans avoir
+à configurer un serveur web.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Ceci <em>n&#8217;a pas</em> vocation à être utilisé, ni ne devrait être utilisé dans un
+environnement de production. Il est juste à utiliser pour un serveur de
+développement basique.</p>
+</div>
+<p>Si vous préférez utiliser un vrai serveur web, vous pouvez déplacer votre
+installation CakePHP (ainsi que les fichiers cachés) dans le
+document root de votre serveur web. Vous pouvez pointer votre navigateur vers
+le répertoire dans lequel vous avez déplacé les fichiers et voir votre
+application en action.</p>
+</div>
+<div class="section" id="production">
+<h2>Production<a class="headerlink" href="#production" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une installation &#8220;production&#8221; est une façon plus flexible de lancer CakePHP.
+Utiliser cette méthode permet à tout un domaine d&#8217;agir comme une seule
+application CakePHP. Cet exemple vous aidera à installer CakePHP n&#8217;importe où
+dans votre système de fichiers et à le rendre disponible à l&#8217;adresse :
+<a class="reference external" href="http://www.exemple.com">http://www.exemple.com</a>. Notez que cette installation demande d&#8217;avoir les
+droits pour modifier le <code class="docutils literal"><span class="pre">DocumentRoot</span></code> sur le serveur web Apache.</p>
+<p>Après avoir installé votre application en utilisant une des méthodes ci-dessus
+dans un répertoire de votre choix. Pour les besoins de cet exemple, nous
+considérons que vous avez choisi d&#8217;installer CakePHP dans /cake_install. Votre
+installation de production devrait ressembler à quelque chose comme ceci dans
+votre système de fichiers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">cake_install</span><span class="o">/</span>
+    <span class="nx">bin</span><span class="o">/</span>
+    <span class="nx">config</span><span class="o">/</span>
+    <span class="nx">logs</span><span class="o">/</span>
+    <span class="nx">plugins</span><span class="o">/</span>
+    <span class="nx">src</span><span class="o">/</span>
+    <span class="nx">tests</span><span class="o">/</span>
+    <span class="nx">tmp</span><span class="o">/</span>
+    <span class="nx">vendor</span><span class="o">/</span>
+    <span class="nx">webroot</span><span class="o">/</span> <span class="p">(</span><span class="nx">ce</span> <span class="nx">répertoire</span> <span class="nx">est</span> <span class="nx">défini</span> <span class="nx">comme</span> <span class="nx">DocumentRoot</span><span class="p">)</span>
+    <span class="o">.</span><span class="nx">gitignore</span>
+    <span class="o">.</span><span class="nx">htaccess</span>
+    <span class="o">.</span><span class="nx">travis</span><span class="o">.</span><span class="nx">yml</span>
+    <span class="nx">composer</span><span class="o">.</span><span class="nx">json</span>
+    <span class="nx">index</span><span class="o">.</span><span class="nx">php</span>
+    <span class="nx">phpunit</span><span class="o">.</span><span class="nx">xml</span><span class="o">.</span><span class="nx">dist</span>
+    <span class="nx">README</span><span class="o">.</span><span class="nx">md</span>
+</pre></div>
+</div>
+<p>Les développeurs utilisant Apache devront définir la directive
+<code class="docutils literal"><span class="pre">DocumentRoot</span></code> pour le domaine à:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nb">DocumentRoot</span> <span class="sx">/cake_install/webroot</span>
+</pre></div>
+</div>
+<p>Si votre serveur web est configuré correctement, vous devriez maintenant
+accéder à votre application CakePHP accessible à l&#8217;adresse
+<a class="reference external" href="http://www.exemple.com">http://www.exemple.com</a>.</p>
+</div>
+<div class="section" id="a-vous-de-jouer">
+<h2>A vous de jouer !<a class="headerlink" href="#a-vous-de-jouer" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ok, regardons CakePHP en action. Selon la configuration que vous utilisez,
+vous pouvez pointer votre navigateur vers <a class="reference external" href="http://exemple.com/">http://exemple.com/</a> ou
+<a class="reference external" href="http://localhost:8765/">http://localhost:8765/</a>. A ce niveau, vous serez sur la page home
+par défaut de CakePHP, et un message qui vous donnera le statut de la
+connexion de votre base de données courante.</p>
+<p>Félicitations ! Vous êtes prêt à <a class="reference internal" href="quickstart.html"><span class="doc">créer votre première application CakePHP</span></a>.</p>
+</div>
+<div class="section" id="url-rewriting">
+<span id="id1"></span><h2>URL Rewriting<a class="headerlink" href="#url-rewriting" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="apache">
+<h3>Apache<a class="headerlink" href="#apache" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Alors que CakePHP est construit pour travailler avec mod_rewrite –et
+habituellement il l&#8217;est– nous avons remarqué que certains utilisateurs
+n&#8217;arrivent pas à obtenir un bon fonctionnement sur leurs systèmes.</p>
+<p>Ici il y a quelques trucs que vous pourriez essayer pour que cela
+fonctionne correctement. Premièrement, regardez votre fichier
+httpd.conf (Assurez-vous que vous avez édité le httpd.conf du système
+plutôt que celui d&#8217;un utilisateur- ou le httpd.conf d&#8217;un site spécifique).</p>
+<p>Ces fichiers peuvent varier selon les différentes distributions et les versions
+d&#8217;Apache. Vous pouvez consulter
+<a class="reference external" href="http://wiki.apache.org/httpd/DistrosDefaultLayout">http://wiki.apache.org/httpd/DistrosDefaultLayout</a> pour plus d&#8217;informations.</p>
+<ol class="arabic">
+<li><p class="first">Assurez-vous que l&#8217;utilisation des fichiers .htaccess est permise et que
+AllowOverride est défini à All pour le bon DocumentRoot. Vous devriez voir
+quelque chose comme:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="c"># Chaque répertoire auquel Apache a accès peut être configuré avec</span>
+<span class="c"># respect pour lesquels les services et les fonctionnalités sont</span>
+<span class="c"># autorisés et/ou désactivés dans ce répertoire (et ses sous-répertoires).</span>
+<span class="c">#</span>
+<span class="c"># Premièrement, nous configurons &quot;par défaut&quot; pour être un ensemble</span>
+<span class="c"># très restrictif de fonctionnalités.</span>
+<span class="c">#</span>
+<span class="nt">&lt;Directory</span> <span class="s">/</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> FollowSymLinks
+    <span class="nb">AllowOverride</span> <span class="k">All</span>
+<span class="c">#    Order deny,allow</span>
+<span class="c">#    Deny from all</span>
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Assurez-vous que vous avez chargé correctement mod_rewrite. Vous devriez
+voir quelque chose comme:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nb">LoadModule</span> rewrite_module libexec/apache2/mod_rewrite.so
+</pre></div>
+</div>
+<p>Dans la plupart des systèmes, cette ligne est commentée donc vous aurez
+juste besoin de retirer le symbole # en début de ligne.</p>
+<p>Après avoir effectué les changements, redémarrez Apache pour être sûr
+que les paramètres soient actifs.</p>
+<p>Vérifiez que vos fichiers .htaccess sont effectivement dans le bon
+répertoire.</p>
+<p>Cela peut arriver pendant la copie parce que certains systèmes
+d&#8217;exploitation traitent les fichiers qui commencent par &#8216;.&#8217; en caché et du
+coup ne les voient pas pour les copier.</p>
+</li>
+<li><p class="first">Assurez-vous que votre copie de CakePHP vient de la section des
+téléchargements du site de notre dépôt Git, et a été dézippé correctement
+en vérifiant les fichiers .htaccess.</p>
+<p>Le répertoire app de CakePHP (sera copié dans le répertoire supérieur de
+votre application avec Bake):</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_rewrite.c</span><span class="nt">&gt;</span>
+   <span class="nb">RewriteEngine</span> <span class="k">on</span>
+   <span class="nb">RewriteRule</span>    ^$    webroot/    [L]
+   <span class="nb">RewriteRule</span>    (.*) webroot/$1    [L]
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Le répertoire webroot de CakePHP (sera copié dans le webroot de votre
+application avec Bake):</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_rewrite.c</span><span class="nt">&gt;</span>
+    <span class="nb">RewriteEngine</span> <span class="k">On</span>
+    <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+    <span class="nb">RewriteRule</span> ^ index.php [QSA,L]
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Si votre site Cakephp a toujours des problèmes avec mod_rewrite,
+essayez de modifier les paramètres pour les Hôtes Virtuels. Si vous
+êtes sur Ubuntu, modifiez le fichier <strong>/etc/apache2/sites-available/default</strong>
+(l&#8217;endroit dépend de la distribution). Dans ce fichier, assurez-vous
+que <code class="docutils literal"><span class="pre">AllowOverride</span> <span class="pre">None</span></code> a été changé en <code class="docutils literal"><span class="pre">AllowOverride</span> <span class="pre">All</span></code>, donc vous
+devez avoir:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;Directory</span> <span class="s">/</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> FollowSymLinks
+    <span class="nb">AllowOverride</span> <span class="k">All</span>
+<span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;Directory</span> <span class="s">/var/www</span><span class="nt">&gt;</span>
+    <span class="nb">Options</span> Indexes FollowSymLinks MultiViews
+    <span class="nb">AllowOverride</span> <span class="k">All</span>
+    <span class="nb">Order</span> Allow,Deny
+    <span class="nb">Allow</span> from <span class="k">all</span>
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>Si vous êtes sur macOS, une autre solution est d&#8217;utiliser l&#8217;outil
+<a class="reference external" href="http://clickontyler.com/virtualhostx/">virtualhostx</a> pour faire un Hôte
+Virtuel pour pointer vers votre dossier.</p>
+<p>Pour beaucoup de services d&#8217;hébergement (GoDaddy, 1and1), votre serveur web
+est en fait déjà distribué à partir d&#8217;un répertoire utilisateur qui
+utilise déjà mod_rewrite. Si vous installez CakePHP dans un répertoire
+utilisateur (<a class="reference external" href="http://exemple.com/~username/cakephp/">http://exemple.com/~username/cakephp/</a>), ou toute autre
+structure d&#8217;URL qui utilise déjà mod_rewrite, vous aurez besoin d&#8217;ajouter
+les requêtes (statements) RewriteBase aux fichiers .htaccess que CakePHP
+utilise (.htaccess, webroot/.htaccess).</p>
+<p>Ceci peut être ajouté dans la même section que la directive RewriteEngine,
+donc par exemple, votre fichier .htaccess dans webroot ressemblerait à ceci:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_rewrite.c</span><span class="nt">&gt;</span>
+    <span class="nb">RewriteEngine</span> <span class="k">On</span>
+    <span class="nb">RewriteBase</span> <span class="sx">/path/to/cake/app</span>
+    <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+    <span class="nb">RewriteRule</span> ^ index.php [QSA,L]
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Les détails de ces changements dépendront de votre configuration, et
+pourront inclure des choses supplémentaires qui ne sont pas liées à
+CakePHP. Merci de vous renseigner sur la documentation en ligne d&#8217;Apache
+pour plus d&#8217;informations.</p>
+</li>
+<li><p class="first">(Optionnel) Pour améliorer la configuration de production, vous devriez
+empêcher les assets invalides d&#8217;être parsés par CakePHP. Modifiez votre
+webroot .htaccess pour quelque chose comme:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_rewrite.c</span><span class="nt">&gt;</span>
+    <span class="nb">RewriteEngine</span> <span class="k">On</span>
+    <span class="nb">RewriteBase</span> <span class="sx">/path/to/cake/app</span>
+    <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} !-f
+    <span class="nb">RewriteCond</span> %{REQUEST_URI} !^/(webroot/)?(img|css|js)/(.*)$
+    <span class="nb">RewriteRule</span> ^ index.php [QSA,L]
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus va simplement empêcher les assets incorrects d&#8217;être
+envoyés à index.php et à la place d&#8217;afficher la page 404 de votre serveur
+web.</p>
+<p>De plus, vous pouvez créer une page HTML 404 correspondante, ou utiliser la
+page 404 de CakePHP intégrée en ajoutant une directive <code class="docutils literal"><span class="pre">ErrorDocument</span></code>:</p>
+<div class="highlight-apacheconf"><div class="highlight"><pre><span></span><span class="nb">ErrorDocument</span> <span class="m">404</span> <span class="sx">/404-not-found</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="nginx">
+<h3>nginx<a class="headerlink" href="#nginx" title="Lien permanent vers ce titre">¶</a></h3>
+<p>nginx ne fait pas usage de fichiers .htaccess comme Apache, il est
+donc nécessaire de créer les URLs réécrites disponibles dans la configuration
+du site. Ceci se fait habituellement dans
+<code class="docutils literal"><span class="pre">/etc/nginx/sites-available/your_virtual_host_conf_file</span></code>. Selon votre
+configuration, vous devrez modifier cela, mais à tout le moins, vous aurez
+besoin de PHP fonctionnant comme une instance FastCGI.
+La configuration suivante redirige la requête vers <code class="docutils literal"><span class="pre">webroot/index.php</span></code> :</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">location</span> <span class="s">/</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="s">/index.php?</span><span class="nv">$args</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Un extrait de directive &#8220;server&#8221; ci-dessous :</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span>   <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">www.example.com</span><span class="p">;</span>
+    <span class="kn">return</span> <span class="mi">301</span> <span class="s">http://example.com</span><span class="nv">$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span>   <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+
+    <span class="kn">root</span>   <span class="s">/var/www/example.com/public/webroot</span><span class="p">;</span>
+    <span class="kn">index</span>  <span class="s">index.php</span><span class="p">;</span>
+
+    <span class="kn">access_log</span> <span class="s">/var/www/example.com/log/access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span> <span class="s">/var/www/example.com/log/error.log</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="s">/index.php?</span><span class="nv">$args</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+        <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+        <span class="kn">fastcgi_pass</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">9000</span><span class="p">;</span>
+        <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+        <span class="kn">fastcgi_intercept_errors</span> <span class="no">on</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Dans les dernière versions de PHP-FPM, le système est configuré pour écouter
+le socket unix php-fpm plutôt que le port TCP 9000 de l&#8217;adresse 127.0.0.1.
+Si vous avez une erreur &#8220;502 bad gateway errors&#8221; avec la configuration ci-dessus,
+essayez de mettre à jour <code class="docutils literal"><span class="pre">fastcgi_pass</span></code> en pointant sur le socket unix
+Recent configurations of PHP-FPM are set to listen to the unix php-fpm
+(ex: fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;) plutôt que le port
+TCP.</p>
+</div>
+</div>
+<div class="section" id="iis7-serveurs-windows">
+<h3>IIS7 (serveurs Windows)<a class="headerlink" href="#iis7-serveurs-windows" title="Lien permanent vers ce titre">¶</a></h3>
+<p>IIS7 ne supporte pas nativement les fichiers .htaccess. Bien qu&#8217;il existe des
+add-ons qui peuvent ajouter ce support, vous pouvez aussi importer les règles
+des .htaccess dans IIS pour utiliser les rewrites natifs de CakePHP. Pour ce
+faire, suivez ces étapes:</p>
+<ol class="arabic simple">
+<li>Utilisez <a class="reference external" href="http://www.microsoft.com/web/downloads/platform.aspx">l&#8217;installeur de la plateforme Web de Microsoft</a> pour installer
+l&#8217;URL
+<a class="reference external" href="http://www.iis.net/downloads/microsoft/url-rewrite">Rewrite Module 2.0</a>
+ou téléchargez le directement (<a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=5747">32-bit</a> /
+<a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=7435">64-bit</a>).</li>
+<li>Créez un nouveau fichier dans votre dossier CakePHP, appelé web.config.</li>
+<li>Utilisez Notepad ou tout autre éditeur XML-safe, copiez le code suivant
+dans votre nouveau fichier web.config:</li>
+</ol>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;system.webServer&gt;</span>
+        <span class="nt">&lt;rewrite&gt;</span>
+            <span class="nt">&lt;rules&gt;</span>
+                <span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">&quot;Exclude direct access to webroot/*&quot;</span>
+                  <span class="na">stopProcessing=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;match</span> <span class="na">url=</span><span class="s">&quot;^webroot/(.*)$&quot;</span> <span class="na">ignoreCase=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;action</span> <span class="na">type=</span><span class="s">&quot;None&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/rule&gt;</span>
+                <span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">&quot;Rewrite routed access to assets(img, css, files, js, favicon)&quot;</span>
+                  <span class="na">stopProcessing=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;match</span> <span class="na">url=</span><span class="s">&quot;^(img|css|files|js|favicon.ico)(.*)$&quot;</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;action</span> <span class="na">type=</span><span class="s">&quot;Rewrite&quot;</span> <span class="na">url=</span><span class="s">&quot;webroot/{R:1}{R:2}&quot;</span>
+                      <span class="na">appendQueryString=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/rule&gt;</span>
+                <span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">&quot;Rewrite requested file/folder to index.php&quot;</span>
+                  <span class="na">stopProcessing=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;match</span> <span class="na">url=</span><span class="s">&quot;^(.*)$&quot;</span> <span class="na">ignoreCase=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;action</span> <span class="na">type=</span><span class="s">&quot;Rewrite&quot;</span> <span class="na">url=</span><span class="s">&quot;index.php&quot;</span>
+                      <span class="na">appendQueryString=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/rule&gt;</span>
+            <span class="nt">&lt;/rules&gt;</span>
+        <span class="nt">&lt;/rewrite&gt;</span>
+    <span class="nt">&lt;/system.webServer&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+<p>Une fois que le fichier web.config est créé avec les bonnes règles de
+réécriture des liens de IIS, les liens CakePHP, les CSS, le JavaScript, et
+le reroutage devraient fonctionner correctement.</p>
+</div>
+<div class="section" id="je-ne-veux-ne-peux-utiliser-l-url-rewriting">
+<h3>Je ne veux / ne peux utiliser l&#8217;URL rewriting<a class="headerlink" href="#je-ne-veux-ne-peux-utiliser-l-url-rewriting" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si vous ne voulez pas ou ne pouvez pas avoir mod_rewrite (ou tout autre
+module compatible) sur votre serveur, vous devrez utiliser les belles URLs
+intégrées à CakePHP. Dans <strong>config/app.php</strong>, décommentez la ligne qui
+ressemble à:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;App&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// &#39;baseUrl&#39; =&gt; env(&#39;SCRIPT_NAME&#39;),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Retirez aussi ces fichiers .htaccess:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/.</span><span class="nx">htaccess</span>
+<span class="nx">webroot</span><span class="o">/.</span><span class="nx">htaccess</span>
+</pre></div>
+</div>
+<p>Ceci affichera vos URLs comme ceci
+www.example.com/index.php/controllername/actionname/param plutôt que comme ceci
+www.example.com/controllername/actionname/param.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

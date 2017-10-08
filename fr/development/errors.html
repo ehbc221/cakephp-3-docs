@@ -1,0 +1,1195 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Gestionnaire d'Erreurs &amp; d'Exceptions" lang="fr" name="title" />
+<meta content="stack traces,erreur,affichage défaut,fonction anonyme,gestionanire d'erreur,erreur défaut,niveau erreur,gestionnaire exception,eurreur php,erreur écriture,core classes,exception handling,configuration error,application code,callback,custom error,exceptions,bitmasks,fatal error, erreur fatale" lang="fr" name="keywords" />
+
+    <title>Gestion des Erreurs &amp; Exceptions - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/development/errors.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/development/errors.html" /><link rel="alternate" hreflang="es" href="../../es/development/errors.html" /><link rel="alternate" hreflang="ja" href="../../ja/development/errors.html" /><link rel="alternate" hreflang="zh" href="../../zh/development/errors.html" /><link rel="alternate" hreflang="tr" href="../../tr/development/errors.html" /><link rel="alternate" hreflang="ru" href="../../ru/development/errors.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="next" title="Événements système" href="../core-libraries/events.html" />
+    <link rel="prev" title="Email" href="../core-libraries/email.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/development/errors.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/development/errors.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/development/errors.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/development/errors.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/development/errors.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/development/errors.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/development/errors.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/development/errors.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Gestion des Erreurs &amp; Exceptions</a><ul>
+<li><a class="reference internal" href="#configuration-des-erreurs-et-des-exceptions">Configuration des Erreurs et des Exceptions</a></li>
+<li><a class="reference internal" href="#creer-vos-propres-gestionnaires-d-erreurs">Créer vos Propres Gestionnaires d&#8217;Erreurs</a></li>
+<li><a class="reference internal" href="#changer-le-comportement-des-erreurs-fatales">Changer le Comportement des Erreurs Fatales</a></li>
+<li><a class="reference internal" href="#classes-des-exceptions">Classes des Exceptions</a></li>
+<li><a class="reference internal" href="#exceptions-integrees-de-cakephp">Exceptions Intégrées de CakePHP</a><ul>
+<li><a class="reference internal" href="#exceptions-http">Exceptions HTTP</a></li>
+<li><a class="reference internal" href="#namespace-Cake\View\Exception">Autres Exceptions Intégrées</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utiliser-les-exceptions-http-dans-vos-controllers">Utiliser les Exceptions HTTP dans vos Controllers</a></li>
+<li><a class="reference internal" href="#exception-renderer">Exception Renderer</a></li>
+<li><a class="reference internal" href="#creer-vos-propres-exceptions-dans-votre-application">Créer vos Propres Exceptions dans votre Application</a><ul>
+<li><a class="reference internal" href="#creer-des-codes-de-statut-personnalises">Créer des Codes de Statut Personnalisés</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#etendre-et-implementer-vos-propres-gestionnaires-d-exceptions">Etendre et Implémenter vos Propres Gestionnaires d&#8217;Exceptions</a><ul>
+<li><a class="reference internal" href="#creer-votre-propre-gestionnaire-d-exceptions">Créer votre Propre Gestionnaire d&#8217;Exceptions</a></li>
+<li><a class="reference internal" href="#etendre-le-baseerrorhandler">Etendre le BaseErrorHandler</a></li>
+<li><a class="reference internal" href="#utiliser-l-option-exceptionrenderer-dans-le-gestionnaire-par-defaut">Utiliser l&#8217;Option exceptionRenderer dans le Gestionnaire par Défaut</a></li>
+<li><a class="reference internal" href="#creer-un-controller-personnalise-pour-gerer-les-exceptions">Créer un Controller Personnalisé pour Gérer les Exceptions</a></li>
+<li><a class="reference internal" href="#logger-les-exceptions">Logger les Exceptions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="gestion-des-erreurs-exceptions">
+<h1>Gestion des Erreurs &amp; Exceptions<a class="headerlink" href="#gestion-des-erreurs-exceptions" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Un grand nombre de méthodes internes à PHP utilisent les erreurs pour
+communiquer les échecs. Ces erreurs doivent être récupérées et traitées.
+CakePHP fournit un récupérateur d&#8217;erreurs qui les affiche et/ou les écrit dans
+des fichiers de log par défaut lorsqu&#8217;elles se produisent. Ce gestionnaire
+d&#8217;erreurs est utilisé pour capturer les exceptions non interceptées par les
+controllers et par les autres parties de votre application.</p>
+<div class="section" id="configuration-des-erreurs-et-des-exceptions">
+<span id="error-configuration"></span><h2>Configuration des Erreurs et des Exceptions<a class="headerlink" href="#configuration-des-erreurs-et-des-exceptions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La configuration des Erreurs est faite à l&#8217;intérieur du fichier
+<strong>config/app.php</strong> de votre application. Par défaut CakePHP utilise la classe
+<code class="docutils literal"><span class="pre">ErrorHandler</span></code> ou <code class="docutils literal"><span class="pre">ConsoleErrorHandler</span></code> pour capturer et afficher/mettre
+les erreurs dans des fichiers de log. Vous pouvez remplacer ce comportement en
+changeant le gestionnaire d&#8217;erreurs par défaut. Le gestionnaire d&#8217;erreurs par
+défaut gère également les exceptions non interceptées.</p>
+<p>La gestion des erreurs accepte quelques options qui vous permettent de
+personnaliser la gestion des erreurs pour votre application:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">errorLevel</span></code> - int - Le niveau d&#8217;erreurs que vous souhaitez pour la
+capture. Utilisez les constantes d&#8217;erreur intégrées à PHP et les bitmasks
+pour sélectionner le niveau d&#8217;erreur qui vous intéresse.</li>
+<li><code class="docutils literal"><span class="pre">trace</span></code> - bool - Inclut les stack traces (contexte de débuggage) pour les
+erreurs dans les fichiers de log. Les Stack traces seront inclus dans le log
+après chaque erreur. Ceci est utile pour trouver où/quand des erreurs sont
+générées.</li>
+<li><code class="docutils literal"><span class="pre">exceptionRenderer</span></code> - string - La classe responsable de rendre les
+exceptions non interceptées. Si vous choisissez une classe personnalisée,
+vous devrez placer le fichier de cette classe dans le dossier <strong>src/Error</strong>.
+Cette classe doit implémenter une méthode <code class="docutils literal"><span class="pre">render()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">log</span></code> - bool - Si <code class="docutils literal"><span class="pre">true</span></code>, les exceptions et leur stack traces seront
+loguées vers <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log" title="Cake\Log\Log"><code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Log</span></code></a>.</li>
+<li><code class="docutils literal"><span class="pre">skipLog</span></code> - array - Un tableau des noms de classe d&#8217;exception qui ne
+doivent pas être mises dans des fichiers de log. C&#8217;est utile pour supprimer
+les NotFoundExceptions ou toute autre message de log sans intérêt.</li>
+<li><code class="docutils literal"><span class="pre">extraFatalErrorMemory</span></code> - int - Définit le nombre de megaoctets duquel doit
+être augmenté la limite de mémoire en cas d&#8217;erreur fatale. Cela permet
+d&#8217;allouer un petit espace mémoire supplémentaire pour la journalisation
+(logging) ainsi que la gestion d&#8217;erreur.</li>
+</ul>
+<p>ErrorHandler affiche par défaut les erreurs quand <code class="docutils literal"><span class="pre">debug</span></code> est <code class="docutils literal"><span class="pre">true</span></code> et les
+erreurs de logs quand <code class="docutils literal"><span class="pre">debug</span></code> est <code class="docutils literal"><span class="pre">false</span></code>. Le type d&#8217;erreurs capté dans les
+deux cas est contrôlé par <code class="docutils literal"><span class="pre">errorLevel</span></code>. Le gestionnaire d&#8217;erreurs fatales va
+être appelé indépendamment de <code class="docutils literal"><span class="pre">debug</span></code> ou de la configuration de
+<code class="docutils literal"><span class="pre">errorLevel</span></code>, mais le résultat va être différent, basé sur le niveau de
+<code class="docutils literal"><span class="pre">debug</span></code>. Le comportement par défaut pour les erreurs fatales est d&#8217;afficher
+une page avec une erreur interne du serveur (<code class="docutils literal"><span class="pre">debug</span></code> désactivé) ou une page
+avec le message, le fichier et la ligne (<code class="docutils literal"><span class="pre">debug</span></code> activé).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous utilisez un gestionnaire d&#8217;erreurs personnalisé, les options
+supportées dépendent de votre gestionnaire.</p>
+</div>
+</div>
+<div class="section" id="creer-vos-propres-gestionnaires-d-erreurs">
+<h2>Créer vos Propres Gestionnaires d&#8217;Erreurs<a class="headerlink" href="#creer-vos-propres-gestionnaires-d-erreurs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez créer un gestionnaire d&#8217;erreurs à partir de n&#8217;importe quel type de
+callback. Par exemple, vous pouvez utiliser une classe appelée <code class="docutils literal"><span class="pre">AppError</span></code>
+pour gérer vos erreurs. En étendant <code class="docutils literal"><span class="pre">BaseErrorHandler</span></code>, vous pouvez fournir
+une logique de gestion des erreurs personnalisée. Un exemple serait:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans config/bootstrap.php</span>
+<span class="k">use</span> <span class="nx">App\Error\AppError</span><span class="p">;</span>
+
+<span class="nv">$errorHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppError</span><span class="p">();</span>
+<span class="nv">$errorHandler</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
+
+<span class="c1">// Dans src/Error/AppError.php</span>
+<span class="k">namespace</span> <span class="nx">App\Error</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Error\BaseErrorHandler</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppError</span> <span class="k">extends</span> <span class="nx">BaseErrorHandler</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">_displayError</span><span class="p">(</span><span class="nv">$error</span><span class="p">,</span> <span class="nv">$debug</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;Il y a eu une erreur!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">_displayException</span><span class="p">(</span><span class="nv">$exception</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;Il y a eu un exception&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">BaseErrorHandler</span></code> définit deux méthodes abstraites. <code class="docutils literal"><span class="pre">_displayError()</span></code> est
+utilisée lorsque les erreurs sont déclenchées. La méthode
+<code class="docutils literal"><span class="pre">_displayException()</span></code> est appelée lorsqu&#8217;il y a une exception non interceptée.</p>
+</div>
+<div class="section" id="changer-le-comportement-des-erreurs-fatales">
+<h2>Changer le Comportement des Erreurs Fatales<a class="headerlink" href="#changer-le-comportement-des-erreurs-fatales" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le gestionnaire d&#8217;erreurs par défaut convertit les erreurs fatales en exceptions
+et réutilise la logique de traitement d&#8217;exception pour afficher une page
+d&#8217;erreur. Si vous ne voulez pas montrer la page d&#8217;erreur standard, vous pouvez
+la surcharger comme ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans config/bootstrap.php</span>
+<span class="k">use</span> <span class="nx">App\Error\AppError</span><span class="p">;</span>
+
+<span class="nv">$errorHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppError</span><span class="p">();</span>
+<span class="nv">$errorHandler</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">();</span>
+
+<span class="c1">// Dans src/Error/AppError.php</span>
+<span class="k">namespace</span> <span class="nx">App\Error</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Error\BaseErrorHandler</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppError</span> <span class="k">extends</span> <span class="nx">BaseErrorHandler</span>
+<span class="p">{</span>
+    <span class="c1">// Autre méthode.</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleFatalError</span><span class="p">(</span><span class="nv">$code</span><span class="p">,</span> <span class="nv">$description</span><span class="p">,</span> <span class="nv">$file</span><span class="p">,</span> <span class="nv">$line</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Une erreur fatale est survenue&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<span class="target" id="namespace-Cake\Network\Exception"></span></div>
+<div class="section" id="classes-des-exceptions">
+<h2>Classes des Exceptions<a class="headerlink" href="#classes-des-exceptions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il y a de nombreuses classes d&#8217;exception dans CakePHP. Le gestionnaire
+d&#8217;exception intégré va capturer les exceptions levées et rendre une page
+utile. Les exceptions qui n&#8217;utilisent pas spécialement un code dans la
+plage 400 seront traitées comme une erreur interne au serveur.</p>
+</div>
+<div class="section" id="exceptions-integrees-de-cakephp">
+<span id="built-in-exceptions"></span><h2>Exceptions Intégrées de CakePHP<a class="headerlink" href="#exceptions-integrees-de-cakephp" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il existe plusieurs exceptions intégrées à l&#8217;intérieur de CakePHP, en plus des
+exceptions d&#8217;infrastructure internes, et il existe plusieurs exceptions pour les
+méthodes HTTP.</p>
+<div class="section" id="exceptions-http">
+<h3>Exceptions HTTP<a class="headerlink" href="#exceptions-http" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="exception">
+<dt id="Cake\Network\Exception\BadRequestException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">BadRequestException</code><a class="headerlink" href="#Cake\Network\Exception\BadRequestException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 400 de Mauvaise Requête.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\UnauthorizedException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">UnauthorizedException</code><a class="headerlink" href="#Cake\Network\Exception\UnauthorizedException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 401 Non Autorisé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\ForbiddenException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">ForbiddenException</code><a class="headerlink" href="#Cake\Network\Exception\ForbiddenException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 403 Interdite.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>InvalidCsrfTokenException a été ajoutée.</p>
+</div>
+<dl class="exception">
+<dt id="Cake\Network\Exception\InvalidCsrfTokenException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">InvalidCsrfTokenException</code><a class="headerlink" href="#Cake\Network\Exception\InvalidCsrfTokenException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 403 causée par un token CSRF invalide.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\NotFoundException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">NotFoundException</code><a class="headerlink" href="#Cake\Network\Exception\NotFoundException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 404 Non Trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\MethodNotAllowedException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">MethodNotAllowedException</code><a class="headerlink" href="#Cake\Network\Exception\MethodNotAllowedException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 405 pour les Méthodes Non Autorisées.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\NotAcceptableException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">NotAcceptableException</code><a class="headerlink" href="#Cake\Network\Exception\NotAcceptableException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 406 Not Acceptable.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.7: </span>NotAcceptableException a été ajoutée.</p>
+</div>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\ConflictException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">ConflictException</code><a class="headerlink" href="#Cake\Network\Exception\ConflictException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 409 Conflict.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.7: </span>ConflictException a été ajoutée.</p>
+</div>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\GoneException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">GoneException</code><a class="headerlink" href="#Cake\Network\Exception\GoneException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 410 Gone.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.7: </span>GoneException a été ajoutée.</p>
+</div>
+</dd></dl>
+
+<p>Pour plus de détails sur les codes de statut d&#8217;erreur HTTP 4xx, regardez
+<span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2616.html#section-10.4"><strong>RFC 2616#section-10.4</strong></a>.</p>
+<dl class="exception">
+<dt id="Cake\Network\Exception\InternalErrorException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">InternalErrorException</code><a class="headerlink" href="#Cake\Network\Exception\InternalErrorException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 500 du Serveur Interne.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\NotImplementedException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">NotImplementedException</code><a class="headerlink" href="#Cake\Network\Exception\NotImplementedException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 501 Non Implémentée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Network\Exception\ServiceUnavailableException">
+<em class="property">exception </em><code class="descclassname">Cake\Network\Exception\</code><code class="descname">ServiceUnavailableException</code><a class="headerlink" href="#Cake\Network\Exception\ServiceUnavailableException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisée pour faire une erreur 503 Service Unavailable.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.7: </span>Service Unavailable a été ajoutée.</p>
+</div>
+</dd></dl>
+
+<p>Pour plus de détails sur les codes de statut d&#8217;erreur HTTP 5xx, regardez
+<span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2616.html#section-10.5"><strong>RFC 2616#section-10.5</strong></a>.</p>
+<p>Vous pouvez lancer ces exceptions à partir de vos controllers pour indiquer
+les états d&#8217;échecs, ou les erreurs HTTP. Un exemple d&#8217;utilisation des
+exceptions HTTP pourrait être le rendu de pages 404 pour les items qui n&#8217;ont
+pas été trouvés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Network\Exception\NotFoundException</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">findById</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotFoundException</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Article not found&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;_serialize&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En utilisant les exceptions pour les erreurs HTTP, vous pouvez garder à la
+fois votre code propre, et donner les réponses RESTful aux applications
+clientes et aux utilisateurs.</p>
+<p>De plus, les exceptions de couche du framework suivantes sont disponibles, et
+seront lancées à partir de certains components du cœur de CakePHP:</p>
+</div>
+<div class="section" id="namespace-Cake\View\Exception">
+<span id="autres-exceptions-integrees"></span><h3>Autres Exceptions Intégrées<a class="headerlink" href="#namespace-Cake\View\Exception" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingViewException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingViewException</code><a class="headerlink" href="#Cake\View\Exception\MissingViewException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>La classe View choisie n&#8217;a pas pu être trouvée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingTemplateException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingTemplateException</code><a class="headerlink" href="#Cake\View\Exception\MissingTemplateException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le fichier de template choisi n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingLayoutException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingLayoutException</code><a class="headerlink" href="#Cake\View\Exception\MissingLayoutException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le layout choisi n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingHelperException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingHelperException</code><a class="headerlink" href="#Cake\View\Exception\MissingHelperException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Un helper n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingElementException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingElementException</code><a class="headerlink" href="#Cake\View\Exception\MissingElementException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>L&#8217;element n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingCellException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingCellException</code><a class="headerlink" href="#Cake\View\Exception\MissingCellException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>La classe Cell choisie n&#8217;a pas pu être trouvée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\View\Exception\MissingCellViewException">
+<em class="property">exception </em><code class="descclassname">Cake\View\Exception\</code><code class="descname">MissingCellViewException</code><a class="headerlink" href="#Cake\View\Exception\MissingCellViewException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>La vue de Cell choisie n&#8217;a pas pu être trouvée.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Controller\Exception"></span><dl class="exception">
+<dt id="Cake\Controller\Exception\MissingComponentException">
+<em class="property">exception </em><code class="descclassname">Cake\Controller\Exception\</code><code class="descname">MissingComponentException</code><a class="headerlink" href="#Cake\Controller\Exception\MissingComponentException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Un component configuré n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Controller\Exception\MissingActionException">
+<em class="property">exception </em><code class="descclassname">Cake\Controller\Exception\</code><code class="descname">MissingActionException</code><a class="headerlink" href="#Cake\Controller\Exception\MissingActionException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>L&#8217;action demandée du controller n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Controller\Exception\PrivateActionException">
+<em class="property">exception </em><code class="descclassname">Cake\Controller\Exception\</code><code class="descname">PrivateActionException</code><a class="headerlink" href="#Cake\Controller\Exception\PrivateActionException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Accès à une action préfixée par _, privée ou protégée.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Console\Exception"></span><dl class="exception">
+<dt id="Cake\Console\Exception\ConsoleException">
+<em class="property">exception </em><code class="descclassname">Cake\Console\Exception\</code><code class="descname">ConsoleException</code><a class="headerlink" href="#Cake\Console\Exception\ConsoleException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une classe de la librairie console a rencontré une erreur</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Console\Exception\MissingTaskException">
+<em class="property">exception </em><code class="descclassname">Cake\Console\Exception\</code><code class="descname">MissingTaskException</code><a class="headerlink" href="#Cake\Console\Exception\MissingTaskException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une tâche configurée n&#8217;a pas pu être trouvée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Console\Exception\MissingShellException">
+<em class="property">exception </em><code class="descclassname">Cake\Console\Exception\</code><code class="descname">MissingShellException</code><a class="headerlink" href="#Cake\Console\Exception\MissingShellException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une classe de shell n&#8217;a pas pu être trouvée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Console\Exception\MissingShellMethodException">
+<em class="property">exception </em><code class="descclassname">Cake\Console\Exception\</code><code class="descname">MissingShellMethodException</code><a class="headerlink" href="#Cake\Console\Exception\MissingShellMethodException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une classe de shell choisie n&#8217;a pas de méthode de ce nom.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Database\Exception"></span><dl class="exception">
+<dt id="Cake\Database\Exception\MissingConnectionException">
+<em class="property">exception </em><code class="descclassname">Cake\Database\Exception\</code><code class="descname">MissingConnectionException</code><a class="headerlink" href="#Cake\Database\Exception\MissingConnectionException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une connexion à un model n&#8217;existe pas.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Database\Exception\MissingDriverException">
+<em class="property">exception </em><code class="descclassname">Cake\Database\Exception\</code><code class="descname">MissingDriverException</code><a class="headerlink" href="#Cake\Database\Exception\MissingDriverException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Un driver de base de donnée de n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Database\Exception\MissingExtensionException">
+<em class="property">exception </em><code class="descclassname">Cake\Database\Exception\</code><code class="descname">MissingExtensionException</code><a class="headerlink" href="#Cake\Database\Exception\MissingExtensionException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une extension PHP est manquante pour le driver de la base de données.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\ORM\Exception"></span><dl class="exception">
+<dt id="Cake\ORM\Exception\MissingTableException">
+<em class="property">exception </em><code class="descclassname">Cake\ORM\Exception\</code><code class="descname">MissingTableException</code><a class="headerlink" href="#Cake\ORM\Exception\MissingTableException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une table du model n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\ORM\Exception\MissingEntityException">
+<em class="property">exception </em><code class="descclassname">Cake\ORM\Exception\</code><code class="descname">MissingEntityException</code><a class="headerlink" href="#Cake\ORM\Exception\MissingEntityException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une entity du model n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\ORM\Exception\MissingBehaviorException">
+<em class="property">exception </em><code class="descclassname">Cake\ORM\Exception\</code><code class="descname">MissingBehaviorException</code><a class="headerlink" href="#Cake\ORM\Exception\MissingBehaviorException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une behavior du model n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\ORM\Exception\PersistenceFailedException">
+<em class="property">exception </em><code class="descclassname">Cake\ORM\Exception\</code><code class="descname">PersistenceFailedException</code><a class="headerlink" href="#Cake\ORM\Exception\PersistenceFailedException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Une entity n&#8217;a pas pu être sauvegardée / supprimée en utilisant <a class="reference internal" href="../orm/saving-data.html#Cake\ORM\Table::saveOrFail" title="Cake\ORM\Table::saveOrFail"><code class="xref php php-meth docutils literal"><span class="pre">Cake\ORM\Table::saveOrFail()</span></code></a> ou
+<a class="reference internal" href="../orm/deleting-data.html#Cake\ORM\Table::deleteOrFail" title="Cake\ORM\Table::deleteOrFail"><code class="xref php php-meth docutils literal"><span class="pre">Cake\ORM\Table::deleteOrFail()</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.4.1: </span>PersistenceFailedException a été ajoutée.</p>
+</div>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Datasource\Exception"></span><dl class="exception">
+<dt id="Cake\Datasource\Exception\RecordNotFoundException">
+<em class="property">exception </em><code class="descclassname">Cake\Datasource\Exception\</code><code class="descname">RecordNotFoundException</code><a class="headerlink" href="#Cake\Datasource\Exception\RecordNotFoundException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>L&#8217;enregistrement demandé n&#8217;a pas pu être trouvé. Génère une réponse avec
+une entête 404.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Routing\Exception"></span><dl class="exception">
+<dt id="Cake\Routing\Exception\MissingControllerException">
+<em class="property">exception </em><code class="descclassname">Cake\Routing\Exception\</code><code class="descname">MissingControllerException</code><a class="headerlink" href="#Cake\Routing\Exception\MissingControllerException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le controller requêté n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Routing\Exception\MissingRouteException">
+<em class="property">exception </em><code class="descclassname">Cake\Routing\Exception\</code><code class="descname">MissingRouteException</code><a class="headerlink" href="#Cake\Routing\Exception\MissingRouteException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>L&#8217;URL demandée ne pas peut pas être inversée ou ne peut pas être parsée.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Cake\Routing\Exception\MissingDispatcherFilterException">
+<em class="property">exception </em><code class="descclassname">Cake\Routing\Exception\</code><code class="descname">MissingDispatcherFilterException</code><a class="headerlink" href="#Cake\Routing\Exception\MissingDispatcherFilterException" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le filtre du dispatcher n&#8217;a pas pu être trouvé.</p>
+</dd></dl>
+
+<span class="target" id="namespace-Cake\Core\Exception"></span><dl class="exception">
+<dt id="Cake\Core\Exception\Exception">
+<em class="property">exception </em><code class="descclassname">Cake\Core\Exception\</code><code class="descname">Exception</code><a class="headerlink" href="#Cake\Core\Exception\Exception" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe de base des exceptions dans CakePHP. Toutes les exceptions
+lancées par CakePHP étendent cette classe.</p>
+</dd></dl>
+
+<p>Ces classes d&#8217;exception étendent toutes <a class="reference internal" href="#Cake\Core\Exception\Exception" title="Cake\Core\Exception\Exception"><code class="xref php php-exc docutils literal"><span class="pre">Exception</span></code></a>.
+En étendant Exception, vous pouvez créer vos propres erreurs &#8216;framework&#8217;.
+Toutes les Exceptions standards que CakePHP va lancer étendent également
+Exception.</p>
+<dl class="method">
+<dt id="Cake\Core\Exception\Exception::responseHeader">
+<code class="descclassname">Cake\Core\Exception\Exception::</code><code class="descname">responseHeader</code><span class="sig-paren">(</span><em>$header = null</em>, <em>$value = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Core\Exception\Exception::responseHeader" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>See <code class="xref php php-func docutils literal"><span class="pre">Cake\Network\Request::header()</span></code></p>
+</dd></dl>
+
+<p>Toutes les exceptions Http et CakePHP étendent la classe Exception, qui
+a une méthode pour ajouter les en-têtes à la réponse. Par exemple quand vous
+lancez une MethodNotAllowedException 405,
+le rfc2616 dit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s2">&quot;La réponse DOIT inclure un en-tête contenant une liste de méthodes valides</span>
+<span class="s2">pour la ressource requêtée.&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="utiliser-les-exceptions-http-dans-vos-controllers">
+<h2>Utiliser les Exceptions HTTP dans vos Controllers<a class="headerlink" href="#utiliser-les-exceptions-http-dans-vos-controllers" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez envoyer n&#8217;importe quelle exception HTTP liée à partir des actions
+de votre controller pour indiquer les états d&#8217;échec. Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Network\Exception\NotFoundException</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">findById</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotFoundException</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Article not found&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;_serialize&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Ce qui précède va faire que le gestionnaire d&#8217;exception attrape et traite la
+<code class="xref php php-exc docutils literal"><span class="pre">NotFoundException</span></code>. Par défaut, cela va créer une page d&#8217;erreur et
+enregistrer l&#8217;exception.</p>
+</div>
+<div class="section" id="exception-renderer">
+<span id="error-views"></span><h2>Exception Renderer<a class="headerlink" href="#exception-renderer" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Core\Exception\ExceptionRenderer">
+<em class="property">class </em><code class="descclassname">Cake\Core\Exception\</code><code class="descname">ExceptionRenderer</code><span class="sig-paren">(</span><em>Exception $exception</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Core\Exception\ExceptionRenderer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>La classe ExceptionRenderer avec l&#8217;aide de <code class="docutils literal"><span class="pre">ErrorController</span></code> s&#8217;occupe du rendu
+des pages d&#8217;erreur pour toutes les exceptions lancées par votre application.</p>
+<p>Les vues de la page d&#8217;erreur sont localisées dans <strong>src/Template/Error/</strong>. Pour
+toutes les erreurs 4xx et 5xx, les fichiers de template <strong>error400.ctp</strong> et
+<strong>error500.ctp</strong> sont utilisées respectivement. Vous pouvez les personnaliser
+selon vos besoins. Par défaut, votre <strong>src/Template/Layout/error.ctp</strong> est
+également utilisé pour les pages d&#8217;erreur. Si par exemple, vous voulez utiliser
+un autre layout <strong>src/Template/Layout/my_error.ctp</strong> pour vos pages d&#8217;erreur,
+modifiez simplement les vues d&#8217;erreur et ajoutez la ligne
+<code class="docutils literal"><span class="pre">$this-&gt;layout</span> <span class="pre">=</span> <span class="pre">'my_error';</span></code> dans <strong>error400.ctp</strong> et <strong>error500.ctp</strong>.</p>
+<p>Chaque exception au niveau du framework a son propre fichier de vue localisé
+dans les templates du cœur mais vous n&#8217;avez pas besoin de les personnaliser
+puisqu&#8217;ils sont utilisés seulement pendant le développement. Avec debug éteint,
+toutes les exceptions au niveau du framework sont converties en
+<code class="docutils literal"><span class="pre">InternalErrorException</span></code>.</p>
+</div>
+<div class="section" id="creer-vos-propres-exceptions-dans-votre-application">
+<span id="index-2"></span><h2>Créer vos Propres Exceptions dans votre Application<a class="headerlink" href="#creer-vos-propres-exceptions-dans-votre-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez créer vos propres exceptions d&#8217;application en utilisant toute
+<a class="reference external" href="http://php.net/manual/fr/spl.exceptions.php">exception SPL</a> intégrée,
+<code class="docutils literal"><span class="pre">Exception</span></code> lui-même ou :<a class="reference internal" href="#Cake\Core\Exception\Exception" title="Cake\Core\Exception\Exception"><code class="xref php php-exc docutils literal"><span class="pre">Cake\Core\Exception\Exception</span></code></a>.</p>
+<p>Si votre application contenait l&#8217;exception suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Core\Exception\Exception</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MissingWidgetException</span> <span class="k">extends</span> <span class="nx">Exception</span>
+<span class="p">{};</span>
+</pre></div>
+</div>
+<p>Vous pourriez fournir de jolies erreurs de développement, en créant
+<strong>src/Template/Error/missing_widget.ctp</strong>. Quand on est en mode production,
+l&#8217;erreur du dessus serait traitée comme une erreur 500. Le constructeur
+pour <a class="reference internal" href="#Cake\Core\Exception\Exception" title="Cake\Core\Exception\Exception"><code class="xref php php-exc docutils literal"><span class="pre">Cake\Core\Exception\Exception</span></code></a> a été étendu, vous autorisant
+à lui passer des données hashées. Ces hashs sont interpolés dans le
+messageTemplate, ainsi que dans la vue qui est utilisée pour représenter
+l&#8217;erreur dans le mode développement. Cela vous permet de créer des exceptions
+riches en données, en fournissant plus de contexte pour vos erreurs. Vous pouvez
+aussi fournir un template de message qui permet aux méthodes natives
+<code class="docutils literal"><span class="pre">__toString()</span></code> de fonctionner normalement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Core\Exception\Exception</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MissingWidgetException</span> <span class="k">extends</span> <span class="nx">Exception</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$_messageTemplate</span> <span class="o">=</span> <span class="s1">&#39;Il semblerait que %s soit manquant.&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">throw</span> <span class="k">new</span> <span class="nx">MissingWidgetException</span><span class="p">([</span><span class="s1">&#39;widget&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Pointy&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Lorsque le gestionnaire d&#8217;exception intégré attrapera l&#8217;exception, vous
+obtiendriez une variable <code class="docutils literal"><span class="pre">$widget</span></code> dans votre template de vue d&#8217;erreur.
+De plus, si vous attrapez l&#8217;exception en chaîne ou utilisez sa méthode
+<code class="docutils literal"><span class="pre">getMessage()</span></code>, vous aurez <code class="docutils literal"><span class="pre">Il</span> <span class="pre">semblerait</span> <span class="pre">que</span> <span class="pre">Pointy</span> <span class="pre">soit</span> <span class="pre">manquant.</span></code>.
+Cela vous permet de créer rapidement vos propres erreurs de développement
+riches, exactement comme CakePHP le fait en interne.</p>
+<div class="section" id="creer-des-codes-de-statut-personnalises">
+<h3>Créer des Codes de Statut Personnalisés<a class="headerlink" href="#creer-des-codes-de-statut-personnalises" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez créer des codes de statut HTTP personnalisés en changeant le code
+utilisé quand vous créez une exception:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">throw</span> <span class="k">new</span> <span class="nx">MissingWidgetHelperException</span><span class="p">(</span><span class="s1">&#39;Widget manquant&#39;</span><span class="p">,</span> <span class="mi">501</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Va créer un code de réponse 501, vous pouvez utiliser le code de statut
+HTTP que vous souhaitez. En développement, si votre exception n&#8217;a pas
+de template spécifique, et que vous utilisez un code supérieur ou égal
+à <code class="docutils literal"><span class="pre">500</span></code>, vous verrez le template <strong>error500.ctp</strong>. Pour tout autre code
+d&#8217;erreur, vous aurez le template <strong>error400.ctp</strong>. Si vous avez défini un
+template d&#8217;erreur pour votre exception personnalisée, ce template sera utilisé
+en mode développement. Si vous souhaitez votre propre logique de gestionnaire
+d&#8217;exception même en production, regardez la section suivante.</p>
+</div>
+</div>
+<div class="section" id="etendre-et-implementer-vos-propres-gestionnaires-d-exceptions">
+<h2>Etendre et Implémenter vos Propres Gestionnaires d&#8217;Exceptions<a class="headerlink" href="#etendre-et-implementer-vos-propres-gestionnaires-d-exceptions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez implémenter un gestionnaire d&#8217;exception spécifique pour votre
+application de plusieurs façons. Chaque approche vous donne différents
+niveaux de contrôle sur le processus de gestion d&#8217;exception.</p>
+<ul class="simple">
+<li>Créer et enregistrer votre propre gestionnaire d&#8217;erreurs.</li>
+<li>Etendre le <code class="docutils literal"><span class="pre">BaseErrorHandler</span></code> fourni par CakePHP.</li>
+<li>Configurer l&#8217;option <code class="docutils literal"><span class="pre">exceptionRenderer</span></code> dans le gestionnaire d&#8217;erreurs par
+défaut.</li>
+</ul>
+<p>Dans les prochaines sections, nous allons détailler les différentes approches
+et les bénéfices de chacune.</p>
+<div class="section" id="creer-votre-propre-gestionnaire-d-exceptions">
+<h3>Créer votre Propre Gestionnaire d&#8217;Exceptions<a class="headerlink" href="#creer-votre-propre-gestionnaire-d-exceptions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Créer votre propre gestionnaire d&#8217;exception vous donne le contrôle total sur le
+processus de gestion des exceptions. Dans ce cas, vous devrez vous-même appeler
+<code class="docutils literal"><span class="pre">set_exception_handler</span></code>.</p>
+</div>
+<div class="section" id="etendre-le-baseerrorhandler">
+<h3>Etendre le BaseErrorHandler<a class="headerlink" href="#etendre-le-baseerrorhandler" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La section <a class="reference internal" href="#error-configuration"><span class="std std-ref">Configurer les erreurs</span></a> comporte un
+exemple.</p>
+</div>
+<div class="section" id="utiliser-l-option-exceptionrenderer-dans-le-gestionnaire-par-defaut">
+<h3>Utiliser l&#8217;Option exceptionRenderer dans le Gestionnaire par Défaut<a class="headerlink" href="#utiliser-l-option-exceptionrenderer-dans-le-gestionnaire-par-defaut" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si vous ne voulez pas prendre le contrôle sur le gestionnaire d&#8217;exception,
+mais que vous voulez changer la manière dont les exceptions sont rendues, vous
+pouvez utiliser l&#8217;option <code class="docutils literal"><span class="pre">exceptionRenderer</span></code> dans <strong>config`/app.php</strong> pour
+choisir la classe qui affichera les pages d&#8217;exception. Par défaut
+<a class="reference internal" href="#Cake\Core\Exception\ExceptionRenderer" title="Cake\Core\Exception\ExceptionRenderer"><code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Exception\ExceptionRenderer</span></code></a> est utilisée. Votre
+gestionnaire d&#8217;exceptions doit être placé dans <strong>src/Error</strong>. Dans une classe
+de rendu personnalisé d&#8217;exception vous pouvez fournir un traitement particulier
+pour les erreurs spécifique à votre application:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans src/Error/AppExceptionRenderer.php</span>
+<span class="k">namespace</span> <span class="nx">App\Error</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Error\ExceptionRenderer</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppExceptionRenderer</span> <span class="k">extends</span> <span class="nx">ExceptionRenderer</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">missingWidget</span><span class="p">(</span><span class="nv">$error</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Oups ce widget est manquant!&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Dans config/app.php</span>
+<span class="s1">&#39;Error&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;exceptionRenderer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;App\Error\AppExceptionRenderer&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+<span class="p">],</span>
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>Le code ci-dessus gérerait toutes les exceptions de type
+<code class="docutils literal"><span class="pre">MissingWidgetException</span></code>, et vous permettrait un affichage et/ou une logique
+de gestion personnalisée pour ces exceptions de l&#8217;application.
+Les méthodes de gestion d&#8217;exceptions obtiennent l&#8217;exception étant traitée en
+argument. Votre gestionnaire de rendu personnalisé peut retourner une chaîne ou
+un objet <code class="docutils literal"><span class="pre">Response</span></code>. Retourner une <code class="docutils literal"><span class="pre">Response</span></code> vous donnera le contrôle
+total de la réponse.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Votre gestionnaire de rendu doit attendre une exception dans son
+constructeur et implémenter une méthode de rendu. Ne pas le faire
+entraînera des erreurs supplémentaires.</p>
+<p class="last">Si vous utilisez un gestionnaire d&#8217;exception personnalisé, configurer le
+moteur de rendu n&#8217;aura aucun effet. A moins que vous le référenciez à
+l&#8217;intérieur de votre implémentation.</p>
+</div>
+</div>
+<div class="section" id="creer-un-controller-personnalise-pour-gerer-les-exceptions">
+<h3>Créer un Controller Personnalisé pour Gérer les Exceptions<a class="headerlink" href="#creer-un-controller-personnalise-pour-gerer-les-exceptions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Par convention CakePHP utilisera <code class="docutils literal"><span class="pre">App\Controller\ErrorController</span></code> s&#8217;il existe.
+Implémenter cette classe vous offrira une voie pour personnaliser les pages
+d&#8217;erreur sans aucune configuration supplémentaire.</p>
+<p>Si vous utilisez un moteur de rendu d&#8217;exceptions personnalisé, vous pouvez
+utiliser la méthode <code class="docutils literal"><span class="pre">_getController()</span></code> pour rendre un controller personnalisé.
+En implémentant <code class="docutils literal"><span class="pre">_getController()</span></code> dans votre moteur de rendu d&#8217;exceptions,
+vous pouvez utiliser n&#8217;importe quel controller de votre choix:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans src/Error/AppExceptionRenderer</span>
+<span class="k">namespace</span> <span class="nx">App\Error</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Controller\SuperCustomErrorController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Error\ExceptionRenderer</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppExceptionRenderer</span> <span class="k">extends</span> <span class="nx">ExceptionRenderer</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_getController</span><span class="p">(</span><span class="nv">$exception</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">SuperCustomErrorController</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Dans config/app.php</span>
+<span class="s1">&#39;Error&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;exceptionRenderer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;App\Error\AppExceptionRenderer&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+<span class="p">],</span>
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>Le controller d&#8217;erreur, qu&#8217;il soit conventionnel ou personnalisé, est utilisé
+pour rendre la vue de page d&#8217;erreurs et reçoit tous les événements standards
+du cycle de vie des requêtes.</p>
+</div>
+<div class="section" id="logger-les-exceptions">
+<h3>Logger les Exceptions<a class="headerlink" href="#logger-les-exceptions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>En Utilisant la gestion d&#8217;exception intégrée, vous pouvez logger toutes les
+exceptions qui sont gérées par ErrorHandler en configurant l&#8217;option <code class="docutils literal"><span class="pre">log</span></code> à
+<code class="docutils literal"><span class="pre">true</span></code> dans votre <strong>config/app.php</strong>. Activer cela va logger chaque exception
+vers <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log" title="Cake\Log\Log"><code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Log</span></code></a> et les loggers configurés.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous utilisez un gestionnaire personnalisé, cette configuration
+n&#8217;aura aucun effet. A moins que vous ne le référenciez à l&#8217;intérieur de
+votre implémentation.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

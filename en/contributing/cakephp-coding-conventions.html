@@ -1,0 +1,1152 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Coding Standards" lang="en" name="title" />
+<meta content="curly brackets,indentation level,logical errors,control structures,control structure,expr,coding standards,parenthesis,foreach,readability,moose,new features,repository,developers" lang="en" name="keywords" />
+
+    <title>Coding Standards - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="es" href="../../es/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="ja" href="../../ja/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="fr" href="../../fr/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="zh" href="../../zh/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="tr" href="../../tr/contributing/cakephp-coding-conventions.html" /><link rel="alternate" hreflang="ru" href="../../ru/contributing/cakephp-coding-conventions.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="up" title="Contributing" href="../contributing.html" />
+    <link rel="next" title="Backwards Compatibility Guide" href="backwards-compatibility.html" />
+    <link rel="prev" title="Code" href="code.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/contributing/cakephp-coding-conventions.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/contributing/cakephp-coding-conventions.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/contributing/cakephp-coding-conventions.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/contributing/cakephp-coding-conventions.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/contributing/cakephp-coding-conventions.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/contributing/cakephp-coding-conventions.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/contributing/cakephp-coding-conventions.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/contributing/cakephp-coding-conventions.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Coding Standards</a><ul>
+<li><a class="reference internal" href="#adding-new-features">Adding New Features</a></li>
+<li><a class="reference internal" href="#ide-setup">IDE Setup</a></li>
+<li><a class="reference internal" href="#indentation">Indentation</a></li>
+<li><a class="reference internal" href="#line-length">Line Length</a></li>
+<li><a class="reference internal" href="#control-structures">Control Structures</a><ul>
+<li><a class="reference internal" href="#ternary-operator">Ternary Operator</a></li>
+<li><a class="reference internal" href="#template-files">Template Files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#function-calls">Function Calls</a></li>
+<li><a class="reference internal" href="#method-definition">Method Definition</a><ul>
+<li><a class="reference internal" href="#typehinting">Typehinting</a></li>
+<li><a class="reference internal" href="#anonymous-functions-closures">Anonymous Functions (Closures)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#method-chaining">Method Chaining</a></li>
+<li><a class="reference internal" href="#commenting-code">Commenting Code</a><ul>
+<li><a class="reference internal" href="#variable-types">Variable Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#including-files">Including Files</a></li>
+<li><a class="reference internal" href="#php-tags">PHP Tags</a><ul>
+<li><a class="reference internal" href="#short-echo">Short Echo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#naming-convention">Naming Convention</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#member-visibility">Member Visibility</a></li>
+<li><a class="reference internal" href="#example-addresses">Example Addresses</a></li>
+<li><a class="reference internal" href="#files">Files</a></li>
+<li><a class="reference internal" href="#casting">Casting</a></li>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#careful-when-using-empty-isset">Careful when using empty()/isset()</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="coding-standards">
+<h1>Coding Standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline">¶</a></h1>
+<p>CakePHP developers will use the <a class="reference external" href="http://www.php-fig.org/psr/psr-2/">PSR-2 coding style guide</a> in addition to the following rules as
+coding standards.</p>
+<p>It is recommended that others developing CakeIngredients follow the same
+standards.</p>
+<p>You can use the <a class="reference external" href="https://github.com/cakephp/cakephp-codesniffer">CakePHP Code Sniffer</a> to check that your code
+follows required standards.</p>
+<div class="section" id="adding-new-features">
+<h2>Adding New Features<a class="headerlink" href="#adding-new-features" title="Permalink to this headline">¶</a></h2>
+<p>No new features should be added, without having their own tests – which
+should be passed before committing them to the repository.</p>
+</div>
+<div class="section" id="ide-setup">
+<h2>IDE Setup<a class="headerlink" href="#ide-setup" title="Permalink to this headline">¶</a></h2>
+<p>Please make sure your IDE is set up to &#8220;trim right&#8221; on whitespaces.
+There should be no trailing spaces per line.</p>
+<p>Most modern IDEs also support an <code class="docutils literal"><span class="pre">.editorconfig</span></code> file. The CakePHP app
+skeleton ships with it by default. It already contains best practise defaults.</p>
+</div>
+<div class="section" id="indentation">
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h2>
+<p>Four spaces will be used for indentation.</p>
+<p>So, indentation should look like this:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// base level</span>
+    <span class="c1">// level 1</span>
+        <span class="c1">// level 2</span>
+    <span class="c1">// level 1</span>
+<span class="c1">// base level</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$booleanVariable</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="nv">$stringVariable</span> <span class="o">=</span> <span class="s1">&#39;moose&#39;</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$booleanVariable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Boolean value is true&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$stringVariable</span> <span class="o">===</span> <span class="s1">&#39;moose&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;We have encountered a moose&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In cases where you&#8217;re using a multi-line function call use the following
+guidelines:</p>
+<ul class="simple">
+<li>Opening parenthesis of a multi-line function call must be the last content on
+the line.</li>
+<li>Only one argument is allowed per line in a multi-line function call.</li>
+<li>Closing parenthesis of a multi-line function call must be on a line by itself.</li>
+</ul>
+<p>As an example, instead of using the following formatting:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$matches</span> <span class="o">=</span> <span class="nb">array_intersect_key</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_listeners</span><span class="p">,</span>
+                <span class="nb">array_flip</span><span class="p">(</span><span class="nb">preg_grep</span><span class="p">(</span><span class="nv">$matchPattern</span><span class="p">,</span>
+                    <span class="nb">array_keys</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_listeners</span><span class="p">),</span> <span class="mi">0</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>Use this instead:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$matches</span> <span class="o">=</span> <span class="nb">array_intersect_key</span><span class="p">(</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_listeners</span><span class="p">,</span>
+    <span class="nb">array_flip</span><span class="p">(</span>
+        <span class="nb">preg_grep</span><span class="p">(</span><span class="nv">$matchPattern</span><span class="p">,</span> <span class="nb">array_keys</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_listeners</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="line-length">
+<h2>Line Length<a class="headerlink" href="#line-length" title="Permalink to this headline">¶</a></h2>
+<p>It is recommended to keep lines at approximately 100 characters long for better
+code readability. Lines must not be longer than 120 characters.</p>
+<p>In short:</p>
+<ul class="simple">
+<li>100 characters is the soft limit.</li>
+<li>120 characters is the hard limit.</li>
+</ul>
+</div>
+<div class="section" id="control-structures">
+<h2>Control Structures<a class="headerlink" href="#control-structures" title="Permalink to this headline">¶</a></h2>
+<p>Control structures are for example &#8220;<code class="docutils literal"><span class="pre">if</span></code>&#8221;, &#8220;<code class="docutils literal"><span class="pre">for</span></code>&#8221;, &#8220;<code class="docutils literal"><span class="pre">foreach</span></code>&#8221;,
+&#8220;<code class="docutils literal"><span class="pre">while</span></code>&#8221;, &#8220;<code class="docutils literal"><span class="pre">switch</span></code>&#8221; etc. Below, an example with &#8220;<code class="docutils literal"><span class="pre">if</span></code>&#8221;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">((</span><span class="nx">expr_1</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">expr_2</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// action_1;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">expr_3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">expr_4</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// action_2;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// default_action;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>In the control structures there should be 1 (one) space before the first
+parenthesis and 1 (one) space between the last parenthesis and the opening
+bracket.</li>
+<li>Always use curly brackets in control structures, even if they are not needed.
+They increase the readability of the code, and they give you fewer logical
+errors.</li>
+<li>Opening curly brackets should be placed on the same line as the control
+structure. Closing curly brackets should be placed on new lines, and they
+should have same indentation level as the control structure. The statement
+included in curly brackets should begin on a new line, and code contained
+within it should gain a new level of indentation.</li>
+<li>Inline assignments should not be used inside of the control structures.</li>
+</ul>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// wrong = no brackets, badly placed statement</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="nx">statement</span><span class="p">;</span>
+
+<span class="c1">// wrong = no brackets</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">expr</span><span class="p">)</span>
+    <span class="nx">statement</span><span class="p">;</span>
+
+<span class="c1">// good</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">statement</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// wrong = inline assignment</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$variable</span> <span class="o">=</span> <span class="nx">Class</span><span class="o">::</span><span class="na">function</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nx">statement</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// good</span>
+<span class="nv">$variable</span> <span class="o">=</span> <span class="nx">Class</span><span class="o">::</span><span class="na">function</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$variable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">statement</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="ternary-operator">
+<h3>Ternary Operator<a class="headerlink" href="#ternary-operator" title="Permalink to this headline">¶</a></h3>
+<p>Ternary operators are permissible when the entire ternary operation fits on one
+line. Longer ternaries should be split into <code class="docutils literal"><span class="pre">if</span> <span class="pre">else</span></code> statements. Ternary
+operators should not ever be nested. Optionally parentheses can be used around
+the condition check of the ternary for clarity:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Good, simple and readable</span>
+<span class="nv">$variable</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="k">true</span><span class="p">;</span>
+
+<span class="c1">// Nested ternaries are bad</span>
+<span class="nv">$variable</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;othervar&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="k">true</span> <span class="o">:</span> <span class="k">false</span> <span class="o">:</span> <span class="k">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="template-files">
+<h3>Template Files<a class="headerlink" href="#template-files" title="Permalink to this headline">¶</a></h3>
+<p>In template files (.ctp files) developers should use keyword control structures.
+Keyword control structures are easier to read in complex template files. Control
+structures can either be contained in a larger PHP block, or in separate PHP
+tags:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$isAdmin</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">echo</span> <span class="s1">&#39;&lt;p&gt;You are the admin user.&lt;/p&gt;&#39;</span><span class="p">;</span>
+<span class="k">endif</span><span class="p">;</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">&lt;p&gt;The following is also acceptable:&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$isAdmin</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;p&gt;You are the admin user.&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<p>Always try to be as strict as possible. If a non-strict test is deliberate it
+might be wise to comment it as such to avoid confusing it for a mistake.</p>
+<p>For testing if a variable is null, it is recommended to use a strict check:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The value to check against should be placed on the right side:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// not recommended</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">===</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// recommended</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span><span class="p">()</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-calls">
+<h2>Function Calls<a class="headerlink" href="#function-calls" title="Permalink to this headline">¶</a></h2>
+<p>Functions should be called without space between function&#8217;s name and starting
+parenthesis. There should be one space between every parameter of a function
+call:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$var</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">,</span> <span class="nv">$bar2</span><span class="p">,</span> <span class="nv">$bar3</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As you can see above there should be one space on both sides of equals sign (=).</p>
+</div>
+<div class="section" id="method-definition">
+<h2>Method Definition<a class="headerlink" href="#method-definition" title="Permalink to this headline">¶</a></h2>
+<p>Example of a method definition:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">someFunction</span><span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="nv">$arg2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">statement</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nv">$var</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Parameters with a default value, should be placed last in function definition.
+Try to make your functions return something, at least <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code>, so
+it can be determined whether the function call was successful:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">connection</span><span class="p">(</span><span class="nv">$dns</span><span class="p">,</span> <span class="nv">$persistent</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$dns</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$dnsInfo</span> <span class="o">=</span> <span class="nv">$dns</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$dnsInfo</span> <span class="o">=</span> <span class="nx">BD</span><span class="o">::</span><span class="na">parseDNS</span><span class="p">(</span><span class="nv">$dns</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nv">$dnsInfo</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nv">$dnsInfo</span><span class="p">[</span><span class="s1">&#39;phpType&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addError</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are spaces on both side of the equals sign.</p>
+<div class="section" id="typehinting">
+<h3>Typehinting<a class="headerlink" href="#typehinting" title="Permalink to this headline">¶</a></h3>
+<p>Arguments that expect objects, arrays or callbacks (callable) can be typehinted.
+We only typehint public methods, though, as typehinting is not cost-free:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Some method description.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param \Cake\ORM\Table $table The table class to use.</span>
+<span class="sd"> * @param array $array Some array value.</span>
+<span class="sd"> * @param callable $callback Some callback.</span>
+<span class="sd"> * @param bool $boolean Some boolean value.</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">Table</span> <span class="nv">$table</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$array</span><span class="p">,</span> <span class="nx">callable</span> <span class="nv">$callback</span><span class="p">,</span> <span class="nv">$boolean</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal"><span class="pre">$table</span></code> must be an instance of <code class="docutils literal"><span class="pre">\Cake\ORM\Table</span></code>, <code class="docutils literal"><span class="pre">$array</span></code> must be
+an <code class="docutils literal"><span class="pre">array</span></code> and <code class="docutils literal"><span class="pre">$callback</span></code> must be of type <code class="docutils literal"><span class="pre">callable</span></code> (a valid callback).</p>
+<p>Note that if you want to allow <code class="docutils literal"><span class="pre">$array</span></code> to be also an instance of
+<code class="docutils literal"><span class="pre">\ArrayObject</span></code> you should not typehint as <code class="docutils literal"><span class="pre">array</span></code> accepts only the primitive
+type:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Some method description.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param array|\ArrayObject $array Some array value.</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$array</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="anonymous-functions-closures">
+<h3>Anonymous Functions (Closures)<a class="headerlink" href="#anonymous-functions-closures" title="Permalink to this headline">¶</a></h3>
+<p>Defining anonymous functions follows the <a class="reference external" href="http://www.php-fig.org/psr/psr-2/">PSR-2</a> coding style guide, where they are
+declared with a space after the <cite>function</cite> keyword, and a space before and after
+the <cite>use</cite> keyword:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$closure</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$arg1</span><span class="p">,</span> <span class="nv">$arg2</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$var1</span><span class="p">,</span> <span class="nv">$var2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// code</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="method-chaining">
+<h2>Method Chaining<a class="headerlink" href="#method-chaining" title="Permalink to this headline">¶</a></h2>
+<p>Method chaining should have multiple methods spread across separate lines, and
+indented with four spaces:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;foo@example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;bar@example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">subject</span><span class="p">(</span><span class="s1">&#39;A great message&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commenting-code">
+<h2>Commenting Code<a class="headerlink" href="#commenting-code" title="Permalink to this headline">¶</a></h2>
+<p>All comments should be written in English, and should in a clear way describe
+the commented block of code.</p>
+<p>Comments can include the following <a class="reference external" href="http://phpdoc.org">phpDocumentor</a>
+tags:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/author.html">&#64;author</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/copyright.html">&#64;copyright</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/deprecated.html">&#64;deprecated</a>
+Using the <code class="docutils literal"><span class="pre">&#64;version</span> <span class="pre">&lt;vector&gt;</span> <span class="pre">&lt;description&gt;</span></code> format, where <code class="docutils literal"><span class="pre">version</span></code>
+and <code class="docutils literal"><span class="pre">description</span></code> are mandatory.</li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/example.html">&#64;example</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/ignore.html">&#64;ignore</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/internal.html">&#64;internal</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/link.html">&#64;link</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/see.html">&#64;see</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/since.html">&#64;since</a></li>
+<li><a class="reference external" href="http://phpdoc.org/docs/latest/references/phpdoc/tags/version.html">&#64;version</a></li>
+</ul>
+<p>PhpDoc tags are very much like JavaDoc tags in Java. Tags are only processed if
+they are the first thing in a DocBlock line, for example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Tag example.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @author this tag is parsed, but this @version is ignored</span>
+<span class="sd"> * @version 1.0 this tag is also parsed</span>
+<span class="sd"> */</span>
+</pre></div>
+</div>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Example of inline phpDoc tags.</span>
+<span class="sd"> *</span>
+<span class="sd"> * This function works hard with foo() to rule the world.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return void</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">bar</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * Foo function.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return void</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Comment blocks, with the exception of the first block in a file, should always
+be preceded by a newline.</p>
+<div class="section" id="variable-types">
+<h3>Variable Types<a class="headerlink" href="#variable-types" title="Permalink to this headline">¶</a></h3>
+<p>Variable types for use in DocBlocks:</p>
+<dl class="docutils">
+<dt>Type</dt>
+<dd>Description</dd>
+<dt>mixed</dt>
+<dd>A variable with undefined (or multiple) type.</dd>
+<dt>int</dt>
+<dd>Integer type variable (whole number).</dd>
+<dt>float</dt>
+<dd>Float type (point number).</dd>
+<dt>bool</dt>
+<dd>Logical type (true or false).</dd>
+<dt>string</dt>
+<dd>String type (any value in &#8221; &#8221; or &#8216; &#8216;).</dd>
+<dt>null</dt>
+<dd>Null type. Usually used in conjunction with another type.</dd>
+<dt>array</dt>
+<dd>Array type.</dd>
+<dt>object</dt>
+<dd>Object type. A specific class name should be used if possible.</dd>
+<dt>resource</dt>
+<dd>Resource type (returned by for example mysql_connect()).
+Remember that when you specify the type as mixed, you should indicate
+whether it is unknown, or what the possible types are.</dd>
+<dt>callable</dt>
+<dd>Callable function.</dd>
+</dl>
+<p>You can also combine types using the pipe char:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">int</span><span class="o">|</span><span class="nx">bool</span>
+</pre></div>
+</div>
+<p>For more than two types it is usually best to just use <code class="docutils literal"><span class="pre">mixed</span></code>.</p>
+<p>When returning the object itself, e.g. for chaining, one should use <code class="docutils literal"><span class="pre">$this</span></code>
+instead:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Foo function.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return $this</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="including-files">
+<h2>Including Files<a class="headerlink" href="#including-files" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">include</span></code>, <code class="docutils literal"><span class="pre">require</span></code>, <code class="docutils literal"><span class="pre">include_once</span></code> and <code class="docutils literal"><span class="pre">require_once</span></code> do not have
+parentheses:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// wrong = parentheses</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">&#39;ClassFileName.php&#39;</span><span class="p">);</span>
+<span class="k">require_once</span> <span class="p">(</span><span class="nv">$class</span><span class="p">);</span>
+
+<span class="c1">// good = no parentheses</span>
+<span class="k">require_once</span> <span class="s1">&#39;ClassFileName.php&#39;</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="nv">$class</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When including files with classes or libraries, use only and always the
+<a class="reference external" href="http://php.net/require_once">require_once</a> function.</p>
+</div>
+<div class="section" id="php-tags">
+<h2>PHP Tags<a class="headerlink" href="#php-tags" title="Permalink to this headline">¶</a></h2>
+<p>Always use long tags (<code class="docutils literal"><span class="pre">&lt;?php</span> <span class="pre">?&gt;</span></code>) instead of short tags (<code class="docutils literal"><span class="pre">&lt;?</span> <span class="pre">?&gt;</span></code>). The short
+echo should be used in template files (<strong>.ctp</strong>) where appropriate.</p>
+<div class="section" id="short-echo">
+<h3>Short Echo<a class="headerlink" href="#short-echo" title="Permalink to this headline">¶</a></h3>
+<p>The short echo should be used in template files in place of <code class="docutils literal"><span class="pre">&lt;?php</span> <span class="pre">echo</span></code>. It
+should be immediately followed by a single space, the variable or function value
+to <code class="docutils literal"><span class="pre">echo</span></code>, a single space, and the php closing tag:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// wrong = semicolon, no spaces</span>
+<span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;?=</span><span class="nv">$name</span><span class="p">;</span><span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+
+<span class="x">// good = spaces, no semicolon</span>
+<span class="x">&lt;td&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$name</span> <span class="cp">?&gt;</span><span class="x">&lt;/td&gt;</span>
+</pre></div>
+</div>
+<p>As of PHP 5.4 the short echo tag (<code class="docutils literal"><span class="pre">&lt;?=</span></code>) is no longer to be consider a &#8216;short
+tag&#8217; is always available regardless of the <code class="docutils literal"><span class="pre">short_open_tag</span></code> ini directive.</p>
+</div>
+</div>
+<div class="section" id="naming-convention">
+<h2>Naming Convention<a class="headerlink" href="#naming-convention" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>Write all functions in camelBack:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">longFunctionName</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<p>Class names should be written in CamelCase, for example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleClass</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<p>Variable names should be as descriptive as possible, but also as short as
+possible. All variables should start with a lowercase letter, and should be
+written in camelBack in case of multiple words. Variables referencing objects
+should in some way associate to the class the variable is an object of.
+Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Hans&#39;</span><span class="p">,</span> <span class="s1">&#39;Arne&#39;</span><span class="p">];</span>
+
+<span class="nv">$dispatcher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dispatcher</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="member-visibility">
+<h3>Member Visibility<a class="headerlink" href="#member-visibility" title="Permalink to this headline">¶</a></h3>
+<p>Use PHP&#8217;s <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">protected</span></code> and <code class="docutils literal"><span class="pre">private</span></code> keywords for methods and variables.</p>
+</div>
+<div class="section" id="example-addresses">
+<h3>Example Addresses<a class="headerlink" href="#example-addresses" title="Permalink to this headline">¶</a></h3>
+<p>For all example URL and mail addresses use &#8220;example.com&#8221;, &#8220;example.org&#8221; and
+&#8220;example.net&#8221;, for example:</p>
+<ul class="simple">
+<li>Email: <a class="reference external" href="mailto:someone&#37;&#52;&#48;example&#46;com">someone<span>&#64;</span>example<span>&#46;</span>com</a></li>
+<li>WWW: <a class="reference external" href="http://www.example.com">http://www.example.com</a></li>
+<li>FTP: <a class="reference external" href="ftp://ftp.example.com">ftp://ftp.example.com</a></li>
+</ul>
+<p>The &#8220;example.com&#8221; domain name has been reserved for this (see <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc2606.html"><strong>RFC 2606</strong></a>) and
+is recommended for use in documentation or as examples.</p>
+</div>
+<div class="section" id="files">
+<h3>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<p>File names which do not contain classes should be lowercased and underscored,
+for example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">long_file_name</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="casting">
+<h3>Casting<a class="headerlink" href="#casting" title="Permalink to this headline">¶</a></h3>
+<p>For casting we use:</p>
+<dl class="docutils">
+<dt>Type</dt>
+<dd>Description</dd>
+<dt>(bool)</dt>
+<dd>Cast to boolean.</dd>
+<dt>(int)</dt>
+<dd>Cast to integer.</dd>
+<dt>(float)</dt>
+<dd>Cast to float.</dd>
+<dt>(string)</dt>
+<dd>Cast to string.</dd>
+<dt>(array)</dt>
+<dd>Cast to array.</dd>
+<dt>(object)</dt>
+<dd>Cast to object.</dd>
+</dl>
+<p>Please use <code class="docutils literal"><span class="pre">(int)$var</span></code> instead of <code class="docutils literal"><span class="pre">intval($var)</span></code> and <code class="docutils literal"><span class="pre">(float)$var</span></code> instead
+of <code class="docutils literal"><span class="pre">floatval($var)</span></code> when applicable.</p>
+</div>
+<div class="section" id="constants">
+<h3>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h3>
+<p>Constants should be defined in capital letters:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;CONSTANT&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If a constant name consists of multiple words, they should be separated by an
+underscore character, for example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;LONG_NAMED_CONSTANT&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="careful-when-using-empty-isset">
+<h2>Careful when using empty()/isset()<a class="headerlink" href="#careful-when-using-empty-isset" title="Permalink to this headline">¶</a></h2>
+<p>While <code class="docutils literal"><span class="pre">empty()</span></code> is an easy to use function, it can mask errors and cause
+unintended effects when <code class="docutils literal"><span class="pre">'0'</span></code> and <code class="docutils literal"><span class="pre">0</span></code> are given. When variables or
+properties are already defined, the usage of <code class="docutils literal"><span class="pre">empty()</span></code> is not recommended.
+When working with variables, it is better to rely on type-coercion to boolean
+instead of <code class="docutils literal"><span class="pre">empty()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">manipulate</span><span class="p">(</span><span class="nv">$var</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Not recommended, $var is already defined in the scope</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$var</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Use boolean type coercion</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$var</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$var</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When dealing with defined properties you should favour <code class="docutils literal"><span class="pre">null</span></code> checks over
+<code class="docutils literal"><span class="pre">empty()</span></code>/<code class="docutils literal"><span class="pre">isset()</span></code> checks:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Thing</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$property</span><span class="p">;</span> <span class="c1">// Defined</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">readProperty</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Not recommended as the property is defined in the class</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+        <span class="c1">// Recommended</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">property</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When working with arrays, it is better to merge in defaults over using
+<code class="docutils literal"><span class="pre">empty()</span></code> checks. By merging in defaults, you can ensure that required keys
+are defined:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">doWork</span><span class="p">(</span><span class="k">array</span> <span class="nv">$array</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Merge defaults to remove need for empty checks.</span>
+    <span class="nv">$array</span> <span class="o">+=</span> <span class="p">[</span>
+        <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">];</span>
+
+    <span class="c1">// Not recommended, the key is already set</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$array</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Recommended</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$array</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickets.html">Tickets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code.html">Code</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coding Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backwards-compatibility.html">Backwards Compatibility Guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

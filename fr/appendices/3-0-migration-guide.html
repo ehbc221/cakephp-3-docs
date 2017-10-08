@@ -1,0 +1,2077 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.0 Guide de Migration - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="es" href="../../es/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="ja" href="../../ja/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="zh" href="../../zh/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="tr" href="../../tr/appendices/3-0-migration-guide.html" /><link rel="alternate" hreflang="ru" href="../../ru/appendices/3-0-migration-guide.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="3.x Guide de Migration" href="3-x-migration-guide.html" />
+    <link rel="next" title="Guide de Migration du Nouvel ORM" href="orm-migration.html" />
+    <link rel="prev" title="3.1 Guide de Migration" href="3-1-migration-guide.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/appendices/3-0-migration-guide.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/appendices/3-0-migration-guide.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/appendices/3-0-migration-guide.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/appendices/3-0-migration-guide.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/appendices/3-0-migration-guide.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/appendices/3-0-migration-guide.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/appendices/3-0-migration-guide.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/appendices/3-0-migration-guide.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">3.0 Guide de Migration</a><ul>
+<li><a class="reference internal" href="#prerequis">Prérequis</a></li>
+<li><a class="reference internal" href="#outil-d-upgrade">Outil d&#8217;Upgrade</a></li>
+<li><a class="reference internal" href="#organisation-des-repertoires-de-l-application">Organisation des Répertoires de l&#8217;Application</a></li>
+<li><a class="reference internal" href="#cakephp-doit-etre-installe-avec-composer">CakePHP doit être installé avec Composer</a></li>
+<li><a class="reference internal" href="#namespaces-espaces-de-noms">Namespaces (Espaces de Noms)</a></li>
+<li><a class="reference internal" href="#constantes-retirees">Constantes retirées</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#nouvel-orm">Nouvel ORM</a></li>
+<li><a class="reference internal" href="#notions-de-base">Notions de base</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+<li><a class="reference internal" href="#parametrage-configuration-des-objets">Paramétrage/Configuration des Objets</a></li>
+<li><a class="reference internal" href="#cache">Cache</a></li>
+<li><a class="reference internal" href="#core">Core</a><ul>
+<li><a class="reference internal" href="#app">App</a></li>
+<li><a class="reference internal" href="#plugin">Plugin</a></li>
+<li><a class="reference internal" href="#configure">Configure</a></li>
+<li><a class="reference internal" href="#object">Object</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#console">Console</a><ul>
+<li><a class="reference internal" href="#taskcollection-remplacee">TaskCollection Remplacée</a></li>
+<li><a class="reference internal" href="#shell">Shell</a></li>
+<li><a class="reference internal" href="#consoleoptionparser">ConsoleOptionParser</a></li>
+<li><a class="reference internal" href="#consoleinputargument">ConsoleInputArgument</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#shell-task">Shell / Task</a><ul>
+<li><a class="reference internal" href="#apishell-retire">ApiShell Retiré</a></li>
+<li><a class="reference internal" href="#schemashell-removed">SchemaShell Removed</a></li>
+<li><a class="reference internal" href="#extracttask">ExtractTask</a></li>
+<li><a class="reference internal" href="#bakeshell-templatetask">BakeShell / TemplateTask</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event">Event</a></li>
+<li><a class="reference internal" href="#log">Log</a></li>
+<li><a class="reference internal" href="#routing">Routing</a><ul>
+<li><a class="reference internal" href="#parametres-nommes">Paramètres Nommés</a></li>
+<li><a class="reference internal" href="#requestactiontrait">RequestActionTrait</a></li>
+<li><a class="reference internal" href="#router">Router</a></li>
+<li><a class="reference internal" href="#route">Route</a></li>
+<li><a class="reference internal" href="#la-configuration-des-filtres-de-dispatcher-a-change">La Configuration des Filtres de Dispatcher a Changé</a></li>
+<li><a class="reference internal" href="#filterassetfilter">FilterAssetFilter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#network">Network</a><ul>
+<li><a class="reference internal" href="#request">Request</a></li>
+<li><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sessions">Sessions</a></li>
+<li><a class="reference internal" href="#network-http">Network\Http</a></li>
+<li><a class="reference internal" href="#network-email">Network\Email</a></li>
+<li><a class="reference internal" href="#controller">Controller</a><ul>
+<li><a class="reference internal" href="#id2">Controller</a></li>
+<li><a class="reference internal" href="#scaffold-retire">Scaffold retiré</a></li>
+<li><a class="reference internal" href="#componentcollection-remplacee">ComponentCollection remplacée</a></li>
+<li><a class="reference internal" href="#component">Component</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#controller-components">Controller\Components</a><ul>
+<li><a class="reference internal" href="#cookiecomponent">CookieComponent</a></li>
+<li><a class="reference internal" href="#authcomponent">AuthComponent</a></li>
+<li><a class="reference internal" href="#requesthandlercomponent">RequestHandlerComponent</a></li>
+<li><a class="reference internal" href="#securitycomponent">SecurityComponent</a></li>
+<li><a class="reference internal" href="#sessioncomponent">SessionComponent</a></li>
+<li><a class="reference internal" href="#error">Error</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model">Model</a><ul>
+<li><a class="reference internal" href="#connectionmanager">ConnectionManager</a></li>
+<li><a class="reference internal" href="#behaviors">Behaviors</a></li>
+<li><a class="reference internal" href="#treebehavior">TreeBehavior</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testsuite">TestSuite</a><ul>
+<li><a class="reference internal" href="#testcase">TestCase</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#view">View</a><ul>
+<li><a class="reference internal" href="#les-themes-sont-maintenant-purement-des-plugins">Les Themes sont maintenant purement des Plugins</a></li>
+<li><a class="reference internal" href="#les-dossiers-de-view-renommes">Les Dossiers de View Renommés</a></li>
+<li><a class="reference internal" href="#helpercollection-remplacee">HelperCollection remplacée</a></li>
+<li><a class="reference internal" href="#view-class">View Class</a></li>
+<li><a class="reference internal" href="#viewblock">ViewBlock</a></li>
+<li><a class="reference internal" href="#jsonview">JsonView</a></li>
+<li><a class="reference internal" href="#xmlview">XmlView</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#view-helper">View\Helper</a><ul>
+<li><a class="reference internal" href="#helper">Helper</a></li>
+<li><a class="reference internal" href="#formhelper">FormHelper</a></li>
+<li><a class="reference internal" href="#htmlhelper">HtmlHelper</a></li>
+<li><a class="reference internal" href="#paginatorhelper">PaginatorHelper</a></li>
+<li><a class="reference internal" href="#timehelper">TimeHelper</a></li>
+<li><a class="reference internal" href="#numberhelper">NumberHelper</a></li>
+<li><a class="reference internal" href="#sessionhelper">SessionHelper</a></li>
+<li><a class="reference internal" href="#jshelper">JsHelper</a></li>
+<li><a class="reference internal" href="#cachehelper-retire">CacheHelper Retiré</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#i18n">I18n</a></li>
+<li><a class="reference internal" href="#l10n">L10n</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#utility">Utility</a><ul>
+<li><a class="reference internal" href="#classe-set-retiree">Classe Set Retirée</a></li>
+<li><a class="reference internal" href="#folder-file">Folder &amp; File</a></li>
+<li><a class="reference internal" href="#inflector">Inflector</a></li>
+<li><a class="reference internal" href="#sanitize">Sanitize</a></li>
+<li><a class="reference internal" href="#security">Security</a></li>
+<li><a class="reference internal" href="#time">Time</a></li>
+<li><a class="reference internal" href="#number">Number</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#xml">Xml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="guide-de-migration">
+<h1>3.0 Guide de Migration<a class="headerlink" href="#guide-de-migration" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Cette page résume les changements de CakePHP 2.x qui aidera à la migration d&#8217;un
+projet vers la version 3.0, ainsi qu&#8217;une référence pour être à jour des
+changements faits dans le cœur depuis la branche CakePHP 2.x. Assurez-vous de
+bien lire les autres pages de ce guide pour toutes les nouvelles
+fonctionnalités et les changements de l&#8217;API.</p>
+<div class="section" id="prerequis">
+<h2>Prérequis<a class="headerlink" href="#prerequis" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>CakePHP 3.x a besoin de la Version 5.4.16 ou supérieur de PHP.</li>
+<li>CakePHP 3.x a besoin de l&#8217;extension mbstring.</li>
+<li>CakePHP 3.x a besoin de l&#8217;extension intl.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">CakePHP 3.0 ne fonctionnera pas si vous n&#8217;avez pas les prérequis ci-dessus.</p>
+</div>
+</div>
+<div class="section" id="outil-d-upgrade">
+<h2>Outil d&#8217;Upgrade<a class="headerlink" href="#outil-d-upgrade" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Alors que ce document couvre tous les changements non rétro-compatibles et les
+évolutions faites dans CakePHP 3.0, nous avons également créé une application
+de console pour vous aider à réaliser quelques changements qui consomment du
+temps. Vous pouvez <a class="reference external" href="https://github.com/cakephp/upgrade">Récupérer l&#8217;outil d&#8217;upgrade depuis Github</a>.</p>
+</div>
+<div class="section" id="organisation-des-repertoires-de-l-application">
+<h2>Organisation des Répertoires de l&#8217;Application<a class="headerlink" href="#organisation-des-repertoires-de-l-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;organisation des répertoires de l&#8217;application a changé et suit maintenant
+<a class="reference external" href="http://www.php-fig.org/psr/psr-4/">PSR-4</a>. Vous devez utiliser le projet de
+<a class="reference external" href="https://github.com/cakephp/app">squelette d&#8217;application</a> comme
+point de référence lors de la mise à jour de votre application.</p>
+</div>
+<div class="section" id="cakephp-doit-etre-installe-avec-composer">
+<h2>CakePHP doit être installé avec Composer<a class="headerlink" href="#cakephp-doit-etre-installe-avec-composer" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Puisque CakePHP ne peut plus être installé via PEAR, ou dans un répertoire
+partagé, ces options ne sont plus supportées. A la place, vous devez utiliser
+<a class="reference external" href="http://getcomposer.org">Composer</a> pour installer CakePHP dans votre
+application.</p>
+</div>
+<div class="section" id="namespaces-espaces-de-noms">
+<h2>Namespaces (Espaces de Noms)<a class="headerlink" href="#namespaces-espaces-de-noms" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Toutes les classes du cœur de CakePHP sont maintenant dans des namespaces et
+suivent les spécifications du chargement PSR-4. Par exemple
+<strong>src/Cache/Cache.php</strong> est dans le namespace <code class="docutils literal"><span class="pre">Cake\Cache\Cache</span></code>. Les
+constantes globales et les méthodes de helper comme <a class="reference internal" href="../core-libraries/global-constants-and-functions.html#__" title="__"><code class="xref php php-meth docutils literal"><span class="pre">__()</span></code></a> et
+<a class="reference internal" href="../core-libraries/global-constants-and-functions.html#debug" title="debug"><code class="xref php php-meth docutils literal"><span class="pre">debug()</span></code></a> ne sont pas mis dans un namespace pour des raisons de
+commodité.</p>
+</div>
+<div class="section" id="constantes-retirees">
+<h2>Constantes retirées<a class="headerlink" href="#constantes-retirees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les constantes dépréciées suivantes ont été retirées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">IMAGES</span></code></li>
+<li><code class="docutils literal"><span class="pre">CSS</span></code></li>
+<li><code class="docutils literal"><span class="pre">JS</span></code></li>
+<li><code class="docutils literal"><span class="pre">IMAGES_URL</span></code></li>
+<li><code class="docutils literal"><span class="pre">JS_URL</span></code></li>
+<li><code class="docutils literal"><span class="pre">CSS_URL</span></code></li>
+<li><code class="docutils literal"><span class="pre">DEFAULT_LANGUAGE</span></code></li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La configuration dans CakePHP 3.0 est significativement différente des
+versions précédentes. Vous devriez lire la documentation
+<a class="reference internal" href="../development/configuration.html"><span class="doc">Configuration</span></a> sur la façon dont la configuration est faite
+dans la version 3.0.</p>
+<p>Vous ne pouvez plus utiliser <code class="docutils literal"><span class="pre">App::build()</span></code> pour configurer les chemins de
+classe supplémentaires. A la place, vous devez mapper les chemins
+supplémentaires en utilisant l&#8217;autoloader de votre application. Regardez la
+section sur <a class="reference internal" href="../development/configuration.html#additional-class-paths"><span class="std std-ref">Chemins de Classe Supplémentaires</span></a> pour plus d&#8217;informations.</p>
+<p>Trois nouvelles variables de configuration fournissent la configuration
+de chemin pour les plugins, les views et les fichiers de locales. Vous pouvez
+ajouter plusieurs chemins à <code class="docutils literal"><span class="pre">App.paths.templates</span></code>, <code class="docutils literal"><span class="pre">App.paths.plugins</span></code> et
+<code class="docutils literal"><span class="pre">App.paths.locales</span></code> pour configurer des chemins multiples pour respectivement
+les templates, les plugins et les fichiers de locales.</p>
+<p>La clé de configuration <code class="docutils literal"><span class="pre">www_root</span></code> a été renommée <code class="docutils literal"><span class="pre">wwwRoot</span></code> par cohérence.
+Merci d&#8217;ajuster votre fichier de configuration <strong>app.php</strong> ainsi que chaque
+utilisation de``Configure::read(&#8216;App.wwwRoot&#8217;)``.</p>
+</div>
+<div class="section" id="nouvel-orm">
+<h2>Nouvel ORM<a class="headerlink" href="#nouvel-orm" title="Lien permanent vers ce titre">¶</a></h2>
+<p>CakePHP 3.0 dispose d&#8217;un nouvel ORM qui a été reconstruit de zéro. Le nouvel ORM
+est significativement différent et incompatible avec la version précédente.
+Mettre à jour vers le nouvel ORM nécessite des changements importants dans toute
+application qui souhaite être mise à jour. Regardez la nouvelle documentation
+<a class="reference internal" href="../orm.html"><span class="doc">Accès Base de Données &amp; ORM</span></a> pour des informations sur la façon d&#8217;utiliser le nouvel ORM.</p>
+</div>
+<div class="section" id="notions-de-base">
+<h2>Notions de base<a class="headerlink" href="#notions-de-base" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">LogError()</span></code> a été retirée, elle ne fournissait aucun bénéfice
+et n&#8217;était rarement/jamais utilisée.</li>
+<li>Les fonctions globales suivantes ont été retirées: <code class="docutils literal"><span class="pre">config()</span></code>, <code class="docutils literal"><span class="pre">cache()</span></code>,
+<code class="docutils literal"><span class="pre">clearCache()</span></code>, <code class="docutils literal"><span class="pre">convertSlashes()</span></code>, <code class="docutils literal"><span class="pre">am()</span></code>, <code class="docutils literal"><span class="pre">fileExistsInPath()</span></code>,
+<code class="docutils literal"><span class="pre">sortByKey()</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Configure::write('debug',</span> <span class="pre">$bool)</span></code> n&#8217;accepte plus 0/1/2. Un simple
+booléen est utilisé à la place pour changer entre le mode debug on et off.</li>
+</ul>
+</div>
+<div class="section" id="parametrage-configuration-des-objets">
+<h2>Paramétrage/Configuration des Objets<a class="headerlink" href="#parametrage-configuration-des-objets" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Les Objets utilisés dans CakePHP ont maintenant un système
+d&#8217;instance-configuration de stockage/récupération cohérent. Le code qui était
+auparavant accessible par exemple comme ceci: <code class="docutils literal"><span class="pre">$object-&gt;settings</span></code> devra être
+mis à jour en utilisant à la place <code class="docutils literal"><span class="pre">$object-&gt;config()</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="cache">
+<h2>Cache<a class="headerlink" href="#cache" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Le moteur <code class="docutils literal"><span class="pre">Memcache</span></code> a été retiré, utilisez
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Cache\Cache\Engine\Memcached</span></code> à la place.</li>
+<li>Les moteurs de Cache sont maintenant chargés automatiquement à la première
+utilisation.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::engine()</span></code> a été ajoutée.</li>
+<li><a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::enabled" title="Cake\Cache\Cache::enabled"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::enabled()</span></code></a> a été ajoutée. celle-ci remplace
+l&#8217;option de configuration <code class="docutils literal"><span class="pre">Cache.disable</span></code>.</li>
+<li><a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::enable" title="Cake\Cache\Cache::enable"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::enable()</span></code></a> a été ajoutée.</li>
+<li><a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::disable" title="Cake\Cache\Cache::disable"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::disable()</span></code></a> a été ajoutée.</li>
+<li>Les configurations de Cache sont maintenant immutables. Si vous avez besoin de
+changer la configuration, vous devez d&#8217;abord retirer la configuration et la
+recréer. Cela évite les problèmes de synchronisation avec les options de
+configuration.</li>
+<li><code class="docutils literal"><span class="pre">Cache::set()</span></code> a été retirée. Il est recommandé que vous créiez des
+configurations de cache multiples pour remplacer les réglages de configuration
+d&#8217;exécution, ce qui était auparavant possible avec <code class="docutils literal"><span class="pre">Cache::set()</span></code>.</li>
+<li>Toutes les sous-classes <code class="docutils literal"><span class="pre">CacheEngine</span></code> intègrent maintenant une méthode
+<code class="docutils literal"><span class="pre">config()</span></code>.</li>
+<li><a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::readMany" title="Cake\Cache\Cache::readMany"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::readMany()</span></code></a>,
+<a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::deleteMany" title="Cake\Cache\Cache::deleteMany"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::deleteMany()</span></code></a>, et
+<a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\Cache::writeMany" title="Cake\Cache\Cache::writeMany"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\Cache::writeMany()</span></code></a> ont été ajoutées.</li>
+</ul>
+<p>Toutes les méthodes de <code class="xref php php-class docutils literal"><span class="pre">Cake\Cache\Cache\CacheEngine</span></code> sont
+maintenant responsables de la gestion du préfix de clé configuré.
+<a class="reference internal" href="../core-libraries/caching.html#Cake\Cache\CacheEngine::write" title="Cake\Cache\CacheEngine::write"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Cache\CacheEngine::write()</span></code></a> ne permet plus de définir la
+durée d&#8217;écriture - la durée est prise par la configuration d&#8217;exécution du
+moteur de cache. Appeler une méthode de cache avec une clé vide va maintenant
+lancer <code class="xref php php-class docutils literal"><span class="pre">InvalidArgumentException</span></code>, au lieu de retourner <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</div>
+<div class="section" id="core">
+<h2>Core<a class="headerlink" href="#core" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="app">
+<h3>App<a class="headerlink" href="#app" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">App::pluginPath()</span></code> a été retirée. Utilisez <code class="docutils literal"><span class="pre">CakePlugin::path()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">App::build()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::location()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::paths()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::load()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::objects()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::RESET</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::APPEND</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::PREPEND</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">App::REGISTER</span></code> a été retirée.</li>
+</ul>
+</div>
+<div class="section" id="plugin">
+<h3>Plugin<a class="headerlink" href="#plugin" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Core\Plugin::load()</span></code> ne configure pas d&#8217;autoloader à moins
+que vous définissiez l&#8217;option <code class="docutils literal"><span class="pre">autoload</span></code> à <code class="docutils literal"><span class="pre">true</span></code>.</li>
+<li>Lors du chargement des plugins, vous ne pouvez plus fournir de callable.</li>
+<li>Lors du chargement des plugins, vous ne pouvez plus fournir un tableau de
+fichiers de configuration à charger.</li>
+</ul>
+</div>
+<div class="section" id="configure">
+<h3>Configure<a class="headerlink" href="#configure" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Configure\PhpReader</span></code> renommé en
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Configure\EnginePhpConfig</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cake\Configure\IniReader</span></code> renommé en
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Configure\EngineIniConfig</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cake\Configure\ConfigReaderInterface</span></code> renommé en
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Configure\ConfigEngineInterface</span></code></li>
+<li><a class="reference internal" href="../development/configuration.html#Cake\Core\Configure::consume" title="Cake\Core\Configure::consume"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Core\Configure::consume()</span></code></a> a été ajoutée.</li>
+<li><a class="reference internal" href="../development/configuration.html#Cake\Core\Configure::load" title="Cake\Core\Configure::load"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Core\Configure::load()</span></code></a> attend maintenant un suffixe du nom
+du fichier sans extension puisque celui-ci peut venir d&#8217;un moteur. Par
+exemple, l&#8217;utilisation de PhpConfig utilise <code class="docutils literal"><span class="pre">app</span></code> pour charger <strong>app.php</strong>.</li>
+<li>Définir une variable <code class="docutils literal"><span class="pre">$config</span></code> dans un fichier PHP de config est déprécié.
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Configure\EnginePhpConfig</span></code> attend maintenant le
+fichier de config pour retourner un tableau.</li>
+<li>Un nouveau moteur de config
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Core\Configure\EngineJsonConfig</span></code> a été ajouté.</li>
+</ul>
+</div>
+<div class="section" id="object">
+<h3>Object<a class="headerlink" href="#object" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La classe <code class="docutils literal"><span class="pre">Object</span></code> a été retirée. Elle contenait au début un tas de méthodes
+qui étaient utilisées dans plusieurs endroits à travers le framework. Les
+méthodes les plus utiles qui étaient utilisées ont été extraites dans des
+traits. Vous pouvez utiliser <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\LogTrait" title="Cake\Log\LogTrait"><code class="xref php php-trait docutils literal"><span class="pre">Cake\Log\LogTrait</span></code></a> pour accéder à la
+méthode <code class="docutils literal"><span class="pre">log()</span></code>. <code class="xref php php-trait docutils literal"><span class="pre">Cake\Routing\RequestActionTrait</span></code> fournit
+<code class="docutils literal"><span class="pre">requestAction()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="console">
+<h2>Console<a class="headerlink" href="#console" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;exécutable <code class="docutils literal"><span class="pre">cake</span></code> a été déplacé du répertoire <code class="docutils literal"><span class="pre">app/Console</span></code> vers le
+répertoire <code class="docutils literal"><span class="pre">bin</span></code> dans le squelette de l&#8217;application. Vous pouvez maintenant
+lancer la console de CakePHP avec <code class="docutils literal"><span class="pre">bin/cake</span></code>.</p>
+<div class="section" id="taskcollection-remplacee">
+<h3>TaskCollection Remplacée<a class="headerlink" href="#taskcollection-remplacee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Cette classe a été renommée en <code class="xref php php-class docutils literal"><span class="pre">Cake\Console\TaskRegistry</span></code>.
+Regardez la section sur <a class="reference internal" href="../core-libraries/registry-objects.html"><span class="doc">Objets Registry</span></a> pour plus
+d&#8217;informations sur les fonctionnalités fournies par la nouvelle classe. Vous
+pouvez utiliser <code class="docutils literal"><span class="pre">cake</span> <span class="pre">upgrade</span> <span class="pre">rename_collections</span></code> pour vous aider à mettre
+à niveau votre code. Les Tasks n&#8217;ont plus accès aux callbacks, puisqu&#8217;il
+n&#8217;y avait jamais de callbacks à utiliser.</p>
+</div>
+<div class="section" id="shell">
+<h3>Shell<a class="headerlink" href="#shell" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Shell::__construct()</span></code> a changé. Il prend maintenant une instance de
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Console\ConsoleIo</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Shell::param()</span></code> a été ajoutée pour un accès pratique aux paramètre.</li>
+</ul>
+<p>De plus, toutes les méthodes du shell vont être transformées en camel case lors
+de leur appel. Par exemple, si vous avez une méthode <code class="docutils literal"><span class="pre">hello_world()</span></code> dans un
+shell et que vous l&#8217;appelez avec <code class="docutils literal"><span class="pre">bin/cake</span> <span class="pre">my_shell</span> <span class="pre">hello_world</span></code>, vous devez
+renommer la méthode en <code class="docutils literal"><span class="pre">helloWorld</span></code>. Il n&#8217;y a pas de changements nécessaires
+dans la façon d&#8217;appeler les commandes.</p>
+</div>
+<div class="section" id="consoleoptionparser">
+<h3>ConsoleOptionParser<a class="headerlink" href="#consoleoptionparser" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ConsoleOptionParser::merge()</span></code> a été ajoutée pour fusionner les parsers.</li>
+</ul>
+</div>
+<div class="section" id="consoleinputargument">
+<h3>ConsoleInputArgument<a class="headerlink" href="#consoleinputargument" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ConsoleInputArgument::isEqualTo()</span></code> a été ajoutée pour comparer deux
+arguments.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="shell-task">
+<h2>Shell / Task<a class="headerlink" href="#shell-task" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Shells et Tasks ont été déplacés de <code class="docutils literal"><span class="pre">Console/Command</span></code> et
+<code class="docutils literal"><span class="pre">Console/Command/Task</span></code> vers <code class="docutils literal"><span class="pre">Shell</span></code> et <code class="docutils literal"><span class="pre">Shell/Task</span></code>.</p>
+<div class="section" id="apishell-retire">
+<h3>ApiShell Retiré<a class="headerlink" href="#apishell-retire" title="Lien permanent vers ce titre">¶</a></h3>
+<p>ApiShell a été retiré puisqu&#8217;il ne fournit aucun bénéfice sur le fichier
+source lui-même et sur la documentation/<a class="reference external" href="https://api.cakephp.org/">l&#8217;API</a>
+en-ligne.</p>
+</div>
+<div class="section" id="schemashell-removed">
+<h3>SchemaShell Removed<a class="headerlink" href="#schemashell-removed" title="Lien permanent vers ce titre">¶</a></h3>
+<p>SchemaShell a été retiré puisqu&#8217;il n&#8217;a jamais été une implémentation
+de migrations de base de données complète et de meilleurs outils comme
+<a class="reference external" href="https://phinx.org/">Phinx</a> ont émergé. Il a été remplacé par
+le <a class="reference external" href="https://github.com/cakephp/migrations">Plugin de Migrations pour CakePHP</a>
+qui permet l&#8217;utilisation de <a class="reference external" href="https://phinx.org/">Phinx</a> avec CakePHP.</p>
+</div>
+<div class="section" id="extracttask">
+<h3>ExtractTask<a class="headerlink" href="#extracttask" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">bin/cake</span> <span class="pre">i18n</span> <span class="pre">extract</span></code> n&#8217;inclut plus les messages de validation non
+traduits. Si vous voulez traduire les messages de validation, vous devez
+entourer ces messages dans des appels <cite>__()</cite> comme tout autre contenu.</li>
+</ul>
+</div>
+<div class="section" id="bakeshell-templatetask">
+<h3>BakeShell / TemplateTask<a class="headerlink" href="#bakeshell-templatetask" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Bake ne fait plus partie du code source du core et est remplacé par le
+<a class="reference external" href="https://github.com/cakephp/bake">Plugin CakePHP Bake</a></li>
+<li>Les templates de bake ont été déplacés vers <strong>src/Template/Bake</strong>.</li>
+<li>La syntaxe des templates Bake utilise maintenant des balises de type erb
+(<code class="docutils literal"><span class="pre">&lt;%</span> <span class="pre">%&gt;</span></code>) pour désigner le templating.</li>
+<li>La commande <code class="docutils literal"><span class="pre">bake</span> <span class="pre">view</span></code> a été renommée <code class="docutils literal"><span class="pre">bake</span> <span class="pre">template</span></code>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La méthode <code class="docutils literal"><span class="pre">getEventManager()</span></code> a été retirée pour tous les objets qui
+l&#8217;avaient. Une méthode <code class="docutils literal"><span class="pre">eventManager()</span></code> est maintenant fournie par
+<code class="docutils literal"><span class="pre">EventManagerTrait</span></code>. <code class="docutils literal"><span class="pre">EventManagerTrait</span></code> contient la logique pour instancier
+et garder une référence d&#8217;un gestionnaire d&#8217;évènement local.</p>
+<p>Le sous-système d&#8217;Event s&#8217;est vu retiré un certain nombre de fonctionnalités
+Lors du dispatching des événements, vous ne pouvez plus utiliser les options
+suivantes:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">passParams</span></code> Cette option est maintenant toujours activée implicitement.
+Vous ne pouvez pas l&#8217;arrêter.</li>
+<li><code class="docutils literal"><span class="pre">break</span></code> Cette option a été retirée. Vous devez maintenant arrêter les
+events.</li>
+<li><code class="docutils literal"><span class="pre">breakOn</span></code> Cette option a été retirée. Vous devez maintenant arrêter les
+events.</li>
+</ul>
+</div>
+<div class="section" id="log">
+<h2>Log<a class="headerlink" href="#log" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Les configurations des logs sont maintenant immutables. Si vous devez changer
+la configuration, vous devez d&#8217;abord supprimer la configuration et la récréer.
+Cela évite les problèmes de synchronisation avec les options de configuration.</li>
+<li>Les moteurs de Log se chargent maintenant automatiquement à la première
+écriture dans les logs.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::engine()</span></code> a été ajoutée.</li>
+<li>Les méthodes suivantes ont été retirées de <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log" title="Cake\Log\Log"><code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Log</span></code></a>::
+<code class="docutils literal"><span class="pre">defaultLevels()</span></code>, <code class="docutils literal"><span class="pre">enabled()</span></code>, <code class="docutils literal"><span class="pre">enable()</span></code>, <code class="docutils literal"><span class="pre">disable()</span></code>.</li>
+<li>Vous ne pouvez plus créer de niveaux personnalisés en utilisant
+<code class="docutils literal"><span class="pre">Log::levels()</span></code>.</li>
+<li>Lors de la configuration des loggers, vous devez utiliser <code class="docutils literal"><span class="pre">'levels'</span></code> au
+lieu de <code class="docutils literal"><span class="pre">'types'</span></code>.</li>
+<li>Vous ne pouvez plus spécifier de niveaux de log personnalisé. Vous devez
+utiliser les niveaux de log définis par défaut. Pour créer des fichiers de
+log personnalisés ou spécifiques à la gestion de différentes sections de
+votre application, vous devez utiliser les logging scopes. L&#8217;utilisation
+d&#8217;un niveau de log non-standard lancera maintenant une exception.</li>
+<li><a class="reference internal" href="../core-libraries/logging.html#Cake\Log\LogTrait" title="Cake\Log\LogTrait"><code class="xref php php-trait docutils literal"><span class="pre">Cake\Log\LogTrait</span></code></a> a été ajoutée. Vous pouvez utiliser ce trait
+dans vos classes pour ajouter la méthode <code class="docutils literal"><span class="pre">log()</span></code>.</li>
+<li>Le logging scope passé à <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log::write" title="Cake\Log\Log::write"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::write()</span></code></a> est maintenant
+transmis à la méthode <code class="docutils literal"><span class="pre">write()</span></code> du moteur de log afin de fournir un meilleur
+contexte aux moteurs.</li>
+<li>Les moteurs de Log sont maintenant nécessaires pour intégrer
+<code class="docutils literal"><span class="pre">Psr\Log\LogInterface</span></code> plutôt que la propre <code class="docutils literal"><span class="pre">LogInterface</span></code> de CakePHP. En
+général, si vous étendez <code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Engine\BaseEngine</span></code>
+vous devez juste renommer la méthode <code class="docutils literal"><span class="pre">write()</span></code> en <code class="docutils literal"><span class="pre">log()</span></code>.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Engine\FileLog</span></code> écrit maintenant les fichiers dans
+<code class="docutils literal"><span class="pre">ROOT/logs</span></code> au lieu de <code class="docutils literal"><span class="pre">ROOT/tmp/logs</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="routing">
+<h2>Routing<a class="headerlink" href="#routing" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="parametres-nommes">
+<h3>Paramètres Nommés<a class="headerlink" href="#parametres-nommes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les paramètres nommés ont été retirés dans 3.0. Les paramètres nommés ont été
+ajoutés dans 1.2.0 comme un &#8216;belle&#8217; version des paramètres query strings. Alors
+que le bénéfice visuel est discutable, les problèmes engendrés par les
+paramètres nommés ne le sont pas.</p>
+<p>Les paramètres nommés nécessitaient une gestion spéciale dans CakePHP ainsi
+que toute librairie PHP ou JavaScript qui avaient besoin d&#8217;interagir avec eux,
+puisque les paramètres nommés ne sont implémentés ou compris par aucune
+librairie <em>exceptée</em> CakePHP. La complexité supplémentaire et le code nécessaire
+pour supporter les paramètres nommés ne justifiaient pas leur existence, et
+elles ont été retirées. A la place, vous devrez utiliser les paramètres
+standards de query string, ou les arguments passés. Par défaut <code class="docutils literal"><span class="pre">Router</span></code>
+traitera tous les paramètres supplémentaires de <code class="docutils literal"><span class="pre">Router::url()</span></code> comme des
+arguments de query string.</p>
+<p>Puisque beaucoup d&#8217;applications auront toujours besoin de parser des URLs
+entrantes contenant des paramètres nommés,
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\Router::parseNamedParams()</span></code> a été ajoutée
+pour permettre une rétrocompatibilité avec les URLs existantes.</p>
+</div>
+<div class="section" id="requestactiontrait">
+<h3>RequestActionTrait<a class="headerlink" href="#requestactiontrait" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\RequestActionTrait::requestAction()</span></code> a connu
+quelques changements sur des options supplémentaires:<ul>
+<li><code class="docutils literal"><span class="pre">options[url]</span></code> est maintenant <code class="docutils literal"><span class="pre">options[query]</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">options[data]</span></code> est maintenant <code class="docutils literal"><span class="pre">options[post]</span></code>.</li>
+<li>Les paramètres nommés ne sont plus supportés.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="router">
+<h3>Router<a class="headerlink" href="#router" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les paramètres nommés ont été retirés, regardez ci-dessus pour plus
+d&#8217;informations.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">full_base</span></code> a été remplacée par l&#8217;options <code class="docutils literal"><span class="pre">_full</span></code>.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">ext</span></code> a été remplacée par l&#8217;option <code class="docutils literal"><span class="pre">_ext</span></code>.</li>
+<li>Les options <code class="docutils literal"><span class="pre">_scheme</span></code>, <code class="docutils literal"><span class="pre">_port</span></code>, <code class="docutils literal"><span class="pre">_host</span></code>, <code class="docutils literal"><span class="pre">_base</span></code>, <code class="docutils literal"><span class="pre">_full</span></code> et
+<code class="docutils literal"><span class="pre">_ext</span></code> ont été ajoutées.</li>
+<li>Les chaînes URLs ne sont plus modifiées en ajoutant les noms de
+plugin/controller/prefix.</li>
+<li>La gestion de route fallback par défaut a été retirée. Si aucune route ne
+correspond à un paramètre défini, <code class="docutils literal"><span class="pre">/</span></code> sera retourné.</li>
+<li>Les classes de route sont responsables pour <em>toutes</em> les générations d&#8217;URL
+incluant les paramètres de query string. Cela rend les routes bien plus
+puissantes et flexibles.</li>
+<li>Les paramètres persistants ont été retirés. Ils ont été remplacés par
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\Router::urlFilter()</span></code> qui est une meilleur façon
+plus flexible pour changer les URLs étant routées inversement.</li>
+<li>La signature de <code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\Router::parseExtensions()</span></code> a changé
+en <code class="docutils literal"><span class="pre">parseExtensions(string|array</span> <span class="pre">$extensions</span> <span class="pre">=</span> <span class="pre">null,</span> <span class="pre">$merge</span> <span class="pre">=</span> <span class="pre">true)</span></code>. Elle
+ne prend plus d&#8217;arguments variables pour la spécification des extensions.
+Aussi, vous ne pouvez plus l&#8217;appeler sans paramètre pour parser toutes les
+extensions (en faisant cela, cela va retourner des extensions existantes qui
+sont définies). Vous avez besoin de faire une liste blanche des extensions
+que votre application accepte.</li>
+<li><code class="docutils literal"><span class="pre">Router::parseExtensions()</span></code> <strong>doit</strong> être appelée avant que les routes ne
+soient connectées. Il ne modifie plus les routes existantes lors de son appel.</li>
+<li><code class="docutils literal"><span class="pre">Router::setExtensions()</span></code> a été retirée. Utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\Router::parseExtensions()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Router::resourceMap()</span></code> a été retirée.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">[method]</span></code> a été renommée en <code class="docutils literal"><span class="pre">_method</span></code>.</li>
+<li>La capacité pour faire correspondre les en-têtes arbitraires avec les
+paramètres de style <code class="docutils literal"><span class="pre">[]</span></code> a été retirée. Si vous avez besoin de parser/faire
+correspondre sur les conditions arbitraires, pensez à utiliser les classes de
+route personnalisées.</li>
+<li><code class="docutils literal"><span class="pre">Router::promote()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">Router::parse()</span></code> va maintenant lancer une exception quand une URL ne peut
+pas être gérée par aucune route.</li>
+<li><code class="docutils literal"><span class="pre">Router::url()</span></code> va maintenant lancer une exception quand aucune route ne
+matche un ensemble de paramètres.</li>
+<li>Les scopes de Routing ont été introduits. Les scopes de Routing vous
+permettent de garder votre fichier de routes DRY et donne au Router des
+indices sur la façon d&#8217;optimiser le parsing et le routing inversé des URLs.</li>
+</ul>
+</div>
+<div class="section" id="route">
+<h3>Route<a class="headerlink" href="#route" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CakeRoute</span></code> a été renommée en <code class="docutils literal"><span class="pre">Route</span></code>.</li>
+<li>La signature de <code class="docutils literal"><span class="pre">match()</span></code> a changé en <code class="docutils literal"><span class="pre">match($url,</span> <span class="pre">$context</span> <span class="pre">=</span> <span class="pre">[])</span></code>
+Consultez <code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\Route::match()</span></code> pour plus d&#8217;informations
+sur la nouvelle signature.</li>
+</ul>
+</div>
+<div class="section" id="la-configuration-des-filtres-de-dispatcher-a-change">
+<h3>La Configuration des Filtres de Dispatcher a Changé<a class="headerlink" href="#la-configuration-des-filtres-de-dispatcher-a-change" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les filtres de Dispatcher ne sont plus ajoutés à votre application en utilisant
+<code class="docutils literal"><span class="pre">Configure</span></code>. Vous les ajoutez maintenant avec
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Routing\DispatcherFactory</span></code>. Cela signifie que si votre
+application utilisait <code class="docutils literal"><span class="pre">Dispatcher.filters</span></code>, vous devrez maintenant utiliser
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Routing\DispatcherFactory::add()</span></code>.</p>
+<p>En plus des changements de configuration, les filtres du dispatcher ont vu
+leurs conventions mises à jour, et des fonctionnalités ont été ajoutées.
+Consultez la documentation <a class="reference internal" href="../development/dispatch-filters.html"><span class="doc">Filtres du Dispatcher</span></a> pour plus
+d&#8217;informations.</p>
+</div>
+<div class="section" id="filterassetfilter">
+<h3>FilterAssetFilter<a class="headerlink" href="#filterassetfilter" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les assets des Plugin &amp; theme gérés par AssetFilter ne sont plus lus via
+<code class="docutils literal"><span class="pre">include</span></code>, à la place ils sont traités comme de simples fichiers texte. Cela
+règle un certain nombre de problèmes avec les librairies JavaScript comme
+TinyMCE et les environnements avec short_tags activé.</li>
+<li>Le support pour la configuration de <code class="docutils literal"><span class="pre">Asset.filter</span></code> et les hooks ont été
+retirés. Cette fonctionnalité peut être remplacée par un plugin ou un filtre
+dispatcher.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="network">
+<h2>Network<a class="headerlink" href="#network" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="request">
+<h3>Request<a class="headerlink" href="#request" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CakeRequest</span></code> a été renommé en <code class="xref php php-class docutils literal"><span class="pre">Cake\Network\Request</span></code>.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::port()</span></code> a été ajoutée.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::scheme()</span></code> a été ajoutée.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::cookie()</span></code> a été ajoutée.</li>
+<li><code class="xref php php-attr docutils literal"><span class="pre">Cake\Network\Request::$trustProxy</span></code> a été ajoutée. Cela rend
+la chose plus facile pour mettre les applications CakePHP derrière les
+load balancers.</li>
+<li><code class="xref php php-attr docutils literal"><span class="pre">Cake\Network\Request::$data</span></code> n&#8217;est plus fusionnée avec la clé
+de données préfixés, puisque ce préfixe a été retiré.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::env()</span></code> a été ajoutée.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::acceptLanguage()</span></code> a été changée d&#8217;une
+méthode static en non static.</li>
+<li>Le détecteur de Request pour &#8220;mobile&#8221; a été retiré du cœur. A la place
+le template de app ajoute des détecteurs pour &#8220;mobile&#8221; et &#8220;tablet&#8221; en
+utilisant la lib <code class="docutils literal"><span class="pre">MobileDetect</span></code>.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">onlyAllow()</span></code> a été renommée en <code class="docutils literal"><span class="pre">allowMethod()</span></code> et n&#8217;accepte
+plus &#8220;var args&#8221;. Tous les noms de méthode doivent être passés en premier
+argument, soit en chaîne de caractère, soit en tableau de chaînes.</li>
+</ul>
+</div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Le mapping du mimetype <code class="docutils literal"><span class="pre">text/plain</span></code> en extension <code class="docutils literal"><span class="pre">csv</span></code> a été retiré.
+En conséquence, <code class="xref php php-class docutils literal"><span class="pre">Cake\Controller\Component\RequestHandlerComponent</span></code>
+ne définit pas l&#8217;extension en <code class="docutils literal"><span class="pre">csv</span></code> si l&#8217;en-tête <code class="docutils literal"><span class="pre">Accept</span></code> contient le
+mimetype <code class="docutils literal"><span class="pre">text/plain</span></code> ce qui était une nuisance habituelle lors de la
+réception d&#8217;une requête jQuery XHR.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="sessions">
+<h2>Sessions<a class="headerlink" href="#sessions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La classe session n&#8217;est plus statique, à la place, la session est accessible
+à travers l&#8217;objet request. Consultez la documentation
+<a class="reference internal" href="../development/sessions.html"><span class="doc">Sessions</span></a> sur l&#8217;utilisation de l&#8217;objet session.</p>
+<ul class="simple">
+<li><code class="xref php php-class docutils literal"><span class="pre">Cake\Network\Session</span></code> et les classes de session liées ont été
+déplacées dans le namespace <code class="docutils literal"><span class="pre">Cake\Network</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">SessionHandlerInterface</span></code> a été retirée en faveur de celui fourni par PHP.</li>
+<li>La propriété <code class="docutils literal"><span class="pre">Session::$requestCountdown</span></code> a été retirée.</li>
+<li>La fonctionnalité de session checkAgent a été retirée. Elle entrainait un
+certain nombre de bugs quand le chrome frame, et flash player sont impliqués.</li>
+<li>Le nom de la table de la base de données des sessions est maintenant
+<code class="docutils literal"><span class="pre">sessions</span></code> plutôt que <code class="docutils literal"><span class="pre">cake_sessions</span></code>.</li>
+<li>Le timeout du cookie de session est automatiquement mis à jour en tandem avec
+le timeout dans les données de session.</li>
+<li>Le chemin pour le cookie de session est maintenant par défaut le chemin de
+l&#8217;application plutôt que &#8220;/&#8221;.
+De plus, une nouvelle variable de configuration <code class="docutils literal"><span class="pre">Session.cookiePath</span></code> a été
+ajoutée pour personnaliser le chemin du cookie.</li>
+<li>Une nouvelle méthode <code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Session::consume()</span></code> a été ajoutée
+pour permettre de lire et supprimer les données de session en une seule étape.</li>
+</ul>
+</div>
+<div class="section" id="network-http">
+<h2>Network\Http<a class="headerlink" href="#network-http" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HttpSocket</span></code> est maintenant <code class="xref php php-class docutils literal"><span class="pre">Cake\Network\Http\Client</span></code>.</li>
+<li>HttpClient a été réécrit de zéro. Il a une API plus simple/facile à utiliser,
+le support pour les nouveaux systèmes d&#8217;authentification comme OAuth, et les
+uploads de fichier.
+Il utilise les APIs de PHP en flux donc il n&#8217;est pas nécessaire d&#8217;avoir cURL.
+Regardez la documentation <a class="reference internal" href="../core-libraries/httpclient.html"><span class="doc">Client Http</span></a> pour plus
+d&#8217;informations.</li>
+</ul>
+</div>
+<div class="section" id="network-email">
+<h2>Network\Email<a class="headerlink" href="#network-email" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Email\Email::config()</span></code> est utilisée maintenant pour
+définir les profiles de configuration. Ceci remplace les classes
+<code class="docutils literal"><span class="pre">EmailConfig</span></code> des précédentes versions.
+versions.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Email\Email::profile()</span></code> remplace <code class="docutils literal"><span class="pre">config()</span></code> comme
+façon de modifier les options de configuration par instance.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Email\Email::drop()</span></code> a été ajoutée pour permettre
+le retrait de la configuration d&#8217;email.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Email\Email::configTransport()</span></code> a été ajoutée pour
+permettre la définition de configurations de transport. Ce changement retire
+les options de transport des profiles de livraison et vous permet de
+réutiliser les transports à travers les profiles d&#8217;email.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Email\Email::dropTransport()</span></code> a été ajoutée pour
+permettre le retrait de la configuration du transport.</li>
+</ul>
+</div>
+<div class="section" id="controller">
+<h2>Controller<a class="headerlink" href="#controller" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="id2">
+<h3>Controller<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les propriétés <code class="docutils literal"><span class="pre">$helpers</span></code>, <code class="docutils literal"><span class="pre">$components</span></code> sont maintenant
+fusionnées avec <strong>toutes</strong> les classes parentes, pas seulement
+<code class="docutils literal"><span class="pre">AppController</span></code> et le app controller du plugin. Les propriétés sont
+fusionnées de manière différente par rapport à aujourd&#8217;hui. Plutôt que
+d&#8217;avoir comme actuellement les configurations de toutes les classes
+fusionnées, la configuration définie dans la classe enfante sera utilisée.
+Cela signifie que si vous avez une configuration définie dans votre
+AppController, et quelques configurations définies dans une sous-classe,
+seule la configuration de la sous-classe sera utilisée.</li>
+<li><code class="docutils literal"><span class="pre">Controller::httpCodes()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Response::httpCodes()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Controller::disableCache()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Response::disableCache()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Controller::flash()</span></code> a été retirée. Cette méthode était rarement utilisée
+dans les vraies applications et ne n&#8217;avait plus aucun intérêt.</li>
+<li><code class="docutils literal"><span class="pre">Controller::validate()</span></code> et <code class="docutils literal"><span class="pre">Controller::validationErrors()</span></code> ont été
+retirées. Il y avait d&#8217;autres méthodes laissées depuis l&#8217;époque de 1.x,
+où les préoccupations des models + controllers étaient bien plus étroitement
+liées.</li>
+<li><code class="docutils literal"><span class="pre">Controller::loadModel()</span></code> charge maintenant les objets table.</li>
+<li>La propriété <code class="docutils literal"><span class="pre">Controller::$scaffold</span></code> a été retirée. Le scaffolding dynamique
+a été retiré du cœur de CakePHP. Un plugin de scaffolding appelé CRUD se
+trouve ici: <a class="reference external" href="https://github.com/FriendsOfCake/crud">https://github.com/FriendsOfCake/crud</a></li>
+<li>La propriété <code class="docutils literal"><span class="pre">Controller::$ext</span></code> a été retirée. Vous devez maintenant étendre
+et surcharger la propriété <code class="docutils literal"><span class="pre">View::$_ext</span></code> si vous voulez utiliser une
+extension de fichier de view autre que celle par défaut.</li>
+<li>La propriété <code class="docutils literal"><span class="pre">Controller::$Components</span></code> a été retirée et remplacée par
+<code class="docutils literal"><span class="pre">_components</span></code>. Si vous avez besoin de charger les components à la volée,
+vous devez utiliser <code class="docutils literal"><span class="pre">$this-&gt;loadComponent()</span></code> dans votre controller.</li>
+<li>La signature de <a class="reference internal" href="../controllers.html#Cake\Controller\Controller::redirect" title="Cake\Controller\Controller::redirect"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Controller\Controller::redirect()</span></code></a> a été
+changée en <code class="docutils literal"><span class="pre">Controller::redirect(string|array</span> <span class="pre">$url,</span> <span class="pre">int</span> <span class="pre">$status</span> <span class="pre">=</span> <span class="pre">null)</span></code>.
+Le 3ème argument <code class="docutils literal"><span class="pre">$exit</span></code> a été retiré. La méthode ne peut plus envoyer
+la réponse et sortir du script, à la place elle retourne une instance de
+<code class="docutils literal"><span class="pre">Response</span></code> avec les en-têtes appropriés définis.</li>
+<li>Les propriétés magiques <code class="docutils literal"><span class="pre">base</span></code>, <code class="docutils literal"><span class="pre">webroot</span></code>, <code class="docutils literal"><span class="pre">here</span></code>, <code class="docutils literal"><span class="pre">data</span></code>,
+<code class="docutils literal"><span class="pre">action</span></code> et <code class="docutils literal"><span class="pre">params</span></code> ont été retirées. Vous pouvez accéder à toutes ces
+propriétés dans <code class="docutils literal"><span class="pre">$this-&gt;request</span></code> à la place.</li>
+<li>Les méthodes préfixées avec underscore des controllers comme <code class="docutils literal"><span class="pre">_someMethod()</span></code>
+ne sont plus considérées comme des méthodes privées. Utilisez les bons mots
+clés de visibilité à la place. Seules les méthodes publiques peuvent être
+utilisées comme action de controller.</li>
+</ul>
+</div>
+<div class="section" id="scaffold-retire">
+<h3>Scaffold retiré<a class="headerlink" href="#scaffold-retire" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le scaffolding dynamique dans CakePHP a été retiré du cœur de CakePHP. Il
+était peu fréquemment utilisé, et n&#8217;avait jamais pour intention d&#8217;être
+utilisé en mode production. Un plugin de scaffolding appelé CRUD se trouve ici:
+<a class="reference external" href="https://github.com/FriendsOfCake/crud">https://github.com/FriendsOfCake/crud</a></p>
+</div>
+<div class="section" id="componentcollection-remplacee">
+<h3>ComponentCollection remplacée<a class="headerlink" href="#componentcollection-remplacee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Cette classe a été remplacée en <code class="xref php php-class docutils literal"><span class="pre">Cake\Controller\ComponentRegistry</span></code>.
+Regardez la section sur <a class="reference internal" href="../core-libraries/registry-objects.html"><span class="doc">Objets Registry</span></a> pour plus
+d&#8217;informations sur les fonctionnalités fournies par cette nouvelle classe. Vous
+pouvez utiliser <code class="docutils literal"><span class="pre">cake</span> <span class="pre">upgrade</span> <span class="pre">rename_collections</span></code> pour vous aider à mettre
+à niveau votre code.</p>
+</div>
+<div class="section" id="component">
+<h3>Component<a class="headerlink" href="#component" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>La propriété <code class="docutils literal"><span class="pre">_Collection</span></code> est maintenant <code class="docutils literal"><span class="pre">_registry</span></code>. Elle contient
+maintenant une instance de <code class="xref php php-class docutils literal"><span class="pre">Cake\Controller\ComponentRegistry</span></code>.</li>
+<li>Tous les components doivent maintenant utiliser la méthode <code class="docutils literal"><span class="pre">config()</span></code> pour
+récupérer/définir la configuration.</li>
+<li>La configuration par défaut pour les components doit être définie dans la
+propriété <code class="docutils literal"><span class="pre">$_defaultConfig</span></code>. Cette propriété est automatiquement fusionnée
+avec toute configuration fournie au constructeur.</li>
+<li>Les options de configuration ne sont plus définies en propriété public.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">Component::initialize()</span></code> n&#8217;est plus un listener d&#8217;event.
+A la place, c&#8217;est un hook post-constructeur comme <code class="docutils literal"><span class="pre">Table::initialize()</span></code> et
+<code class="docutils literal"><span class="pre">Controller::initialize()</span></code>. La nouvelle méthode
+<code class="docutils literal"><span class="pre">Component::beforeFilter()</span></code> est liée au même évènement que
+<code class="docutils literal"><span class="pre">Component::initialize()</span></code>. La méthode initialize devrait avoir la signature
+suivante <code class="docutils literal"><span class="pre">initialize(array</span> <span class="pre">$config)</span></code>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="controller-components">
+<h2>Controller\Components<a class="headerlink" href="#controller-components" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="cookiecomponent">
+<h3>CookieComponent<a class="headerlink" href="#cookiecomponent" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Utilise <code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::cookie()</span></code> pour lire les données de
+cookie, ceci facilite les tests, et permet de définir les cookies pour
+ControllerTestCase.</li>
+<li>Les Cookies chiffrés dans les versions précédentes de CakePHP utilisant la
+méthode <code class="docutils literal"><span class="pre">cipher()</span></code> sont maintenant illisible parce que <code class="docutils literal"><span class="pre">Security::cipher()</span></code>
+a été retirée. Vous aurez besoin de re-chiffrer les cookies avec la méthode
+<code class="docutils literal"><span class="pre">rijndael()</span></code> ou <code class="docutils literal"><span class="pre">aes()</span></code> avant mise à jour.</li>
+<li><code class="docutils literal"><span class="pre">CookieComponent::type()</span></code> a été retirée et remplacée par la donnée de
+configuration accessible avec <code class="docutils literal"><span class="pre">config()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">write()</span></code> ne prend plus de paramètres <code class="docutils literal"><span class="pre">encryption</span></code> ou <code class="docutils literal"><span class="pre">expires</span></code>. Ces
+deux-là sont maintenant gérés avec des données de config. Consultez
+<a class="reference internal" href="../controllers/components/cookie.html"><span class="doc">CookieComponent</span></a> pour plus d&#8217;informations.</li>
+<li>Le chemin pour les cookies sont maintenant par défaut le chemin de l&#8217;app
+plutôt que &#8220;/&#8221;.</li>
+</ul>
+</div>
+<div class="section" id="authcomponent">
+<h3>AuthComponent<a class="headerlink" href="#authcomponent" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Default</span></code> est maintenant le hasher de mot de passe par défaut utilisé par
+les classes d&#8217;authentification.
+Si vous voulez continuer à utiliser le hashage SHA1 utilisé dans 2.x utilisez
+<code class="docutils literal"><span class="pre">'passwordHasher'</span> <span class="pre">=&gt;</span> <span class="pre">'Weak'</span></code> dans votre configuration d&#8217;authenticator.</li>
+<li>Un nouveau <code class="docutils literal"><span class="pre">FallbackPasswordHasher</span></code> a été ajouté pour aider les utilisateurs
+à migrer des vieux mots de passe d&#8217;un algorithm à un autre. Consultez la
+documentation d&#8217;AuthComponent pour plus d&#8217;informations.</li>
+<li>La classe <code class="docutils literal"><span class="pre">BlowfishAuthenticate</span></code> a été retirée. Utilisez juste
+<code class="docutils literal"><span class="pre">FormAuthenticate</span></code>.</li>
+<li>La classe <code class="docutils literal"><span class="pre">BlowfishPasswordHasher</span></code> a été retirée. Utilisez
+<code class="docutils literal"><span class="pre">DefaultPasswordHasher</span></code> à la place.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">loggedIn()</span></code> a été retirée. Utilisez <code class="docutils literal"><span class="pre">user()</span></code> à la place.</li>
+<li>Les options de configuration ne sont plus définies en propriété public.</li>
+<li>Les méthodes <code class="docutils literal"><span class="pre">allow()</span></code> et <code class="docutils literal"><span class="pre">deny()</span></code> n&#8217;acceptent plus &#8220;var args&#8221;. Tous les
+noms de méthode ont besoin d&#8217;être passés en premier argument, soit en chaîne,
+soit en tableau de chaînes.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">login()</span></code> a été retirée et remplacée par <code class="docutils literal"><span class="pre">setUser()</span></code>.
+Pour connecter un utilisateur, vous devez maintenant appeler <code class="docutils literal"><span class="pre">identify()</span></code>
+qui retourne les informations d&#8217;utilisateur en cas de succès d&#8217;identification
+et utilise ensuite <code class="docutils literal"><span class="pre">setUser()</span></code> pour sauvegarder les informations de session
+pour la persistance au cours des différentes requêtes.</li>
+<li><code class="docutils literal"><span class="pre">BaseAuthenticate::_password()</span></code> a été retirée. Utilisez <code class="docutils literal"><span class="pre">PasswordHasher</span></code>
+à la place.</li>
+<li><code class="docutils literal"><span class="pre">BaseAuthenticate::logout()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">AuthComponent</span></code> lance maintenant deux événements``Auth.afterIdentify`` et
+<code class="docutils literal"><span class="pre">Auth.logout</span></code> respectivement après qu&#8217;un utilisateur a été identifié et
+avant qu&#8217;un utilisateur ne soit déconnecté. Vous pouvez définir une fonction
+de callback pour ces événements en retournant un tableau de mapping depuis la
+méthode <code class="docutils literal"><span class="pre">implementedEvents()</span></code> de votre classe d&#8217;authentification.</li>
+</ul>
+<p>Les classes liées à ACL ont été déplacées dans un plugin séparé. Les hashers
+de mot de passe, l&#8217;Authentification et les fournisseurs d&#8217;Authorisation ont
+été déplacés vers le namespace <code class="docutils literal"><span class="pre">\Cake\Auth</span></code>. Vous devez aussi déplacer vos
+providers et les hashers dans le namespace <code class="docutils literal"><span class="pre">App\Auth</span></code>.</p>
+</div>
+<div class="section" id="requesthandlercomponent">
+<h3>RequestHandlerComponent<a class="headerlink" href="#requesthandlercomponent" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les méthodes suivantes ont été retirées du component RequestHandler::
+<code class="docutils literal"><span class="pre">isAjax()</span></code>, <code class="docutils literal"><span class="pre">isFlash()</span></code>, <code class="docutils literal"><span class="pre">isSSL()</span></code>, <code class="docutils literal"><span class="pre">isPut()</span></code>, <code class="docutils literal"><span class="pre">isPost()</span></code>,
+<code class="docutils literal"><span class="pre">isGet()</span></code>, <code class="docutils literal"><span class="pre">isDelete()</span></code>. Utilisez la méthode
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::is()</span></code> à la place avec l&#8217;argument pertinent.</li>
+<li><code class="docutils literal"><span class="pre">RequestHandler::setContent()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Response::type()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">RequestHandler::getReferer()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::referer()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">RequestHandler::getClientIP()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::clientIp()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">RequestHandler::mapType()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Response::mapType()</span></code> à la place.</li>
+<li>Les options de configuration ne sont plus définies en propriété public.</li>
+</ul>
+</div>
+<div class="section" id="securitycomponent">
+<h3>SecurityComponent<a class="headerlink" href="#securitycomponent" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les méthodes suivantes et leurs propriétés liées ont été retirées du
+component Security:
+<code class="docutils literal"><span class="pre">requirePost()</span></code>, <code class="docutils literal"><span class="pre">requireGet()</span></code>, <code class="docutils literal"><span class="pre">requirePut()</span></code>, <code class="docutils literal"><span class="pre">requireDelete()</span></code>.
+Utilisez <code class="xref php php-meth docutils literal"><span class="pre">Cake\Network\Request::onlyAllow()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">SecurityComponent::$disabledFields()</span></code> a été retirée, utilisez
+<code class="docutils literal"><span class="pre">SecurityComponent::$unlockedFields()</span></code>.</li>
+<li>Les fonctionnalités liées au CSRF dans SecurityComponent ont été extraites et
+déplacées dans un CsrfComponent séparé. Ceci vous permet d&#8217;utiliser une
+protection CSRF sans avoir à utiliser la prévention de falsification de
+formulaire.</li>
+<li>Les options de Configuration ne sont plus définies comme des propriétés
+publiques.</li>
+<li>Les méthodes <code class="docutils literal"><span class="pre">requireAuth()</span></code> et <code class="docutils literal"><span class="pre">requireSecure()</span></code> n&#8217;acceptent plus
+&#8220;var args&#8221;. Tous les noms de méthode ont besoin d&#8217;être passés en premier
+argument, soit en chaîne, soit en tableau de chaînes.</li>
+</ul>
+</div>
+<div class="section" id="sessioncomponent">
+<h3>SessionComponent<a class="headerlink" href="#sessioncomponent" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">SessionComponent::setFlash()</span></code> est déprécié. Vous devez utiliser
+<a class="reference internal" href="../controllers/components/flash.html"><span class="doc">FlashComponent</span></a> à la place.</li>
+</ul>
+</div>
+<div class="section" id="error">
+<h3>Error<a class="headerlink" href="#error" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les ExceptionRenderers personnalisées doivent maintenant soit retourner un objet
+<code class="docutils literal"><span class="pre">Cake\\Network\\Response</span></code>, soit une chaîne de caractère lors du rendu des
+erreurs. Cela signifie que toutes les méthodes gérant des exceptions spécifiques
+doivent retourner une réponse ou une valeur.</p>
+</div>
+</div>
+<div class="section" id="model">
+<h2>Model<a class="headerlink" href="#model" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La couche Model de 2.x a été entièrement réécrite et remplacée. Vous devriez
+regarder le <a class="reference internal" href="orm-migration.html"><span class="doc">Guide de Migration du Nouvel ORM</span></a>
+pour plus d&#8217;informations sur la façon d&#8217;utiliser le nouvel ORM.</p>
+<ul class="simple">
+<li>La classe <code class="docutils literal"><span class="pre">Model</span></code> a été retirée.</li>
+<li>La classe <code class="docutils literal"><span class="pre">BehaviorCollection</span></code> a été retirée.</li>
+<li>La classe <code class="docutils literal"><span class="pre">DboSource</span></code> a été retirée.</li>
+<li>La classe <code class="docutils literal"><span class="pre">Datasource</span></code> a été retirée.</li>
+<li>Les différentes sources de données des classes ont été retirées.</li>
+</ul>
+<div class="section" id="connectionmanager">
+<h3>ConnectionManager<a class="headerlink" href="#connectionmanager" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>ConnectionManager a été déplacée dans le namespace <code class="docutils literal"><span class="pre">Cake\\Datasource</span></code>.</li>
+<li>ConnectionManager a eu les méthodes suivantes retirées:<ul>
+<li><code class="docutils literal"><span class="pre">sourceList</span></code></li>
+<li><code class="docutils literal"><span class="pre">getSourceName</span></code></li>
+<li><code class="docutils literal"><span class="pre">loadDataSource</span></code></li>
+<li><code class="docutils literal"><span class="pre">enumConnectionObjects</span></code></li>
+</ul>
+</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Database\ConnectionManager::config()</span></code> a été ajoutée et est
+maintenant la seule façon de configurer les connections.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Database\ConnectionManager::get()</span></code> a été ajoutée. Elle
+remplace <code class="docutils literal"><span class="pre">getDataSource()</span></code>.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Database\ConnectionManager::configured()</span></code> a été ajoutée.
+Celle-ci avec <code class="docutils literal"><span class="pre">config()</span></code> remplace <code class="docutils literal"><span class="pre">sourceList()</span></code> &amp;
+<code class="docutils literal"><span class="pre">enumConnectionObjects()</span></code> avec une API plus standard et cohérente.</li>
+<li><code class="docutils literal"><span class="pre">ConnectionManager::create()</span></code> a été retirée.
+Il peut être remplacé par <code class="docutils literal"><span class="pre">config($name,</span> <span class="pre">$config)</span></code> et <code class="docutils literal"><span class="pre">get($name)</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="behaviors">
+<h3>Behaviors<a class="headerlink" href="#behaviors" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les méthodes préfixées avec underscore des behaviors comme <code class="docutils literal"><span class="pre">_someMethod()</span></code>
+ne sont plus considérées comme des méthodes privées. Utilisez les bons mots
+clés à la place.</li>
+</ul>
+</div>
+<div class="section" id="treebehavior">
+<h3>TreeBehavior<a class="headerlink" href="#treebehavior" title="Lien permanent vers ce titre">¶</a></h3>
+<p>TreeBehavior a été complètement réécrit pour utiliser le nouvel ORM. Bien qu&#8217;il
+fonctionne de la même manière que dans 2.x, certaines méthodes ont été renommées
+ou retirées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TreeBehavior::children()</span></code> est maintenant un finder personnalisé <code class="docutils literal"><span class="pre">find('children')</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">TreeBehavior::generateTreeList()</span></code> est maintenant un finder personnalisé <code class="docutils literal"><span class="pre">find('treeList')</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">TreeBehavior::getParentNode()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">TreeBehavior::getPath()</span></code> est maintenant un finder personnalisé <code class="docutils literal"><span class="pre">find('path')</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">TreeBehavior::reorder()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">TreeBehavior::verify()</span></code> a été retirée.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="testsuite">
+<h2>TestSuite<a class="headerlink" href="#testsuite" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="testcase">
+<h3>TestCase<a class="headerlink" href="#testcase" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">_normalizePath()</span></code> a été ajoutée pour permettre aux tests de comparaison
+de chemin de se lancer pour tous les systèmes d&#8217;exploitation selon la
+configuration de leur DS (<code class="docutils literal"><span class="pre">\</span></code> dans Windows vs <code class="docutils literal"><span class="pre">/</span></code> dans UNIX, par exemple).</li>
+</ul>
+<p>Les méthodes d&#8217;assertion suivantes ont été retirées puisque cela faisait
+longtemps qu&#8217;elles étaient dépréciées et remplacées par leurs nouvelles
+homologues de PHPUnit:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">assertEqual()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertEquals()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertNotEqual()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertNotEquals()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertIdentical()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertSame()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertNotIdentical()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertNotSame()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertPattern()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertRegExp()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertNoPattern()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertNotRegExp()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertReference()</span></code> if favor of <code class="docutils literal"><span class="pre">assertSame()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertIsA()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertInstanceOf()</span></code></li>
+</ul>
+<p>Notez que l&#8217;ordre des paramètres de certaines méthodes a été changé, par ex:
+<code class="docutils literal"><span class="pre">assertEqual($is,</span> <span class="pre">$expected)</span></code> devra maintenant être
+<code class="docutils literal"><span class="pre">assertEquals($expected,</span> <span class="pre">$is)</span></code>.</p>
+<p>Les méthodes d&#8217;assertion suivantes ont été dépréciées et seront retirées dans
+le futur:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">assertWithinMargin()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertWithinRange()</span></code></li>
+<li><code class="docutils literal"><span class="pre">assertTags()</span></code> en faveur de <code class="docutils literal"><span class="pre">assertHtml()</span></code></li>
+</ul>
+<p>Les deux méthodes de remplacement changent aussi l&#8217;ordre des arguments pour
+avoir une méthode d&#8217;API assert cohérente avec <code class="docutils literal"><span class="pre">$expected</span></code> en premier argument.</p>
+<p>Les méthodes d&#8217;assertion suivantes ont été ajoutées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">assertNotWithinRange()</span></code> comme contrepartie de <code class="docutils literal"><span class="pre">assertWithinRange()</span></code></li>
+</ul>
+</div>
+</div>
+<div class="section" id="view">
+<h2>View<a class="headerlink" href="#view" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="les-themes-sont-maintenant-purement-des-plugins">
+<h3>Les Themes sont maintenant purement des Plugins<a class="headerlink" href="#les-themes-sont-maintenant-purement-des-plugins" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Avoir des themes et des plugins comme façon de créer des composants
+d&#8217;applications modulaires nous semblait limité et cela apportait de la
+confusion. Dans CakePHP 3.0, les themes ne se trouvent plus <strong>dans</strong>
+l&#8217;application. A la place, ce sont des plugins autonomes. Cela résout certains
+problèmes liés aux themes:</p>
+<ul class="simple">
+<li>Vous ne pouviez pas mettre les themes <em>dans</em> les plugins.</li>
+<li>Les Themes ne pouvaient pas fournir de helpers, ou de classes de vue
+personnalisée.</li>
+</ul>
+<p>Ces deux problèmes sont résolus en convertissant les themes en plugins.</p>
+</div>
+<div class="section" id="les-dossiers-de-view-renommes">
+<h3>Les Dossiers de View Renommés<a class="headerlink" href="#les-dossiers-de-view-renommes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les dossiers contenant les fichiers de vue vont maintenant dans <strong>src/Template</strong>
+à la place de <strong>src/View</strong>.
+Ceci a été fait pour séparer les fichiers de vue des fichiers contenant des
+classes php (par ex les classes Helpers et View).</p>
+<p>Les dossiers de View suivants ont été renommés pour éviter les collisions
+avec les noms de controller:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Layouts</span></code> est maintenant <code class="docutils literal"><span class="pre">Layout</span></code></li>
+<li><code class="docutils literal"><span class="pre">Elements</span></code> est maintenant <code class="docutils literal"><span class="pre">Element</span></code></li>
+<li><code class="docutils literal"><span class="pre">Errors</span></code> est maintenant <code class="docutils literal"><span class="pre">Error</span></code></li>
+<li><code class="docutils literal"><span class="pre">Emails</span></code> est maintenant <code class="docutils literal"><span class="pre">Email</span></code> (idem pour <code class="docutils literal"><span class="pre">Email</span></code> dans <code class="docutils literal"><span class="pre">Layout</span></code>)</li>
+</ul>
+</div>
+<div class="section" id="helpercollection-remplacee">
+<h3>HelperCollection remplacée<a class="headerlink" href="#helpercollection-remplacee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Cette classe a été renommée en <code class="xref php php-class docutils literal"><span class="pre">Cake\View\HelperRegistry</span></code>.
+Regardez la section sur <a class="reference internal" href="../core-libraries/registry-objects.html"><span class="doc">Objets Registry</span></a> pour plus
+d&#8217;informations sur les fonctionnalités fournies par la nouvelle classe.
+Vous pouvez utiliser <code class="docutils literal"><span class="pre">cake</span> <span class="pre">upgrade</span> <span class="pre">rename_collections</span></code> pour vous aider
+à mettre à niveau votre code.</p>
+</div>
+<div class="section" id="view-class">
+<h3>View Class<a class="headerlink" href="#view-class" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>La clé <code class="docutils literal"><span class="pre">plugin</span></code> a été retirée de l&#8217;argument <code class="docutils literal"><span class="pre">$options</span></code> de
+<a class="reference internal" href="../views.html#Cake\View\View::element" title="Cake\View\View::element"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\View::element()</span></code></a>. Spécifiez le nom de l&#8217;element
+comme <code class="docutils literal"><span class="pre">SomePlugin.element_name</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">View::getVar()</span></code> a été retirée, utilisez <code class="xref php php-meth docutils literal"><span class="pre">Cake\View\View::get()</span></code>
+à la place.</li>
+<li><code class="docutils literal"><span class="pre">View::$ext</span></code> a été retirée et à la place une propriété protected
+<code class="docutils literal"><span class="pre">View::$_ext</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">View::addScript()</span></code> a été retirée. Utilisez <a class="reference internal" href="../views.html#view-blocks"><span class="std std-ref">Utiliser les Blocks de Vues</span></a> à la place.</li>
+<li>Les propriétés magiques <code class="docutils literal"><span class="pre">base</span></code>, <code class="docutils literal"><span class="pre">webroot</span></code>, <code class="docutils literal"><span class="pre">here</span></code>, <code class="docutils literal"><span class="pre">data</span></code>,
+<code class="docutils literal"><span class="pre">action</span></code> et <code class="docutils literal"><span class="pre">params</span></code> ont été retirées. Vous pouvez accéder à toutes ces
+propriétés dans <code class="docutils literal"><span class="pre">$this-&gt;request</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">View::start()</span></code> n&#8217;ajoute plus à un block existant. A la place, il va
+écraser le contenu du block quand end est appelé. Si vous avez besoin de
+combiner les contenus de block, vous devrez récupérer le contenu du block lors
+de l&#8217;appel de start une deuxième fois ou utiliser le mode de capture
+<code class="docutils literal"><span class="pre">append()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">View::prepend()</span></code> n&#8217;a plus de mode de capture.</li>
+<li><code class="docutils literal"><span class="pre">View::startIfEmpty()</span></code> a été retirée. maintenant que start() écrase toujours
+startIfEmpty n&#8217;a plus d&#8217;utilité.</li>
+<li>La propriété <code class="docutils literal"><span class="pre">View::$Helpers</span></code> a été retirée et remplacée par
+<code class="docutils literal"><span class="pre">_helpers</span></code>. Si vous avez besoin de charger les helpers à la volée, vous
+devrez utiliser <code class="docutils literal"><span class="pre">$this-&gt;addHelper()</span></code> dans vos fichiers de view.</li>
+<li><code class="docutils literal"><span class="pre">View</span></code> lancera des <code class="docutils literal"><span class="pre">Cake\View\Exception\MissingTemplateException</span></code> lorsque
+des templates sont au lieu de <code class="docutils literal"><span class="pre">MissingViewException</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="viewblock">
+<h3>ViewBlock<a class="headerlink" href="#viewblock" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ViewBlock::append()</span></code> a été retirée, utilisez
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\ViewViewBlock::concat()</span></code> à la place. Cependant,
+<code class="docutils literal"><span class="pre">View::append()</span></code> existe encore.</li>
+</ul>
+</div>
+<div class="section" id="jsonview">
+<h3>JsonView<a class="headerlink" href="#jsonview" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Par défaut les données JSON vont maintenant avoir des entités HTML encodées.
+Ceci empêche les problèmes possible de XSS quand le contenu de la view
+JSON est intégrée dans les fichiers HTML.</li>
+<li><code class="xref php php-class docutils literal"><span class="pre">Cake\View\JsonView</span></code> supporte maintenant la variable de view
+<code class="docutils literal"><span class="pre">_jsonOptions</span></code>. Ceci vous permet de configurer le masque utilisé lors de la
+génération de JSON.</li>
+</ul>
+</div>
+<div class="section" id="xmlview">
+<h3>XmlView<a class="headerlink" href="#xmlview" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="xref php php-class docutils literal"><span class="pre">Cake\View\XmlView</span></code> supporte maintenant la variable de view
+<code class="docutils literal"><span class="pre">_xmlOptions</span></code>. Ceci vous permet de configurer les options utilisées lors de
+la génération de XML.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="view-helper">
+<h2>View\Helper<a class="headerlink" href="#view-helper" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>La propriété <code class="docutils literal"><span class="pre">$settings</span></code> est maintenant appelée <code class="docutils literal"><span class="pre">$_config</span></code> et peut être
+accessible via la méthode <code class="docutils literal"><span class="pre">config()</span></code>.</li>
+<li>Les options de configuration ne sont plus définies en propriété public.</li>
+<li><code class="docutils literal"><span class="pre">Helper::clean()</span></code> a été retirée. Il n&#8217;était jamais assez
+robuste pour complètement empêcher XSS. A la place, vous devez échapper
+le contenu avec <a class="reference internal" href="../core-libraries/global-constants-and-functions.html#h" title="h"><code class="xref php php-func docutils literal"><span class="pre">h</span></code></a> ou utiliser une librairie dédiée comme
+HTMLPurifier.</li>
+<li><code class="docutils literal"><span class="pre">Helper::output()</span></code> a été retirée. Cette méthode a été
+dépréciée dans 2.x.</li>
+<li>Les méthodes <code class="docutils literal"><span class="pre">Helper::webroot()</span></code>, <code class="docutils literal"><span class="pre">Helper::url()</span></code>, <code class="docutils literal"><span class="pre">Helper::assetUrl()</span></code>,
+<code class="docutils literal"><span class="pre">Helper::assetTimestamp()</span></code> ont été déplacées  vers le nouveau
+helper <a class="reference internal" href="../views/helpers/url.html#Cake\View\Helper\UrlHelper" title="Cake\View\Helper\UrlHelper"><code class="xref php php-class docutils literal"><span class="pre">Cake\View\Helper\UrlHelper</span></code></a>. <code class="docutils literal"><span class="pre">Helper::url()</span></code> est
+maintenant disponible dans <a class="reference internal" href="../views/helpers/url.html#Cake\View\Helper\UrlHelper::build" title="Cake\View\Helper\UrlHelper::build"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\Helper\UrlHelper::build()</span></code></a>.</li>
+<li>Les accesseurs magiques pour les propriétés dépréciées ont été retirés. Les
+propriétés suivantes ont maintenant besoin d&#8217;être accédées à partir de l&#8217;objet
+request:<ul>
+<li>base</li>
+<li>here</li>
+<li>webroot</li>
+<li>data</li>
+<li>action</li>
+<li>params</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="helper">
+<h3>Helper<a class="headerlink" href="#helper" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les méthodes suivantes de Helper ont été retirées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Helper::setEntity()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::entity()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::model()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::field()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::value()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::_name()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::_initInputField()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::_selectedArray()</span></code></li>
+</ul>
+<p>Ces méthodes étaient des parties uniquement utilisées par FormHelper, et
+faisaient partie des continuelles fonctionnalités des champs qui devenaient
+problématiques au fil du temps. FormHelper ne s&#8217;appuie plus sur ces méthodes
+et leur complexité n&#8217;est plus nécessaire.</p>
+<p>Les méthodes suivantes ont été retirées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Helper::_parseAttributes()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Helper::_formatAttribute()</span></code></li>
+</ul>
+<p>Ces méthodes se trouvent dans la classe <code class="docutils literal"><span class="pre">StringTemplate</span></code> que les helpers
+utilisent fréquemment. Regardez <code class="docutils literal"><span class="pre">StringTemplateTrait</span></code> pour intégrer les
+templates de chaîne dans vos propres helpers.</p>
+</div>
+<div class="section" id="formhelper">
+<h3>FormHelper<a class="headerlink" href="#formhelper" title="Lien permanent vers ce titre">¶</a></h3>
+<p>FormHelper a été entièrement réécrite pour 3.0. Il amène quelques grands
+changements:</p>
+<ul class="simple">
+<li>FormHelper fonctionne avec le nouvel ORM. Mais il a un système extensible pour
+être intégré avec d&#8217;autres ORMs ou sources de données.</li>
+<li>FormHelper dispose d&#8217;une fonctionnalité de système de widget extensible qui
+vous permet de créer de nouveaux widgets d&#8217;input personnalisés et d&#8217;améliorer
+ceux intégrés.</li>
+<li>Les templates de chaîne sont un élément fondateur du helper. Au lieu de
+tableaux imbriqués ensemble partout, la plupart du HTML que FormHelper génère
+peut être personnalisé dans un endroit central en utilisant les ensembles de
+template.</li>
+</ul>
+<p>En plus de ces grands changements, quelques plus petits changements finaux
+ont été aussi faits. Ces changements devraient aider le streamline HTML que le
+FormHelper génère et réduire les problèmes que les gens ont eu dans le passé:</p>
+<ul class="simple">
+<li>Le prefix <code class="docutils literal"><span class="pre">data[</span></code> a été retiré de tous les inputs générés. Le prefix n&#8217;a
+plus de réelle utilité.</li>
+<li>Les diverses méthodes d&#8217;input autonomes comme <code class="docutils literal"><span class="pre">text()</span></code>, <code class="docutils literal"><span class="pre">select()</span></code> et
+autres ne génèrent plus d&#8217;attributs id.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">inputDefaults</span></code> a été retirée de <code class="docutils literal"><span class="pre">create()</span></code>.</li>
+<li>Les options <code class="docutils literal"><span class="pre">default</span></code> et <code class="docutils literal"><span class="pre">onsubmit</span></code> de <code class="docutils literal"><span class="pre">create()</span></code> ont été retirées. A la
+place, vous devez utiliser le binding d&#8217;event Javascript ou définir tout le
+code js nécessaire pour <code class="docutils literal"><span class="pre">onsubmit</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">end()</span></code> ne peut plus faire des boutons. Vous devez créer des buttons avec
+<code class="docutils literal"><span class="pre">button()</span></code> ou <code class="docutils literal"><span class="pre">submit()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::tagIsInvalid()</span></code> a été retirée. Utilisez <code class="docutils literal"><span class="pre">isFieldError()</span></code> à la
+place.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::inputDefaults()</span></code> a été retirée. Vous pouvez utiliser
+<code class="docutils literal"><span class="pre">templates()</span></code> pour définir/améliorer les templates que FormHelper utilise.</li>
+<li>Les options <code class="docutils literal"><span class="pre">wrap</span></code> et <code class="docutils literal"><span class="pre">class</span></code> ont été retirées de la méthode <code class="docutils literal"><span class="pre">error()</span></code>.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">showParents</span></code> a été retirée de select().</li>
+<li>Les options <code class="docutils literal"><span class="pre">div</span></code>, <code class="docutils literal"><span class="pre">before</span></code>, <code class="docutils literal"><span class="pre">after</span></code>, <code class="docutils literal"><span class="pre">between</span></code> et <code class="docutils literal"><span class="pre">errorMessage</span></code>
+ont été retirées de <code class="docutils literal"><span class="pre">input()</span></code>. Vous pouvez utiliser les templates pour
+mettre à jour le HTML qui l&#8217;entoure. L&#8217;option <code class="docutils literal"><span class="pre">templates</span></code> vous permet de
+surcharger les templates chargés pour un input.</li>
+<li>Les options <code class="docutils literal"><span class="pre">separator</span></code>, <code class="docutils literal"><span class="pre">between</span></code>, et <code class="docutils literal"><span class="pre">legend</span></code> ont été retirées de
+<code class="docutils literal"><span class="pre">radio()</span></code>. Vous pouvez maintenant utiliser les templates pour changer le
+HTML qui l&#8217;entoure.</li>
+<li>Le paramètre <code class="docutils literal"><span class="pre">format24Hours</span></code> a été retiré de <code class="docutils literal"><span class="pre">hour()</span></code>.
+Il a été remplacé par l&#8217;option <code class="docutils literal"><span class="pre">format</span></code>.</li>
+<li>Les paramètres <code class="docutils literal"><span class="pre">minYear</span></code> et <code class="docutils literal"><span class="pre">maxYear</span></code> ont été retirés de <code class="docutils literal"><span class="pre">year()</span></code>.
+Ces deux paramètres peuvent maintenant être fournis en options.</li>
+<li>Les paramètres <code class="docutils literal"><span class="pre">dateFormat</span></code> et <code class="docutils literal"><span class="pre">timeFormat</span></code> ont été retirés de
+<code class="docutils literal"><span class="pre">datetime()</span></code>. Vous pouvez maintenant utiliser les templates pour définir
+l&#8217;ordre dans lequel les inputs doivent être affichés.</li>
+<li><code class="docutils literal"><span class="pre">submit()</span></code> a eu les options <code class="docutils literal"><span class="pre">div</span></code>, <code class="docutils literal"><span class="pre">before</span></code> et <code class="docutils literal"><span class="pre">after</span></code> retirées. Vous
+pouvez personnaliser le template <code class="docutils literal"><span class="pre">submitContainer</span></code> pour modifier ce contenu.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">inputs()</span></code> n&#8217;accepte plus <code class="docutils literal"><span class="pre">legend</span></code> et <code class="docutils literal"><span class="pre">fieldset</span></code> dans le
+paramètre <code class="docutils literal"><span class="pre">$fields</span></code>, vous devez utiliser le paramètre <code class="docutils literal"><span class="pre">$options</span></code>.
+Elle nécessite aussi que le paramètre <code class="docutils literal"><span class="pre">$fields</span></code> soit un tableau. Le
+paramètre <code class="docutils literal"><span class="pre">$blacklist</span></code> a été retiré, la fonctionnalité a été remplacée en
+spécifiant <code class="docutils literal"><span class="pre">'field'</span> <span class="pre">=&gt;</span> <span class="pre">false</span></code> dans le paramètre <code class="docutils literal"><span class="pre">$fields</span></code>.</li>
+<li>Le paramètre <code class="docutils literal"><span class="pre">inline</span></code> a été retiré de la méthode postLink().
+Vous devez utiliser l&#8217;option <code class="docutils literal"><span class="pre">block</span></code> à la place. Définir <code class="docutils literal"><span class="pre">block</span> <span class="pre">=&gt;</span> <span class="pre">true</span></code>
+va émuler le comportement précédent.</li>
+<li>Le paramètre <code class="docutils literal"><span class="pre">timeFormat</span></code> pour <code class="docutils literal"><span class="pre">hour()</span></code>, <code class="docutils literal"><span class="pre">time()</span></code> et <code class="docutils literal"><span class="pre">dateTime()</span></code> est
+par maintenant par défaut à 24, en accord avec l&#8217;ISO 8601.</li>
+<li>L&#8217;argument <code class="docutils literal"><span class="pre">$confirmMessage</span></code> de
+<a class="reference internal" href="../views/helpers/form.html#Cake\View\Helper\FormHelper::postLink" title="Cake\View\Helper\FormHelper::postLink"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\Helper\FormHelper::postLink()</span></code></a> a été retiré. Vous
+devez maintenant utiliser la clé <code class="docutils literal"><span class="pre">confirm</span></code> dans <code class="docutils literal"><span class="pre">$options</span></code> pour spécifier
+le message.</li>
+<li>Les inputs de type checkbox et boutons radios types sont maintenant générées
+<em>à l&#8217;intérieur</em> de balises label par défaut. Ceci aide à accroître la
+compatibilité avec les librairies CSS populaires telles que
+<a class="reference external" href="http://getbootstrap.com/">Bootstrap</a> et
+<a class="reference external" href="http://foundation.zurb.com/">Foundation</a>.</li>
+<li>Les tags de templates sont maintenant tous écrits en <em>camelBack</em>. Les tags
+pre-3.0 <code class="docutils literal"><span class="pre">formstart</span></code>, <code class="docutils literal"><span class="pre">formend</span></code>, <code class="docutils literal"><span class="pre">hiddenblock</span></code> et <code class="docutils literal"><span class="pre">inputsubmit</span></code> sont
+maintenant <code class="docutils literal"><span class="pre">formStart</span></code>, <code class="docutils literal"><span class="pre">formEnd</span></code>, <code class="docutils literal"><span class="pre">hiddenBlock</span></code> et <code class="docutils literal"><span class="pre">inputSubmit</span></code>.
+Pensez à bien les changer s&#8217;ils sont personnalisés dans votre application.</li>
+</ul>
+<p>Il est recommandé que vous regardiez la documentation
+<a class="reference internal" href="../views/helpers/form.html"><span class="doc">Form</span></a> pour plus de détails sur la façon d&#8217;utiliser
+le FormHelper dans 3.0.</p>
+</div>
+<div class="section" id="htmlhelper">
+<h3>HtmlHelper<a class="headerlink" href="#htmlhelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HtmlHelper::useTag()</span></code> a été retirée, utilisez <code class="docutils literal"><span class="pre">tag()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">HtmlHelper::loadConfig()</span></code> a été retirée. La personnalisation des tags peut
+être faîte en utilisant <code class="docutils literal"><span class="pre">templates()</span></code> ou la configuration <code class="docutils literal"><span class="pre">templates</span></code>.</li>
+<li>Le deuxième paramètre <code class="docutils literal"><span class="pre">$options</span></code> pour <code class="docutils literal"><span class="pre">HtmlHelper::css()</span></code> doit maintenant
+toujours être un tableau comme c&#8217;est écrit dans la documentation.</li>
+<li>Le premier paramètre <code class="docutils literal"><span class="pre">$data</span></code> pour <code class="docutils literal"><span class="pre">HtmlHelper::style()</span></code> doit maintenant
+toujours être un tableau comme c&#8217;est écrit dans la documentation.</li>
+<li>Le paramètre <code class="docutils literal"><span class="pre">inline</span></code> a été retiré des méthodes meta(), css(), script(),
+scriptBlock(). Vous devrez utiliser l&#8217;option <code class="docutils literal"><span class="pre">block</span></code> à la place. Définir
+<code class="docutils literal"><span class="pre">block</span> <span class="pre">=&gt;</span> <span class="pre">true</span></code> va émuler le comportement précédent.</li>
+<li><code class="docutils literal"><span class="pre">HtmlHelper::meta()</span></code> nécessite maintenant que <code class="docutils literal"><span class="pre">$type</span></code> soit une chaîne de
+caractère. Les options supplémentaires peuvent en outre être passées dans
+<code class="docutils literal"><span class="pre">$options</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">HtmlHelper::nestedList()</span></code> nécessite maintenant que <code class="docutils literal"><span class="pre">$options</span></code> soit un
+tableau. Le quatrième argument pour le niveau de tag a été retiré et il a été
+inclus dans le tableau <code class="docutils literal"><span class="pre">$options</span></code>.</li>
+<li>L&#8217;argument <code class="docutils literal"><span class="pre">$confirmMessage</span></code> de
+<a class="reference internal" href="../views/helpers/html.html#Cake\View\Helper\HtmlHelper::link" title="Cake\View\Helper\HtmlHelper::link"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\Helper\HtmlHelper::link()</span></code></a> a été retiré. Vous devez
+maintenant utiliser la clé <code class="docutils literal"><span class="pre">confirm</span></code> dans <code class="docutils literal"><span class="pre">$options</span></code> pour spécifier
+le message.</li>
+</ul>
+</div>
+<div class="section" id="paginatorhelper">
+<h3>PaginatorHelper<a class="headerlink" href="#paginatorhelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">link()</span></code> a été retirée. Il n&#8217;était plus utilisé par le helper en interne.
+Il était peu utilisé dans le monde des utilisateurs de code, et ne
+correspondait plus aux objectifs du helper.</li>
+<li><code class="docutils literal"><span class="pre">next()</span></code> n&#8217;a plus les options &#8216;class&#8217;, ou &#8216;tag&#8217;. Il n&#8217;a plus d&#8217;arguments
+désactivés. A la place, les templates sont utilisés.</li>
+<li><code class="docutils literal"><span class="pre">prev()</span></code> n&#8217;a plus les options &#8216;class&#8217;, ou &#8216;tag&#8217;. Il n&#8217;a plus d&#8217;arguments
+désactivés. A la place, les templates sont utilisés.</li>
+<li><code class="docutils literal"><span class="pre">first()</span></code> n&#8217;a plus les options &#8216;after&#8217;, &#8216;ellipsis&#8217;, &#8216;separator&#8217;, &#8216;class&#8217;,
+ou &#8216;tag&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">last()</span></code> n&#8217;a plus les options &#8216;after&#8217;, &#8216;ellipsis&#8217;, &#8216;separator&#8217;, &#8216;class&#8217;, ou
+&#8216;tag&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">numbers()</span></code> n&#8217;a plus les options &#8216;separator&#8217;, &#8216;tag&#8217;, &#8216;currentTag&#8217;,
+&#8216;currentClass&#8217;, &#8216;class&#8217;, &#8216;tag&#8217;, &#8216;ellipsis&#8217;. Ces options sont maintenant
+accessibles à travers des templates. Le paramètre <code class="docutils literal"><span class="pre">$options</span></code> doit maintenant
+être un tableau.</li>
+<li>Les placeholders de style <code class="docutils literal"><span class="pre">%page%</span></code> ont été retirés de
+<a class="reference internal" href="../views/helpers/paginator.html#Cake\View\Helper\PaginatorHelper::counter" title="Cake\View\Helper\PaginatorHelper::counter"><code class="xref php php-meth docutils literal"><span class="pre">Cake\View\Helper\PaginatorHelper::counter()</span></code></a>.
+Utilisez les placeholders de style <code class="docutils literal"><span class="pre">{{page}}</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">url()</span></code> a été renommée en <code class="docutils literal"><span class="pre">generateUrl()</span></code> pour éviter des clashes de
+déclaration de méthode avec <code class="docutils literal"><span class="pre">Helper::url()</span></code>.</li>
+</ul>
+<p>Par défaut, tous les liens et le texte inactif sont entourés d&#8217;elements <code class="docutils literal"><span class="pre">&lt;li&gt;</span></code>.
+Ceci aide à écrire plus facilement du CSS, et améliore la compatibilité avec
+des frameworks populaires.</p>
+<p>A la place de ces diverses options dans chaque méthode, vous devez utiliser
+la fonctionnalité des templates. Regardez les informations de la
+documentation <a class="reference internal" href="../views/helpers/paginator.html#paginator-templates"><span class="std std-ref">Templates de PaginatorHelper</span></a> sur la façon d&#8217;utiliser les templates.</p>
+</div>
+<div class="section" id="timehelper">
+<h3>TimeHelper<a class="headerlink" href="#timehelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TimeHelper::__set()</span></code>, <code class="docutils literal"><span class="pre">TimeHelper::__get()</span></code>, et
+<code class="docutils literal"><span class="pre">TimeHelper::__isset()</span></code> ont été retirées. Celles-ci étaient des
+méthodes magiques pour des attributs dépréciés.</li>
+<li><code class="docutils literal"><span class="pre">TimeHelper::serverOffset()</span></code> a été retirée. Elle entraînait de mauvaises
+utilisations mathématiques de time.</li>
+<li><code class="docutils literal"><span class="pre">TimeHelper::niceShort()</span></code> a été retirée.</li>
+</ul>
+</div>
+<div class="section" id="numberhelper">
+<h3>NumberHelper<a class="headerlink" href="#numberhelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="xref php php-meth docutils literal"><span class="pre">NumberHelper::format()</span></code> nécessite maintenant que <code class="docutils literal"><span class="pre">$options</span></code> soit
+un tableau.</li>
+</ul>
+</div>
+<div class="section" id="sessionhelper">
+<h3>SessionHelper<a class="headerlink" href="#sessionhelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">SessionHelper</span></code> est déprécié. Vous pouvez utiliser
+<code class="docutils literal"><span class="pre">$this-&gt;request-&gt;session()</span></code> directement, et la fonctionnalité de message
+flash a été déplacée dans <a class="reference internal" href="../views/helpers/flash.html"><span class="doc">Flash</span></a> à la place.</li>
+</ul>
+</div>
+<div class="section" id="jshelper">
+<h3>JsHelper<a class="headerlink" href="#jshelper" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">JsHelper</span></code> et tous les moteurs associés ont été retirés. il pouvait
+seulement générer un tout petit nombre de code Javascript pour la librairie
+sélectionnée et essayer de générer tout le code Javascript en utilisant
+le helper devenait souvent difficile. Il est maintenant recommandé d&#8217;utiliser
+directement la librairie Javascript de votre choix.</li>
+</ul>
+</div>
+<div class="section" id="cachehelper-retire">
+<h3>CacheHelper Retiré<a class="headerlink" href="#cachehelper-retire" title="Lien permanent vers ce titre">¶</a></h3>
+<p>CacheHelper a été retiré. La fonctionnalité de cache  quelle fournissait n&#8217;était
+pas standard, limitée et incompatible avec les mises en page non-HTML et les
+vues de données. Ces limitations signifiaient qu&#8217;une réécriture complète était
+nécessaire. Edge Side Includes est devenu un moyen standard d&#8217;implémenter les
+fonctionnalités que CacheHelper fournissait. Cependant, implémenter <a class="reference external" href="http://fr.wikipedia.org/wiki/Edge_Side_Includes">Edge Side
+Includes</a> en PHP présente un
+grand nombre de limitations. Au lieu de construire une solution de qualité
+inférieure, nous recommandons aux développeurs ayant besoin d&#8217;un cache global
+d&#8217;utiliser <a class="reference external" href="http://varnish-cache.org">Varnish</a> ou
+<a class="reference external" href="http://squid-cache.org">Squid</a> à la place.</p>
+</div>
+</div>
+<div class="section" id="i18n">
+<h2>I18n<a class="headerlink" href="#i18n" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le sous-système I18n a été complètement réécrit. En général, vous pouvez vous
+attendre au même comportement que dans les versions précédentes, spécialement
+si vous utilisez la famille de fonctions <code class="docutils literal"><span class="pre">__()</span></code>.</p>
+<p>En interne, la classe <code class="docutils literal"><span class="pre">I18n</span></code> utilise <code class="docutils literal"><span class="pre">Aura\Intl</span></code>, et les méthodes
+appropriées sont exposées pour accéder aux fonctionnalités spécifiques de cette
+librairie. Pour cette raison, la plupart des méthodes dans <code class="docutils literal"><span class="pre">I18n</span></code> a été
+retirée ou renommée.</p>
+<p>Grâce à l&#8217;utilisation de <code class="docutils literal"><span class="pre">ext/intl</span></code>, la classe L10n a été complètement
+retirée. Elle fournissait des données dépassées et incomplètes en comparaison
+avec les données disponibles dans la classe <code class="docutils literal"><span class="pre">Locale</span></code> de PHP.</p>
+<p>La langue de l&#8217;application par défaut ne sera plus changée automatiquement
+par la langue du navigateur ou en ayant la valeur <code class="docutils literal"><span class="pre">Config.language</span></code> définie
+dans la session du navigateur. Vous pouvez cependant utiliser un filtre
+du dispatcher pour récupérer automatiquement la langue depuis l&#8217;en-tête
+<code class="docutils literal"><span class="pre">Accept-Language</span></code> envoyé dans par le navigateur:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans config/bootstrap.php</span>
+<span class="nx">DispatcherFactory</span><span class="o">::</span><span class="na">addFilter</span><span class="p">(</span><span class="s1">&#39;LocaleSelector&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Il n&#8217;y a pas de remplacement intégré en ce qui concerne la sélection de la
+langue en définissant une valeur dans la session de l&#8217;utilisateur.</p>
+<p>La fonction de formatage par défaut pour les messages traduits n&#8217;est plus
+<code class="docutils literal"><span class="pre">sprintf</span></code>, mais la classe <code class="docutils literal"><span class="pre">MessageFormatter</span></code> la plus avancée et aux
+fonctionnalités riches.
+En général, vous pouvez réécrire les placeholders dans les messages comme suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Avant:</span>
+<span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Today is a %s day in %s&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">);</span>
+
+<span class="c1">// Après:</span>
+<span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Today is a {0} day in {1}&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez éviter la réécriture de vos messages en utilisant l&#8217;ancien
+formateur <code class="docutils literal"><span class="pre">sprintf</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">I18n</span><span class="o">::</span><span class="na">defaultFormatter</span><span class="p">(</span><span class="s1">&#39;sprintf&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>De plus, la valeur <code class="docutils literal"><span class="pre">Config.language</span></code> a été retirée et elle ne peut plus être
+utilisée pour contrôler la langue courante de l&#8217;application. A la place, vous
+pouvez utiliser la classe <code class="docutils literal"><span class="pre">I18n</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Avant</span>
+<span class="nx">Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;Config.language&#39;</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">);</span>
+
+<span class="c1">// Maintenant</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;en_US&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Les méthodes ci-dessous ont été déplacées:<ul>
+<li>De <code class="docutils literal"><span class="pre">Cake\I18n\Multibyte::utf8()</span></code> vers <code class="docutils literal"><span class="pre">Cake\Utility\Text::utf8()</span></code></li>
+<li>De <code class="docutils literal"><span class="pre">Cake\I18n\Multibyte::ascii()</span></code> vers <code class="docutils literal"><span class="pre">Cake\Utility\Text::ascii()</span></code></li>
+<li>De <code class="docutils literal"><span class="pre">Cake\I18n\Multibyte::checkMultibyte()</span></code> vers
+<code class="docutils literal"><span class="pre">Cake\Utility\Text::isMultibyte()</span></code></li>
+</ul>
+</li>
+<li>Puisque l&#8217;extension mbstring est maintenant nécessaire, la classe
+<code class="docutils literal"><span class="pre">Multibyte</span></code> a été retirée.</li>
+<li>Les messages d&#8217;Error dans CakePHP ne passent plus à travers les fonctions de
+I18n. Ceci a été fait pour simplifier les entrailles de CakePHP et réduire
+la charge. Les messages auxquels font face les développeurs sont rarement,
+voire jamais traduits donc la charge supplémentaire n&#8217;apporte que peu de
+bénéfices.</li>
+</ul>
+</div>
+<div class="section" id="l10n">
+<h2>L10n<a class="headerlink" href="#l10n" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Le constructeur de <code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\L10n</span></code> prend maintenant une
+instance de <code class="xref php php-class docutils literal"><span class="pre">Cake\Network\Request</span></code> en argument.</li>
+</ul>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Lien permanent vers ce titre">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">TestShell</span></code> a été retiré. CakePHP, le squelette d&#8217;application et les plugins
+nouvellement créés utilisent tous <code class="docutils literal"><span class="pre">phpunit</span></code> pour exécuter les tests.</p>
+</li>
+<li><p class="first">L&#8217;exécuteur via le navigateur (webroot/test.php) a été retiré. L&#8217;adoption
+de CLI a beaucoup augmenté depuis les premières versions de 2.x. De plus,
+les exécuteurs CLI ont une meilleure intégration avec les outils des IDE et
+autres outils automatisés.</p>
+<p>Si vous cherchez un moyen de lancer les tests à partir d&#8217;un navigateur, vous
+devriez allez voir
+<a class="reference external" href="https://github.com/NSinopoli/VisualPHPUnit">VisualPHPUnit</a>. Il dispose de
+plusieurs fonctionnalités supplémentaires par rapport au vieil exécuteur via
+le navigateur.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ControllerTestCase</span></code> est dépréciée et sera supprimée de CAKEPHP 3.0.0.
+Vous devez utiliser les nouvelles fonctionnalités de
+<a class="reference internal" href="../development/testing.html#integration-testing"><span class="std std-ref">Test d&#8217;Intégrations des Controllers</span></a> à la place.</p>
+</li>
+<li><p class="first">Les fixtures doivent maintenant être référencées sous leur forme plurielle:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Au lieu de</span>
+<span class="nv">$fixtures</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;app.article&#39;</span><span class="p">];</span>
+
+<span class="c1">// Vous devrez utiliser</span>
+<span class="nv">$fixtures</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;app.articles&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="utility">
+<h2>Utility<a class="headerlink" href="#utility" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="classe-set-retiree">
+<h3>Classe Set Retirée<a class="headerlink" href="#classe-set-retiree" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La classe Set a été retirée, vous devriez maintenant utiliser la classe Hash
+à la place.</p>
+</div>
+<div class="section" id="folder-file">
+<h3>Folder &amp; File<a class="headerlink" href="#folder-file" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les classes folder et file ont été renommées:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Utility\File</span></code> renommée <a class="reference internal" href="../core-libraries/file-folder.html#Cake\Filesystem\File" title="Cake\Filesystem\File"><code class="xref php php-class docutils literal"><span class="pre">Cake\Filesystem\File</span></code></a></li>
+<li><code class="docutils literal"><span class="pre">Cake\Utility\Folder</span></code> renommée <a class="reference internal" href="../core-libraries/file-folder.html#Cake\Filesystem\Folder" title="Cake\Filesystem\Folder"><code class="xref php php-class docutils literal"><span class="pre">Cake\Filesystem\Folder</span></code></a></li>
+</ul>
+</div>
+<div class="section" id="inflector">
+<h3>Inflector<a class="headerlink" href="#inflector" title="Lien permanent vers ce titre">¶</a></h3>
+<ul>
+<li><p class="first">la valeur par défaut pour l&#8217;argument <code class="docutils literal"><span class="pre">$replacement</span></code> de la méthode
+<a class="reference internal" href="../core-libraries/inflector.html#Cake\Utility\Inflector::slug" title="Cake\Utility\Inflector::slug"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Inflector::slug()</span></code></a> a été modifiée de underscore
+(<code class="docutils literal"><span class="pre">_</span></code>) au tiret (<code class="docutils literal"><span class="pre">-</span></code>). utiliser des tirets pour séparer les mots dans les
+url est le choix le plus courant et également celui recommandé par Google.</p>
+</li>
+<li><p class="first">Les translitérations pour <a class="reference internal" href="../core-libraries/inflector.html#Cake\Utility\Inflector::slug" title="Cake\Utility\Inflector::slug"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Inflector::slug()</span></code></a> ont
+changé. Si vous utilisez des translitérations  personnalisées, vous devrez
+mettre à jour votre code. A la place des expressions régulières, les
+translitérations utilisent le remplacement par chaîne simple. Cela a donné
+des améliorations de performances significatives:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Au lieu de</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">rules</span><span class="p">(</span><span class="s1">&#39;transliteration&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;/ä|æ/&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ae&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/å/&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;aa&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Vous devrez utiliser</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">rules</span><span class="p">(</span><span class="s1">&#39;transliteration&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;ä&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ae&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;æ&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ae&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;å&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;aa&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Des ensembles de règles non inflectées et irrégulières séparés pour la
+pluralization et la singularization ont été retirés. Plutôt que d&#8217;avoir
+une liste commune pour chacun. Quand on utilise
+<a class="reference internal" href="../core-libraries/inflector.html#Cake\Utility\Inflector::rules" title="Cake\Utility\Inflector::rules"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Inflector::rules()</span></code></a> avec un type &#8216;singular&#8217;
+et &#8216;plural&#8217; vous ne pouvez plus utiliser les clés comme &#8216;uninflected&#8217;,
+&#8216;irregular&#8217; dans le tableau d&#8217;argument <code class="docutils literal"><span class="pre">$rules</span></code>.</p>
+<p>Vous pouvez ajouter / écraser la liste de règles non inflectées et
+irrégulières en utilisant <a class="reference internal" href="../core-libraries/inflector.html#Cake\Utility\Inflector::rules" title="Cake\Utility\Inflector::rules"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Inflector::rules()</span></code></a> en
+utilisant les valeurs &#8216;non inflectées&#8217; et &#8216;irrégulières&#8217; pour un argument
+<code class="docutils literal"><span class="pre">$type</span></code>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="sanitize">
+<h3>Sanitize<a class="headerlink" href="#sanitize" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>La classe <code class="docutils literal"><span class="pre">Sanitize</span></code> a été retirée.</li>
+</ul>
+</div>
+<div class="section" id="security">
+<h3>Security<a class="headerlink" href="#security" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Security::cipher()</span></code> a été retirée. Elle est peu sûre et favorise de
+mauvaises pratiques en cryptographie. Vous devrez utiliser
+<code class="xref php php-meth docutils literal"><span class="pre">Security::encrypt()</span></code> à la place.</li>
+<li>La valeur de configuration <code class="docutils literal"><span class="pre">Security.cipherSeed</span></code> n&#8217;est plus nécessaire.
+Avec le retrait de <code class="docutils literal"><span class="pre">Security::cipher()</span></code> elle n&#8217;est plus utilisée.</li>
+<li>La rétrocompatibilité de <code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Security::rijndael()</span></code> pour
+les valeurs cryptées avant CakePHP 2.3.1 a été retirée. Vous devrez rechiffrer
+les valeurs en utilisant <code class="docutils literal"><span class="pre">Security::encrypt()</span></code> et une version plus récente
+de CakePHP 2.x avant migration.</li>
+<li>La capacité de générer blowfish a été retirée. Vous ne pouvez plus utiliser le
+type &#8220;blowfish&#8221; pour <code class="docutils literal"><span class="pre">Security::hash()</span></code>. Vous devrez utiliser uniquement
+le <cite>password_hash()</cite> de PHP et <cite>password_verify()</cite> pour générer et vérifier
+les hashs de blowfish. La librairie compatible
+<a class="reference external" href="https://packagist.org/packages/ircmaxell/password-compat">ircmaxell/password-compat</a>
+qui est installée avec CakePHP fournit ces fonctions pour PHP &lt; 5.5.</li>
+<li>OpenSSL est maintenant utilisé à la place de mcrypt pour le
+chiffrement/déchiffrement des données. Ce changement fournit de meilleurs
+performances et une avancée dans la supression du support de mcrypt.</li>
+<li><code class="docutils literal"><span class="pre">Security::rijndael()</span></code> est dépréciée et elle est seulement disponible quand
+vous utilisez mcrypt.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Les données chiffrées avec <code class="docutils literal"><span class="pre">Security::encrypt()</span></code> dans les versions
+précédentes sont compatibles avec l&#8217;implémentation de openssl. Vous devez
+<a class="reference internal" href="../core-libraries/security.html#force-mcrypt"><span class="std std-ref">définir l&#8217;implémentation pour mcrypt</span></a> lors de la mise
+à jour.</p>
+</div>
+</div>
+<div class="section" id="time">
+<h3>Time<a class="headerlink" href="#time" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CakeTime</span></code> a été renommée en <a class="reference internal" href="../core-libraries/time.html#Cake\I18n\Time" title="Cake\I18n\Time"><code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\Time</span></code></a>.</li>
+<li><code class="docutils literal"><span class="pre">Time::__set()</span></code> et - <code class="docutils literal"><span class="pre">Time::__get()</span></code> ont été retirées. Celles-ci étaient
+des méthodes magiques setter/getter pour une rétrocompatibilité.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::serverOffset()</span></code> a été retirée. Il incitait à des pratiques de
+correspondance de time incorrects.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::niceShort()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::convert()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::convertSpecifiers()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::dayAsSql()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::daysAsSql()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::fromString()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::gmt()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::toATOM()</span></code> a été renommée en <code class="docutils literal"><span class="pre">toAtomString</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::toRSS()</span></code> a été renommée en <code class="docutils literal"><span class="pre">toRssString</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::toUnix()</span></code> a été renommée en <code class="docutils literal"><span class="pre">toUnixString</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::wasYesterday()</span></code> a été renommée en <code class="docutils literal"><span class="pre">isYesterday</span></code> pour
+correspondre aux autres noms de méthode.</li>
+<li><code class="docutils literal"><span class="pre">CakeTime::format()</span></code> N&#8217;utilise plus les chaînes de format <code class="docutils literal"><span class="pre">sprintf`,</span> <span class="pre">vous</span>
+<span class="pre">pouvez</span> <span class="pre">utiliser</span> <span class="pre">``i18nFormat</span></code> à la place.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Time::timeAgoInWords()</span></code> a maintenant besoin que <code class="docutils literal"><span class="pre">$options</span></code> soit
+un tableau.</li>
+</ul>
+<p>Time n&#8217;est plus une collection de méthodes statiques, il étend <code class="docutils literal"><span class="pre">DateTime</span></code> pour
+hériter de ses méthodes et ajoute la localisation des fonctions de formatage
+avec l&#8217;aide de l&#8217;extension <code class="docutils literal"><span class="pre">intl</span></code>.</p>
+<p>En général, les expressions ressemblent à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">CakeTime</span><span class="o">::</span><span class="na">aMethod</span><span class="p">(</span><span class="nv">$date</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Peut être migré en réécrivant ceci en:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="nv">$date</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">aMethod</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="number">
+<h3>Number<a class="headerlink" href="#number" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Number a été réécrite pour utiliser en interne la classe <code class="docutils literal"><span class="pre">NumberFormatter</span></code>.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CakeNumber</span></code> a été renommée en <a class="reference internal" href="../core-libraries/number.html#Cake\I18n\Number" title="Cake\I18n\Number"><code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\Number</span></code></a>.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Number::format()</span></code> nécessite maintenant que <code class="docutils literal"><span class="pre">$options</span></code> soit un
+tableau.</li>
+<li><code class="xref php php-meth docutils literal"><span class="pre">Number::addFormat()</span></code> a été retirée.</li>
+<li><code class="docutils literal"><span class="pre">Number::fromReadableSize()</span></code> a été déplacée
+vers <code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Text:parseFileSize()</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Le range pour <code class="xref php php-meth docutils literal"><span class="pre">Validation::range()</span></code> maintenant inclusif si
+<code class="docutils literal"><span class="pre">$lower</span></code> et <code class="docutils literal"><span class="pre">$upper</span></code> sont fournies.</li>
+<li><code class="docutils literal"><span class="pre">Validation::ssn()</span></code> a été retirée.</li>
+</ul>
+</div>
+<div class="section" id="xml">
+<h3>Xml<a class="headerlink" href="#xml" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="xref php php-meth docutils literal"><span class="pre">Xml::build()</span></code> a maintenant besoin que <code class="docutils literal"><span class="pre">$options</span></code> soit un
+tableau.</li>
+<li><code class="docutils literal"><span class="pre">Xml::build()</span></code> n&#8217;accepte plus d&#8217;URL. Si vous avez besoin de créer un
+document XML à partir d&#8217;une URL, utilisez
+<a class="reference internal" href="../core-libraries/httpclient.html#http-client-xml-json"><span class="std std-ref">Http\Client</span></a>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="3-x-migration-guide.html">3.x Guide de Migration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3-5-migration-guide.html">3.5 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-4-migration-guide.html">3.4 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-migration-guide.html">3.3 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-migration-guide.html">3.2 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-1-migration-guide.html">3.1 Guide de Migration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.0 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orm-migration.html">Guide de Migration du Nouvel ORM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

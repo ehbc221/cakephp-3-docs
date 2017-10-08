@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Email" lang="en" name="title" />
+<meta content="sending mail,email sender,envelope sender,php class,database configuration,sending emails,meth,shells,smtp,transports,attributes,array,config,flexibility,php email,new email,sending email,models" lang="en" name="keywords" />
+
+    <title>Email - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/email.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/email.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/email.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/email.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/email.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/email.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/email.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Error &amp; Exception Handling" href="../development/errors.html" />
+    <link rel="prev" title="Deployment" href="../deployment.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/email.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/email.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/email.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/email.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/email.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/email.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/email.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/email.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Email</a><ul>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a><ul>
+<li><a class="reference internal" href="#choosing-the-sender">Choosing the Sender</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#configuring-transports">Configuring Transports</a></li>
+<li><a class="reference internal" href="#configuration-profiles">Configuration Profiles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-headers">Setting Headers</a></li>
+<li><a class="reference internal" href="#sending-templated-emails">Sending Templated Emails</a></li>
+<li><a class="reference internal" href="#sending-attachments">Sending Attachments</a></li>
+<li><a class="reference internal" href="#using-transports">Using Transports</a><ul>
+<li><a class="reference internal" href="#creating-custom-transports">Creating Custom Transports</a></li>
+<li><a class="reference internal" href="#relaxing-address-validation-rules">Relaxing Address Validation Rules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sending-messages-quickly">Sending Messages Quickly</a></li>
+<li><a class="reference internal" href="#sending-emails-from-cli">Sending Emails from CLI</a></li>
+<li><a class="reference internal" href="#creating-reusable-emails">Creating Reusable Emails</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Mailer">
+<span id="email"></span><h1>Email<a class="headerlink" href="#namespace-Cake\Mailer" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Before version 3.1, the <code class="docutils literal"><span class="pre">Email</span></code> and <code class="docutils literal"><span class="pre">Transport</span></code> classes were under
+the <code class="docutils literal"><span class="pre">Cake\Network\Email</span></code> namespace instead of the <code class="docutils literal"><span class="pre">Cake\Mailer</span></code>
+namespace.</p>
+</div>
+<dl class="class">
+<dt id="Cake\Mailer\Email">
+<em class="property">class </em><code class="descclassname">Cake\Mailer\</code><code class="descname">Email</code><span class="sig-paren">(</span><em>mixed $profile = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Mailer\Email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">Email</span></code> is a new class to send email. With this
+class you can send email from any place inside of your application.</p>
+<div class="section" id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>First of all, you should ensure the class is loaded:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>After you&#8217;ve loaded <code class="docutils literal"><span class="pre">Email</span></code>, you can send an email with the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">([</span><span class="s1">&#39;me@example.com&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Site&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;you@example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">subject</span><span class="p">(</span><span class="s1">&#39;About&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="s1">&#39;My message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal"><span class="pre">Email</span></code>&#8216;s setter methods return the instance of the class, you are able to set its properties with method chaining.</p>
+<p><code class="docutils literal"><span class="pre">Email</span></code> has several methods for defining recipients - <code class="docutils literal"><span class="pre">to()</span></code>, <code class="docutils literal"><span class="pre">cc()</span></code>,
+<code class="docutils literal"><span class="pre">bcc()</span></code>, <code class="docutils literal"><span class="pre">addTo()</span></code>, <code class="docutils literal"><span class="pre">addCc()</span></code> and <code class="docutils literal"><span class="pre">addBcc()</span></code>. The main difference being
+that the first three will overwrite what was already set and the latter will just
+add more recipients to their respective field:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;to@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;To Example&#39;</span><span class="p">);</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">addTo</span><span class="p">(</span><span class="s1">&#39;to2@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;To2 Example&#39;</span><span class="p">);</span>
+<span class="c1">// The email&#39;s To recipients are: to@example.com and to2@example.com</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;test@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;ToTest Example&#39;</span><span class="p">);</span>
+<span class="c1">// The email&#39;s To recipient is: test@example.com</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setFrom()</span></code>, <code class="docutils literal"><span class="pre">setTo()</span></code>, <code class="docutils literal"><span class="pre">setCc()</span></code> , <code class="docutils literal"><span class="pre">setBcc()</span></code>  and <code class="docutils literal"><span class="pre">setSubject()</span></code> instead.</p>
+</div>
+<div class="section" id="choosing-the-sender">
+<h3>Choosing the Sender<a class="headerlink" href="#choosing-the-sender" title="Permalink to this headline">¶</a></h3>
+<p>When sending email on behalf of other people, it&#8217;s often a good idea to define the
+original sender using the Sender header. You can do so using <code class="docutils literal"><span class="pre">sender()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">sender</span><span class="p">(</span><span class="s1">&#39;app@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;MyApp emailer&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It&#8217;s also a good idea to set the envelope sender when sending mail on another
+person&#8217;s behalf. This prevents them from getting any messages about
+deliverability.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setSender()</span></code> instead.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<span id="email-configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Configuration for <code class="docutils literal"><span class="pre">Email</span></code> defaults is created using <code class="docutils literal"><span class="pre">config()</span></code> and
+<code class="docutils literal"><span class="pre">configTransport()</span></code>. You should put your email presets in the
+<strong>config/app.php</strong> file.  The <strong>config/app.default.php</strong> file is an
+example of this file. It is not required to define email configuration in
+<strong>config/app.php</strong>. <code class="docutils literal"><span class="pre">Email</span></code> can be used without it and use the respective
+methods to set all configurations separately or load an array of configs.</p>
+<p>By defining profiles and transports, you can keep your application code free of
+configuration data, and avoid duplication that makes maintenance and deployment
+more difficult.</p>
+<p>To load a predefined configuration, you can use the <code class="docutils literal"><span class="pre">profile()</span></code> method or pass it
+to the constructor of <code class="docutils literal"><span class="pre">Email</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">profile</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+
+<span class="c1">// Or in constructor</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Instead of passing a string which matches a preset configuration name, you can
+also just load an array of options:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">profile</span><span class="p">([</span><span class="s1">&#39;from&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;me@example.org&#39;</span><span class="p">,</span> <span class="s1">&#39;transport&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_custom&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Or in constructor</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">([</span><span class="s1">&#39;from&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;me@example.org&#39;</span><span class="p">,</span> <span class="s1">&#39;transport&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_custom&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 3.1: </span>The <code class="docutils literal"><span class="pre">default</span></code> email profile is automatically set when an <code class="docutils literal"><span class="pre">Email</span></code>
+instance is created.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setProfile()</span></code> instead of <code class="docutils literal"><span class="pre">profile()</span></code>.</p>
+</div>
+<div class="section" id="configuring-transports">
+<h3>Configuring Transports<a class="headerlink" href="#configuring-transports" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Mailer\Email::configTransport">
+<em class="property">static </em><code class="descclassname">Cake\Mailer\Email::</code><code class="descname">configTransport</code><span class="sig-paren">(</span><em>$key</em>, <em>$config</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Mailer\Email::configTransport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Email messages are delivered by transports. Different transports allow you to
+send messages via PHP&#8217;s <code class="docutils literal"><span class="pre">mail()</span></code> function, SMTP servers, or not at all which
+is useful for debugging. Configuring transports allows you to keep configuration
+data out of your application code and makes deployment simpler as you can simply
+change the configuration data. An example transport configuration looks like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+
+<span class="c1">// Sample Mail configuration</span>
+<span class="nx">Email</span><span class="o">::</span><span class="na">configTransport</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mail&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Sample SMTP configuration.</span>
+<span class="nx">Email</span><span class="o">::</span><span class="na">configTransport</span><span class="p">(</span><span class="s1">&#39;gmail&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ssl://smtp.gmail.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">465</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my@gmail.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;secret&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Smtp&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>You can configure SSL SMTP servers, like Gmail. To do so, put the <code class="docutils literal"><span class="pre">ssl://</span></code>
+prefix in the host and configure the port value accordingly. You can also
+enable TLS SMTP using the <code class="docutils literal"><span class="pre">tls</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+
+<span class="nx">Email</span><span class="o">::</span><span class="na">configTransport</span><span class="p">(</span><span class="s1">&#39;gmail&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;smtp.gmail.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">587</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my@gmail.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;secret&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Smtp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tls&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above configuration would enable TLS communication for email messages.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You will need to have access for less secure apps enabled in your Google
+account for this to work:
+<a class="reference external" href="https://support.google.com/accounts/answer/6010255">Allowing less secure apps to access your
+account</a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To use SSL + SMTP, you will need to have the SSL configured in your PHP
+install.</p>
+</div>
+<p>Configuration options can also be provided as a <a class="reference internal" href="../appendices/glossary.html#term-dsn"><span class="xref std std-term">DSN</span></a> string. This is
+useful when working with environment variables or <a class="reference internal" href="../appendices/glossary.html#term-paas"><span class="xref std std-term">PaaS</span></a> providers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Email</span><span class="o">::</span><span class="na">configTransport</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;smtp://my@gmail.com:secret@smtp.gmail.com:465?tls=true&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>When using a DSN string you can define any additional parameters/options as
+query string arguments.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setConfigTransport()</span></code> instead of <code class="docutils literal"><span class="pre">configTransport()</span></code>.</p>
+</div>
+<dl class="staticmethod">
+<dt id="Cake\Mailer\Email::dropTransport">
+<em class="property">static </em><code class="descclassname">Cake\Mailer\Email::</code><code class="descname">dropTransport</code><span class="sig-paren">(</span><em>$key</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Mailer\Email::dropTransport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Once configured, transports cannot be modified. In order to modify a transport
+you must first drop it and then reconfigure it.</p>
+</div>
+<div class="section" id="configuration-profiles">
+<span id="email-configurations"></span><h3>Configuration Profiles<a class="headerlink" href="#configuration-profiles" title="Permalink to this headline">¶</a></h3>
+<p>Defining delivery profiles allows you to consolidate common email settings into
+re-usable profiles. Your application can have as many profiles as necessary. The
+following configuration keys are used:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">'from'</span></code>: Email or array of sender. See <code class="docutils literal"><span class="pre">Email::from()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'sender'</span></code>: Email or array of real sender. See <code class="docutils literal"><span class="pre">Email::sender()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'to'</span></code>: Email or array of destination. See <code class="docutils literal"><span class="pre">Email::to()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'cc'</span></code>: Email or array of carbon copy. See <code class="docutils literal"><span class="pre">Email::cc()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'bcc'</span></code>: Email or array of blind carbon copy. See <code class="docutils literal"><span class="pre">Email::bcc()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'replyTo'</span></code>: Email or array to reply the e-mail. See <code class="docutils literal"><span class="pre">Email::replyTo()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'readReceipt'</span></code>: Email address or an array of addresses to receive the
+receipt of read. See <code class="docutils literal"><span class="pre">Email::readReceipt()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'returnPath'</span></code>: Email address or an array of addresses to return if have
+some error. See <code class="docutils literal"><span class="pre">Email::returnPath()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'messageId'</span></code>: Message ID of e-mail. See <code class="docutils literal"><span class="pre">Email::messageId()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'subject'</span></code>: Subject of the message. See <code class="docutils literal"><span class="pre">Email::subject()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'message'</span></code>: Content of message. Do not set this field if you are using rendered content.</li>
+<li><code class="docutils literal"><span class="pre">'priority'</span></code>: Priority of the email as numeric value (usually from 1 to 5 with 1 being the highest).</li>
+<li><code class="docutils literal"><span class="pre">'headers'</span></code>: Headers to be included. See <code class="docutils literal"><span class="pre">Email::headers()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'viewRender'</span></code>: If you are using rendered content, set the view classname.
+See <code class="docutils literal"><span class="pre">Email::viewRender()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'template'</span></code>: If you are using rendered content, set the template name. See
+<code class="docutils literal"><span class="pre">Email::template()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'theme'</span></code>: Theme used when rendering template. See <code class="docutils literal"><span class="pre">Email::theme()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'layout'</span></code>: If you are using rendered content, set the layout to render. If
+you want to render a template without layout, set this field to null. See
+<code class="docutils literal"><span class="pre">Email::template()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'viewVars'</span></code>: If you are using rendered content, set the array with
+variables to be used in the view. See <code class="docutils literal"><span class="pre">Email::viewVars()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'attachments'</span></code>: List of files to attach. See <code class="docutils literal"><span class="pre">Email::attachments()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'emailFormat'</span></code>: Format of email (html, text or both). See <code class="docutils literal"><span class="pre">Email::emailFormat()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">'transport'</span></code>: Transport configuration name. See
+<a class="reference internal" href="#Cake\Mailer\Email::configTransport" title="Cake\Mailer\Email::configTransport"><code class="xref php php-meth docutils literal"><span class="pre">Mailer\Email::configTransport()</span></code></a>.</li>
+<li><code class="docutils literal"><span class="pre">'log'</span></code>: Log level to log the email headers and message. <code class="docutils literal"><span class="pre">true</span></code> will use
+LOG_DEBUG. See also <a class="reference internal" href="logging.html#logging-levels"><span class="std std-ref">Using Levels</span></a>.</li>
+<li><code class="docutils literal"><span class="pre">'helpers'</span></code>: Array of helpers used in the email template. <code class="docutils literal"><span class="pre">Email::helpers()</span></code>.</li>
+</ul>
+<p>All these configurations are optional, except <code class="docutils literal"><span class="pre">'from'</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The values of above keys using Email or array, like from, to, cc, etc will be passed
+as first parameter of corresponding methods. The equivalent for:
+<code class="docutils literal"><span class="pre">Email::from('my&#64;example.com',</span> <span class="pre">'My</span> <span class="pre">Site')</span></code>
+would be defined as  <code class="docutils literal"><span class="pre">'from'</span> <span class="pre">=&gt;</span> <span class="pre">['my&#64;example.com'</span> <span class="pre">=&gt;</span> <span class="pre">'My</span> <span class="pre">Site']</span></code> in your config</p>
+</div>
+</div>
+</div>
+<div class="section" id="setting-headers">
+<h2>Setting Headers<a class="headerlink" href="#setting-headers" title="Permalink to this headline">¶</a></h2>
+<p>In <code class="docutils literal"><span class="pre">Email</span></code> you are free to set whatever headers you want. When migrating
+to use Email, do not forget to put the <code class="docutils literal"><span class="pre">X-</span></code> prefix in your headers.</p>
+<p>See <code class="docutils literal"><span class="pre">Email::headers()</span></code> and <code class="docutils literal"><span class="pre">Email::addHeaders()</span></code></p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setHeaders()</span></code> instead of <code class="docutils literal"><span class="pre">headers()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="sending-templated-emails">
+<h2>Sending Templated Emails<a class="headerlink" href="#sending-templated-emails" title="Permalink to this headline">¶</a></h2>
+<p>Emails are often much more than just a simple text message. In order
+to facilitate that, CakePHP provides a way to send emails using CakePHP&#8217;s
+<a class="reference internal" href="../views.html"><span class="doc">view layer</span></a>.</p>
+<p>The templates for emails reside in a special folder in your application&#8217;s
+<code class="docutils literal"><span class="pre">Template</span></code> directory called <code class="docutils literal"><span class="pre">Email</span></code>. Email views can also use layouts
+and elements just like normal views:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span>
+    <span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span> <span class="s1">&#39;fancy&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">emailFormat</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;bob@example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;app@domain.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The above would use <strong>src/Template/Email/html/welcome.ctp</strong> for the view
+and <strong>src/Template/Layout/Email/html/fancy.ctp</strong> for the layout. You can
+send multipart templated email messages as well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span>
+    <span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span> <span class="s1">&#39;fancy&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">emailFormat</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="s1">&#39;bob@example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">from</span><span class="p">(</span><span class="s1">&#39;app@domain.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>This would use the following template files:</p>
+<ul class="simple">
+<li><strong>src/Template/Email/text/welcome.ctp</strong></li>
+<li><strong>src/Template/Layout/Email/text/fancy.ctp</strong></li>
+<li><strong>src/Template/Email/html/welcome.ctp</strong></li>
+<li><strong>src/Template/Layout/Email/html/fancy.ctp</strong></li>
+</ul>
+<p>When sending templated emails you have the option of sending either
+<code class="docutils literal"><span class="pre">text</span></code>, <code class="docutils literal"><span class="pre">html</span></code> or <code class="docutils literal"><span class="pre">both</span></code>.</p>
+<p>You can set view variables with <code class="docutils literal"><span class="pre">Email::viewVars()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">(</span><span class="s1">&#39;templated&#39;</span><span class="p">);</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">viewVars</span><span class="p">([</span><span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="mi">12345</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>In your email templates you can use these with:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Here</span> <span class="nx">is</span> <span class="nx">your</span> <span class="nx">value</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">b</span><span class="o">&gt;&lt;?=</span> <span class="nv">$value</span> <span class="cp">?&gt;</span><span class="x">&lt;/b&gt;&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>You can use helpers in emails as well, much like you can in normal template files.
+By default only the <code class="docutils literal"><span class="pre">HtmlHelper</span></code> is loaded. You can load additional
+helpers using the <code class="docutils literal"><span class="pre">helpers()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span><span class="o">-&gt;</span><span class="na">helpers</span><span class="p">([</span><span class="s1">&#39;Html&#39;</span><span class="p">,</span> <span class="s1">&#39;Custom&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>When setting helpers be sure to include &#8216;Html&#8217; or it will be removed from the
+helpers loaded in your email template.</p>
+<p>If you want to send email using templates in a plugin you can use the familiar
+<a class="reference internal" href="../appendices/glossary.html#term-plugin-syntax"><span class="xref std std-term">plugin syntax</span></a> to do so:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;Blog.new_comment&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog.auto_message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The above would use template and layout from the Blog plugin as an example.</p>
+<p>In some cases, you might need to override the default template provided by plugins.
+You can do this using themes by telling Email to use appropriate theme using
+<code class="docutils literal"><span class="pre">Email::theme()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;Blog.new_comment&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog.auto_message&#39;</span><span class="p">);</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">theme</span><span class="p">(</span><span class="s1">&#39;TestTheme&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This allows you to override the <code class="docutils literal"><span class="pre">new_comment</span></code> template in your theme without
+modifying the Blog plugin. The template file needs to be created in the
+following path:
+<strong>src/Template/Plugin/TestTheme/Plugin/Blog/Email/text/new_comment.ctp</strong>.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setTemplate()</span></code> instead of <code class="docutils literal"><span class="pre">template()</span></code>. Use <code class="docutils literal"><span class="pre">setLayout()</span></code> instead
+of the layout argument of <code class="docutils literal"><span class="pre">template()</span></code>. Use <code class="docutils literal"><span class="pre">setTheme()</span></code> instead of
+<code class="docutils literal"><span class="pre">theme()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="sending-attachments">
+<h2>Sending Attachments<a class="headerlink" href="#sending-attachments" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Mailer\Email::attachments">
+<code class="descclassname">Cake\Mailer\Email::</code><code class="descname">attachments</code><span class="sig-paren">(</span><em>$attachments</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Mailer\Email::attachments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can attach files to email messages as well. There are a few
+different formats depending on what kind of files you have, and how
+you want the filenames to appear in the recipient&#8217;s mail client:</p>
+<ol class="arabic">
+<li><p class="first">String: <code class="docutils literal"><span class="pre">$email-&gt;attachments('/full/file/path/file.png')</span></code> will attach this
+file with the name file.png.</p>
+</li>
+<li><p class="first">Array: <code class="docutils literal"><span class="pre">$email-&gt;attachments(['/full/file/path/file.png'])</span></code> will have
+the same behavior as using a string.</p>
+</li>
+<li><p class="first">Array with key:
+<code class="docutils literal"><span class="pre">$email-&gt;attachments(['photo.png'</span> <span class="pre">=&gt;</span> <span class="pre">'/full/some_hash.png'])</span></code> will
+attach some_hash.png with the name photo.png. The recipient will see
+photo.png, not some_hash.png.</p>
+</li>
+<li><p class="first">Nested arrays:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span><span class="o">-&gt;</span><span class="na">attachments</span><span class="p">([</span>
+    <span class="s1">&#39;photo.png&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/full/some_hash.png&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mimetype&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;image/png&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentId&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-unique-id&#39;</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above will attach the file with different mimetype and with custom
+Content ID (when set the content ID the attachment is transformed to inline).
+The mimetype and contentId are optional in this form.</p>
+<p>4.1. When you are using the <code class="docutils literal"><span class="pre">contentId</span></code>, you can use the file in the HTML
+body like <code class="docutils literal"><span class="pre">&lt;img</span> <span class="pre">src=&quot;cid:my-content-id&quot;&gt;</span></code>.</p>
+<p>4.2. You can use the <code class="docutils literal"><span class="pre">contentDisposition</span></code> option to disable the
+<code class="docutils literal"><span class="pre">Content-Disposition</span></code> header for an attachment. This is useful when
+sending ical invites to clients using outlook.</p>
+<p>4.3 Instead of the <code class="docutils literal"><span class="pre">file</span></code> option you can provide the file contents as
+a string using the <code class="docutils literal"><span class="pre">data</span></code> option. This allows you to attach files without
+needing file paths to them.</p>
+</li>
+</ol>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setAttachments()</span></code> instead of <code class="docutils literal"><span class="pre">attachments()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="using-transports">
+<h2>Using Transports<a class="headerlink" href="#using-transports" title="Permalink to this headline">¶</a></h2>
+<p>Transports are classes designed to send the e-mail over some protocol or method.
+CakePHP supports the Mail (default), Debug and SMTP transports.</p>
+<p>To configure your method, you must use the <code class="xref php php-meth docutils literal"><span class="pre">Cake\Mailer\Email::transport()</span></code>
+method or have the transport in your configuration:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+
+<span class="c1">// Use a named transport already configured using Email::configTransport()</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">transport</span><span class="p">(</span><span class="s1">&#39;gmail&#39;</span><span class="p">);</span>
+
+<span class="c1">// Use a constructed object.</span>
+<span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DebugTransport</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">transport</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setTransport()</span></code> instead of <code class="docutils literal"><span class="pre">transport()</span></code>.</p>
+</div>
+<div class="section" id="creating-custom-transports">
+<h3>Creating Custom Transports<a class="headerlink" href="#creating-custom-transports" title="Permalink to this headline">¶</a></h3>
+<p>You are able to create your custom transports to integrate with others email
+systems (like SwiftMailer). To create your transport, first create the file
+<strong>src/Mailer/Transport/ExampleTransport.php</strong> (where Example is the name of your
+transport). To start off your file should look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Mailer\Transport</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Mailer\AbstractTransport</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ExampleTransport</span> <span class="k">extends</span> <span class="nx">AbstractTransport</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">send</span><span class="p">(</span><span class="nx">Email</span> <span class="nv">$email</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Do something.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You must implement the method <code class="docutils literal"><span class="pre">send(Email</span> <span class="pre">$email)</span></code> with your custom logic.
+Optionally, you can implement the <code class="docutils literal"><span class="pre">config($config)</span></code> method. <code class="docutils literal"><span class="pre">config()</span></code> is
+called before send() and allows you to accept user configurations. By default,
+this method puts the configuration in protected attribute <code class="docutils literal"><span class="pre">$_config</span></code>.</p>
+<p>If you need to call additional methods on the transport before send, you can use
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Mailer\Email::getTransport()</span></code> to get an instance of the transport object.
+Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$yourInstance</span> <span class="o">=</span> <span class="nv">$email</span><span class="o">-&gt;</span><span class="na">getTransport</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">transportClass</span><span class="p">();</span>
+<span class="nv">$yourInstance</span><span class="o">-&gt;</span><span class="na">myCustomMethod</span><span class="p">();</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relaxing-address-validation-rules">
+<h3>Relaxing Address Validation Rules<a class="headerlink" href="#relaxing-address-validation-rules" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Mailer\Email::emailPattern">
+<code class="descclassname">Cake\Mailer\Email::</code><code class="descname">emailPattern</code><span class="sig-paren">(</span><em>$pattern</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Mailer\Email::emailPattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If you are having validation issues when sending to non-compliant addresses, you
+can relax the pattern used to validate email addresses. This is sometimes
+necessary when dealing with some Japanese ISP&#8217;s:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+
+<span class="c1">// Relax the email pattern, so you can send</span>
+<span class="c1">// to non-conformant addresses.</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">emailPattern</span><span class="p">(</span><span class="nv">$newPattern</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setEmailPattern()</span></code> instead of <code class="docutils literal"><span class="pre">emailPattern()</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="sending-messages-quickly">
+<h2>Sending Messages Quickly<a class="headerlink" href="#sending-messages-quickly" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you need a quick way to fire off an email, and you don&#8217;t necessarily
+want do setup a bunch of configuration ahead of time.
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Mailer\Email::deliver()</span></code> is intended for that purpose.</p>
+<p>You can create your configuration using
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Mailer\Email::config()</span></code>, or use an array with all
+options that you need and use the static method <code class="docutils literal"><span class="pre">Email::deliver()</span></code>.
+Example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Email</span><span class="o">::</span><span class="na">deliver</span><span class="p">(</span><span class="s1">&#39;you@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;from&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;me@example.com&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>This method will send an email to &#8220;<a class="reference external" href="mailto:you&#37;&#52;&#48;example&#46;com">you<span>&#64;</span>example<span>&#46;</span>com</a>&#8221;, from &#8220;<a class="reference external" href="mailto:me&#37;&#52;&#48;example&#46;com">me<span>&#64;</span>example<span>&#46;</span>com</a>&#8221; with
+subject &#8220;Subject&#8221; and content &#8220;Message&#8221;.</p>
+<p>The return of <code class="docutils literal"><span class="pre">deliver()</span></code> is a <a class="reference internal" href="#Cake\Mailer\Email" title="Cake\Mailer\Email"><code class="xref php php-class docutils literal"><span class="pre">Cake\Mailer\Email</span></code></a> instance with all
+configurations set. If you do not want to send the email right away, and wish
+to configure a few things before sending, you can pass the 5th parameter as
+<code class="docutils literal"><span class="pre">false</span></code>.</p>
+<p>The 3rd parameter is the content of message or an array with variables (when
+using rendered content).</p>
+<p>The 4th parameter can be an array with the configurations or a string with the
+name of configuration in <code class="docutils literal"><span class="pre">Configure</span></code>.</p>
+<p>If you want, you can pass the to, subject and message as null and do all
+configurations in the 4th parameter (as array or using <code class="docutils literal"><span class="pre">Configure</span></code>).
+Check the list of <a class="reference internal" href="#email-configurations"><span class="std std-ref">configurations</span></a> to see all accepted configs.</p>
+</div>
+<div class="section" id="sending-emails-from-cli">
+<h2>Sending Emails from CLI<a class="headerlink" href="#sending-emails-from-cli" title="Permalink to this headline">¶</a></h2>
+<p>When sending emails within a CLI script (Shells, Tasks, ...) you should manually
+set the domain name for Email to use. It will serve as the host name for the
+message id (since there is no host name in a CLI environment):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$email</span><span class="o">-&gt;</span><span class="na">domain</span><span class="p">(</span><span class="s1">&#39;www.example.org&#39;</span><span class="p">);</span>
+<span class="c1">// Results in message ids like ``&lt;UUID@www.example.org&gt;`` (valid)</span>
+<span class="c1">// Instead of `&lt;UUID@&gt;`` (invalid)</span>
+</pre></div>
+</div>
+<p>A valid message id can help to prevent emails ending up in spam folders.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.4.0: </span>Use <code class="docutils literal"><span class="pre">setDomain()</span></code> instead of <code class="docutils literal"><span class="pre">domain()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="creating-reusable-emails">
+<h2>Creating Reusable Emails<a class="headerlink" href="#creating-reusable-emails" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.1.0.</span></p>
+</div>
+<p>Mailers allow you to create reusable emails throughout your application. They
+can also be used to contain multiple email configurations in one location. This
+helps keep your code DRYer and keeps email configuration noise out of other
+areas in your application.</p>
+<p>In this example we will be creating a <code class="docutils literal"><span class="pre">Mailer</span></code> that contains user-related
+emails. To create our <code class="docutils literal"><span class="pre">UserMailer</span></code>, create the file
+<strong>src/Mailer/UserMailer.php</strong>. The contents of the file should look like the
+following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Mailer</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Mailer\Mailer</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserMailer</span> <span class="k">extends</span> <span class="nx">Mailer</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">welcome</span><span class="p">(</span><span class="nv">$user</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span>
+            <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">subject</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;Welcome %s&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">))</span>
+            <span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;welcome_mail&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">);</span> <span class="c1">// By default template with same name as method name is used.</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">resetPassword</span><span class="p">(</span><span class="nv">$user</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span>
+            <span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">subject</span><span class="p">(</span><span class="s1">&#39;Reset password&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span><span class="s1">&#39;token&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">token</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In our example we have created two methods, one for sending a welcome email, and
+another for sending a password reset email. Each of these methods expect a user
+<code class="docutils literal"><span class="pre">Entity</span></code> and utilizes its properties for configuring each email.</p>
+<p>We are now able to use our <code class="docutils literal"><span class="pre">UserMailer</span></code> to send out our user-related emails
+from anywhere in our application. For example, if we wanted to send our welcome
+email we could do the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Mailer\MailerAwareTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UsersController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">MailerAwareTrait</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">())</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMailer</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$user</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If we wanted to completely separate sending a user their welcome email from our
+application&#8217;s code, we can have our <code class="docutils literal"><span class="pre">UserMailer</span></code> subscribe to the
+<code class="docutils literal"><span class="pre">Model.afterSave</span></code> event. By subscribing to an event, we can keep our
+application&#8217;s user-related classes completely free of email-related logic and
+instructions. For example, we could add the following to our <code class="docutils literal"><span class="pre">UserMailer</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">implementedEvents</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;Model.afterSave&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;onRegistration&#39;</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">onRegistration</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">,</span> <span class="nx">EntityInterface</span> <span class="nv">$entity</span><span class="p">,</span> <span class="nx">ArrayObject</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$entity</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The mailer object could now be registered as an event listener, and the
+<code class="docutils literal"><span class="pre">onRegistration()</span></code> method would be invoked every time the <code class="docutils literal"><span class="pre">Model.afterSave</span></code>
+event would be fired. For information on how to register event listener objects,
+please refer to the <a class="reference internal" href="events.html#registering-event-listeners"><span class="std std-ref">Registering Listeners</span></a> documentation.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

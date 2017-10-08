@@ -1,0 +1,1712 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Saving Data - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/orm/saving-data.html" /><link rel="alternate" hreflang="es" href="../../es/orm/saving-data.html" /><link rel="alternate" hreflang="ja" href="../../ja/orm/saving-data.html" /><link rel="alternate" hreflang="fr" href="../../fr/orm/saving-data.html" /><link rel="alternate" hreflang="zh" href="../../zh/orm/saving-data.html" /><link rel="alternate" hreflang="tr" href="../../tr/orm/saving-data.html" /><link rel="alternate" hreflang="ru" href="../../ru/orm/saving-data.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="up" title="Database Access &amp; ORM" href="../orm.html" />
+    <link rel="next" title="Deleting Data" href="deleting-data.html" />
+    <link rel="prev" title="Validating Data" href="validation.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/orm/saving-data.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/orm/saving-data.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/orm/saving-data.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/orm/saving-data.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/orm/saving-data.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/orm/saving-data.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/orm/saving-data.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/orm/saving-data.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Saving Data</a><ul>
+<li><a class="reference internal" href="#a-glance-over-saving-data">A Glance Over Saving Data</a><ul>
+<li><a class="reference internal" href="#inserting-data">Inserting Data</a></li>
+<li><a class="reference internal" href="#updating-data">Updating Data</a></li>
+<li><a class="reference internal" href="#saving-with-associations">Saving With Associations</a></li>
+<li><a class="reference internal" href="#associate-many-to-many-records">Associate Many To Many Records</a></li>
+<li><a class="reference internal" href="#unlink-many-to-many-records">Unlink Many To Many Records</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#converting-request-data-into-entities">Converting Request Data into Entities</a><ul>
+<li><a class="reference internal" href="#converting-belongstomany-data">Converting BelongsToMany Data</a></li>
+<li><a class="reference internal" href="#converting-hasmany-data">Converting HasMany Data</a></li>
+<li><a class="reference internal" href="#converting-multiple-records">Converting Multiple Records</a></li>
+<li><a class="reference internal" href="#changing-accessible-fields">Changing Accessible Fields</a></li>
+<li><a class="reference internal" href="#merging-request-data-into-entities">Merging Request Data Into Entities</a><ul>
+<li><a class="reference internal" href="#validation-and-patchentity">Validation and patchEntity</a></li>
+<li><a class="reference internal" href="#patching-hasmany-and-belongstomany">Patching HasMany and BelongsToMany</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modifying-request-data-before-building-entities">Modifying Request Data Before Building Entities</a></li>
+<li><a class="reference internal" href="#validating-data-before-building-entities">Validating Data Before Building Entities</a></li>
+<li><a class="reference internal" href="#avoiding-property-mass-assignment-attacks">Avoiding Property Mass Assignment Attacks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#saving-entities">Saving Entities</a><ul>
+<li><a class="reference internal" href="#saving-associations">Saving Associations</a></li>
+<li><a class="reference internal" href="#saving-belongsto-associations">Saving BelongsTo Associations</a></li>
+<li><a class="reference internal" href="#saving-hasone-associations">Saving HasOne Associations</a></li>
+<li><a class="reference internal" href="#saving-hasmany-associations">Saving HasMany Associations</a></li>
+<li><a class="reference internal" href="#saving-belongstomany-associations">Saving BelongsToMany Associations</a></li>
+<li><a class="reference internal" href="#saving-additional-data-to-the-join-table">Saving Additional Data to the Join Table</a></li>
+<li><a class="reference internal" href="#saving-complex-types">Saving Complex Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#strict-saving">Strict Saving</a></li>
+<li><a class="reference internal" href="#saving-multiple-entities">Saving Multiple Entities</a></li>
+<li><a class="reference internal" href="#bulk-updates">Bulk Updates</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\ORM">
+<span id="saving-data"></span><h1>Saving Data<a class="headerlink" href="#namespace-Cake\ORM" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">Cake\ORM\</code><code class="descname">Table</code></dt>
+<dd></dd></dl>
+
+<p>After you have <a class="reference internal" href="retrieving-data-and-resultsets.html"><span class="doc">loaded your data</span></a> you
+will probably want to update and save the changes.</p>
+<div class="section" id="a-glance-over-saving-data">
+<h2>A Glance Over Saving Data<a class="headerlink" href="#a-glance-over-saving-data" title="Permalink to this headline">¶</a></h2>
+<p>Applications will usually have a couple of ways in which data is saved. The
+first one is obviously through web forms and the other is by directly generating
+or changing data in the code to be sent to the database.</p>
+<div class="section" id="inserting-data">
+<h3>Inserting Data<a class="headerlink" href="#inserting-data" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to insert data in the database is by creating a new entity and
+passing it to the <code class="docutils literal"><span class="pre">save()</span></code> method in the <code class="docutils literal"><span class="pre">Table</span></code> class:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\ORM\TableRegistry</span><span class="p">;</span>
+
+<span class="nv">$articlesTable</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;A New Article&#39;</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">body</span> <span class="o">=</span> <span class="s1">&#39;This is the body of the article&#39;</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// The $article entity contains the id now</span>
+    <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating-data">
+<h3>Updating Data<a class="headerlink" href="#updating-data" title="Permalink to this headline">¶</a></h3>
+<p>Updating your data is equally easy, and the <code class="docutils literal"><span class="pre">save()</span></code> method is also used for
+that purpose:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\ORM\TableRegistry</span><span class="p">;</span>
+
+<span class="nv">$articlesTable</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span> <span class="c1">// Return article with id 12</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;CakePHP is THE best PHP framework!&#39;</span><span class="p">;</span>
+<span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>CakePHP will know whether to perform an insert or an update based on the return
+value of the <code class="docutils literal"><span class="pre">isNew()</span></code> method. Entities that were retrieved with <code class="docutils literal"><span class="pre">get()</span></code> or
+<code class="docutils literal"><span class="pre">find()</span></code> will always return <code class="docutils literal"><span class="pre">false</span></code> when <code class="docutils literal"><span class="pre">isNew()</span></code> is called on them.</p>
+</div>
+<div class="section" id="saving-with-associations">
+<h3>Saving With Associations<a class="headerlink" href="#saving-with-associations" title="Permalink to this headline">¶</a></h3>
+<p>By default the <code class="docutils literal"><span class="pre">save()</span></code> method will also save one level of associations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articlesTable</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$author</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Authors</span><span class="o">-&gt;</span><span class="na">findByUserName</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;An article by mark&#39;</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span> <span class="o">=</span> <span class="nv">$author</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// The foreign key value was set automatically.</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author_id</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">save()</span></code> method is also able to create new records for associations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$firstComment</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Comments</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$firstComment</span><span class="o">-&gt;</span><span class="na">body</span> <span class="o">=</span> <span class="s1">&#39;The CakePHP features are outstanding&#39;</span><span class="p">;</span>
+
+<span class="nv">$secondComment</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Comments</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$secondComment</span><span class="o">-&gt;</span><span class="na">body</span> <span class="o">=</span> <span class="s1">&#39;CakePHP performance is terrific!&#39;</span><span class="p">;</span>
+
+<span class="nv">$tag1</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">findByName</span><span class="p">(</span><span class="s1">&#39;cakephp&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+<span class="nv">$tag2</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$tag2</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;awesome&#39;</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">comments</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$firstComment</span><span class="p">,</span> <span class="nv">$secondComment</span><span class="p">];</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">tags</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$tag1</span><span class="p">,</span> <span class="nv">$tag2</span><span class="p">];</span>
+
+<span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="associate-many-to-many-records">
+<h3>Associate Many To Many Records<a class="headerlink" href="#associate-many-to-many-records" title="Permalink to this headline">¶</a></h3>
+<p>The previous example demonstrates how to associate a few tags to an article.
+Another way of accomplishing the same thing is by using the <code class="docutils literal"><span class="pre">link()</span></code>
+method in the association:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$tag1</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">findByName</span><span class="p">(</span><span class="s1">&#39;cakephp&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+<span class="nv">$tag2</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$tag2</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;awesome&#39;</span><span class="p">;</span>
+
+<span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span><span class="nv">$tag1</span><span class="p">,</span> <span class="nv">$tag2</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unlink-many-to-many-records">
+<h3>Unlink Many To Many Records<a class="headerlink" href="#unlink-many-to-many-records" title="Permalink to this headline">¶</a></h3>
+<p>Unlinking many to many records is done via the <code class="docutils literal"><span class="pre">unlink()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$tags</span> <span class="o">=</span> <span class="nv">$articlesTable</span>
+    <span class="o">-&gt;</span><span class="na">Tags</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;name IN&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;cakephp&#39;</span><span class="p">,</span> <span class="s1">&#39;awesome&#39;</span><span class="p">]])</span>
+    <span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="o">-&gt;</span><span class="na">unlink</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$tags</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When modifying records by directly setting or changing the properties no
+validation happens, which is a problem when accepting form data. The following
+sections will demonstrate how to efficiently convert form data into entities so
+that they can be validated and saved.</p>
+</div>
+</div>
+<div class="section" id="converting-request-data-into-entities">
+<span id="converting-request-data"></span><h2>Converting Request Data into Entities<a class="headerlink" href="#converting-request-data-into-entities" title="Permalink to this headline">¶</a></h2>
+<p>Before editing and saving data back to your database, you&#8217;ll need to convert
+the request data from the array format held in the request, and the entities
+that the ORM uses. The Table class provides an easy and efficient way to convert
+one or many entities from request data. You can convert a single entity using:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+
+<span class="c1">// Validate and convert to an Entity object</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are using newEntity() and the resulting entities are missing some or
+all of the data they were passed, double check that the columns you want to
+set are listed in the <code class="docutils literal"><span class="pre">$_accessible</span></code> property of your entity. See <a class="reference internal" href="entities.html#entities-mass-assignment"><span class="std std-ref">Mass Assignment</span></a>.</p>
+</div>
+<p>The request data should follow the structure of your entities. For example if
+you have an article, which belonged to a user, and had many comments, your
+request data should resemble:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP For the Win&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Baking with CakePHP makes web development fun!&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mark&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The CakePHP features are outstanding&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP performance is terrific!&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>By default, the <code class="docutils literal"><span class="pre">newEntity()</span></code> method validates the data that gets passed to
+it, as explained in the <a class="reference internal" href="validation.html#validating-request-data"><span class="std std-ref">Validating Data Before Building Entities</span></a> section. If you wish to
+bypass data validation pass the <code class="docutils literal"><span class="pre">'validate'</span> <span class="pre">=&gt;</span> <span class="pre">false</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>When building forms that save nested associations, you need to define which
+associations should be marshalled:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+
+<span class="c1">// New entity with nested associations</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Users&#39;</span><span class="p">]]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above indicates that the &#8216;Tags&#8217;, &#8216;Comments&#8217; and &#8216;Users&#8217; for the Comments
+should be marshalled. Alternatively, you can use dot notation for brevity:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+
+<span class="c1">// New entity with nested associations using dot notation</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments.Users&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>You may also disable marshalling of possible nested associations like so:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[]]);</span>
+<span class="c1">// or...</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[]]);</span>
+</pre></div>
+</div>
+<p>Associated data is also validated by default unless told otherwise. You may also
+change the validation set to be used per association:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+
+<span class="c1">// Bypass validation on Tags association and</span>
+<span class="c1">// Designate &#39;signup&#39; validation set for Comments.Users</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">],</span>
+        <span class="s1">&#39;Comments.Users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;signup&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="validation.html#using-different-validators-per-association"><span class="std std-ref">Using A Different Validation Set For Associations</span></a> chapter has more
+information on how to use different validators for associated marshalling.</p>
+<p>The following diagram gives an overview of what happens inside the
+<code class="docutils literal"><span class="pre">newEntity()</span></code> or <code class="docutils literal"><span class="pre">patchEntity()</span></code> method:</p>
+<div class="figure align-left">
+<img alt="Flow diagram showing the marshalling/validation process." src="../_images/validation-cycle.png" />
+</div>
+<p>You can always count on getting an entity back from <code class="docutils literal"><span class="pre">newEntity()</span></code>. If
+validation fails your entity will contain errors, and any invalid fields will
+not be populated in the created entity.</p>
+<div class="section" id="converting-belongstomany-data">
+<h3>Converting BelongsToMany Data<a class="headerlink" href="#converting-belongstomany-data" title="Permalink to this headline">¶</a></h3>
+<p>If you are saving belongsToMany associations you can either use a list of entity
+data or a list of ids. When using a list of entity data your request data should
+look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;tag&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;tag&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Internet&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>The above will create 2 new tags. If you want to link an article with existing
+tags you can use a list of ids. Your request data should look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;_ids&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>If you need to link against some existing belongsToMany records, and create new
+ones at the same time you can use an expanded format:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A new tag&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another new tag&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">21</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>When the above data is converted into entities, you will have 4 tags. The first
+two will be new objects, and the second two will be references to existing
+records.</p>
+<p>When converting belongsToMany data, you can disable the new entity creation, by
+using the <code class="docutils literal"><span class="pre">onlyIds</span></code> option. When enabled, this option restricts belongsToMany
+marshalling to only use the <code class="docutils literal"><span class="pre">_ids</span></code> key and ignore all other data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.1.0: </span>The <code class="docutils literal"><span class="pre">onlyIds</span></code> option was added in 3.1.0</p>
+</div>
+</div>
+<div class="section" id="converting-hasmany-data">
+<h3>Converting HasMany Data<a class="headerlink" href="#converting-hasmany-data" title="Permalink to this headline">¶</a></h3>
+<p>If you want to update existing hasMany associations and update their
+properties, you should first ensure your entity is loaded with the hasMany
+association populated. You can then use request data similar to:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;comment&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Update the first comment&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;comment&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Update the second comment&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;comment&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Create a new comment&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>If you are saving hasMany associations and want to link existing records to a
+new parent record you can use the <code class="docutils literal"><span class="pre">_ids</span></code> format:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My new article&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;_ids&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>When converting hasMany data, you can disable the new entity creation, by using
+the <code class="docutils literal"><span class="pre">onlyIds</span></code> option. When enabled, this option restricts hasMany marshalling
+to only use the <code class="docutils literal"><span class="pre">_ids</span></code> key and ignore all other data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.1.0: </span>The <code class="docutils literal"><span class="pre">onlyIds</span></code> option was added in 3.1.0</p>
+</div>
+</div>
+<div class="section" id="converting-multiple-records">
+<h3>Converting Multiple Records<a class="headerlink" href="#converting-multiple-records" title="Permalink to this headline">¶</a></h3>
+<p>When creating forms that create/update multiple records at once you can use
+<code class="docutils literal"><span class="pre">newEntities()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$entities</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntities</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>In this situation, the request data for multiple articles should look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Once you&#8217;ve converted request data into entities you can <code class="docutils literal"><span class="pre">save()</span></code> or
+<code class="docutils literal"><span class="pre">delete()</span></code> them:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$entities</span> <span class="k">as</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Save entity</span>
+    <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+
+    <span class="c1">// Delete entity</span>
+    <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above will run a separate transaction for each entity saved. If you&#8217;d like
+to process all the entities as a single transaction you can use
+<code class="docutils literal"><span class="pre">transactional()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">getConnection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$articles</span><span class="p">,</span> <span class="nv">$entities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$entities</span> <span class="k">as</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;atomic&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-accessible-fields">
+<span id="id1"></span><h3>Changing Accessible Fields<a class="headerlink" href="#changing-accessible-fields" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s also possible to allow <code class="docutils literal"><span class="pre">newEntity()</span></code> to write into non accessible fields.
+For example, <code class="docutils literal"><span class="pre">id</span></code> is usually absent from the <code class="docutils literal"><span class="pre">_accessible</span></code> property.  In
+such case, you can use the <code class="docutils literal"><span class="pre">accessibleFields</span></code> option. It could be useful to
+keep ids of associated entities:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;Users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;accessibleFields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above will keep the association unchanged between Comments and Users for the
+concerned entity.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are using newEntity() and the resulting entities are missing some or
+all of the data they were passed, double check that the columns you want to
+set are listed in the <code class="docutils literal"><span class="pre">$_accessible</span></code> property of your entity. See
+<a class="reference internal" href="entities.html#entities-mass-assignment"><span class="std std-ref">Mass Assignment</span></a>.</p>
+</div>
+</div>
+<div class="section" id="merging-request-data-into-entities">
+<h3>Merging Request Data Into Entities<a class="headerlink" href="#merging-request-data-into-entities" title="Permalink to this headline">¶</a></h3>
+<p>In order to update entities you may choose to apply request data directly to an
+existing entity. This has the advantage that only the fields that actually
+changed will be saved, as opposed to sending all fields to the database to be
+persisted. You can merge an array of raw data into an existing entity using the
+<code class="docutils literal"><span class="pre">patchEntity()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="validation-and-patchentity">
+<h4>Validation and patchEntity<a class="headerlink" href="#validation-and-patchentity" title="Permalink to this headline">¶</a></h4>
+<p>Similar to <code class="docutils literal"><span class="pre">newEntity()</span></code>, the <code class="docutils literal"><span class="pre">patchEntity</span></code> method will validate the data
+before it is copied to the entity. The mechanism is explained in the
+<a class="reference internal" href="validation.html#validating-request-data"><span class="std std-ref">Validating Data Before Building Entities</span></a> section. If you wish to disable validation while
+patching an entity, pass the <code class="docutils literal"><span class="pre">validate</span></code> option as follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>You may also change the validation set used for the entity or any of the
+associations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments.Users&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;signup&#39;</span><span class="p">]]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="patching-hasmany-and-belongstomany">
+<h4>Patching HasMany and BelongsToMany<a class="headerlink" href="#patching-hasmany-and-belongstomany" title="Permalink to this headline">¶</a></h4>
+<p>As explained in the previous section, the request data should follow the
+structure of your entity. The <code class="docutils literal"><span class="pre">patchEntity()</span></code> method is equally capable of
+merging associations, by default only the first level of associations are
+merged, but if you wish to control the list of associations to be merged or
+merge deeper to deeper levels, you can use the third parameter of the method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$associated</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments.Users&#39;</span><span class="p">];</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;contain&#39;</span> <span class="o">=&gt;</span> <span class="nv">$associated</span><span class="p">]);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="nv">$associated</span>
+<span class="p">]);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Associations are merged by matching the primary key field in the source entities
+to the corresponding fields in the data array. Associations will construct new
+entities if no previous entity is found for the association&#8217;s target property.</p>
+<p>For example give some request data like the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mark&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Trying to patch an entity without an entity in the user property will create
+a new user entity:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="k">new</span> <span class="nx">Article</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">user</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">;</span> <span class="c1">// Echoes &#39;mark&#39;</span>
+</pre></div>
+</div>
+<p>The same can be said about hasMany and belongsToMany associations, with
+an important caveat:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For belongsToMany associations, ensure the relevant entity has
+a property accessible for the associated entity.</p>
+</div>
+<p>If a Product belongsToMany Tag:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in the Product Entity</span>
+<span class="k">protected</span> <span class="nv">$_accessible</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1">// .. other properties</span>
+   <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For hasMany and belongsToMany associations, if there were any entities that
+could not be matched by primary key to a record in the data array, then
+those records will be discarded from the resulting entity.</p>
+<p class="last">Remember that using either <code class="docutils literal"><span class="pre">patchEntity()</span></code> or <code class="docutils literal"><span class="pre">patchEntities()</span></code> does not
+persist the data, it just edits (or creates) the given entities. In order to
+save the entity you will have to call the table&#8217;s <code class="docutils literal"><span class="pre">save()</span></code> method.</p>
+</div>
+<p>For example, consider the following case:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First comment&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second comment&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+
+<span class="nv">$newData</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Changed comment&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A new comment&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="nv">$newData</span><span class="p">);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>At the end, if the entity is converted back to an array you will obtain the
+following result:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Changed comment&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A new comment&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>As you can see, the comment with id 2 is no longer there, as it could not be
+matched to anything in the <code class="docutils literal"><span class="pre">$newData</span></code> array. This happens because CakePHP is
+reflecting the new state described in the request data.</p>
+<p>Some additional advantages of this approach is that it reduces the number of
+operations to be executed when persisting the entity again.</p>
+<p>Please note that this does not mean that the comment with id 2 was removed from
+the database, if you wish to remove the comments for that article that are not
+present in the entity, you can collect the primary keys and execute a batch
+delete for those not in the list:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$comments</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">);</span>
+<span class="nv">$present</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Collection</span><span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">extract</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">filter</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+<span class="nv">$comments</span><span class="o">-&gt;</span><span class="na">deleteAll</span><span class="p">([</span>
+    <span class="s1">&#39;article_id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+    <span class="s1">&#39;id NOT IN&#39;</span> <span class="o">=&gt;</span> <span class="nv">$present</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>As you can see, this also helps creating solutions where an association needs to
+be implemented like a single set.</p>
+<p>You can also patch multiple entities at once. The consideration made for
+patching hasMany and belongsToMany associations apply for patching multiple
+entities: Matches are done by the primary key field value and missing matches in
+the original entities array will be removed and not present in the result:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$list</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;popular&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+<span class="nv">$patched</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntities</span><span class="p">(</span><span class="nv">$list</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$patched</span> <span class="k">as</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Similarly to using <code class="docutils literal"><span class="pre">patchEntity()</span></code>, you can use the third argument for
+controlling the associations that will be merged in each of the entities in the
+array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$patched</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">patchEntities</span><span class="p">(</span>
+    <span class="nv">$list</span><span class="p">,</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span>
+    <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments.Users&#39;</span><span class="p">]]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modifying-request-data-before-building-entities">
+<span id="before-marshal"></span><h3>Modifying Request Data Before Building Entities<a class="headerlink" href="#modifying-request-data-before-building-entities" title="Permalink to this headline">¶</a></h3>
+<p>If you need to modify request data before it is converted into entities, you can
+use the <code class="docutils literal"><span class="pre">Model.beforeMarshal</span></code> event. This event lets you manipulate the
+request data just before entities are created:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Include use statements at the top of your file.</span>
+<span class="k">use</span> <span class="nx">Cake\Event\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ArrayObject</span><span class="p">;</span>
+
+<span class="c1">// In a table or behavior class</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">beforeMarshal</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">,</span> <span class="nx">ArrayObject</span> <span class="nv">$data</span><span class="p">,</span> <span class="nx">ArrayObject</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">mb_strtolower</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">$data</span></code> parameter is an <code class="docutils literal"><span class="pre">ArrayObject</span></code> instance, so you don&#8217;t have to
+return it to change the data used to create entities.</p>
+<p>The main purpose of <code class="docutils literal"><span class="pre">beforeMarshal</span></code> is to assist the users to pass the
+validation process when simple mistakes can be automatically resolved, or when
+data needs to be restructured so it can be put into the right fields.</p>
+<p>The <code class="docutils literal"><span class="pre">Model.beforeMarshal</span></code> event is triggered just at the start of the
+validation process, one of the reasons is that <code class="docutils literal"><span class="pre">beforeMarshal</span></code> is allowed to
+change the validation rules and the saving options, such as the field whitelist.
+Validation is triggered just after this event is finished. A common example of
+changing the data before it is validated is trimming all fields before saving:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Include use statements at the top of your file.</span>
+<span class="k">use</span> <span class="nx">Cake\Event\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ArrayObject</span><span class="p">;</span>
+
+<span class="c1">// In a table or behavior class</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">beforeMarshal</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">,</span> <span class="nx">ArrayObject</span> <span class="nv">$data</span><span class="p">,</span> <span class="nx">ArrayObject</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$data</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Because of how the marshalling process works, if a field does not pass
+validation it will automatically be removed from the data array and not be
+copied into the entity. This is to prevent inconsistent data from entering the
+entity object.</p>
+<p>Moreover, the data in <code class="docutils literal"><span class="pre">beforeMarshal</span></code> is a copy of the passed data. This is
+because it is important to preserve the original user input, as it may be used
+elsewhere.</p>
+</div>
+<div class="section" id="validating-data-before-building-entities">
+<h3>Validating Data Before Building Entities<a class="headerlink" href="#validating-data-before-building-entities" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="validation.html"><span class="doc">Validating Data</span></a> chapter has more information on how to use the
+validation features of CakePHP to ensure your data stays correct and consistent.</p>
+</div>
+<div class="section" id="avoiding-property-mass-assignment-attacks">
+<h3>Avoiding Property Mass Assignment Attacks<a class="headerlink" href="#avoiding-property-mass-assignment-attacks" title="Permalink to this headline">¶</a></h3>
+<p>When creating or merging entities from request data you need to be careful of
+what you allow your users to change or add in the entities. For example, by
+sending an array in the request containing the <code class="docutils literal"><span class="pre">user_id</span></code> an attacker could
+change the owner of an article, causing undesirable effects:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Contains [&#39;user_id&#39; =&gt; 100, &#39;title&#39; =&gt; &#39;Hacked!&#39;];</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">();</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>There are two ways of protecting you against this problem. The first one is by
+setting the default columns that can be safely set from a request using the
+<a class="reference internal" href="entities.html#entities-mass-assignment"><span class="std std-ref">Mass Assignment</span></a> feature in the entities.</p>
+<p>The second way is by using the <code class="docutils literal"><span class="pre">fieldList</span></code> option when creating or merging
+data into an entity:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Contains [&#39;user_id&#39; =&gt; 100, &#39;title&#39; =&gt; &#39;Hacked!&#39;];</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">();</span>
+
+<span class="c1">// Only allow title to be changed</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;fieldList&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also control which properties can be assigned for associations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Only allow changing the title and tags</span>
+<span class="c1">// and the tag name is the only column that can be set</span>
+<span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;fieldList&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;fieldList&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]]</span>
+<span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Using this feature is handy when you have many different functions your users
+can access and you want to let your users edit different data based on their
+privileges.</p>
+<p>The <code class="docutils literal"><span class="pre">fieldList</span></code> options is also accepted by the <code class="docutils literal"><span class="pre">newEntity()</span></code>,
+<code class="docutils literal"><span class="pre">newEntities()</span></code> and <code class="docutils literal"><span class="pre">patchEntities()</span></code> methods.</p>
+</div>
+</div>
+<div class="section" id="saving-entities">
+<span id="id2"></span><h2>Saving Entities<a class="headerlink" href="#saving-entities" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::save">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">save</code><span class="sig-paren">(</span><em>Entity $entity</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>When saving request data to your database you need to first hydrate a new entity
+using <code class="docutils literal"><span class="pre">newEntity()</span></code> for passing into <code class="docutils literal"><span class="pre">save()</span></code>. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The ORM uses the <code class="docutils literal"><span class="pre">isNew()</span></code> method on an entity to determine whether or not an
+insert or update should be performed. If the <code class="docutils literal"><span class="pre">isNew()</span></code> method returns <code class="docutils literal"><span class="pre">true</span></code>
+and the entity has a primary key value, an &#8216;exists&#8217; query will be issued. The
+&#8216;exists&#8217; query can be suppressed by passing <code class="docutils literal"><span class="pre">'checkExisting'</span> <span class="pre">=&gt;</span> <span class="pre">false</span></code> in the
+<code class="docutils literal"><span class="pre">$options</span></code> argument:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;checkExisting&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Once you&#8217;ve loaded some entities you&#8217;ll probably want to modify them and update
+your database. This is a pretty simple exercise in CakePHP:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;My new title&#39;</span><span class="p">;</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When saving, CakePHP will <a class="reference internal" href="validation.html#application-rules"><span class="std std-ref">apply your rules</span></a>, and wrap
+the save operation in a database transaction. It will also only update
+properties that have changed. The above <code class="docutils literal"><span class="pre">save()</span></code> call would generate SQL
+like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">UPDATE</span> <span class="nx">articles</span> <span class="nx">SET</span> <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;My new title&#39;</span> <span class="nx">WHERE</span> <span class="nx">id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you had a new entity, the following SQL would be generated:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">INSERT</span> <span class="nx">INTO</span> <span class="nx">articles</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="nx">VALUES</span> <span class="p">(</span><span class="s1">&#39;My new title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When an entity is saved a few things happen:</p>
+<ol class="arabic simple">
+<li>Rule checking will be started if not disabled.</li>
+<li>Rule checking will trigger the <code class="docutils literal"><span class="pre">Model.beforeRules</span></code> event. If this event is
+stopped, the save operation will fail and return <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li>Rules will be checked. If the entity is being created, the <code class="docutils literal"><span class="pre">create</span></code> rules
+will be used. If the entity is being updated, the <code class="docutils literal"><span class="pre">update</span></code> rules will be
+used.</li>
+<li>The <code class="docutils literal"><span class="pre">Model.afterRules</span></code> event will be triggered.</li>
+<li>The <code class="docutils literal"><span class="pre">Model.beforeSave</span></code> event is dispatched. If it is stopped, the save will
+be aborted, and save() will return <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li>Parent associations are saved. For example, any listed belongsTo
+associations will be saved.</li>
+<li>The modified fields on the entity will be saved.</li>
+<li>Child associations are saved. For example, any listed hasMany, hasOne, or
+belongsToMany associations will be saved.</li>
+<li>The <code class="docutils literal"><span class="pre">Model.afterSave</span></code> event will be dispatched.</li>
+<li>The <code class="docutils literal"><span class="pre">Model.afterSaveCommit</span></code> event will be dispatched.</li>
+</ol>
+<p>The following diagram illustrates the above process:</p>
+<div class="figure align-left">
+<img alt="Flow diagram showing the save process." src="../_images/save-cycle.png" />
+</div>
+<p>See the <a class="reference internal" href="validation.html#application-rules"><span class="std std-ref">Applying Application Rules</span></a> section for more information on creating and
+using rules.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If no changes are made to the entity when it is saved, the callbacks will
+not fire because no save is performed.</p>
+</div>
+<p>The <code class="docutils literal"><span class="pre">save()</span></code> method will return the modified entity on success, and <code class="docutils literal"><span class="pre">false</span></code>
+on failure. You can disable rules and/or transactions using the
+<code class="docutils literal"><span class="pre">$options</span></code> argument for save:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller or table method.</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;checkRules&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;atomic&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="section" id="saving-associations">
+<h3>Saving Associations<a class="headerlink" href="#saving-associations" title="Permalink to this headline">¶</a></h3>
+<p>When you are saving an entity, you can also elect to save some or all of the
+associated entities. By default all first level entities will be saved. For
+example saving an Article, will also automatically update any dirty entities
+that are directly related to articles table.</p>
+<p>You can fine tune which associations are saved by using the <code class="docutils literal"><span class="pre">associated</span></code>
+option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+
+<span class="c1">// Only save the comments association</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Comments&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>You can define save distant or deeply nested associations by using dot notation:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Save the company, the employees and related addresses for each of them.</span>
+<span class="nv">$companies</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Employees.Addresses&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>Moreover, you can combine the dot notation for associations with the options
+array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$companies</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">,</span> <span class="p">[</span>
+  <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;Employees&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Employees.Addresses&#39;</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Your entities should be structured in the same way as they are when loaded from
+the database. See the form helper documentation for <a class="reference internal" href="../views/helpers/form.html#associated-form-inputs"><span class="std std-ref">how to build inputs
+for associations</span></a>.</p>
+<p>If you are building or modifying association data after building your entities
+you will have to mark the association property as modified with <code class="docutils literal"><span class="pre">dirty()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$company</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;Master Chef&#39;</span><span class="p">;</span>
+<span class="nv">$company</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-belongsto-associations">
+<h3>Saving BelongsTo Associations<a class="headerlink" href="#saving-belongsto-associations" title="Permalink to this headline">¶</a></h3>
+<p>When saving belongsTo associations, the ORM expects a single nested entity named with
+the singular, <a class="reference internal" href="../core-libraries/inflector.html#inflector-methods-summary"><span class="std std-ref">underscored</span></a> version of the association name. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Post&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mark&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Users&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-hasone-associations">
+<h3>Saving HasOne Associations<a class="headerlink" href="#saving-hasone-associations" title="Permalink to this headline">¶</a></h3>
+<p>When saving hasOne associations, the ORM expects a single nested entity named with the
+singular, <a class="reference internal" href="../core-libraries/inflector.html#inflector-methods-summary"><span class="std std-ref">underscored</span></a> version of the association name. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakephp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;twitter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;@cakephp&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Users&#39;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Profiles&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$users</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-hasmany-associations">
+<h3>Saving HasMany Associations<a class="headerlink" href="#saving-hasmany-associations" title="Permalink to this headline">¶</a></h3>
+<p>When saving hasMany associations, the ORM expects an array of entities named with the
+plural, <a class="reference internal" href="../core-libraries/inflector.html#inflector-methods-summary"><span class="std std-ref">underscored</span></a> version of the association name. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Post&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Best post ever&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;I really like this.&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Comments&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When saving hasMany associations, associated records will either be updated, or
+inserted. For the case that the record already has associated records in the
+database, you have the choice between two saving strategies:</p>
+<dl class="docutils">
+<dt>append</dt>
+<dd>Associated records are updated in the database or, if not matching any
+existing record, inserted.</dd>
+<dt>replace</dt>
+<dd>Any existing records that do not match the records provided will be deleted
+from the database. Only provided records will remain (or be inserted).</dd>
+</dl>
+<p>By default the <code class="docutils literal"><span class="pre">append</span></code> saving strategy is used.
+See <a class="reference internal" href="associations.html#has-many-associations"><span class="std std-ref">HasMany Associations</span></a> for details on defining the <code class="docutils literal"><span class="pre">saveStrategy</span></code>.</p>
+<p>Whenever you add new records into an existing association you should always mark
+the association property as &#8216;dirty&#8217;. This lets the ORM know that the association
+property has to be persisted:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$comment</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Without the call to <code class="docutils literal"><span class="pre">dirty()</span></code> the updated comments will not be saved.</p>
+</div>
+<div class="section" id="saving-belongstomany-associations">
+<h3>Saving BelongsToMany Associations<a class="headerlink" href="#saving-belongstomany-associations" title="Permalink to this headline">¶</a></h3>
+<p>When saving belongsToMany associations, the ORM expects an array of entities named with
+the plural, <a class="reference internal" href="../core-libraries/inflector.html#inflector-methods-summary"><span class="std std-ref">underscored</span></a> version of the association name. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Post&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;tag&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;tag&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Framework&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Tags&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When converting request data into entities, the <code class="docutils literal"><span class="pre">newEntity()</span></code> and
+<code class="docutils literal"><span class="pre">newEntities()</span></code> methods will handle both arrays of properties, as well as a
+list of ids at the <code class="docutils literal"><span class="pre">_ids</span></code> key. Using the <code class="docutils literal"><span class="pre">_ids</span></code> key makes it easy to build a
+select box or checkbox based form controls for belongs to many associations. See
+the <a class="reference internal" href="#converting-request-data"><span class="std std-ref">Converting Request Data into Entities</span></a> section for more information.</p>
+<p>When saving belongsToMany associations, you have the choice between two saving
+strategies:</p>
+<dl class="docutils">
+<dt>append</dt>
+<dd>Only new links will be created between each side of this association. This
+strategy will not destroy existing links even though they may not be present
+in the array of entities to be saved.</dd>
+<dt>replace</dt>
+<dd>When saving, existing links will be removed and new links will be created in
+the junction table. If there are existing link in the database to some of
+the entities intended to be saved, those links will be updated, not deleted
+and then re-saved.</dd>
+</dl>
+<p>See <a class="reference internal" href="associations.html#belongs-to-many-associations"><span class="std std-ref">BelongsToMany Associations</span></a> for details on defining the <code class="docutils literal"><span class="pre">saveStrategy</span></code>.</p>
+<p>By default the <code class="docutils literal"><span class="pre">replace</span></code> strategy is used. Whenever you add new records into
+an existing association you should always mark the association property as
+&#8216;dirty&#8217;. This lets the ORM know that the association property has to be
+persisted:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">tags</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$tag</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">(</span><span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Without the call to <code class="docutils literal"><span class="pre">dirty()</span></code> the updated tags will not be saved.</p>
+<p>Often you&#8217;ll find yourself wanting to make an association between two existing
+entities, eg. a user coauthoring an article. This is done by using the method
+<code class="docutils literal"><span class="pre">link()</span></code>, like this:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$articleId</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$userId</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span><span class="nv">$user</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>When saving belongsToMany Associations, it can be relevant to save some
+additional data to the junction Table. In the previous example of tags, it could
+be the <code class="docutils literal"><span class="pre">vote_type</span></code> of person who voted on that article. The <code class="docutils literal"><span class="pre">vote_type</span></code> can
+be either <code class="docutils literal"><span class="pre">upvote</span></code> or <code class="docutils literal"><span class="pre">downvote</span></code> and is represented by a string. The
+relation is between Users and Articles.</p>
+<p>Saving that association, and the <code class="docutils literal"><span class="pre">vote_type</span></code> is done by first adding some data
+to <code class="docutils literal"><span class="pre">_joinData</span></code> and then saving the association with <code class="docutils literal"><span class="pre">link()</span></code>, example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$articleId</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$userId</span><span class="p">);</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">_joinData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Entity</span><span class="p">([</span><span class="s1">&#39;vote_type&#39;</span> <span class="o">=&gt;</span> <span class="nv">$voteType</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;markNew&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span><span class="nv">$user</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-additional-data-to-the-join-table">
+<h3>Saving Additional Data to the Join Table<a class="headerlink" href="#saving-additional-data-to-the-join-table" title="Permalink to this headline">¶</a></h3>
+<p>In some situations the table joining your BelongsToMany association, will have
+additional columns on it. CakePHP makes it simple to save properties into these
+columns. Each entity in a belongsToMany association has a <code class="docutils literal"><span class="pre">_joinData</span></code> property
+that contains the additional columns on the junction table. This data can be
+either an array or an Entity instance. For example if Students BelongsToMany
+Courses, we could have a junction table that looks like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">id</span> <span class="o">|</span> <span class="nx">student_id</span> <span class="o">|</span> <span class="nx">course_id</span> <span class="o">|</span> <span class="nx">days_attended</span> <span class="o">|</span> <span class="nx">grade</span>
+</pre></div>
+</div>
+<p>When saving data you can populate the additional columns on the junction table
+by setting data to the <code class="docutils literal"><span class="pre">_joinData</span></code> property:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$student</span><span class="o">-&gt;</span><span class="na">courses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">_joinData</span><span class="o">-&gt;</span><span class="na">grade</span> <span class="o">=</span> <span class="mf">80.12</span><span class="p">;</span>
+<span class="nv">$student</span><span class="o">-&gt;</span><span class="na">courses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">_joinData</span><span class="o">-&gt;</span><span class="na">days_attended</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+
+<span class="nv">$studentsTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$student</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">_joinData</span></code> property can be either an entity, or an array of data if you
+are saving entities built from request data. When saving junction table data
+from request data your POST data should look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sally&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;last_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Parker&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;courses&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s1">&#39;_joinData&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;grade&#39;</span> <span class="o">=&gt;</span> <span class="mf">80.12</span><span class="p">,</span>
+                <span class="s1">&#39;days_attended&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+        <span class="c1">// Other courses.</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+<span class="nv">$student</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Students</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Courses._joinData&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../views/helpers/form.html#associated-form-inputs"><span class="std std-ref">Creating Inputs for Associated Data</span></a> documentation for how to build inputs with
+<code class="docutils literal"><span class="pre">FormHelper</span></code> correctly.</p>
+</div>
+<div class="section" id="saving-complex-types">
+<span id="id3"></span><h3>Saving Complex Types<a class="headerlink" href="#saving-complex-types" title="Permalink to this headline">¶</a></h3>
+<p>Tables are capable of storing data represented in basic types, like strings,
+integers, floats, booleans, etc. But It can also be extended to accept more
+complex types such as arrays or objects and serialize this data into simpler
+types that can be saved in the database.</p>
+<p>This functionality is achieved by using the custom types system. See the
+<a class="reference internal" href="database-basics.html#adding-custom-database-types"><span class="std std-ref">Adding Custom Types</span></a> section to find out how to build custom
+column Types:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In config/bootstrap.php</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Type</span><span class="p">;</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">map</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;Cake\Database\Type\JsonType&#39;</span><span class="p">);</span>
+
+<span class="c1">// In src/Model/Table/UsersTable.php</span>
+<span class="k">use</span> <span class="nx">Cake\Database\Schema\TableSchema</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UsersTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_initializeSchema</span><span class="p">(</span><span class="nx">TableSchema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">columnType</span><span class="p">(</span><span class="s1">&#39;preferences&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$schema</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The code above maps the <code class="docutils literal"><span class="pre">preferences</span></code> column to the <code class="docutils literal"><span class="pre">json</span></code> custom type.
+This means that when retrieving data for that column, it will be unserialized
+from a JSON string in the database and put into an entity as an array.</p>
+<p>Likewise, when saved, the array will be transformed back into its JSON
+representation:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">([</span>
+    <span class="s1">&#39;preferences&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;sports&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;football&#39;</span><span class="p">,</span> <span class="s1">&#39;baseball&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;books&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Mastering PHP&#39;</span><span class="p">,</span> <span class="s1">&#39;Hamlet&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$usersTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When using complex types it is important to validate that the data you are
+receiving from the end user is the correct type. Failing to correctly handle
+complex data could result in malicious users being able to store data they
+would not normally be able to.</p>
+</div>
+</div>
+<div class="section" id="strict-saving">
+<h2>Strict Saving<a class="headerlink" href="#strict-saving" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::saveOrFail">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">saveOrFail</code><span class="sig-paren">(</span><em>$entity</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::saveOrFail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Using this method will throw an
+<a class="reference internal" href="../development/errors.html#Cake\ORM\Exception\PersistenceFailedException" title="Cake\ORM\Exception\PersistenceFailedException"><code class="xref php php-exc docutils literal"><span class="pre">Cake\ORM\Exception\PersistenceFailedException</span></code></a> if:</p>
+<ul class="simple">
+<li>the application rules checks failed</li>
+<li>the entity contains errors</li>
+<li>the save was aborted by a callback.</li>
+</ul>
+<p>Using this can be helpful when you performing complex database
+operations without human monitoring, for example, inside a Shell task.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use this method in a controller, be sure to catch the
+<code class="docutils literal"><span class="pre">PersistenceFailedException</span></code> that could be raised.</p>
+</div>
+<p>If you want to track down the entity that failed to save, you can use the
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\ORMException\PersistenceFailedException::getEntity()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">saveOrFail</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Cake\ORM\Exception\PersistenceFailedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getEntity</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As this internally perfoms a <a class="reference internal" href="#Cake\ORM\Table::save" title="Cake\ORM\Table::save"><code class="xref php php-meth docutils literal"><span class="pre">Cake\ORM\Table::save()</span></code></a> call, all
+corresponding save events will be triggered.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.4.1.</span></p>
+</div>
+</div>
+<div class="section" id="saving-multiple-entities">
+<h2>Saving Multiple Entities<a class="headerlink" href="#saving-multiple-entities" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::saveMany">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">saveMany</code><span class="sig-paren">(</span><em>$entities</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::saveMany" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Using this method you can save multiple entities atomically. <code class="docutils literal"><span class="pre">$entities</span></code> can
+be an array of entities created using <code class="docutils literal"><span class="pre">newEntities()</span></code> / <code class="docutils literal"><span class="pre">patchEntities()</span></code>.
+<code class="docutils literal"><span class="pre">$options</span></code> can have the same options as accepted by <code class="docutils literal"><span class="pre">save()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$entities</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">newEntities</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">saveMany</span><span class="p">(</span><span class="nv">$entities</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The result will be updated entities on success or <code class="docutils literal"><span class="pre">false</span></code> on failure.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.2.8.</span></p>
+</div>
+</div>
+<div class="section" id="bulk-updates">
+<h2>Bulk Updates<a class="headerlink" href="#bulk-updates" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::updateAll">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">updateAll</code><span class="sig-paren">(</span><em>$fields</em>, <em>$conditions</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::updateAll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>There may be times when updating rows individually is not efficient or
+necessary. In these cases it is more efficient to use a bulk-update to modify
+many rows at once:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Publish all the unpublished articles.</span>
+<span class="k">function</span> <span class="nf">publishAllUnpublished</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">updateAll</span><span class="p">(</span>
+        <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span> <span class="c1">// fields</span>
+        <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span> <span class="c1">// conditions</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you need to do bulk updates and use SQL expressions, you will need to use an
+expression object as <code class="docutils literal"><span class="pre">updateAll()</span></code> uses prepared statements under the hood:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Database\Expression\QueryExpression</span><span class="p">;</span>
+
+<span class="o">...</span>
+
+<span class="k">function</span> <span class="nf">incrementCounters</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$expression</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueryExpression</span><span class="p">(</span><span class="s1">&#39;view_count = view_count + 1&#39;</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">updateAll</span><span class="p">([</span><span class="nv">$expression</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A bulk-update will be considered successful if 1 or more rows are updated.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">updateAll will <em>not</em> trigger beforeSave/afterSave events. If you need those
+first load a collection of records and update them.</p>
+</div>
+<p><code class="docutils literal"><span class="pre">updateAll()</span></code> is for convenience only. You can use this more flexible
+interface as well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Publish all the unpublished articles.</span>
+<span class="k">function</span> <span class="nf">publishAllUnpublished</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">update</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Also see: <a class="reference internal" href="query-builder.html#query-builder-updating-data"><span class="std std-ref">Updating Data</span></a>.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="database-basics.html">Database Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query-builder.html">Query Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table-objects.html">Table Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieving-data-and-resultsets.html">Retrieving Data &amp; Results Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Validating Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Saving Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deleting-data.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="associations.html">Associations - Linking Tables Together</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviors.html">Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schema-system.html">Schema System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../console-and-shells/orm-cache.html">ORM Cache Shell</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

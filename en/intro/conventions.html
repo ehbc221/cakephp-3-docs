@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="CakePHP Conventions" lang="en" name="title" />
+<meta content="web development experience,maintenance nightmare,index method,legacy systems,method names,php class,uniform system,config files,tenets,articles,conventions,conventional controller,best practices,maps,visibility,news articles,functionality,logic,cakephp,developers" lang="en" name="keywords" />
+
+    <title>CakePHP Conventions - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/intro/conventions.html" /><link rel="alternate" hreflang="es" href="../../es/intro/conventions.html" /><link rel="alternate" hreflang="ja" href="../../ja/intro/conventions.html" /><link rel="alternate" hreflang="fr" href="../../fr/intro/conventions.html" /><link rel="alternate" hreflang="zh" href="../../zh/intro/conventions.html" /><link rel="alternate" hreflang="tr" href="../../tr/intro/conventions.html" /><link rel="alternate" hreflang="ru" href="../../ru/intro/conventions.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="up" title="CakePHP at a Glance" href="../intro.html" />
+    <link rel="next" title="CakePHP Folder Structure" href="cakephp-folder-structure.html" />
+    <link rel="prev" title="Where to Get Help" href="where-to-get-help.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/intro/conventions.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/intro/conventions.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/intro/conventions.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/intro/conventions.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/intro/conventions.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/intro/conventions.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/intro/conventions.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/intro/conventions.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">CakePHP Conventions</a><ul>
+<li><a class="reference internal" href="#controller-conventions">Controller Conventions</a><ul>
+<li><a class="reference internal" href="#url-considerations-for-controller-names">URL Considerations for Controller Names</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#file-and-class-name-conventions">File and Class Name Conventions</a></li>
+<li><a class="reference internal" href="#model-and-database-conventions">Model and Database Conventions</a></li>
+<li><a class="reference internal" href="#view-conventions">View Conventions</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="cakephp-conventions">
+<h1>CakePHP Conventions<a class="headerlink" href="#cakephp-conventions" title="Permalink to this headline">¶</a></h1>
+<p>We are big fans of convention over configuration. While it takes a bit of time
+to learn CakePHP&#8217;s conventions, you save time in the long run. By following
+conventions, you get free functionality, and you liberate yourself from the
+maintenance nightmare of tracking config files. Conventions also make for a very
+uniform development experience, allowing other developers to jump in and help.</p>
+<div class="section" id="controller-conventions">
+<h2>Controller Conventions<a class="headerlink" href="#controller-conventions" title="Permalink to this headline">¶</a></h2>
+<p>Controller class names are plural, CamelCased, and end in <code class="docutils literal"><span class="pre">Controller</span></code>.
+<code class="docutils literal"><span class="pre">UsersController</span></code> and <code class="docutils literal"><span class="pre">ArticleCategoriesController</span></code> are both examples of
+conventional controller names.</p>
+<p>Public methods on Controllers are often exposed as &#8216;actions&#8217; accessible through
+a web browser. For example the <code class="docutils literal"><span class="pre">/users/view</span></code> maps to the <code class="docutils literal"><span class="pre">view()</span></code> method
+of the <code class="docutils literal"><span class="pre">UsersController</span></code> out of the box. Protected or private methods
+cannot be accessed with routing.</p>
+<div class="section" id="url-considerations-for-controller-names">
+<h3>URL Considerations for Controller Names<a class="headerlink" href="#url-considerations-for-controller-names" title="Permalink to this headline">¶</a></h3>
+<p>As you&#8217;ve just seen, single word controllers map to a simple lower case URL
+path. For example, <code class="docutils literal"><span class="pre">UsersController</span></code> (which would be defined in the file name
+<strong>UsersController.php</strong>) is accessed from <a class="reference external" href="http://example.com/users">http://example.com/users</a>.</p>
+<p>While you can route multiple word controllers in any way you like, the
+convention is that your URLs are lowercase and dashed using the <code class="docutils literal"><span class="pre">DashedRoute</span></code>
+class, therefore <code class="docutils literal"><span class="pre">/article-categories/view-all</span></code> is the correct form to access
+the <code class="docutils literal"><span class="pre">ArticleCategoriesController::viewAll()</span></code> action.</p>
+<p>When you create links using <code class="docutils literal"><span class="pre">this-&gt;Html-&gt;link()</span></code>, you can use the following
+conventions for the url array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="s1">&#39;link-title&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyPrefix&#39;</span> <span class="c1">// CamelCased</span>
+    <span class="s1">&#39;plugin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyPlugin&#39;</span><span class="p">,</span> <span class="c1">// CamelCased</span>
+    <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ControllerName&#39;</span><span class="p">,</span> <span class="c1">// CamelCased</span>
+    <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;actionName&#39;</span> <span class="c1">// camelBacked</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>For more information on CakePHP URLs and parameter handling, see
+<a class="reference internal" href="../development/routing.html#routes-configuration"><span class="std std-ref">Connecting Routes</span></a>.</p>
+</div>
+</div>
+<div class="section" id="file-and-class-name-conventions">
+<span id="file-and-classname-conventions"></span><h2>File and Class Name Conventions<a class="headerlink" href="#file-and-class-name-conventions" title="Permalink to this headline">¶</a></h2>
+<p>In general, filenames match the class names, and follow the PSR-0 or PSR-4
+standards for autoloading. The following are some examples of class names and
+their filenames:</p>
+<ul class="simple">
+<li>The Controller class <code class="docutils literal"><span class="pre">LatestArticlesController</span></code> would be found in a file
+named <strong>LatestArticlesController.php</strong></li>
+<li>The Component class <code class="docutils literal"><span class="pre">MyHandyComponent</span></code> would be found in a file named
+<strong>MyHandyComponent.php</strong></li>
+<li>The Table class <code class="docutils literal"><span class="pre">OptionValuesTable</span></code> would be found in a file named
+<strong>OptionValuesTable.php</strong>.</li>
+<li>The Entity class <code class="docutils literal"><span class="pre">OptionValue</span></code> would be found in a file named
+<strong>OptionValue.php</strong>.</li>
+<li>The Behavior class <code class="docutils literal"><span class="pre">EspeciallyFunkableBehavior</span></code> would be found in a file
+named <strong>EspeciallyFunkableBehavior.php</strong></li>
+<li>The View class <code class="docutils literal"><span class="pre">SuperSimpleView</span></code> would be found in a file named
+<strong>SuperSimpleView.php</strong></li>
+<li>The Helper class <code class="docutils literal"><span class="pre">BestEverHelper</span></code> would be found in a file named
+<strong>BestEverHelper.php</strong></li>
+</ul>
+<p>Each file would be located in the appropriate folder/namespace in your app
+folder.</p>
+</div>
+<div class="section" id="model-and-database-conventions">
+<span id="id1"></span><h2>Model and Database Conventions<a class="headerlink" href="#model-and-database-conventions" title="Permalink to this headline">¶</a></h2>
+<p>Table class names are plural, CamelCased and end in <code class="docutils literal"><span class="pre">Table</span></code>. <code class="docutils literal"><span class="pre">UsersTable</span></code>, <code class="docutils literal"><span class="pre">ArticleCategoriesTable</span></code>,
+and <code class="docutils literal"><span class="pre">UserFavoritePagesTable</span></code> are all examples of conventional model names.</p>
+<p>Table names corresponding to CakePHP models are plural and underscored. The
+underlying tables for the above mentioned models would be <code class="docutils literal"><span class="pre">users</span></code>,
+<code class="docutils literal"><span class="pre">article_categories</span></code>, and <code class="docutils literal"><span class="pre">user_favorite_pages</span></code>, respectively.</p>
+<p>The convention is to use English words for table and column names. If you use
+words in another language, CakePHP might not be able to process the right
+inflections (from singular to plural and vice-versa). If you need to add your
+own language rules for some words, you can use the utility class
+<a class="reference internal" href="../core-libraries/inflector.html#Cake\Utility\Inflector" title="Cake\Utility\Inflector"><code class="xref php php-class docutils literal"><span class="pre">Cake\Utility\Inflector</span></code></a>. Besides defining those custom inflection
+rules, this class also allows you to check that CakePHP understands your custom
+syntax for plurals and singulars words. See the documentation about
+<a class="reference internal" href="../core-libraries/inflector.html"><span class="doc">Inflector</span></a> for more information.</p>
+<p>Field names with two or more words are underscored: <code class="docutils literal"><span class="pre">first_name</span></code>.</p>
+<p>Foreign keys in hasMany, belongsTo/hasOne relationships are recognized by
+default as the (singular) name of the related table followed by <code class="docutils literal"><span class="pre">_id</span></code>. So if
+Users hasMany Articles, the <code class="docutils literal"><span class="pre">articles</span></code> table will refer to the <code class="docutils literal"><span class="pre">users</span></code>
+table via a <code class="docutils literal"><span class="pre">user_id</span></code> foreign key. For a table like <code class="docutils literal"><span class="pre">article_categories</span></code>
+whose name contains multiple words, the foreign key would be
+<code class="docutils literal"><span class="pre">article_category_id</span></code>.</p>
+<p>Join tables, used in BelongsToMany relationships between models, should be named
+after the model tables they will join, arranged in alphabetical order
+(<code class="docutils literal"><span class="pre">articles_tags</span></code> rather than <code class="docutils literal"><span class="pre">tags_articles</span></code>).</p>
+<p>In addition to use an auto-increment key as the primary key, you may also use
+UUID columns. CakePHP will create a unique 36 character UUID
+(<a class="reference internal" href="../core-libraries/text.html#Cake\Utility\Text::uuid" title="Cake\Utility\Text::uuid"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Utility\Text::uuid()</span></code></a>) whenever you save a new record using
+the <code class="docutils literal"><span class="pre">Table::save()</span></code> method.</p>
+</div>
+<div class="section" id="view-conventions">
+<h2>View Conventions<a class="headerlink" href="#view-conventions" title="Permalink to this headline">¶</a></h2>
+<p>View template files are named after the controller functions they display, in an
+underscored form. The <code class="docutils literal"><span class="pre">viewAll()</span></code> function of the <code class="docutils literal"><span class="pre">ArticlesController</span></code> class
+will look for a view template in <strong>src/Template/Articles/view_all.ctp</strong>.</p>
+<p>The basic pattern is
+<strong>src/Template/Controller/underscored_function_name.ctp</strong>.</p>
+<p>By naming the pieces of your application using CakePHP conventions, you gain
+functionality without the hassle and maintenance tethers of configuration.
+Here&#8217;s a final example that ties the conventions together:</p>
+<ul class="simple">
+<li>Database table: &#8220;articles&#8221;</li>
+<li>Table class: <code class="docutils literal"><span class="pre">ArticlesTable</span></code>, found at <strong>src/Model/Table/ArticlesTable.php</strong></li>
+<li>Entity class: <code class="docutils literal"><span class="pre">Article</span></code>, found at <strong>src/Model/Entity/Article.php</strong></li>
+<li>Controller class: <code class="docutils literal"><span class="pre">ArticlesController</span></code>, found at
+<strong>src/Controller/ArticlesController.php</strong></li>
+<li>View template, found at <strong>src/Template/Articles/index.ctp</strong></li>
+</ul>
+<p>Using these conventions, CakePHP knows that a request to
+<a class="reference external" href="http://example.com/articles/">http://example.com/articles/</a> maps to a call on the <code class="docutils literal"><span class="pre">index()</span></code> function of the
+ArticlesController, where the Articles model is automatically available (and
+automatically tied to the &#8216;articles&#8217; table in the database), and renders to a
+file. None of these relationships have been configured by any means other than
+by creating classes and files that you&#8217;d need to create anyway.</p>
+<p>Now that you&#8217;ve been introduced to CakePHP&#8217;s fundamentals, you might try a run
+through the <a class="reference internal" href="../tutorials-and-examples/bookmarks/intro.html"><span class="doc">Bookmarker Tutorial</span></a> to see how things fit
+together.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="where-to-get-help.html">Where to Get Help</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CakePHP Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cakephp-folder-structure.html">CakePHP Folder Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

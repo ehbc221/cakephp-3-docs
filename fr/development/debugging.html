@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Debugger" lang="fr" name="title" />
+<meta content="Debugger CakePHP avec la classe Debugger, logging, basic debugging et utiliser le plugin DebugKit." lang="fr" name="description" />
+<meta content="extrait de code,stack trace,default output,error link,default error,web requests,error report,debugger,tableaux,différentes façons,extrait de,cakephp,ide,options" lang="fr" name="keywords" />
+
+    <title>Debugger - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/development/debugging.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/development/debugging.html" /><link rel="alternate" hreflang="es" href="../../es/development/debugging.html" /><link rel="alternate" hreflang="ja" href="../../ja/development/debugging.html" /><link rel="alternate" hreflang="zh" href="../../zh/development/debugging.html" /><link rel="alternate" hreflang="tr" href="../../tr/development/debugging.html" /><link rel="alternate" hreflang="ru" href="../../ru/development/debugging.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="next" title="Déploiement" href="../deployment.html" />
+    <link rel="prev" title="Shell Cache" href="../console-and-shells/cache.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/development/debugging.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/development/debugging.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/development/debugging.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/development/debugging.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/development/debugging.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/development/debugging.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/development/debugging.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/development/debugging.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Debugger</a><ul>
+<li><a class="reference internal" href="#debug-basique">Debug Basique</a></li>
+<li><a class="reference internal" href="#namespace-Cake\Error">Utiliser la Classe Debugger</a></li>
+<li><a class="reference internal" href="#affichage-des-valeurs">Affichage des Valeurs</a><ul>
+<li><a class="reference internal" href="#masquer-des-donnees">Masquer des Données</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logging-with-stack-traces">Logging With Stack Traces</a></li>
+<li><a class="reference internal" href="#generating-stack-traces">Generating Stack Traces</a></li>
+<li><a class="reference internal" href="#getting-an-excerpt-from-a-file">Getting an Excerpt From a File</a></li>
+<li><a class="reference internal" href="#utiliser-les-logs-pour-debugger">Utiliser les Logs pour Debugger</a></li>
+<li><a class="reference internal" href="#kit-de-debug">Kit de Debug</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="debugger">
+<h1>Debugger<a class="headerlink" href="#debugger" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le debug est une inévitable et nécessaire partie de tout cycle de développement.
+Tandis que CakePHP n&#8217;offre pas d&#8217;outils qui se connectent directement avec tout
+IDE ou éditeur, CakePHP fournit plusieurs outils pour l&#8217;aide au debug et ce qui
+est lancé sous le capot de votre application.</p>
+<div class="section" id="debug-basique">
+<h2>Debug Basique<a class="headerlink" href="#debug-basique" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">debug</code><span class="sig-paren">(</span><em>mixed $var</em>, <em>boolean $showHtml = null</em>, <em>$showFrom = true</em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<p>La fonction <code class="docutils literal"><span class="pre">debug()</span></code> est une fonction disponible partout qui fonctionne de la
+même manière que la fonction PHP <code class="docutils literal"><span class="pre">print_r()</span></code>. La fonction <code class="docutils literal"><span class="pre">debug()</span></code> vous
+permet de montrer les contenus d&#8217;un variable de différentes façons.
+Premièrement, si vous voulez que vos données soient montrées d&#8217;une façon
+sympa en HTML, définissez le deuxième paramètre à <code class="docutils literal"><span class="pre">true</span></code>. La fonction affiche
+aussi la ligne et le fichier dont ils sont originaires par défaut.</p>
+<p>La sortie de cette fonction est seulement montrée si la variable de <code class="docutils literal"><span class="pre">$debug</span></code>
+du cœur a été définie à <code class="docutils literal"><span class="pre">true</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.3.0: </span>Utiliser cette méthode retournera la valeur de la variable <code class="docutils literal"><span class="pre">$var</span></code> passée
+en paramètre, vous permettant ainsi, par exemple, de l&#8217;utiliser sur un
+<code class="docutils literal"><span class="pre">return</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nx">debug</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span> <span class="c1">// Retournera $data dans tous les cas</span>
+</pre></div>
+</div>
+</div>
+<dl class="function">
+<dt id="stackTrace">
+<code class="descname">stackTrace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stackTrace" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>La fonction <code class="docutils literal"><span class="pre">stackTrace()</span></code> est globalement disponible, et vous permet
+d&#8217;afficher une stack trace quelque soit la fonction appelée.</p>
+<dl class="function">
+<dt id="breakpoint">
+<code class="descname">breakpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#breakpoint" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.</span></p>
+</div>
+<p>Si vous avez installé <a class="reference external" href="http://psysh.org/">Psysh</a> vous pouvez utiliser cette
+fonction dans les environnements CLI pour ouvrir une console interactive
+avec le scope local courant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Du code</span>
+<span class="k">eval</span><span class="p">(</span><span class="nx">breakpoint</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Ouvrira une console interactive qui peut être utilisée pour vérifier les
+variables locales et exécuter d&#8217;autre code. Vous pouvez fermer le debugger
+interactif et reprendre l&#8217;exécution du script original en tapant
+<code class="docutils literal"><span class="pre">quit</span></code> ou <code class="docutils literal"><span class="pre">q</span></code> dans la session interactive.</p>
+</div>
+<div class="section" id="namespace-Cake\Error">
+<span id="utiliser-la-classe-debugger"></span><h2>Utiliser la Classe Debugger<a class="headerlink" href="#namespace-Cake\Error" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Error\Debugger">
+<em class="property">class </em><code class="descclassname">Cake\Error\</code><code class="descname">Debugger</code><a class="headerlink" href="#Cake\Error\Debugger" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Pour utiliser le debugger, assurez-vous d&#8217;abord que <code class="docutils literal"><span class="pre">Configure::read('debug')</span></code>
+est défini à <code class="docutils literal"><span class="pre">true</span></code>.</p>
+</div>
+<div class="section" id="affichage-des-valeurs">
+<h2>Affichage des Valeurs<a class="headerlink" href="#affichage-des-valeurs" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Error\Debugger::dump">
+<em class="property">static </em><code class="descclassname">Cake\Error\Debugger::</code><code class="descname">dump</code><span class="sig-paren">(</span><em>$var</em>, <em>$depth = 3</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Error\Debugger::dump" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Dump affiche le contenu d&#8217;une variable. Elle affiche toutes les propriétés
+et méthodes (s&#8217;il y en a) de la variable fournie::</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">Debugger</span><span class="o">::</span><span class="na">dump</span><span class="p">(</span><span class="nv">$foo</span><span class="p">);</span>
+
+<span class="c1">// Outputs</span>
+<span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">3</span>
+<span class="p">]</span>
+
+<span class="c1">// Simple object</span>
+<span class="nv">$car</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+
+<span class="nx">Debugger</span><span class="o">::</span><span class="na">dump</span><span class="p">(</span><span class="nv">$car</span><span class="p">);</span>
+
+<span class="c1">// Outputs</span>
+<span class="nx">object</span><span class="p">(</span><span class="nx">Car</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">color</span> <span class="o">=&gt;</span> <span class="s1">&#39;red&#39;</span>
+    <span class="nx">make</span> <span class="o">=&gt;</span> <span class="s1">&#39;Toyota&#39;</span>
+    <span class="nx">model</span> <span class="o">=&gt;</span> <span class="s1">&#39;Camry&#39;</span>
+    <span class="nx">mileage</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span><span class="mi">15000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="masquer-des-donnees">
+<h3>Masquer des Données<a class="headerlink" href="#masquer-des-donnees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Lorsque vous affichez des données avec <code class="docutils literal"><span class="pre">Debugger</span></code> ou que des pages d&#8217;erreurs
+sont affichées, vous pouvez souhaiter masquer des données sensibles comme des
+mots de passes ou des clés d&#8217;API. Dans votre fichier <code class="docutils literal"><span class="pre">config/bootstrap.php</span></code>,
+vous pouvez spécifier les clés à masquer:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Debugger</span><span class="o">::</span><span class="na">setOutputMask</span><span class="p">([</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;xxxxx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;awsKey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;yyyyy&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.4.0: </span>Les masques d&#8217;affichage ont été ajoutés dans la version 3.4.0</p>
+</div>
+</div>
+</div>
+<div class="section" id="logging-with-stack-traces">
+<h2>Logging With Stack Traces<a class="headerlink" href="#logging-with-stack-traces" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Error\Debugger::log">
+<em class="property">static </em><code class="descclassname">Cake\Error\Debugger::</code><code class="descname">log</code><span class="sig-paren">(</span><em>$var</em>, <em>$level = 7</em>, <em>$depth = 3</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Error\Debugger::log" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Crée un stack trace log détaillé au moment de l&#8217;invocation. La
+méthode <code class="docutils literal"><span class="pre">log()</span></code> affiche les données identiques à celles faites par
+<code class="docutils literal"><span class="pre">Debugger::dump()</span></code>, mais dans debug.log au lieu de les sortir
+buffer. Notez que votre répertoire <strong>tmp</strong> (et son contenu) doit
+être ouvert en écriture par le serveur web pour que le <code class="docutils literal"><span class="pre">log()</span></code> fonctionne
+correctement.</p>
+</div>
+<div class="section" id="generating-stack-traces">
+<h2>Generating Stack Traces<a class="headerlink" href="#generating-stack-traces" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Error\Debugger::trace">
+<em class="property">static </em><code class="descclassname">Cake\Error\Debugger::</code><code class="descname">trace</code><span class="sig-paren">(</span><em>$options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Error\Debugger::trace" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Retourne le stack trace courant. Chaque ligne des traces inclut la méthode
+appelée, incluant chaque fichier et ligne d&#8217;où est originaire l&#8217;appel:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">//Dans PostsController::index()</span>
+<span class="nx">pr</span><span class="p">(</span> <span class="nx">Debugger</span><span class="o">::</span><span class="na">trace</span><span class="p">()</span> <span class="p">);</span>
+
+<span class="c1">//sorties</span>
+<span class="nx">PostsController</span><span class="o">::</span><span class="na">index</span><span class="p">()</span> <span class="o">-</span> <span class="nx">APP</span><span class="o">/</span><span class="nx">Controller</span><span class="o">/</span><span class="nx">DownloadsController</span><span class="o">.</span><span class="nx">php</span><span class="p">,</span> <span class="nx">line</span> <span class="mi">48</span>
+<span class="nx">Dispatcher</span><span class="o">::</span><span class="na">_invoke</span><span class="p">()</span> <span class="o">-</span> <span class="nx">CORE</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">Cake</span><span class="o">/</span><span class="nx">Routing</span><span class="o">/</span><span class="nx">Dispatcher</span><span class="o">.</span><span class="nx">php</span><span class="p">,</span> <span class="nx">line</span> <span class="mi">265</span>
+<span class="nx">Dispatcher</span><span class="o">::</span><span class="na">dispatch</span><span class="p">()</span> <span class="o">-</span> <span class="nx">CORE</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">Cake</span><span class="o">/</span><span class="nx">Routing</span><span class="o">/</span><span class="nx">Dispatcher</span><span class="o">.</span><span class="nx">php</span><span class="p">,</span> <span class="nx">line</span> <span class="mi">237</span>
+<span class="p">[</span><span class="nx">main</span><span class="p">]</span> <span class="o">-</span> <span class="nx">APP</span><span class="o">/</span><span class="nx">webroot</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="p">,</span> <span class="nx">line</span> <span class="mi">84</span>
+</pre></div>
+</div>
+<p>Ci-dessus se trouve le stack trace généré en appelant <code class="docutils literal"><span class="pre">Debugger::trace()</span></code>
+dans une action d&#8217;un controller. Lire le stack trace de bas en haut
+montre l&#8217;ordre des fonctions lancées actuellement (stack frames).</p>
+</div>
+<div class="section" id="getting-an-excerpt-from-a-file">
+<h2>Getting an Excerpt From a File<a class="headerlink" href="#getting-an-excerpt-from-a-file" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Error\Debugger::excerpt">
+<em class="property">static </em><code class="descclassname">Cake\Error\Debugger::</code><code class="descname">excerpt</code><span class="sig-paren">(</span><em>$file</em>, <em>$line</em>, <em>$context</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Error\Debugger::excerpt" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Récupérer un extrait du fichier dans $path (qui est un chemin de fichier
+absolu), mettant en évidence le numéro de la ligne $line avec le nombre
+de lignes $context autour:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">pr</span><span class="p">(</span> <span class="nx">Debugger</span><span class="o">::</span><span class="na">excerpt</span><span class="p">(</span><span class="nx">ROOT</span><span class="o">.</span><span class="nx">DS</span><span class="o">.</span><span class="nx">LIBS</span><span class="o">.</span><span class="s1">&#39;debugger.php&#39;</span><span class="p">,</span> <span class="mi">321</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">);</span>
+
+<span class="c1">//sortira ce qui suit.</span>
+<span class="k">Array</span>
+<span class="p">(</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color: #000000&quot;</span><span class="o">&gt;</span> <span class="o">*</span> <span class="o">@</span><span class="nx">access</span> <span class="k">public</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;&lt;/</span><span class="nx">code</span><span class="o">&gt;</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color: #000000&quot;</span><span class="o">&gt;</span> <span class="o">*/&lt;/</span><span class="nx">span</span><span class="o">&gt;&lt;/</span><span class="nx">code</span><span class="o">&gt;</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color: #000000&quot;</span><span class="o">&gt;</span>    <span class="k">function</span> <span class="nf">excerpt</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;&lt;/</span><span class="nx">code</span><span class="o">&gt;</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;code-highlight&quot;</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color: #000000&quot;</span><span class="o">&gt;</span>        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$lines</span> <span class="o">=</span> <span class="p">[];</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;&lt;/</span><span class="nx">code</span><span class="o">&gt;&lt;/</span><span class="nx">span</span><span class="o">&gt;</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color: #000000&quot;</span><span class="o">&gt;</span>        <span class="nv">$data</span> <span class="o">=</span> <span class="o">@</span><span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$file</span><span class="p">));</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;&lt;/</span><span class="nx">code</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Bien que cette méthode est utilisée en interne, elle peut être pratique
+si vous créez vos propres messages d&#8217;erreurs ou les logs pour les
+situations personnalisées.</p>
+<dl class="staticmethod">
+<dt id="Cake\Error\Debugger::getType">
+<em class="property">static </em><code class="descclassname">Cake\Error\Debugger::</code><code class="descname">getType</code><span class="sig-paren">(</span><em>$var</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Error\Debugger::getType" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère le type de variable. Les objets retourneront leur nom de classe.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utiliser-les-logs-pour-debugger">
+<h2>Utiliser les Logs pour Debugger<a class="headerlink" href="#utiliser-les-logs-pour-debugger" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Logger des messages est une autre bonne façon de debugger les applications,
+et vous pouvez utiliser <a class="reference internal" href="../core-libraries/logging.html#Cake\Log\Log" title="Cake\Log\Log"><code class="xref php php-class docutils literal"><span class="pre">Cake\Log\Log</span></code></a> pour faire le logging dans
+votre application. Tous les objets qui utilisent  <code class="docutils literal"><span class="pre">LogTrait</span></code> ont une méthode
+d&#8217;instanciation <code class="docutils literal"><span class="pre">log()</span></code> qui peut être utilisée pour logger les messages:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="s1">&#39;Got here&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus écrit <code class="docutils literal"><span class="pre">Got</span> <span class="pre">here</span></code> dans le log de debug. Vous pouvez
+utiliser les logs (log entries) pour faciliter le debug des méthodes qui
+impliquent des redirections ou des boucles compliquées. Vous pouvez aussi
+utiliser <code class="xref php php-meth docutils literal"><span class="pre">Cake\Log\Log::write()`</span></code> pour écrire les messages de log.
+Cette méthode peut être appelée statiquement partout dans votre application où
+Log a été chargée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Au début du fichier dans lequel vous voulez logger.</span>
+<span class="k">use</span> <span class="nx">Cake\Log\Log</span><span class="p">;</span>
+
+<span class="c1">// N&#39;importe où Log a été importé</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="s1">&#39;Got here&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kit-de-debug">
+<h2>Kit de Debug<a class="headerlink" href="#kit-de-debug" title="Lien permanent vers ce titre">¶</a></h2>
+<p>DebugKit est un plugin qui fournit un nombre de bons outils de debug. Il
+fournit principalement une barre d&#8217;outils dans le HTML rendu, qui fournit
+une pléthore d&#8217;informations sur votre application et la requête courante.
+Consultez le chapitre sur <a class="reference internal" href="../debug-kit.html"><span class="doc">Debug Kit</span></a> pour plus d&#8217;information sur son
+installation et son utilisation.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

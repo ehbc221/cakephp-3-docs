@@ -1,0 +1,1077 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Validation - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/validation.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/validation.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/validation.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/validation.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/validation.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/validation.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/validation.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="App Class" href="app.html" />
+    <link rel="prev" title="Testing" href="../development/testing.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/validation.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/validation.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/validation.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/validation.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/validation.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/validation.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/validation.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/validation.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Validation</a><ul>
+<li><a class="reference internal" href="#creating-validators">Creating Validators</a><ul>
+<li><a class="reference internal" href="#requiring-field-presence">Requiring Field Presence</a></li>
+<li><a class="reference internal" href="#allowing-empty-fields">Allowing Empty Fields</a></li>
+<li><a class="reference internal" href="#marking-rules-as-the-last-to-run">Marking Rules as the Last to Run</a></li>
+<li><a class="reference internal" href="#validation-methods-less-verbose">Validation Methods Less Verbose</a></li>
+<li><a class="reference internal" href="#adding-validation-providers">Adding Validation Providers</a></li>
+<li><a class="reference internal" href="#custom-validation-rules">Custom Validation Rules</a></li>
+<li><a class="reference internal" href="#conditional-validation">Conditional Validation</a></li>
+<li><a class="reference internal" href="#nesting-validators">Nesting Validators</a></li>
+<li><a class="reference internal" href="#creating-reusable-validators">Creating Reusable Validators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#validating-data">Validating Data</a></li>
+<li><a class="reference internal" href="#validating-entities">Validating Entities</a></li>
+<li><a class="reference internal" href="#core-validation-rules">Core Validation Rules</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Validation">
+<span id="validation"></span><h1>Validation<a class="headerlink" href="#namespace-Cake\Validation" title="Permalink to this headline">¶</a></h1>
+<p>The validation package in CakePHP provides features to build validators that can
+validate arbitrary arrays of data with ease. You can find a <a class="reference external" href="https://api.cakephp.org/3.x/class-Cake.Validation.Validation.html">list of available
+Validation rules in the API</a>.</p>
+<div class="section" id="creating-validators">
+<span id="id1"></span><h2>Creating Validators<a class="headerlink" href="#creating-validators" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Validation\Validator">
+<em class="property">class </em><code class="descclassname">Cake\Validation\</code><code class="descname">Validator</code><a class="headerlink" href="#Cake\Validation\Validator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Validator objects define the rules that apply to a set of fields.
+Validator objects contain a mapping between fields and validation sets. In
+turn, the validation sets contain a collection of rules that apply to the field
+they are attached to. Creating a validator is simple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Once created, you can start defining sets of rules for the fields you want to
+validate:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span>
+    <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Please fill this field&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;length&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;minLength&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+            <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Titles need to be at least 10 characters long&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">allowEmpty</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boolean&#39;</span>
+    <span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;minLength&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Articles must have a substantial body.&#39;</span>
+    <span class="p">]);</span>
+</pre></div>
+</div>
+<p>As seen in the example above, validators are built with a fluent interface that
+allows you to define rules for each field you want to validate.</p>
+<p>There were a few methods called in the example above, so let&#8217;s go over the
+various features. The <code class="docutils literal"><span class="pre">add()</span></code> method allows you to add new rules to
+a validator. You can either add rules individually or in groups as seen above.</p>
+<div class="section" id="requiring-field-presence">
+<h3>Requiring Field Presence<a class="headerlink" href="#requiring-field-presence" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">requirePresence()</span></code> method requires the field to be present in any
+validated array. If the field is absent, validation will fail. The
+<code class="docutils literal"><span class="pre">requirePresence()</span></code> method has 4 modes:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">true</span></code> The field&#8217;s presence is always required.</li>
+<li><code class="docutils literal"><span class="pre">false</span></code> The field&#8217;s presence is not required.</li>
+<li><code class="docutils literal"><span class="pre">create</span></code> The field&#8217;s presence is required when validating a <strong>create</strong>
+operation.</li>
+<li><code class="docutils literal"><span class="pre">update</span></code> The field&#8217;s presence is required when validating an <strong>update</strong>
+operation.</li>
+</ul>
+<p>By default, <code class="docutils literal"><span class="pre">true</span></code> is used. Key presence is checked by using
+<code class="docutils literal"><span class="pre">array_key_exists()</span></code> so that null values will count as present. You can set
+the mode using the second parameter:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;author_id&#39;</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you have multiple fields that are required, you can define them as a list:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Define multiple fields for create</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">([</span><span class="s1">&#39;author_id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="s1">&#39;create&#39;</span><span class="p">);</span>
+
+<span class="c1">// Define multiple fields for mixed modes</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">([</span>
+    <span class="s1">&#39;author_id&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;An author is required.&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The published state is required.&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.3.0: </span><code class="docutils literal"><span class="pre">requirePresence()</span></code> accepts an array of fields as of 3.3.0</p>
+</div>
+</div>
+<div class="section" id="allowing-empty-fields">
+<h3>Allowing Empty Fields<a class="headerlink" href="#allowing-empty-fields" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">allowEmpty()</span></code> and <code class="docutils literal"><span class="pre">notEmpty()</span></code> methods allow you to control which
+fields are allowed to be &#8216;empty&#8217;. By using the <code class="docutils literal"><span class="pre">notEmpty()</span></code> method, the given
+field will be marked invalid when it is empty. You can use <code class="docutils literal"><span class="pre">allowEmpty()</span></code> to
+allow a field to be empty. Both <code class="docutils literal"><span class="pre">allowEmpty()</span></code> and <code class="docutils literal"><span class="pre">notEmpty()</span></code> support a
+mode parameter that allows you to control when a field can or cannot be empty:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">false</span></code> The field is not allowed to be empty.</li>
+<li><code class="docutils literal"><span class="pre">create</span></code> The field can be empty when validating a <strong>create</strong>
+operation.</li>
+<li><code class="docutils literal"><span class="pre">update</span></code> The field can be empty when validating an <strong>update</strong>
+operation.</li>
+</ul>
+<p>The values <code class="docutils literal"><span class="pre">''</span></code>, <code class="docutils literal"><span class="pre">null</span></code> and <code class="docutils literal"><span class="pre">[]</span></code> (empty array) will cause validation
+errors when fields are not allowed to be empty.  When fields are allowed to be
+empty, the values <code class="docutils literal"><span class="pre">''</span></code>, <code class="docutils literal"><span class="pre">null</span></code>, <code class="docutils literal"><span class="pre">false</span></code>, <code class="docutils literal"><span class="pre">[]</span></code>, <code class="docutils literal"><span class="pre">0</span></code>, <code class="docutils literal"><span class="pre">'0'</span></code> are
+accepted.</p>
+<p>An example of these methods in action is:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">allowEmpty</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Title cannot be empty&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;Body cannot be empty&#39;</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">allowEmpty</span><span class="p">(</span><span class="s1">&#39;header_image&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="marking-rules-as-the-last-to-run">
+<h3>Marking Rules as the Last to Run<a class="headerlink" href="#marking-rules-as-the-last-to-run" title="Permalink to this headline">¶</a></h3>
+<p>When fields have multiple rules, each validation rule will be run even if the
+previous one has failed. This allows you to collect as many validation errors as
+you can in a single pass. However, if you want to stop execution after
+a specific rule has failed, you can set the <code class="docutils literal"><span class="pre">last</span></code> option to <code class="docutils literal"><span class="pre">true</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$validator</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;minLength&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;minLength&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+            <span class="s1">&#39;last&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Comments must have a substantial body.&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;maxLength&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;maxLength&#39;</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span>
+            <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Comments cannot be too long.&#39;</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+</pre></div>
+</div>
+<p>If the minLength rule fails in the example above, the maxLength rule will not be
+run.</p>
+</div>
+<div class="section" id="validation-methods-less-verbose">
+<h3>Validation Methods Less Verbose<a class="headerlink" href="#validation-methods-less-verbose" title="Permalink to this headline">¶</a></h3>
+<p>Since 3.2, the Validator object has a number of new methods that make building
+validators less verbose. For example adding validation rules to a username field
+can now look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$validator</span>
+    <span class="o">-&gt;</span><span class="na">email</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">ascii</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">lengthBetween</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-validation-providers">
+<h3>Adding Validation Providers<a class="headerlink" href="#adding-validation-providers" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">Validator</span></code>, <code class="docutils literal"><span class="pre">ValidationSet</span></code> and <code class="docutils literal"><span class="pre">ValidationRule</span></code> classes do not
+provide any validation methods themselves. Validation rules come from
+&#8216;providers&#8217;. You can bind any number of providers to a Validator object.
+Validator instances come with a &#8216;default&#8217; provider setup automatically. The
+default provider is mapped to the <code class="xref php php-class docutils literal"><span class="pre">Validation\Validation</span></code>
+class. This makes it simple to use the methods on that class as validation
+rules. When using Validators and the ORM together, additional providers are
+configured for the table and entity objects. You can use the <code class="docutils literal"><span class="pre">setProvider()</span></code>
+method to add any additional providers your application needs:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+
+<span class="c1">// Use an object instance.</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">setProvider</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="nv">$myObject</span><span class="p">);</span>
+
+<span class="c1">// Use a class name. Methods must be static.</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">setProvider</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Model\Validation&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Validation providers can be objects, or class names. If a class name is used the
+methods must be static. To use a provider other than &#8216;default&#8217;, be sure to set
+the <code class="docutils literal"><span class="pre">provider</span></code> key in your rule:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Use a rule from the table provider</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;customTableMethod&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;table&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>If you wish to add a <code class="docutils literal"><span class="pre">provider</span></code> to all <code class="docutils literal"><span class="pre">Validator</span></code> objects that are created
+in the future, you can use the <code class="docutils literal"><span class="pre">addDefaultProvider()</span></code> method as follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="c1">// Use an object instance.</span>
+<span class="nx">Validator</span><span class="o">::</span><span class="na">addDefaultProvider</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="nv">$myObject</span><span class="p">);</span>
+
+<span class="c1">// Use a class name. Methods must be static.</span>
+<span class="nx">Validator</span><span class="o">::</span><span class="na">addDefaultProvider</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;App\Model\Validation&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DefaultProviders must be added before the <code class="docutils literal"><span class="pre">Validator</span></code> object is created
+therefore <strong>config/bootstrap.php</strong> is the best place to set up your
+default providers.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0.</span></p>
+</div>
+<p>You can use the <a class="reference external" href="https://github.com/cakephp/localized">Localized plugin</a> to
+get providers based on countries. With this plugin, you&#8217;ll be able to validate
+model fields, depending on a country, ie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostsTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">validationDefault</span><span class="p">(</span><span class="nx">Validator</span> <span class="nv">$validator</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// add the provider to the validator</span>
+        <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">setProvider</span><span class="p">(</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="s1">&#39;Localized\Validation\FrValidation&#39;</span><span class="p">);</span>
+        <span class="c1">// use the provider in a field validation rule</span>
+        <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;phoneField&#39;</span><span class="p">,</span> <span class="s1">&#39;myCustomRuleNameForPhone&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;phone&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;provider&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;fr&#39;</span>
+        <span class="p">]);</span>
+
+        <span class="k">return</span> <span class="nv">$validator</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The localized plugin uses the two letter ISO code of the countries for
+validation, like en, fr, de.</p>
+<p>There are a few methods that are common to all classes, defined through the
+<a class="reference external" href="https://github.com/cakephp/localized/blob/master/src/Validation/ValidationInterface.php">ValidationInterface interface</a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">phone</span><span class="p">()</span> <span class="nx">to</span> <span class="nx">check</span> <span class="nx">a</span> <span class="nx">phone</span> <span class="nx">number</span>
+<span class="nx">postal</span><span class="p">()</span> <span class="nx">to</span> <span class="nx">check</span> <span class="nx">a</span> <span class="nx">postal</span> <span class="nx">code</span>
+<span class="nx">personId</span><span class="p">()</span> <span class="nx">to</span> <span class="nx">check</span> <span class="nx">a</span> <span class="nx">country</span> <span class="nx">specific</span> <span class="nx">person</span> <span class="nx">ID</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-validation-rules">
+<h3>Custom Validation Rules<a class="headerlink" href="#custom-validation-rules" title="Permalink to this headline">¶</a></h3>
+<p>In addition to using methods coming from providers, you can also use any
+callable, including anonymous functions, as validation rules:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Use a global function</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;validate_title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The title is not valid&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Use an array callable that is not in a provider</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The title is not valid&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Use a closure</span>
+<span class="nv">$extra</span> <span class="o">=</span> <span class="s1">&#39;Some additional value needed inside the closure&#39;</span><span class="p">;</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$context</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$extra</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Custom logic that returns true/false</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The title is not valid&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Use a rule from a custom provider</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;customRule&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The title is not unique enough&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Closures or callable methods will receive 2 arguments when called. The first
+will be the value for the field being validated. The second is a context array
+containing data related to the validation process:</p>
+<ul class="simple">
+<li><strong>data</strong>: The original data passed to the validation method, useful if you
+plan to create rules comparing values.</li>
+<li><strong>providers</strong>: The complete list of rule provider objects, useful if you
+need to create complex rules by calling multiple providers.</li>
+<li><strong>newRecord</strong>: Whether the validation call is for a new record or
+a preexisting one.</li>
+</ul>
+<p>If you need to pass additional data to your validation methods such as the
+current user&#8217;s id, you can use a custom dynamic provider from your controller.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Examples</span><span class="o">-&gt;</span><span class="na">validator</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">provider</span><span class="p">(</span><span class="s1">&#39;passed&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;count&#39;</span> <span class="o">=&gt;</span> <span class="nv">$countFromController</span><span class="p">,</span>
+    <span class="s1">&#39;userid&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Then ensure that your validation method has the second context parameter.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">customValidationMethod</span><span class="p">(</span><span class="nv">$check</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$userid</span> <span class="o">=</span> <span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;providers&#39;</span><span class="p">][</span><span class="s1">&#39;passed&#39;</span><span class="p">][</span><span class="s1">&#39;userid&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conditional-validation">
+<h3>Conditional Validation<a class="headerlink" href="#conditional-validation" title="Permalink to this headline">¶</a></h3>
+<p>When defining validation rules, you can use the <code class="docutils literal"><span class="pre">on</span></code> key to define when
+a validation rule should be applied. If left undefined, the rule will always be
+applied. Other valid values are <code class="docutils literal"><span class="pre">create</span></code> and <code class="docutils literal"><span class="pre">update</span></code>. Using one of these
+values will make the rule apply to only create or update operations.</p>
+<p>Additionally, you can provide a callable function that will determine whether or
+not a particular rule should be applied:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;picture&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;mimeType&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">]],</span>
+    <span class="s1">&#39;on&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;show_profile_picture&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>You can access the other submitted field values using the <code class="docutils literal"><span class="pre">$context['data']</span></code>
+array.
+The above example will make the rule for &#8216;picture&#8217; optional depending on whether
+the value for <code class="docutils literal"><span class="pre">show_profile_picture</span></code> is empty. You could also use the
+<code class="docutils literal"><span class="pre">uploadedFile</span></code> validation rule to create optional file upload inputs:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;picture&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;uploadedFile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;optional&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">allowEmpty()</span></code>, <code class="docutils literal"><span class="pre">notEmpty()</span></code> and <code class="docutils literal"><span class="pre">requirePresence()</span></code> methods will also
+accept a callback function as their last argument. If present, the callback
+determines whether or not the rule should be applied. For example, a field is
+sometimes allowed to be empty:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">allowEmpty</span><span class="p">(</span><span class="s1">&#39;tax&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;is_taxable&#39;</span><span class="p">];</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Likewise, a field can be required to be populated when certain conditions are
+met:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;email_frequency&#39;</span><span class="p">,</span> <span class="s1">&#39;This field is required&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;wants_newsletter&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>In the above example, the <code class="docutils literal"><span class="pre">email_frequency</span></code> field cannot be left empty if the
+the user wants to receive the newsletter.</p>
+<p>Further it&#8217;s also possible to require a field to be present under certain
+conditions only:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;action&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$context</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;action&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;subscribe&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This would require the <code class="docutils literal"><span class="pre">full_name</span></code> field to be present only in case the user
+wants to create a subscription, while the <code class="docutils literal"><span class="pre">email</span></code> field would always be
+required, since it would also be needed when canceling a subscription.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.1.1: </span>The callable support for <code class="docutils literal"><span class="pre">requirePresence()</span></code> was added in 3.1.1</p>
+</div>
+</div>
+<div class="section" id="nesting-validators">
+<h3>Nesting Validators<a class="headerlink" href="#nesting-validators" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.0.5.</span></p>
+</div>
+<p>When validating <a class="reference internal" href="form.html"><span class="doc">Modelless Forms</span></a> with nested data, or when working
+with models that contain array data types, it is necessary to validate the
+nested data you have. CakePHP makes it simple to add validators to specific
+attributes. For example, assume you are working with a non-relational database
+and need to store an article and its comments:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Best article&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;comment&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>To validate the comments you would use a nested validator:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;not-blank&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;notBlank&#39;</span><span class="p">]);</span>
+
+<span class="nv">$commentValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$commentValidator</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="s1">&#39;not-blank&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;notBlank&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Connect the nested validators.</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">addNestedMany</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="nv">$commentValidator</span><span class="p">);</span>
+
+<span class="c1">// Get all errors including those from nested validators.</span>
+<span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can create 1:1 &#8216;relationships&#8217; with <code class="docutils literal"><span class="pre">addNested()</span></code> and 1:N &#8216;relationships&#8217;
+with <code class="docutils literal"><span class="pre">addNestedMany()</span></code>. With both methods, the nested validator&#8217;s errors will
+contribute to the parent validator&#8217;s errors and influence the final result.</p>
+</div>
+<div class="section" id="creating-reusable-validators">
+<span id="reusable-validators"></span><h3>Creating Reusable Validators<a class="headerlink" href="#creating-reusable-validators" title="Permalink to this headline">¶</a></h3>
+<p>While defining validators inline where they are used makes for good example
+code, it doesn&#8217;t lead to maintainable applications. Instead, you should
+create <code class="docutils literal"><span class="pre">Validator</span></code> sub-classes for your reusable validation logic:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In src/Model/Validation/ContactValidator.php</span>
+<span class="k">namespace</span> <span class="nx">App\Model\Validation</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ContactValidator</span> <span class="k">extends</span> <span class="nx">Validator</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+        <span class="c1">// Add validation rules here.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="validating-data">
+<h2>Validating Data<a class="headerlink" href="#validating-data" title="Permalink to this headline">¶</a></h2>
+<p>Now that you&#8217;ve created a validator and added the rules you want to it, you can
+start using it to validate data. Validators are able to validate array
+data. For example, if you wanted to validate a contact form before creating and
+sending an email you could do the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Validation\Validator</span><span class="p">;</span>
+
+<span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$validator</span>
+    <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;validFormat&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;E-mail must be valid&#39;</span>
+    <span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;We need your name.&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">requirePresence</span><span class="p">(</span><span class="s1">&#39;comment&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">notEmpty</span><span class="p">(</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="s1">&#39;You need to give a comment.&#39;</span><span class="p">);</span>
+
+<span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$errors</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Send an email.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">errors()</span></code> method will return a non-empty array when there are validation
+failures. The returned array of errors will be structured like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$errors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;E-mail must be valid&#39;</span><span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>If you have multiple errors on a single field, an array of error messages will
+be returned per field. By default the <code class="docutils literal"><span class="pre">errors()</span></code> method applies rules for
+the &#8216;create&#8217; mode. If you&#8217;d like to apply &#8216;update&#8217; rules you can do the
+following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(),</span> <span class="k">false</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$errors</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Send an email.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you need to validate entities you should use methods like
+<code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::newEntity()</span></code>,
+<code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::newEntities()</span></code>,
+<code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::patchEntity()</span></code>,
+<code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::patchEntities()</span></code> or
+<a class="reference internal" href="../orm/saving-data.html#Cake\ORM\Table::save" title="Cake\ORM\Table::save"><code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::save()</span></code></a> as they are designed for that.</p>
+</div>
+</div>
+<div class="section" id="validating-entities">
+<h2>Validating Entities<a class="headerlink" href="#validating-entities" title="Permalink to this headline">¶</a></h2>
+<p>While entities are validated as they are saved, you may also want to validate
+entities before attempting to do any saving. Validating entities before
+saving is done automatically when using the <code class="docutils literal"><span class="pre">newEntity()</span></code>, <code class="docutils literal"><span class="pre">newEntities()</span></code>,
+<code class="docutils literal"><span class="pre">patchEntity()</span></code> or <code class="docutils literal"><span class="pre">patchEntities()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In the ArticlesController class</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Do work to show error messages.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Similarly, when you need to pre-validate multiple entities at a time, you can
+use the <code class="docutils literal"><span class="pre">newEntities()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In the ArticlesController class</span>
+<span class="nv">$entities</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntities</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$entities</span> <span class="k">as</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">newEntity()</span></code>, <code class="docutils literal"><span class="pre">patchEntity()</span></code>, <code class="docutils literal"><span class="pre">newEntities()</span></code> and <code class="docutils literal"><span class="pre">patchEntities()</span></code>
+methods allow you to specify which associations are validated, and which
+validation sets to apply using the <code class="docutils literal"><span class="pre">options</span></code> parameter:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$valid</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="p">[</span>
+  <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;User&#39;</span><span class="p">],</span>
+      <span class="s1">&#39;validate&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;special&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Validation is commonly used for user-facing forms or interfaces, and thus it is
+not limited to only validating columns in the table schema. However,
+maintaining integrity of data regardless where it came from is important. To
+solve this problem CakePHP offers a second level of validation which is called
+&#8220;application rules&#8221;. You can read more about them in the
+<a class="reference internal" href="../orm/validation.html#application-rules"><span class="std std-ref">Applying Application Rules</span></a> section.</p>
+</div>
+<div class="section" id="core-validation-rules">
+<h2>Core Validation Rules<a class="headerlink" href="#core-validation-rules" title="Permalink to this headline">¶</a></h2>
+<p>CakePHP provides a basic suite of validation methods in the <code class="docutils literal"><span class="pre">Validation</span></code>
+class. The Validation class contains a variety of static methods that provide
+validators for several common validation situations.</p>
+<p>The <a class="reference external" href="https://api.cakephp.org/3.x/class-Cake.Validation.Validation.html">API documentation</a> for the
+<code class="docutils literal"><span class="pre">Validation</span></code> class provides a good list of the validation rules that are
+available, and their basic usage.</p>
+<p>Some of the validation methods accept additional parameters to define boundary
+conditions or valid options. You can provide these boundary conditions and
+options as follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$validator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Validator</span><span class="p">();</span>
+<span class="nv">$validator</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;minLength&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;minLength&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="s1">&#39;validValue&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;rule&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="p">]);</span>
+</pre></div>
+</div>
+<p>Core rules that take additional parameters should have an array for the
+<code class="docutils literal"><span class="pre">rule</span></code> key that contains the rule as the first element, and the additional
+parameters as the remaining parameters.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

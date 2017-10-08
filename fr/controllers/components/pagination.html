@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Pagination" lang="fr" name="title" />
+<meta content="order array,query conditions,php class,web applications,headaches,obstacles,complexity,programmers,parameters,paginate,designers,cakephp,satisfaction,developers" lang="fr" name="keywords" />
+
+    <title>Pagination - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../../en/controllers/components/pagination.html" /><link rel="alternate" hreflang="pt_BR" href="../../../pt/controllers/components/pagination.html" /><link rel="alternate" hreflang="es" href="../../../es/controllers/components/pagination.html" /><link rel="alternate" hreflang="ja" href="../../../ja/controllers/components/pagination.html" /><link rel="alternate" hreflang="zh" href="../../../zh/controllers/components/pagination.html" /><link rel="alternate" hreflang="tr" href="../../../tr/controllers/components/pagination.html" /><link rel="alternate" hreflang="ru" href="../../../ru/controllers/components/pagination.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../../index.html" />
+    <link rel="up" title="Components (Composants)" href="../components.html" />
+    <link rel="next" title="Request Handling (Gestion des requêtes)" href="request-handling.html" />
+    <link rel="prev" title="SecurityComponent (Sécurité)" href="security.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../../en/controllers/components/pagination.html">en</a></li>
+                                            
+                                                <li><a href="../../../pt/controllers/components/pagination.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/controllers/components/pagination.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/controllers/components/pagination.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../zh/controllers/components/pagination.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/controllers/components/pagination.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/controllers/components/pagination.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/controllers/components/pagination.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Pagination</a><ul>
+<li><a class="reference internal" href="#utiliser-controller-paginate">Utiliser Controller::paginate()</a></li>
+<li><a class="reference internal" href="#utiliser-directement-paginator">Utiliser Directement Paginator</a></li>
+<li><a class="reference internal" href="#requetes-de-paginating-multiple">Requêtes de Paginating Multiple</a></li>
+<li><a class="reference internal" href="#controle-les-champs-utilises-pour-le-tri">Contrôle les Champs Utilisés pour le Tri</a></li>
+<li><a class="reference internal" href="#limiter-le-nombre-maximum-de-lignes-par-page">Limiter le Nombre Maximum de Lignes par Page</a></li>
+<li><a class="reference internal" href="#faire-des-jointures-d-associations-supplementaires">Faire des Jointures d&#8217;Associations Supplémentaires</a></li>
+<li><a class="reference internal" href="#requetes-de-page-out-of-range">Requêtes de Page Out of Range</a></li>
+<li><a class="reference internal" href="#pagination-dans-la-vue">Pagination dans la Vue</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Controller\Component">
+<span id="pagination"></span><h1>Pagination<a class="headerlink" href="#namespace-Cake\Controller\Component" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt id="Cake\Controller\Component\PaginatorComponent">
+<em class="property">class </em><code class="descclassname">Cake\Controller\Component\</code><code class="descname">PaginatorComponent</code><a class="headerlink" href="#Cake\Controller\Component\PaginatorComponent" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les principaux défis lors de la création d&#8217;une application flexible et
+ergonomique sont le design et d&#8217;avoir une interface utilisateur intuitive.
+De nombreuses applications ont tendance à augmenter rapidement en taille et en
+complexité, et les designers ainsi que les programmeurs trouvent même qu&#8217;ils
+sont incapables de faire face a l&#8217;affichage de centaines ou de milliers
+d&#8217;enregistrements. Réécrire prend du temps, et les performances et la
+satisfaction des utilisateurs peut en pâtir.</p>
+<p>Afficher un nombre raisonnable d&#8217;enregistrements par page a toujours été une
+partie critique dans toutes les applications et cause régulièrement de nombreux
+maux de tête aux développeurs. CakePHP allège le fardeau des développeurs en
+fournissant un moyen rapide et facile pour paginer les données.</p>
+<p>La pagination dans CakePHP se fait par un Component dans le controller, pour
+faciliter la création des requêtes de pagination. Dans la Vue,
+<a class="reference internal" href="../../views/helpers/paginator.html#Cake\View\Helper\PaginatorHelper" title="Cake\View\Helper\PaginatorHelper"><code class="xref php php-class docutils literal"><span class="pre">View\Helper\PaginatorHelper</span></code></a> est utilisé pour faciliter la
+génération de la pagination, des liens et des boutons.</p>
+<div class="section" id="utiliser-controller-paginate">
+<h2>Utiliser Controller::paginate()<a class="headerlink" href="#utiliser-controller-paginate" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans le controller, nous commençons par définir les conditions de la requête de
+pagination qui seront utilisées par défaut dans la variable <code class="docutils literal"><span class="pre">$paginate</span></code> du
+controller. Ces conditions, vont servir de base à vos requêtes de pagination.
+Elles sont complétées par les paramètres <code class="docutils literal"><span class="pre">sort</span></code>, <code class="docutils literal"><span class="pre">direction</span></code>, <code class="docutils literal"><span class="pre">limit</span></code> et
+<code class="docutils literal"><span class="pre">page</span></code> passés dans l&#8217;URL. Ici, il est important de noter que la clé <code class="docutils literal"><span class="pre">order</span></code>
+doit être définie dans une structure en tableau comme ci-dessous:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Articles.title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;asc&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Paginator&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi inclure d&#8217;autres options
+<a class="reference internal" href="../../orm/retrieving-data-and-resultsets.html#Cake\ORM\Table::find" title="Cake\ORM\Table::find"><code class="xref php php-meth docutils literal"><span class="pre">ORM\Table::find()</span></code></a>, comme <code class="docutils literal"><span class="pre">fields</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Articles.id&#39;</span><span class="p">,</span> <span class="s1">&#39;Articles.created&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Articles.title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;asc&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Paginator&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Alors que vous pouvez passer la plupart des options de query à partir de la
+propriété paginate, il est souvent plus propre et simple de mettre vos options
+de pagination dans une <a class="reference internal" href="../../orm/retrieving-data-and-resultsets.html#custom-find-methods"><span class="std std-ref">Méthodes Finder Personnalisées</span></a>. vous pouvez définir
+l&#8217;utilisation de la pagination du finder en configurant l&#8217;option <code class="docutils literal"><span class="pre">findType</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;finder&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;published&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Comme les méthodes finder personnalisées peuvent aussi être prises en options,
+voici comment vous pouvez passer des options  dans une méthode de finder
+personnalisée dans la propriété paginate:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="c1">// trouve les articles selon les tags</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">tags</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$tags</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">);</span>
+
+        <span class="nv">$customFinderOptions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="nv">$tags</span>
+        <span class="p">];</span>
+        <span class="c1">// la méthode de finder personnalisée est appelée findTagged dans</span>
+        <span class="c1">// ArticlesTable.php</span>
+        <span class="c1">// elle devrait ressembler à ceci:</span>
+        <span class="c1">// public function findTagged(Query $query, array $options) {</span>
+        <span class="c1">// ainsi vous utilisez tagged en clé</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;finder&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;tagged&#39;</span> <span class="o">=&gt;</span> <span class="nv">$customFinderOptions</span>
+            <span class="p">]</span>
+        <span class="p">];</span>
+
+        <span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En plus de définir les valeurs de pagination générales, vous pouvez définir
+plus d&#8217;un jeu de pagination par défaut dans votre controller, vous avez juste
+à nommer les clés du tableau d&#8217;après le model que vous souhaitez configurer:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;Articles&#39;</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+        <span class="s1">&#39;Authors&#39;</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les valeurs des clés <code class="docutils literal"><span class="pre">Articles</span></code> et <code class="docutils literal"><span class="pre">Authors</span></code> peuvent contenir toutes
+les propriétés qu&#8217;un model/clé sans <code class="docutils literal"><span class="pre">$paginate</span></code> peut contenir.</p>
+<p>Une fois que la variable <code class="docutils literal"><span class="pre">$paginate</span></code> à été définie, nous pouvons
+utiliser la méthode <a class="reference internal" href="../../controllers.html#Cake\Controller\Controller::paginate" title="Cake\Controller\Controller::paginate"><code class="xref php php-meth docutils literal"><span class="pre">Controller\Controller::paginate()</span></code></a> pour
+créer les données paginées et ajouter le <code class="docutils literal"><span class="pre">PaginatorHelper</span></code> s&#8217;il n&#8217;a pas déjà
+été ajouté. La méthode paginate du controller va retourner l&#8217;ensemble des
+résultats de la requête paginée, et définir les meta-données de pagination de
+la requête. Vous pouvez accéder aux meta-données de pagination avec
+<code class="docutils literal"><span class="pre">$this-&gt;request-&gt;getParam('paging')</span></code>. un exemple plus complet de l&#8217;utilisation
+de <code class="docutils literal"><span class="pre">paginate()</span></code> serait:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Par défaut la méthode <code class="docutils literal"><span class="pre">paginate()</span></code> va utiliser le model par défaut pour un
+controller. Vous pouvez aussi passer la requête résultante d&#8217;une méthode find:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;popular&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;author_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+   <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$query</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si vous voulez paginer un model différent, vous pouvez lui fournir une requête
+l&#8217;objet table lui-même, ou son nom:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">//Utiliser une query</span>
+<span class="nv">$comments</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$commentsTable</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">());</span>
+
+<span class="c1">// Utiliser le nom du model.</span>
+<span class="nv">$comments</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">);</span>
+
+<span class="c1">// Utiliser un objet table.</span>
+<span class="nv">$comments</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$commentTable</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-directement-paginator">
+<h2>Utiliser Directement Paginator<a class="headerlink" href="#utiliser-directement-paginator" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous devez paginer des données d&#8217;un autre component, vous pouvez utiliser
+directement PaginatorComponent. Il fournit une API similaire à la méthode
+du controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Paginator</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$articleTable</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(),</span> <span class="nv">$config</span><span class="p">);</span>
+
+<span class="c1">// Ou</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Paginator</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$articleTable</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le premier paramètre doit être l&#8217;objet query à partir d&#8217;un find sur l&#8217;objet
+table duquel vous souhaitez paginer les résultats. En option, vous pouvez passer
+l&#8217;objet table et laisser la query être construite pour vous. Le second paramètre
+doit être le tableau des configurations à utiliser pour la pagination. Ce
+tableau doit avoir la même structure que la propriété <code class="docutils literal"><span class="pre">$paginate</span></code>
+dans un controller. Quand on pagine un objet <code class="docutils literal"><span class="pre">Query</span></code>, l&#8217;option <code class="docutils literal"><span class="pre">finder</span></code>
+sera ignorée. Il faut que vous passiez la query que vous souhaitez voir
+paginée.</p>
+</div>
+<div class="section" id="requetes-de-paginating-multiple">
+<span id="paginating-multiple-queries"></span><h2>Requêtes de Paginating Multiple<a class="headerlink" href="#requetes-de-paginating-multiple" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez paginer plusieurs models dans une unique action de controller en
+utilisant l&#8217;option <code class="docutils literal"><span class="pre">scope</span></code>, à la fois via la propriété <code class="docutils literal"><span class="pre">$paginate</span></code> d&#8217;un
+controller et dans l&#8217;appel à la méthode <code class="docutils literal"><span class="pre">paginate()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Paginate property</span>
+<span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Articles&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;article&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Tags&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tag&#39;</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="c1">// Dans une action de controller</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;article&#39;</span><span class="p">]);</span>
+<span class="nv">$tags</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Tags</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tag&#39;</span><span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>L&#8217;option <code class="docutils literal"><span class="pre">scope</span></code> va faire que <code class="docutils literal"><span class="pre">PaginatorComponent</span></code> va regarder les
+paramètres de query string scopés. Par exemple, l&#8217;URL suivante pourrait être
+utilisée pour paginer les tags et les articles en même temps:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">dashboard</span><span class="o">?</span><span class="nx">article</span><span class="p">[</span><span class="nx">page</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">tag</span><span class="p">[</span><span class="nx">page</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>Consulter la section <a class="reference internal" href="../../views/helpers/paginator.html#paginator-helper-multiple"><span class="std std-ref">Paginer Plusieurs Résultats</span></a> pour savoir comment
+générer les elements HTML scopés et les URLS pour la pagination.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.3.0: </span>Pagination multiple a été ajoutée dans la version 3.3.0</p>
+</div>
+</div>
+<div class="section" id="controle-les-champs-utilises-pour-le-tri">
+<h2>Contrôle les Champs Utilisés pour le Tri<a class="headerlink" href="#controle-les-champs-utilises-pour-le-tri" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut le tri peut être fait sur n&#8217;importe quelle colonne qu&#8217;une table a.
+Ceci est parfois non souhaité puisque cela permet aux utilisateurs de trier sur
+des colonnes non indexées qui peuvent être compliqués à trier. Vous pouvez
+définir la liste blanche des champs qui peut être triée en utilisant
+l&#8217;option <code class="docutils literal"><span class="pre">sortWhitelist</span></code>. Cette option est nécessaire quand vous voulez trier
+sur des données associées, ou des champs computés qui peuvent faire parti de
+la query de pagination:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sortWhitelist&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Users.username&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Toute requête qui tente de trier les champs qui ne sont pas dans la liste
+blanche sera ignorée.</p>
+</div>
+<div class="section" id="limiter-le-nombre-maximum-de-lignes-par-page">
+<h2>Limiter le Nombre Maximum de Lignes par Page<a class="headerlink" href="#limiter-le-nombre-maximum-de-lignes-par-page" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le nombre de résultat qui sont récupérés est montré à l&#8217;utilisateur dans le
+paramètre <code class="docutils literal"><span class="pre">limit</span></code>. Il est généralement non souhaité de permettre aux
+utilisateurs de récupérer toutes les lignes d&#8217;un ensemble paginé. L&#8217;option
+<code class="docutils literal"><span class="pre">maxLimit</span></code> permet à ce que personne ne puisse définir cette limite trop haute
+de l&#8217;extérieur. Par défaut, CakePHP limite le nombre maximum de lignes qui
+peuvent être récupérées à 100. Si par défaut ce n&#8217;est pas approprié pour votre
+application, vous pouvez l&#8217;ajuster dans les options de pagination, par exemple
+en le réduisant à <code class="docutils literal"><span class="pre">10</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1">// Autres clés ici.</span>
+    <span class="s1">&#39;maxLimit&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Si le paramètre de limite de la requête est plus grand que cette valeur, elle
+sera réduite à la valeur <code class="docutils literal"><span class="pre">maxLimit</span></code>.</p>
+</div>
+<div class="section" id="faire-des-jointures-d-associations-supplementaires">
+<h2>Faire des Jointures d&#8217;Associations Supplémentaires<a class="headerlink" href="#faire-des-jointures-d-associations-supplementaires" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Des associations supplémentaires peuvent être chargées à la table paginée en
+utilisant le paramètre <code class="docutils literal"><span class="pre">contain</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;contain&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Authors&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span><span class="p">]</span>
+    <span class="p">];</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requetes-de-page-out-of-range">
+<h2>Requêtes de Page Out of Range<a class="headerlink" href="#requetes-de-page-out-of-range" title="Lien permanent vers ce titre">¶</a></h2>
+<p>PaginatorComponent va lancer une <code class="docutils literal"><span class="pre">NotFoundException</span></code> quand on essaie d&#8217;accéder
+une page non existante, par ex le nombre de page demandé est supérieur au total
+du nombre de page.</p>
+<p>Ainsi vous pouvez soit laisser s&#8217;afficher la page d&#8217;erreur normale, soit
+utiliser un bloc try catch et faire des actions appropriées quand une
+<code class="docutils literal"><span class="pre">NotFoundException</span></code> est attrapée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Network\Exception\NotFoundException</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">NotFoundException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Faire quelque chose ici comme rediriger vers la première ou dernière page.</span>
+        <span class="c1">// $this-&gt;request-&gt;getParam(&#39;paging&#39;) vous donnera les infos demandées.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pagination-dans-la-vue">
+<h2>Pagination dans la Vue<a class="headerlink" href="#pagination-dans-la-vue" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Regardez la documentation <a class="reference internal" href="../../views/helpers/paginator.html#Cake\View\Helper\PaginatorHelper" title="Cake\View\Helper\PaginatorHelper"><code class="xref php php-class docutils literal"><span class="pre">View\Helper\PaginatorHelper</span></code></a>
+pour savoir comment créer des liens de navigation paginés.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

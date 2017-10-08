@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Http Middleware" lang="en" name="title" />
+<meta content="http, middleware, psr-7, request, response, wsgi, application, baseapplication" lang="en" name="keywords" />
+
+    <title>Middleware - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/controllers/middleware.html" /><link rel="alternate" hreflang="es" href="../../es/controllers/middleware.html" /><link rel="alternate" hreflang="ja" href="../../ja/controllers/middleware.html" /><link rel="alternate" hreflang="fr" href="../../fr/controllers/middleware.html" /><link rel="alternate" hreflang="zh" href="../../zh/controllers/middleware.html" /><link rel="alternate" hreflang="tr" href="../../tr/controllers/middleware.html" /><link rel="alternate" hreflang="ru" href="../../ru/controllers/middleware.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Controllers" href="../controllers.html" />
+    <link rel="prev" title="Request &amp; Response Objects" href="request-response.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/controllers/middleware.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/controllers/middleware.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/controllers/middleware.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/controllers/middleware.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/controllers/middleware.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/controllers/middleware.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/controllers/middleware.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/controllers/middleware.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Middleware</a><ul>
+<li><a class="reference internal" href="#middleware-in-cakephp">Middleware in CakePHP</a></li>
+<li><a class="reference internal" href="#using-middleware">Using Middleware</a><ul>
+<li><a class="reference internal" href="#adding-middleware-from-plugins">Adding Middleware from Plugins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psr-7-requests-and-responses">PSR-7 Requests and Responses</a><ul>
+<li><a class="reference internal" href="#interacting-with-requests">Interacting with Requests</a></li>
+<li><a class="reference internal" href="#interacting-with-responses">Interacting with Responses</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-middleware">Creating Middleware</a></li>
+<li><a class="reference internal" href="#adding-security-headers">Adding Security Headers</a></li>
+<li><a class="reference internal" href="#encrypted-cookie-middleware">Encrypted Cookie Middleware</a></li>
+<li><a class="reference internal" href="#cross-site-request-forgery-csrf-middleware">Cross Site Request Forgery (CSRF) Middleware</a><ul>
+<li><a class="reference internal" href="#integration-with-formhelper">Integration with FormHelper</a></li>
+<li><a class="reference internal" href="#csrf-protection-and-ajax-requests">CSRF Protection and AJAX Requests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-the-new-http-stack-to-an-existing-application">Adding the new HTTP Stack to an Existing Application</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="middleware">
+<h1>Middleware<a class="headerlink" href="#middleware" title="Permalink to this headline">¶</a></h1>
+<p>Middleware objects give you the ability to &#8216;wrap&#8217; your application in re-usable,
+composable layers of Request handling, or response building logic. Visually,
+your application ends up at the center, and middleware is wrapped aroud the app
+like an onion. Here we can see an application wrapped with Routes, Assets,
+Exception Handling and CORS header middleware.</p>
+<img alt="../_images/middleware-setup.png" src="../_images/middleware-setup.png" />
+<p>When a request is handled by your application it enters from the outermost
+middleware. Each middleware can either delegate the request/response to the next
+layer, or return a response. Returning a response prevents lower layers from
+ever seeing the request. An example of that is the AssetMiddleware handling
+a request for a plugin image during development.</p>
+<img alt="../_images/middleware-request.png" src="../_images/middleware-request.png" />
+<p>If no middleware take action to handle the request, a controller will be located
+and have its action invoked, or an exception will be raised generating an error
+page.</p>
+<p>Middleware are part of the new HTTP stack in CakePHP that leverages the PSR-7
+request and response interfaces. Because CakePHP is leveraging the PSR-7
+standard you can use any PSR-7 compatible middleware available on <a class="reference external" href="https://packagist.org">The Packagist</a>.</p>
+<div class="section" id="middleware-in-cakephp">
+<h2>Middleware in CakePHP<a class="headerlink" href="#middleware-in-cakephp" title="Permalink to this headline">¶</a></h2>
+<p>CakePHP provides several middleware to handle common tasks in web applications:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Error\Middleware\ErrorHandlerMiddleware</span></code> traps exceptions from the
+wrapped middleware and renders an error page using the
+<a class="reference internal" href="../development/errors.html"><span class="doc">Error &amp; Exception Handling</span></a> Exception handler.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\AssetMiddleware</span></code> checks whether the request is referring to a
+theme or plugin asset file, such as a CSS, JavaScript or image file stored in
+either a plugin&#8217;s webroot folder or the corresponding one for a Theme.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\Middleware\RoutingMiddleware</span></code> uses the <code class="docutils literal"><span class="pre">Router</span></code> to parse the
+incoming URL and assign routing parameters to the request.</li>
+<li><code class="docutils literal"><span class="pre">Cake\I18n\Middleware\LocaleSelectorMiddleware</span></code> enables automatic language
+switching from the <code class="docutils literal"><span class="pre">Accept-Language</span></code> header sent by the browser.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Http\Middleware\SecurityHeadersMiddleware</span></code> makes it easy to add
+security related headers like <code class="docutils literal"><span class="pre">X-Frame-Options</span></code> to responses.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Http\Middleware\EncryptedCookieMiddleware</span></code> gives you the ability to
+manipulate encrypted cookies in case you need to manipulate cookie with
+obfuscated data.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Http\Middleware\CsrfProtectionMiddleware</span></code> adds CSRF protection to your
+application.</li>
+</ul>
+</div>
+<div class="section" id="using-middleware">
+<span id="id1"></span><h2>Using Middleware<a class="headerlink" href="#using-middleware" title="Permalink to this headline">¶</a></h2>
+<p>Middleware can be applied to your application globally, or to individual
+routing scopes.</p>
+<p>To apply middleware to all requests, use the <code class="docutils literal"><span class="pre">middleware</span></code> method of your
+<code class="docutils literal"><span class="pre">App\Application</span></code> class.  If you don&#8217;t have an <code class="docutils literal"><span class="pre">App\Application</span></code> class, see
+the section on <a class="reference internal" href="#adding-http-stack"><span class="std std-ref">Adding the new HTTP Stack to an Existing Application</span></a> for more information. Your application&#8217;s
+<code class="docutils literal"><span class="pre">middleware</span></code> hook method will be called at the beginning of the request
+process, you can use the <code class="docutils literal"><span class="pre">MiddlewareQueue</span></code> object to attach middleware:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Http\BaseApplication</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Error\Middleware\ErrorHandlerMiddleware</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Application</span> <span class="k">extends</span> <span class="nx">BaseApplication</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">middleware</span><span class="p">(</span><span class="nv">$middlewareQueue</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Bind the error handler into the middleware queue.</span>
+        <span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">ErrorHandlerMiddleware</span><span class="p">());</span>
+        <span class="k">return</span> <span class="nv">$middlewareQueue</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In addition to adding to the end of the <code class="docutils literal"><span class="pre">MiddlewareQueue</span></code> you can do
+a variety of operations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$layer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\App\Middleware\CustomMiddleware</span><span class="p">;</span>
+
+<span class="c1">// Added middleware will be last in line.</span>
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$layer</span><span class="p">);</span>
+
+<span class="c1">// Prepended middleware will be first in line.</span>
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">prepend</span><span class="p">(</span><span class="nv">$layer</span><span class="p">);</span>
+
+<span class="c1">// Insert in a specific slot. If the slot is out of</span>
+<span class="c1">// bounds, it will be added to the end.</span>
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">insertAt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nv">$layer</span><span class="p">);</span>
+
+<span class="c1">// Insert before another middleware.</span>
+<span class="c1">// If the named class cannot be found,</span>
+<span class="c1">// an exception will be raised.</span>
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">insertBefore</span><span class="p">(</span>
+    <span class="s1">&#39;Cake\Error\Middleware\ErrorHandlerMiddleware&#39;</span><span class="p">,</span>
+    <span class="nv">$layer</span>
+<span class="p">);</span>
+
+<span class="c1">// Insert after another middleware.</span>
+<span class="c1">// If the named class cannot be found, the</span>
+<span class="c1">// middleware will added to the end.</span>
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">insertAfter</span><span class="p">(</span>
+    <span class="s1">&#39;Cake\Error\Middleware\ErrorHandlerMiddleware&#39;</span><span class="p">,</span>
+    <span class="nv">$layer</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>In addition to applying middleware to your entire application, you can apply
+middleware to specific sets of routes using <a class="reference internal" href="../development/routing.html#connecting-scoped-middleware"><span class="std std-ref">Connecting Scoped Middleware</span></a>.</p>
+<div class="section" id="adding-middleware-from-plugins">
+<h3>Adding Middleware from Plugins<a class="headerlink" href="#adding-middleware-from-plugins" title="Permalink to this headline">¶</a></h3>
+<p>After the middleware queue has been prepared by the application, the
+<code class="docutils literal"><span class="pre">Server.buildMiddleware</span></code> event is triggered. This event can be useful to add
+middleware from plugins. Plugins can register listeners in their bootstrap
+scripts, that add middleware:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In ContactManager plugin bootstrap.php</span>
+<span class="k">use</span> <span class="nx">Cake\Event\EventManager</span><span class="p">;</span>
+
+<span class="nx">EventManager</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span>
+    <span class="s1">&#39;Server.buildMiddleware&#39;</span><span class="p">,</span>
+    <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$middlewareQueue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">ContactPluginMiddleware</span><span class="p">());</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="psr-7-requests-and-responses">
+<h2>PSR-7 Requests and Responses<a class="headerlink" href="#psr-7-requests-and-responses" title="Permalink to this headline">¶</a></h2>
+<p>Middleware and the new HTTP stack are built on top of the <a class="reference external" href="http://www.php-fig.org/psr/psr-7/">PSR-7 Request
+&amp; Response Interfaces</a>. While all
+middleware will be exposed to these interfaces, your controllers, components,
+and views will <em>not</em>.</p>
+<div class="section" id="interacting-with-requests">
+<h3>Interacting with Requests<a class="headerlink" href="#interacting-with-requests" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">RequestInterface</span></code> provides methods for interacting with the headers,
+method, URI, and body of a request. To interact with the headers, you can:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Read a header as text</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">);</span>
+
+<span class="c1">// Read header as an array</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">);</span>
+
+<span class="c1">// Read all the headers as an associative array.</span>
+<span class="nv">$headers</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaders</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Requests also give access to the cookies and uploaded files they contain:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get an array of cookie values.</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getCookieParams</span><span class="p">();</span>
+
+<span class="c1">// Get a list of UploadedFile objects</span>
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getUploadedFiles</span><span class="p">();</span>
+
+<span class="c1">// Read the file data.</span>
+<span class="nv">$files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getStream</span><span class="p">();</span>
+<span class="nv">$files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getSize</span><span class="p">();</span>
+<span class="nv">$files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClientFileName</span><span class="p">();</span>
+
+<span class="c1">// Move the file.</span>
+<span class="nv">$files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">moveTo</span><span class="p">(</span><span class="nv">$targetPath</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Requests contain a URI object, which contains methods for interacting with the
+requested URI:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get the URI</span>
+<span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getUri</span><span class="p">();</span>
+
+<span class="c1">// Read data out of the URI.</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getPath</span><span class="p">();</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">();</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="nv">$uri</span><span class="o">-&gt;</span><span class="na">getHost</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Lastly, you can interact with a request&#8217;s &#8216;attributes&#8217;. CakePHP uses these
+attributes to carry framework specific request parameters. There are a few
+important attributes in any request handled by CakePHP:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">base</span></code> contains the base directory for your application if there is one.</li>
+<li><code class="docutils literal"><span class="pre">webroot</span></code> contains the webroot directory for your application.</li>
+<li><code class="docutils literal"><span class="pre">params</span></code> contains the results of route matching once routing rules have been
+processed.</li>
+<li><code class="docutils literal"><span class="pre">session</span></code> contains an instance of CakePHP&#8217;s <code class="docutils literal"><span class="pre">Session</span></code> object. See
+<a class="reference internal" href="../development/sessions.html#accessing-session-object"><span class="std std-ref">Accessing the Session Object</span></a> for more information on how to use the session
+object.</li>
+</ul>
+</div>
+<div class="section" id="interacting-with-responses">
+<h3>Interacting with Responses<a class="headerlink" href="#interacting-with-responses" title="Permalink to this headline">¶</a></h3>
+<p>The methods available to create a server response are the same as those
+available when interacting with <a class="reference internal" href="../core-libraries/httpclient.html#httpclient-response-objects"><span class="std std-ref">Response Objects</span></a>. While the
+interface is the same the usage scenarios are different.</p>
+<p>When modifying the response, it is important to remember that responses are
+<strong>immutable</strong>. You must always remember to store the results of any setter
+method. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// This does *not* modify $response. The new object was not</span>
+<span class="c1">// assigned to a variable.</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
+
+<span class="c1">// This works!</span>
+<span class="nv">$newResponse</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Most often you&#8217;ll be setting headers and response bodies on requests:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Assign headers and a status code</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;Pragma&#39;</span><span class="p">,</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withStatus</span><span class="p">(</span><span class="mi">422</span><span class="p">);</span>
+
+<span class="c1">// Write to the body</span>
+<span class="nv">$body</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+<span class="nv">$body</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span><span class="s1">&#39;errno&#39;</span> <span class="o">=&gt;</span> <span class="nv">$errorCode</span><span class="p">]));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-middleware">
+<h2>Creating Middleware<a class="headerlink" href="#creating-middleware" title="Permalink to this headline">¶</a></h2>
+<p>Middleware can either be implemented as anonymous functions (Closures), or as
+invokable classes. While Closures are suitable for smaller tasks they make
+testing harder, and can create a complicated <code class="docutils literal"><span class="pre">Application</span></code> class. Middleware
+classes in CakePHP have a few conventions:</p>
+<ul class="simple">
+<li>Middleware class files should be put in <strong>src/Middleware</strong>. For example:
+<strong>src/Middleware/CorsMiddleware.php</strong></li>
+<li>Middleware classes should be suffixed with <code class="docutils literal"><span class="pre">Middleware</span></code>. For example:
+<code class="docutils literal"><span class="pre">LinkMiddleware</span></code>.</li>
+<li>Middleware are expected to implement the middleware protocol.</li>
+</ul>
+<p>While not a formal interface (yet), Middleware do have a soft-interface or
+&#8216;protocol&#8217;. The protocol is as follows:</p>
+<ol class="arabic simple">
+<li>Middleware must implement <code class="docutils literal"><span class="pre">__invoke($request,</span> <span class="pre">$response,</span> <span class="pre">$next)</span></code>.</li>
+<li>Middleware must return an object implementing the PSR-7 <code class="docutils literal"><span class="pre">ResponseInterface</span></code>.</li>
+</ol>
+<p>Middleware can return a response either by calling <code class="docutils literal"><span class="pre">$next</span></code> or by creating
+their own response. We can see both options in our simple middleware:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In src/Middleware/TrackingCookieMiddleware.php</span>
+<span class="k">namespace</span> <span class="nx">App\Middleware</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">TrackingCookieMiddleware</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">,</span> <span class="nv">$next</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Calling $next() delegates control to the *next* middleware</span>
+        <span class="c1">// In your application&#39;s queue.</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$next</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+
+        <span class="c1">// When modifying the response, you should do it</span>
+        <span class="c1">// *after* calling next.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getCookie</span><span class="p">(</span><span class="s1">&#39;landing_page&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">([</span>
+                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;landing_page&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">here</span><span class="p">(),</span>
+                <span class="s1">&#39;expire&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+ 1 year&#39;</span><span class="p">,</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now that we&#8217;ve made a very simple middleware, let&#8217;s attach it to our
+application:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In src/Application.php</span>
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Middleware\TrackingCookieMiddleware</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Application</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">middleware</span><span class="p">(</span><span class="nv">$middlewareQueue</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Add your simple middleware onto the queue</span>
+        <span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">TrackingCookieMiddleware</span><span class="p">());</span>
+
+        <span class="c1">// Add some more middleware onto the queue</span>
+
+        <span class="k">return</span> <span class="nv">$middlewareQueue</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-security-headers">
+<span id="security-header-middleware"></span><h2>Adding Security Headers<a class="headerlink" href="#adding-security-headers" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">SecurityHeaderMiddleware</span></code> layer makes it easy to apply security related
+headers to your application. Once setup the middleware can apply the following
+headers to responses:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">X-Content-Type-Options</span></code></li>
+<li><code class="docutils literal"><span class="pre">X-Download-Options</span></code></li>
+<li><code class="docutils literal"><span class="pre">X-Frame-Options</span></code></li>
+<li><code class="docutils literal"><span class="pre">X-Permitted-Cross-Domain-Policies</span></code></li>
+<li><code class="docutils literal"><span class="pre">Referrer-Policy</span></code></li>
+</ul>
+<p>This middleware is configured using a fluent interface before it is applied to
+your application&#8217;s middleware stack:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Http\Middleware\SecurityHeadersMiddleware</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SecurityHeadersMiddleware</span><span class="p">();</span>
+<span class="nv">$headers</span>
+    <span class="o">-&gt;</span><span class="na">setCrossDomainPolicy</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setReferrerPolicy</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setXFrameOptions</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setXssProtection</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">noOpen</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">noSniff</span><span class="p">();</span>
+
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$headers</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span>The <code class="docutils literal"><span class="pre">SecurityHeadersMiddleware</span></code> was added in 3.5.0</p>
+</div>
+</div>
+<div class="section" id="encrypted-cookie-middleware">
+<span id="id2"></span><h2>Encrypted Cookie Middleware<a class="headerlink" href="#encrypted-cookie-middleware" title="Permalink to this headline">¶</a></h2>
+<p>If your application has cookies that contain data you want to obfuscate and
+protect against user tampering, you may can use CakePHP&#8217;s encrypted cookie
+middleware to transparently encrypt and decrypt cookie data via middleware.
+Cookie data is encrypted with via OpenSSL using AES:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Http\Middleware\EncryptedCookieMiddleware</span><span class="p">;</span>
+
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EncryptedCookieMiddleware</span><span class="p">(</span>
+    <span class="c1">// Names of cookies to protect</span>
+    <span class="p">[</span><span class="s1">&#39;secrets&#39;</span><span class="p">,</span> <span class="s1">&#39;protected&#39;</span><span class="p">],</span>
+    <span class="nx">Configure</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;Security.cookieKey&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$cookies</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is recommended that the encryption key you use for cookie data, is used
+<em>exclusively</em> for cookie data.</p>
+</div>
+<p>The encryption algorithms and padding style used by the cookie middleware are
+backwards compatible with <code class="docutils literal"><span class="pre">CookieComponent</span></code> from earlier versions of CakePHP.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span>The <code class="docutils literal"><span class="pre">EncryptedCookieMiddleware</span></code> was added in 3.5.0</p>
+</div>
+</div>
+<div class="section" id="cross-site-request-forgery-csrf-middleware">
+<span id="csrf-middleware"></span><h2>Cross Site Request Forgery (CSRF) Middleware<a class="headerlink" href="#cross-site-request-forgery-csrf-middleware" title="Permalink to this headline">¶</a></h2>
+<p>CSRF protection can be applied to your entire application, or to specific scopes
+by applying the <code class="docutils literal"><span class="pre">CsrfProtectionMiddleware</span></code> to your middleware stack:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Http\Middleware\CsrfProtectionMiddleware</span><span class="p">;</span>
+
+<span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1">// ...</span>
+<span class="p">];</span>
+<span class="nv">$csrf</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CsrfProtectionMiddleware</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+
+<span class="nv">$middlewareQueue</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$csrf</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Options can be passed into the middleware&#8217;s constructor.
+The available configuration options are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cookieName</span></code> The name of the cookie to send. Defaults to <code class="docutils literal"><span class="pre">csrfToken</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">expiry</span></code> How long the CSRF token should last. Defaults to browser session.</li>
+<li><code class="docutils literal"><span class="pre">secure</span></code> Whether or not the cookie will be set with the Secure flag. That is,
+the cookie will only be set on a HTTPS connection and any attempt over normal HTTP
+will fail. Defaults to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">field</span></code> The form field to check. Defaults to <code class="docutils literal"><span class="pre">_csrfToken</span></code>. Changing this
+will also require configuring FormHelper.</li>
+</ul>
+<p>When enabled, you can access the current CSRF token on the request object:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$token</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;_csrfToken&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span>The <code class="docutils literal"><span class="pre">CsrfProtectionMiddleware</span></code> was added in 3.5.0</p>
+</div>
+<div class="section" id="integration-with-formhelper">
+<h3>Integration with FormHelper<a class="headerlink" href="#integration-with-formhelper" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">CsrfProtectionMiddleware</span></code> integrates seamlessly with <code class="docutils literal"><span class="pre">FormHelper</span></code>. Each
+time you create a form with <code class="docutils literal"><span class="pre">FormHelper</span></code>, it will insert a hidden field containing
+the CSRF token.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When using CSRF protection you should always start your forms with the
+<code class="docutils literal"><span class="pre">FormHelper</span></code>. If you do not, you will need to manually create hidden inputs in
+each of your forms.</p>
+</div>
+</div>
+<div class="section" id="csrf-protection-and-ajax-requests">
+<h3>CSRF Protection and AJAX Requests<a class="headerlink" href="#csrf-protection-and-ajax-requests" title="Permalink to this headline">¶</a></h3>
+<p>In addition to request data parameters, CSRF tokens can be submitted through
+a special <code class="docutils literal"><span class="pre">X-CSRF-Token</span></code> header. Using a header often makes it easier to
+integrate a CSRF token with JavaScript heavy applications, or XML/JSON based API
+endpoints.</p>
+<p>The CSRF Token can be obtained via the Cookie <code class="docutils literal"><span class="pre">csrfToken</span></code>.</p>
+</div>
+</div>
+<div class="section" id="adding-the-new-http-stack-to-an-existing-application">
+<span id="adding-http-stack"></span><h2>Adding the new HTTP Stack to an Existing Application<a class="headerlink" href="#adding-the-new-http-stack-to-an-existing-application" title="Permalink to this headline">¶</a></h2>
+<p>Using HTTP Middleware in an existing application requires a few changes to your
+application.</p>
+<ol class="arabic simple">
+<li>First update your <strong>webroot/index.php</strong>. Copy the file contents from the <a class="reference external" href="https://github.com/cakephp/app/tree/master/webroot/index.php">app
+skeleton</a>.</li>
+<li>Create an <code class="docutils literal"><span class="pre">Application</span></code> class. See the <a class="reference internal" href="#using-middleware"><span class="std std-ref">Using Middleware</span></a> section
+above for how to do that. Or copy the example in the <a class="reference external" href="https://github.com/cakephp/app/tree/master/src/Application.php">app skeleton</a>.</li>
+</ol>
+<p>Once those two steps are complete, you are ready to start re-implementing any
+application/plugin dispatch filters as HTTP middleware.</p>
+<p>If you are running tests you will also need to update your
+<strong>tests/bootstrap.php</strong> by copying the file contents from the <a class="reference external" href="https://github.com/cakephp/app/tree/master/tests/bootstrap.php">app skeleton</a>.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

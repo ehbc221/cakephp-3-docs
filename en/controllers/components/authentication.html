@@ -1,0 +1,1632 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Authentication" lang="en" name="title" />
+<meta content="authentication handlers,array php,basic authentication,web application,different ways,credentials,exceptions,cakephp,logging" lang="en" name="keywords" />
+
+    <title>Authentication - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../../pt/controllers/components/authentication.html" /><link rel="alternate" hreflang="es" href="../../../es/controllers/components/authentication.html" /><link rel="alternate" hreflang="ja" href="../../../ja/controllers/components/authentication.html" /><link rel="alternate" hreflang="fr" href="../../../fr/controllers/components/authentication.html" /><link rel="alternate" hreflang="zh" href="../../../zh/controllers/components/authentication.html" /><link rel="alternate" hreflang="tr" href="../../../tr/controllers/components/authentication.html" /><link rel="alternate" hreflang="ru" href="../../../ru/controllers/components/authentication.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../../index.html" />
+    <link rel="up" title="Components" href="../components.html" />
+    <link rel="next" title="Cookie" href="cookie.html" />
+    <link rel="prev" title="Components" href="../components.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../pt/controllers/components/authentication.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/controllers/components/authentication.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/controllers/components/authentication.html">ja</a></li>
+                                            
+                                                <li><a href="../../../fr/controllers/components/authentication.html">fr</a></li>
+                                            
+                                                <li><a href="../../../zh/controllers/components/authentication.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/controllers/components/authentication.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/controllers/components/authentication.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/controllers/components/authentication.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Authentication</a><ul>
+<li><a class="reference internal" href="#suggested-reading-before-continuing">Suggested Reading Before Continuing</a></li>
+<li><a class="reference internal" href="#id1">Authentication</a><ul>
+<li><a class="reference internal" href="#choosing-an-authentication-type">Choosing an Authentication Type</a></li>
+<li><a class="reference internal" href="#configuring-authentication-handlers">Configuring Authentication Handlers</a></li>
+<li><a class="reference internal" href="#customizing-find-query">Customizing Find Query</a></li>
+<li><a class="reference internal" href="#identifying-users-and-logging-them-in">Identifying Users and Logging Them In</a></li>
+<li><a class="reference internal" href="#redirecting-users-after-login">Redirecting Users After Login</a></li>
+<li><a class="reference internal" href="#creating-stateless-authentication-systems">Creating Stateless Authentication Systems</a></li>
+<li><a class="reference internal" href="#using-basic-authentication">Using Basic Authentication</a><ul>
+<li><a class="reference internal" href="#creating-api-keys-for-basic-authentication">Creating API Keys for Basic Authentication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-digest-authentication">Using Digest Authentication</a><ul>
+<li><a class="reference internal" href="#hashing-passwords-for-digest-authentication">Hashing Passwords For Digest Authentication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-custom-authentication-objects">Creating Custom Authentication Objects</a></li>
+<li><a class="reference internal" href="#using-custom-authentication-objects">Using Custom Authentication Objects</a></li>
+<li><a class="reference internal" href="#handling-unauthenticated-requests">Handling Unauthenticated Requests</a></li>
+<li><a class="reference internal" href="#displaying-auth-related-flash-messages">Displaying Auth Related Flash Messages</a></li>
+<li><a class="reference internal" href="#hashing-passwords">Hashing Passwords</a></li>
+<li><a class="reference internal" href="#creating-custom-password-hasher-classes">Creating Custom Password Hasher Classes</a></li>
+<li><a class="reference internal" href="#changing-hashing-algorithms">Changing Hashing Algorithms</a></li>
+<li><a class="reference internal" href="#manually-logging-users-in">Manually Logging Users In</a></li>
+<li><a class="reference internal" href="#accessing-the-logged-in-user">Accessing the Logged In User</a></li>
+<li><a class="reference internal" href="#logging-users-out">Logging Users Out</a></li>
+<li><a class="reference internal" href="#deciding-when-to-run-authentication">Deciding When to run Authentication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#authorization">Authorization</a><ul>
+<li><a class="reference internal" href="#configuring-authorization-handlers">Configuring Authorization Handlers</a></li>
+<li><a class="reference internal" href="#creating-custom-authorize-objects">Creating Custom Authorize Objects</a><ul>
+<li><a class="reference internal" href="#using-custom-authorize-objects">Using Custom Authorize Objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-no-authorization">Using No Authorization</a></li>
+<li><a class="reference internal" href="#making-actions-public">Making Actions Public</a></li>
+<li><a class="reference internal" href="#making-actions-require-authorization">Making Actions Require Authorization</a></li>
+<li><a class="reference internal" href="#using-controllerauthorize">Using ControllerAuthorize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-options">Configuration options</a></li>
+<li><a class="reference internal" href="#testing-actions-protected-by-authcomponent">Testing Actions Protected By AuthComponent</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="AuthComponent">
+<em class="property">class </em><code class="descname">AuthComponent</code><span class="sig-paren">(</span><em>ComponentCollection $collection</em>, <em>array $config = []</em><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Identifying, authenticating, and authorizing users is a common part of
+almost every web application. In CakePHP AuthComponent provides a
+pluggable way to do these tasks. AuthComponent allows you to combine
+authentication objects and authorization objects to create flexible
+ways of identifying and checking user authorization.</p>
+<div class="section" id="suggested-reading-before-continuing">
+<span id="authentication-objects"></span><h2>Suggested Reading Before Continuing<a class="headerlink" href="#suggested-reading-before-continuing" title="Permalink to this headline">¶</a></h2>
+<p>Configuring authentication requires several steps including defining
+a users table, creating a model, controller &amp; views, etc.</p>
+<p>This is all covered step by step in the
+<a class="reference internal" href="../../tutorials-and-examples/blog-auth-example/auth.html"><span class="doc">Blog Tutorial</span></a>.</p>
+<p>If you are looking for existing authentication and/or authorization solutions
+for CakePHP, have a look at the
+<a class="reference external" href="https://github.com/FriendsOfCake/awesome-cakephp/blob/master/README.md#authentication-and-authorization">Authentication and Authorization</a> section of the Awesome CakePHP list.</p>
+</div>
+<div class="section" id="id1">
+<h2>Authentication<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Authentication is the process of identifying users by provided
+credentials and ensuring that users are who they say they are.
+Generally, this is done through a username and password, that are checked
+against a known list of users. In CakePHP, there are several built-in
+ways of authenticating users stored in your application.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">FormAuthenticate</span></code> allows you to authenticate users based on form POST
+data. Usually, this is a login form that users enter information into.</li>
+<li><code class="docutils literal"><span class="pre">BasicAuthenticate</span></code> allows you to authenticate users using Basic HTTP
+authentication.</li>
+<li><code class="docutils literal"><span class="pre">DigestAuthenticate</span></code> allows you to authenticate users using Digest
+HTTP authentication.</li>
+</ul>
+<p>By default <code class="docutils literal"><span class="pre">AuthComponent</span></code> uses <code class="docutils literal"><span class="pre">FormAuthenticate</span></code>.</p>
+<div class="section" id="choosing-an-authentication-type">
+<h3>Choosing an Authentication Type<a class="headerlink" href="#choosing-an-authentication-type" title="Permalink to this headline">¶</a></h3>
+<p>Generally, you&#8217;ll want to offer form based authentication. It is the easiest for
+users using a web-browser to use. If you are building an API or webservice, you
+may want to consider basic authentication or digest authentication. The key
+differences between digest and basic authentication are mostly related to how
+passwords are handled. In basic authentication, the username and password are
+transmitted as plain-text to the server. This makes basic authentication
+un-suitable for applications without SSL, as you would end up exposing sensitive
+passwords. Digest authentication uses a digest hash of the username, password,
+and a few other details. This makes digest authentication more appropriate for
+applications without SSL encryption.</p>
+<p>You can also use authentication systems like OpenID as well; however, OpenID is
+not part of CakePHP core.</p>
+</div>
+<div class="section" id="configuring-authentication-handlers">
+<h3>Configuring Authentication Handlers<a class="headerlink" href="#configuring-authentication-handlers" title="Permalink to this headline">¶</a></h3>
+<p>You configure authentication handlers using the <code class="docutils literal"><span class="pre">authenticate</span></code> config.
+You can configure one or many handlers for authentication. Using
+multiple handlers allows you to support different ways of logging users
+in. When logging users in, authentication handlers are checked in the
+order they are declared. Once one handler is able to identify the user,
+no other handlers will be checked. Conversely, you can halt all
+authentication by throwing an exception. You will need to catch any
+thrown exceptions and handle them as needed.</p>
+<p>You can configure authentication handlers in your controller&#8217;s
+<code class="docutils literal"><span class="pre">beforeFilter()</span></code> or <code class="docutils literal"><span class="pre">initialize()</span></code> methods. You can pass
+configuration information into each authentication object using an
+array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Simple setup</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authenticate&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Form&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Pass settings in</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authenticate&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;Basic&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;userModel&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Members&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;userModel&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Members&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>In the second example, you&#8217;ll notice that we had to declare the
+<code class="docutils literal"><span class="pre">userModel</span></code> key twice. To help you keep your code DRY, you can use the
+<code class="docutils literal"><span class="pre">all</span></code> key. This special key allows you to set settings that are passed
+to every attached object. The all key is also exposed as
+<code class="docutils literal"><span class="pre">AuthComponent::ALL</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Pass settings in using &#39;all&#39;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authenticate&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="nx">AuthComponent</span><span class="o">::</span><span class="na">ALL</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;userModel&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Members&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Basic&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Form&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>In the above example, both <code class="docutils literal"><span class="pre">Form</span></code> and <code class="docutils literal"><span class="pre">Basic</span></code> will get the settings
+defined for the &#8216;all&#8217; key. Any settings passed to a specific
+authentication object will override the matching key in the &#8216;all&#8217; key.
+The core authentication objects support the following configuration
+keys.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">fields</span></code> The fields to use to identify a user by. You can use keys
+<code class="docutils literal"><span class="pre">username</span></code> and <code class="docutils literal"><span class="pre">password</span></code> to specify your username and password fields
+respectively.</li>
+<li><code class="docutils literal"><span class="pre">userModel</span></code> The model name of the users table; defaults to Users.</li>
+<li><code class="docutils literal"><span class="pre">finder</span></code> The finder method to use to fetch a user record. Defaults to &#8216;all&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">passwordHasher</span></code> Password hasher class; Defaults to <code class="docutils literal"><span class="pre">Default</span></code>.</li>
+<li>The <code class="docutils literal"><span class="pre">scope</span></code> and <code class="docutils literal"><span class="pre">contain</span></code> options have been deprecated as of 3.1. Use
+a custom finder instead to modify the query to fetch a user record.</li>
+<li>The <code class="docutils literal"><span class="pre">userFields</span></code> option has been deprecated as of 3.1. Use <code class="docutils literal"><span class="pre">select()</span></code> in
+your custom finder.</li>
+</ul>
+<p>To configure different fields for user in your <code class="docutils literal"><span class="pre">initialize()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passwd&#39;</span><span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Do not put other <code class="docutils literal"><span class="pre">Auth</span></code> configuration keys, such as <code class="docutils literal"><span class="pre">authError</span></code>, <code class="docutils literal"><span class="pre">loginAction</span></code>, etc.,
+within the <code class="docutils literal"><span class="pre">authenticate</span></code> or <code class="docutils literal"><span class="pre">Form</span></code> element. They should be at the same level as
+the authenticate key. The setup above with other Auth configuration
+should look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;loginAction&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Users&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;login&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;plugin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Users&#39;</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;authError&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Did you really think you are allowed to see that?&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;storage&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Session&#39;</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In addition to the common configuration, Basic authentication supports
+the following keys:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">realm</span></code> The realm being authenticated. Defaults to <code class="docutils literal"><span class="pre">env('SERVER_NAME')</span></code>.</li>
+</ul>
+<p>In addition to the common configuration Digest authentication supports
+the following keys:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">realm</span></code> The realm authentication is for. Defaults to the servername.</li>
+<li><code class="docutils literal"><span class="pre">nonce</span></code> A nonce used for authentication. Defaults to <code class="docutils literal"><span class="pre">uniqid()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">qop</span></code> Defaults to auth; no other values are supported at this time.</li>
+<li><code class="docutils literal"><span class="pre">opaque</span></code> A string that must be returned unchanged by clients. Defaults
+to <code class="docutils literal"><span class="pre">md5($config['realm'])</span></code>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To find the user record, the database is queried only using the username.
+The password check is done in PHP. This is necessary because hashing
+algorithms like bcrypt (which is used by default) generate a new hash
+each time, even for the same string and you can&#8217;t just do simple string
+comparison in SQL to check if the password matches.</p>
+</div>
+</div>
+<div class="section" id="customizing-find-query">
+<h3>Customizing Find Query<a class="headerlink" href="#customizing-find-query" title="Permalink to this headline">¶</a></h3>
+<p>You can customize the query used to fetch the user record using the <code class="docutils literal"><span class="pre">finder</span></code>
+option in authenticate class config:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;finder&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;auth&#39;</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This will require your <code class="docutils literal"><span class="pre">UsersTable</span></code> to have finder method <code class="docutils literal"><span class="pre">findAuth()</span></code>.
+In the example shown below the query is modified to fetch only required fields
+and add a condition. You must ensure that you select the fields you need to
+authenticate a user, such as <code class="docutils literal"><span class="pre">username</span></code> and <code class="docutils literal"><span class="pre">password</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">findAuth</span><span class="p">(</span><span class="nx">\Cake\ORM\Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$query</span>
+        <span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Users.active&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+
+    <span class="k">return</span> <span class="nv">$query</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">finder</span></code> option is available since 3.1. Prior to that you can use <code class="docutils literal"><span class="pre">scope</span></code>
+and <code class="docutils literal"><span class="pre">contain</span></code> options to modify a query.</p>
+</div>
+</div>
+<div class="section" id="identifying-users-and-logging-them-in">
+<h3>Identifying Users and Logging Them In<a class="headerlink" href="#identifying-users-and-logging-them-in" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::identify">
+<code class="descclassname">AuthComponent::</code><code class="descname">identify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::identify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You need to manually call <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;identify()</span></code> to identify the user using
+credentials provided in request. Then use <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;setUser()</span></code>
+to log the user in, i.e., save user info to session.</p>
+<p>When authenticating users, attached authentication objects are checked
+in the order they are attached. Once one of the objects can identify
+the user, no other objects are checked. A sample login function for
+working with a login form could look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">login</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">identify</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">setUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">redirectUrl</span><span class="p">());</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Username or password is incorrect&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above code will attempt to first identify a user by using the POST data.
+If successful we set the user info to the session so that it persists across requests
+and then redirect to either the last page they were visiting or a URL specified in the
+<code class="docutils literal"><span class="pre">loginRedirect</span></code> config. If the login is unsuccessful, a flash message is set.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;setUser($data)</span></code> will log the user in with whatever data is
+passed to the method. It won&#8217;t actually check the credentials against an
+authentication class.</p>
+</div>
+</div>
+<div class="section" id="redirecting-users-after-login">
+<h3>Redirecting Users After Login<a class="headerlink" href="#redirecting-users-after-login" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::redirectUrl">
+<code class="descclassname">AuthComponent::</code><code class="descname">redirectUrl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::redirectUrl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>After logging a user in, you&#8217;ll generally want to redirect them back to where
+they came from. Pass a URL in to set the destination a user should be redirected
+to after logging in.</p>
+<p>If no parameter is passed, the returned URL will use the following rules:</p>
+<ul class="simple">
+<li>Returns the normalized URL from the <code class="docutils literal"><span class="pre">redirect</span></code> query string value if it is
+present and for the same domain the current app is running on. Before 3.4.0,
+the <code class="docutils literal"><span class="pre">Auth.redirect</span></code> session value was used.</li>
+<li>If there is no query string/session value and there is a config
+<code class="docutils literal"><span class="pre">loginRedirect</span></code>, the <code class="docutils literal"><span class="pre">loginRedirect</span></code> value is returned.</li>
+<li>If there is no redirect value and no <code class="docutils literal"><span class="pre">loginRedirect</span></code>, <code class="docutils literal"><span class="pre">/</span></code> is returned.</li>
+</ul>
+</div>
+<div class="section" id="creating-stateless-authentication-systems">
+<h3>Creating Stateless Authentication Systems<a class="headerlink" href="#creating-stateless-authentication-systems" title="Permalink to this headline">¶</a></h3>
+<p>Basic and digest are stateless authentication schemes and don&#8217;t require an
+initial POST or a form. If using only basic/digest authenticators you don&#8217;t
+require a login action in your controller. Stateless authentication will
+re-verify the user&#8217;s credentials on each request, this creates a small amount of
+additional overhead, but allows clients to login without using cookies and
+makes AuthComponent more suitable for building APIs.</p>
+<p>For stateless authenticators, the <code class="docutils literal"><span class="pre">storage</span></code> config should be set to <code class="docutils literal"><span class="pre">Memory</span></code>
+so that AuthComponent does not use a session to store user record. You may also
+want to set config <code class="docutils literal"><span class="pre">unauthorizedRedirect</span></code> to <code class="docutils literal"><span class="pre">false</span></code> so that AuthComponent
+throws a <code class="docutils literal"><span class="pre">ForbiddenException</span></code> instead of the default behavior of redirecting to
+referrer.</p>
+<p>Authentication objects can implement a <code class="docutils literal"><span class="pre">getUser()</span></code> method that can be used to
+support user login systems that don&#8217;t rely on cookies. A typical getUser method
+looks at the request/environment and uses the information there to confirm the
+identity of the user. HTTP Basic authentication for example uses
+<code class="docutils literal"><span class="pre">$_SERVER['PHP_AUTH_USER']</span></code> and <code class="docutils literal"><span class="pre">$_SERVER['PHP_AUTH_PW']</span></code> for the username
+and password fields.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In case authentication does not work like expected, check if queries
+are executed at all (see <code class="docutils literal"><span class="pre">BaseAuthenticate::_query($username)</span></code>).
+In case no queries are executed check if <code class="docutils literal"><span class="pre">$_SERVER['PHP_AUTH_USER']</span></code>
+and <code class="docutils literal"><span class="pre">$_SERVER['PHP_AUTH_PW']</span></code> do get populated by the webserver.
+If you are using Apache with FastCGI-PHP you might need to add this line
+to your <strong>.htaccess</strong> file in webroot:</p>
+<div class="last highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">RewriteRule</span> <span class="o">.*</span> <span class="o">-</span> <span class="p">[</span><span class="nx">E</span><span class="o">=</span><span class="nx">HTTP_AUTHORIZATION</span><span class="o">:%</span><span class="p">{</span><span class="nx">HTTP</span><span class="o">:</span><span class="nx">Authorization</span><span class="p">},</span><span class="nx">L</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>On each request, these values, <code class="docutils literal"><span class="pre">PHP_AUTH_USER</span></code> and <code class="docutils literal"><span class="pre">PHP_AUTH_PW</span></code>, are used to
+re-identify the user and ensure they are the valid user. As with authentication
+object&#8217;s <code class="docutils literal"><span class="pre">authenticate()</span></code> method, the <code class="docutils literal"><span class="pre">getUser()</span></code> method should return
+an array of user information on the success or <code class="docutils literal"><span class="pre">false</span></code> on failure.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getUser</span><span class="p">(</span><span class="nx">ServerRequest</span> <span class="nv">$request</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$username</span> <span class="o">=</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PHP_AUTH_USER&#39;</span><span class="p">);</span>
+    <span class="nv">$pass</span> <span class="o">=</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PHP_AUTH_PW&#39;</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$username</span><span class="p">)</span> <span class="o">||</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pass</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_findUser</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above is how you could implement the getUser method for HTTP basic
+authentication. The <code class="docutils literal"><span class="pre">_findUser()</span></code> method is part of <code class="docutils literal"><span class="pre">BaseAuthenticate</span></code>
+and identifies a user based on a username and password.</p>
+</div>
+<div class="section" id="using-basic-authentication">
+<span id="basic-authentication"></span><h3>Using Basic Authentication<a class="headerlink" href="#using-basic-authentication" title="Permalink to this headline">¶</a></h3>
+<p>Basic authentication allows you to create a stateless authentication that can be
+used in intranet applications or for simple API scenarios. Basic authentication
+credentials will be rechecked on each request.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Basic authentication transmits credentials in plain-text. You should use
+HTTPS when using Basic authentication.</p>
+</div>
+<p>To use basic authentication, you&#8217;ll need to configure AuthComponent:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Basic&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;api_key&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;userModel&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Users&#39;</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;storage&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Memory&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;unauthorizedRedirect&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Here we&#8217;re using username + API key as our fields and use the Users model.</p>
+<div class="section" id="creating-api-keys-for-basic-authentication">
+<h4>Creating API Keys for Basic Authentication<a class="headerlink" href="#creating-api-keys-for-basic-authentication" title="Permalink to this headline">¶</a></h4>
+<p>Because basic HTTP sends credentials in plain-text, it is unwise to have users
+send their login password. Instead, an opaque API key is generally used. You can
+generate these API tokens randomly using libraries from CakePHP:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\DefaultPasswordHasher</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Event\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UsersTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">beforeSave</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nv">$hasher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultPasswordHasher</span><span class="p">();</span>
+
+            <span class="c1">// Generate an API &#39;token&#39;</span>
+            <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">api_key_plain</span> <span class="o">=</span> <span class="nb">sha1</span><span class="p">(</span><span class="nx">Text</span><span class="o">::</span><span class="na">uuid</span><span class="p">());</span>
+
+            <span class="c1">// Bcrypt the token so BasicAuthenticate can check</span>
+            <span class="c1">// it during login.</span>
+            <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">api_key</span> <span class="o">=</span> <span class="nv">$hasher</span><span class="o">-&gt;</span><span class="na">hash</span><span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">api_key_plain</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above generates a random hash for each user as they are saved. The above
+code assumes you have two columns <code class="docutils literal"><span class="pre">api_key</span></code> - to store the hashed API key, and
+<code class="docutils literal"><span class="pre">api_key_plain</span></code> - to the plaintext version of the API key, so we can display
+it to the user later on. Using a key instead of a password means that even over
+plain HTTP, your users can use an opaque token instead of their original
+password. It is also wise to include logic allowing API keys to be regenerated
+at a user&#8217;s request.</p>
+</div>
+</div>
+<div class="section" id="using-digest-authentication">
+<h3>Using Digest Authentication<a class="headerlink" href="#using-digest-authentication" title="Permalink to this headline">¶</a></h3>
+<p>Digest authentication offers an improved security model over basic
+authentication, as the user&#8217;s credentials are never sent in the request header.
+Instead, a hash is sent.</p>
+<p>To use digest authentication, you&#8217;ll need to configure AuthComponent:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Digest&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;digest_hash&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;userModel&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Users&#39;</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;storage&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Memory&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;unauthorizedRedirect&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Here we&#8217;re using username + digest_hash as our fields and use the Users model.</p>
+<div class="section" id="hashing-passwords-for-digest-authentication">
+<h4>Hashing Passwords For Digest Authentication<a class="headerlink" href="#hashing-passwords-for-digest-authentication" title="Permalink to this headline">¶</a></h4>
+<p>Because Digest authentication requires a password hashed in the format
+defined by the RFC, in order to correctly hash a password for use with
+Digest authentication you should use the special password hashing
+function on <code class="docutils literal"><span class="pre">DigestAuthenticate</span></code>. If you are going to be combining
+digest authentication with any other authentication strategies, it&#8217;s also
+recommended that you store the digest password in a separate column,
+from the normal password hash:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\DigestAuthenticate</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Event\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UsersTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">beforeSave</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;entity&#39;</span><span class="p">);</span>
+
+        <span class="c1">// Make a password for digest auth.</span>
+        <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">digest_hash</span> <span class="o">=</span> <span class="nx">DigestAuthenticate</span><span class="o">::</span><span class="na">password</span><span class="p">(</span>
+            <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">,</span>
+            <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">plain_password</span><span class="p">,</span>
+            <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SERVER_NAME&#39;</span><span class="p">)</span>
+        <span class="p">);</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Passwords for digest authentication need a bit more information than
+other password hashes, based on the RFC for digest authentication.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The third parameter of DigestAuthenticate::password() must match the
+&#8216;realm&#8217; config value defined when DigestAuthentication was configured
+in AuthComponent::$authenticate. This defaults to <code class="docutils literal"><span class="pre">env('SCRIPT_NAME')</span></code>.
+You may wish to use a static string if you want consistent hashes in multiple environments.</p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-custom-authentication-objects">
+<h3>Creating Custom Authentication Objects<a class="headerlink" href="#creating-custom-authentication-objects" title="Permalink to this headline">¶</a></h3>
+<p>Because authentication objects are pluggable, you can create custom
+authentication objects in your application or plugins. If for example,
+you wanted to create an OpenID authentication object. In
+<strong>src/Auth/OpenidAuthenticate.php</strong> you could put the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Auth</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\BaseAuthenticate</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Http\ServerRequest</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Http\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">OpenidAuthenticate</span> <span class="k">extends</span> <span class="nx">BaseAuthenticate</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">authenticate</span><span class="p">(</span><span class="nx">ServerRequest</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Response</span> <span class="nv">$response</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Do things for OpenID here.</span>
+        <span class="c1">// Return an array of user if they could authenticate the user,</span>
+        <span class="c1">// return false if not.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Authentication objects should return <code class="docutils literal"><span class="pre">false</span></code> if they cannot identify the
+user and an array of user information if they can. It&#8217;s not required
+that you extend <code class="docutils literal"><span class="pre">BaseAuthenticate</span></code>, only that your authentication object
+implements <code class="docutils literal"><span class="pre">Cake\Event\EventListenerInterface</span></code>. The <code class="docutils literal"><span class="pre">BaseAuthenticate</span></code> class
+provides a number of helpful methods that are commonly used. You can
+also implement a <code class="docutils literal"><span class="pre">getUser()</span></code> method if your authentication object needs
+to support stateless or cookie-less authentication. See the sections on
+basic and digest authentication below for more information.</p>
+<p><code class="docutils literal"><span class="pre">AuthComponent</span></code> triggers two events, <code class="docutils literal"><span class="pre">Auth.afterIdentify</span></code> and <code class="docutils literal"><span class="pre">Auth.logout</span></code>,
+after a user has been identified and before a user is logged out respectively.
+You can set callback functions for these events by returning a mapping array
+from <code class="docutils literal"><span class="pre">implementedEvents()</span></code> method of your authenticate class:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">implementedEvents</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;Auth.afterIdentify&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;afterIdentify&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Auth.logout&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;logout&#39;</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-custom-authentication-objects">
+<h3>Using Custom Authentication Objects<a class="headerlink" href="#using-custom-authentication-objects" title="Permalink to this headline">¶</a></h3>
+<p>Once you&#8217;ve created your custom authentication object, you can use them
+by including them in AuthComponents authenticate array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authenticate&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;Openid&#39;</span><span class="p">,</span> <span class="c1">// app authentication object.</span>
+    <span class="s1">&#39;AuthBag.Openid&#39;</span><span class="p">,</span> <span class="c1">// plugin authentication object.</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note that when using simple notation there&#8217;s no &#8216;Authenticate&#8217; word when
+initiating the authentication object. Instead, if using namespaces, you&#8217;ll
+need to set the full namespace of the class, including the &#8216;Authenticate&#8217; word.</p>
+</div>
+</div>
+<div class="section" id="handling-unauthenticated-requests">
+<h3>Handling Unauthenticated Requests<a class="headerlink" href="#handling-unauthenticated-requests" title="Permalink to this headline">¶</a></h3>
+<p>When an unauthenticated user tries to access a protected page first the
+<code class="docutils literal"><span class="pre">unauthenticated()</span></code> method of the last authenticator in the chain is called.
+The authenticate object can handle sending response or redirection by returning
+a response object to indicate no further action is necessary. Due to this, the
+order in which you specify the authentication provider in <code class="docutils literal"><span class="pre">authenticate</span></code>
+config matters.</p>
+<p>If authenticator returns null, AuthComponent redirects user to the login action.
+If it&#8217;s an AJAX request and config <code class="docutils literal"><span class="pre">ajaxLogin</span></code> is specified that element
+is rendered else a 403 HTTP status code is returned.</p>
+</div>
+<div class="section" id="displaying-auth-related-flash-messages">
+<h3>Displaying Auth Related Flash Messages<a class="headerlink" href="#displaying-auth-related-flash-messages" title="Permalink to this headline">¶</a></h3>
+<p>In order to display the session error messages that Auth generates, you
+need to add the following code to your layout. Add the following two
+lines to the <strong>src/Template/Layout/default.ctp</strong> file in the body section:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Only this is necessary after 3.4.0</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+
+<span class="c1">// Prior to 3.4.0 this will be required as well.</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can customize the error messages and flash settings AuthComponent
+uses. Using <code class="docutils literal"><span class="pre">flash</span></code> config you can configure the parameters
+AuthComponent uses for setting flash messages. The available keys are</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">key</span></code> - The key to use, defaults to &#8216;default&#8217;. Prior to 3.4.0, the key
+defaulted to &#8216;auth&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">element</span></code> - The element name to use for rendering, defaults to null.</li>
+<li><code class="docutils literal"><span class="pre">params</span></code> - The array of additional params to use, defaults to <code class="docutils literal"><span class="pre">[]</span></code>.</li>
+</ul>
+<p>In addition to the flash message settings you can customize other error
+messages AuthComponent uses. In your controller&#8217;s beforeFilter, or
+component settings you can use <code class="docutils literal"><span class="pre">authError</span></code> to customize the error used
+for when authorization fails:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authError&#39;</span><span class="p">,</span> <span class="s2">&quot;Woopsie, you are not authorized to access this area.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Sometimes, you want to display the authorization error only after
+the user has already logged-in. You can suppress this message by setting
+its value to boolean <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<p>In your controller&#8217;s beforeFilter() or component settings:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authError&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hashing-passwords">
+<span id="id2"></span><h3>Hashing Passwords<a class="headerlink" href="#hashing-passwords" title="Permalink to this headline">¶</a></h3>
+<p>You are responsible for hashing the passwords before they are persisted to the
+database, the easiest way is to use a setter function in your User entity:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\DefaultPasswordHasher</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="c1">// ...</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_setPassword</span><span class="p">(</span><span class="nv">$password</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">strlen</span><span class="p">(</span><span class="nv">$password</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">(</span><span class="k">new</span> <span class="nx">DefaultPasswordHasher</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">hash</span><span class="p">(</span><span class="nv">$password</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>AuthComponent is configured by default to use the <code class="docutils literal"><span class="pre">DefaultPasswordHasher</span></code>
+when validating user credentials so no additional configuration is required in
+order to authenticate users.</p>
+<p><code class="docutils literal"><span class="pre">DefaultPasswordHasher</span></code> uses the bcrypt hashing algorithm internally, which
+is one of the stronger password hashing solutions used in the industry. While it
+is recommended that you use this password hasher class, the case may be that you
+are managing a database of users whose password was hashed differently.</p>
+</div>
+<div class="section" id="creating-custom-password-hasher-classes">
+<h3>Creating Custom Password Hasher Classes<a class="headerlink" href="#creating-custom-password-hasher-classes" title="Permalink to this headline">¶</a></h3>
+<p>In order to use a different password hasher, you need to create the class in
+<strong>src/Auth/LegacyPasswordHasher.php</strong> and implement the
+<code class="docutils literal"><span class="pre">hash()</span></code> and <code class="docutils literal"><span class="pre">check()</span></code> methods. This class needs to extend the
+<code class="docutils literal"><span class="pre">AbstractPasswordHasher</span></code> class:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Auth</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\AbstractPasswordHasher</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">LegacyPasswordHasher</span> <span class="k">extends</span> <span class="nx">AbstractPasswordHasher</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">hash</span><span class="p">(</span><span class="nv">$password</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$password</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">check</span><span class="p">(</span><span class="nv">$password</span><span class="p">,</span> <span class="nv">$hashedPassword</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$password</span><span class="p">)</span> <span class="o">===</span> <span class="nv">$hashedPassword</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then you are required to configure the AuthComponent to use your own password
+hasher:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;passwordHasher&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Legacy&#39;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Supporting legacy systems is a good idea, but it is even better to keep your
+database with the latest security advancements. The following section will
+explain how to migrate from one hashing algorithm to CakePHP&#8217;s default.</p>
+</div>
+<div class="section" id="changing-hashing-algorithms">
+<h3>Changing Hashing Algorithms<a class="headerlink" href="#changing-hashing-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>CakePHP provides a clean way to migrate your users&#8217; passwords from one algorithm
+to another, this is achieved through the <code class="docutils literal"><span class="pre">FallbackPasswordHasher</span></code> class.
+Assuming you are migrating your app from CakePHP 2.x which uses <code class="docutils literal"><span class="pre">sha1</span></code> password hashes, you
+can configure the AuthComponent as follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;authenticate&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;Form&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;passwordHasher&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Fallback&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;hashers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                        <span class="s1">&#39;Default&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Weak&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;hashType&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sha1&#39;</span><span class="p">]</span>
+                    <span class="p">]</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first name appearing in the <code class="docutils literal"><span class="pre">hashers</span></code> key indicates which of the classes
+is the preferred one, but it will fallback to the others in the list if the
+check was unsuccessful.</p>
+<p>When using the <code class="docutils literal"><span class="pre">WeakPasswordHasher</span></code> you will need to
+set the <code class="docutils literal"><span class="pre">Security.salt</span></code> configure the value to ensure passwords are salted.</p>
+<p>In order to update old users&#8217; passwords on the fly, you can change the login
+function accordingly:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">login</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">identify</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">setUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">authenticationProvider</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">needsPasswordRehash</span><span class="p">())</span> <span class="p">{</span>
+                <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">));</span>
+                <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">password</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">redirectUrl</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you can see we are just setting the plain password again so the setter
+function in the entity will hash the password as shown in the previous example and
+then save the entity.</p>
+</div>
+<div class="section" id="manually-logging-users-in">
+<h3>Manually Logging Users In<a class="headerlink" href="#manually-logging-users-in" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::setUser">
+<code class="descclassname">AuthComponent::</code><code class="descname">setUser</code><span class="sig-paren">(</span><em>array $user</em><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::setUser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sometimes the need arises where you need to manually log a user in, such
+as just after they registered for your application. You can do this by
+calling <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;setUser()</span></code> with the user data you want to &#8216;login&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$user</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">setUser</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span>
+            <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Users&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;home&#39;</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Be sure to manually add the new User id to the array passed to the <code class="docutils literal"><span class="pre">setUser()</span></code>
+method. Otherwise, you won&#8217;t have the user id available.</p>
+</div>
+</div>
+<div class="section" id="accessing-the-logged-in-user">
+<h3>Accessing the Logged In User<a class="headerlink" href="#accessing-the-logged-in-user" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::user">
+<code class="descclassname">AuthComponent::</code><code class="descname">user</code><span class="sig-paren">(</span><em>$key = null</em><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Once a user is logged in, you will often need some particular
+information about the current user. You can access the currently logged
+in user using <code class="docutils literal"><span class="pre">AuthComponent::user()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// From inside a controller or other component.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If the current user is not logged in or the key doesn&#8217;t exist, null will
+be returned.</p>
+</div>
+<div class="section" id="logging-users-out">
+<h3>Logging Users Out<a class="headerlink" href="#logging-users-out" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::logout">
+<code class="descclassname">AuthComponent::</code><code class="descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::logout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Eventually, you&#8217;ll want a quick way to de-authenticate someone and
+redirect them to where they need to go. This method is also useful if
+you want to provide a &#8216;Log me out&#8217; link inside a members&#8217; area of your
+application:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">logout</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">logout</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Logging out users that logged in with Digest or Basic auth is difficult
+to accomplish for all clients. Most browsers will retain credentials
+for the duration they are still open. Some clients can be forced to
+logout by sending a 401 status code. Changing the authentication realm
+is another solution that works for some clients.</p>
+</div>
+<div class="section" id="deciding-when-to-run-authentication">
+<h3>Deciding When to run Authentication<a class="headerlink" href="#deciding-when-to-run-authentication" title="Permalink to this headline">¶</a></h3>
+<p>In some cases you may want to use <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;user()</span></code> in the
+<code class="docutils literal"><span class="pre">beforeFilter(Event</span> <span class="pre">$event)</span></code> method. This is achievable by using the
+<code class="docutils literal"><span class="pre">checkAuthIn</span></code> config key. The following changes which event for which initial
+authentication checks should be done:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">//Set up AuthComponent to authenticate in initialize()</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;checkAuthIn&#39;</span><span class="p">,</span> <span class="s1">&#39;Controller.initialize&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Default value for <code class="docutils literal"><span class="pre">checkAuthIn</span></code> is <code class="docutils literal"><span class="pre">'Controller.startup'</span></code> - but by using
+<code class="docutils literal"><span class="pre">'Controller.initialize'</span></code> initial authentication is done before <code class="docutils literal"><span class="pre">beforeFilter()</span></code>
+method.</p>
+</div>
+</div>
+<div class="section" id="authorization">
+<span id="authorization-objects"></span><h2>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h2>
+<p>Authorization is the process of ensuring that an
+identified/authenticated user is allowed to access the resources they
+are requesting. If enabled <code class="docutils literal"><span class="pre">AuthComponent</span></code> can automatically check
+authorization handlers and ensure that logged in users are allowed to
+access the resources they are requesting. There are several built-in
+authorization handlers and you can create custom ones for your
+application or as part of a plugin.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ControllerAuthorize</span></code> Calls <code class="docutils literal"><span class="pre">isAuthorized()</span></code> on the active controller,
+and uses the return of that to authorize a user. This is often the most
+simple way to authorize users.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal"><span class="pre">ActionsAuthorize</span></code> &amp; <code class="docutils literal"><span class="pre">CrudAuthorize</span></code> adapter available in CakePHP
+2.x have now been moved to a separate plugin <a class="reference external" href="https://github.com/cakephp/acl">cakephp/acl</a>.</p>
+</div>
+<div class="section" id="configuring-authorization-handlers">
+<h3>Configuring Authorization Handlers<a class="headerlink" href="#configuring-authorization-handlers" title="Permalink to this headline">¶</a></h3>
+<p>You configure authorization handlers using the <code class="docutils literal"><span class="pre">authorize</span></code> config key.
+You can configure one or many handlers for authorization. Using
+multiple handlers allows you to support different ways of checking
+authorization. When authorization handlers are checked, they will be
+called in the order they are declared. Handlers should return <code class="docutils literal"><span class="pre">false</span></code>, if
+they are unable to check authorization, or the check has failed.
+Handlers should return <code class="docutils literal"><span class="pre">true</span></code> if they were able to check authorization
+successfully. Handlers will be called in sequence until one passes. If
+all checks fail, the user will be redirected to the page they came from.
+Additionally, you can halt all authorization by throwing an exception.
+You will need to catch any thrown exceptions and handle them.</p>
+<p>You can configure authorization handlers in your controller&#8217;s
+<code class="docutils literal"><span class="pre">beforeFilter()</span></code> or <code class="docutils literal"><span class="pre">initialize()</span></code> methods. You can pass
+configuration information into each authorization object, using an
+array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Basic setup</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authorize&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Controller&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Pass settings in</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authorize&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;Actions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;actionPath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;controllers/&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Controller&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Much like <code class="docutils literal"><span class="pre">authenticate</span></code>, <code class="docutils literal"><span class="pre">authorize</span></code>, helps you
+keep your code DRY, by using the <code class="docutils literal"><span class="pre">all</span></code> key. This special key allows you
+to set settings that are passed to every attached object. The <code class="docutils literal"><span class="pre">all</span></code> key
+is also exposed as <code class="docutils literal"><span class="pre">AuthComponent::ALL</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Pass settings in using &#39;all&#39;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authorize&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="nx">AuthComponent</span><span class="o">::</span><span class="na">ALL</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;actionPath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;controllers/&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Actions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Controller&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>In the above example, both the <code class="docutils literal"><span class="pre">Actions</span></code> and <code class="docutils literal"><span class="pre">Controller</span></code> will get the
+settings defined for the &#8216;all&#8217; key. Any settings passed to a specific
+authorization object will override the matching key in the &#8216;all&#8217; key.</p>
+<p>If an authenticated user tries to go to a URL he&#8217;s not authorized to access,
+he&#8217;s redirected back to the referrer. If you do not want such redirection
+(mostly needed when using stateless authentication adapter) you can set config
+option <code class="docutils literal"><span class="pre">unauthorizedRedirect</span></code> to <code class="docutils literal"><span class="pre">false</span></code>. This causes AuthComponent
+to throw a <code class="docutils literal"><span class="pre">ForbiddenException</span></code> instead of redirecting.</p>
+</div>
+<div class="section" id="creating-custom-authorize-objects">
+<h3>Creating Custom Authorize Objects<a class="headerlink" href="#creating-custom-authorize-objects" title="Permalink to this headline">¶</a></h3>
+<p>Because authorize objects are pluggable, you can create custom authorize
+objects in your application or plugins. If for example, you wanted to
+create an LDAP authorize object. In
+<strong>src/Auth/LdapAuthorize.php</strong> you could put the
+following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Auth</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\BaseAuthorize</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Http\ServerRequest</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">LdapAuthorize</span> <span class="k">extends</span> <span class="nx">BaseAuthorize</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">authorize</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nx">ServerRequest</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Do things for ldap here.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Authorize objects should return <code class="docutils literal"><span class="pre">false</span></code> if the user is denied access, or
+if the object is unable to perform a check. If the object is able to
+verify the user&#8217;s access, <code class="docutils literal"><span class="pre">true</span></code> should be returned. It&#8217;s not required
+that you extend <code class="docutils literal"><span class="pre">BaseAuthorize</span></code>, only that your authorize object
+implements an <code class="docutils literal"><span class="pre">authorize()</span></code> method. The <code class="docutils literal"><span class="pre">BaseAuthorize</span></code> class provides
+a number of helpful methods that are commonly used.</p>
+<div class="section" id="using-custom-authorize-objects">
+<h4>Using Custom Authorize Objects<a class="headerlink" href="#using-custom-authorize-objects" title="Permalink to this headline">¶</a></h4>
+<p>Once you&#8217;ve created your custom authorize object, you can use them by
+including them in your AuthComponent&#8217;s authorize array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;authorize&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;Ldap&#39;</span><span class="p">,</span> <span class="c1">// app authorize object.</span>
+    <span class="s1">&#39;AuthBag.Combo&#39;</span><span class="p">,</span> <span class="c1">// plugin authorize object.</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-no-authorization">
+<h3>Using No Authorization<a class="headerlink" href="#using-no-authorization" title="Permalink to this headline">¶</a></h3>
+<p>If you&#8217;d like to not use any of the built-in authorization objects and
+want to handle things entirely outside of AuthComponent, you can set
+<code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;config('authorize',</span> <span class="pre">false);</span></code>. By default AuthComponent starts off
+with <code class="docutils literal"><span class="pre">authorize</span></code> set to <code class="docutils literal"><span class="pre">false</span></code>. If you don&#8217;t use an authorization scheme,
+make sure to check authorization yourself in your controller&#8217;s
+beforeFilter or with another component.</p>
+</div>
+<div class="section" id="making-actions-public">
+<h3>Making Actions Public<a class="headerlink" href="#making-actions-public" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::allow">
+<code class="descclassname">AuthComponent::</code><code class="descname">allow</code><span class="sig-paren">(</span><em>$actions = null</em><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::allow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>There are often times controller actions that you wish to remain
+entirely public or that don&#8217;t require users to be logged in.
+AuthComponent is pessimistic and defaults to denying access. You can
+mark actions as public actions by using <code class="docutils literal"><span class="pre">AuthComponent::allow()</span></code>. By
+marking actions as public, AuthComponent will not check for a logged in
+user nor will authorize objects to be checked:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Allow all actions</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">allow</span><span class="p">();</span>
+
+<span class="c1">// Allow only the index action.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">allow</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">);</span>
+
+<span class="c1">// Allow only the view and index actions.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">allow</span><span class="p">([</span><span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>By calling it empty you allow all actions to be public.
+For a single action, you can provide the action name as a string. Otherwise, use an array.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should not add the &#8220;login&#8221; action of your <code class="docutils literal"><span class="pre">UsersController</span></code> to allow list.
+Doing so would cause problems with the normal functioning of <code class="docutils literal"><span class="pre">AuthComponent</span></code>.</p>
+</div>
+</div>
+<div class="section" id="making-actions-require-authorization">
+<h3>Making Actions Require Authorization<a class="headerlink" href="#making-actions-require-authorization" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="AuthComponent::deny">
+<code class="descclassname">AuthComponent::</code><code class="descname">deny</code><span class="sig-paren">(</span><em>$actions = null</em><span class="sig-paren">)</span><a class="headerlink" href="#AuthComponent::deny" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>By default all actions require authorization. However, after making actions
+public you want to revoke the public access. You can do so using
+<code class="docutils literal"><span class="pre">AuthComponent::deny()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Deny all actions.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">deny</span><span class="p">();</span>
+
+<span class="c1">// Deny one action</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">deny</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
+
+<span class="c1">// Deny a group of actions.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">deny</span><span class="p">([</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;edit&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>By calling it empty you deny all actions.
+For a single action, you can provide the action name as a string. Otherwise, use an array.</p>
+</div>
+<div class="section" id="using-controllerauthorize">
+<h3>Using ControllerAuthorize<a class="headerlink" href="#using-controllerauthorize" title="Permalink to this headline">¶</a></h3>
+<p>ControllerAuthorize allows you to handle authorization checks in a
+controller callback. This is ideal when you have very simple
+authorization or you need to use a combination of models and components
+to do your authorization and don&#8217;t want to create a custom authorize
+object.</p>
+<p>The callback is always called <code class="docutils literal"><span class="pre">isAuthorized()</span></code> and it should return a
+boolean as to whether or not the user is allowed to access resources in
+the request. The callback is passed the active user so it can be
+checked:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AppController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;authorize&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Controller&#39;</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isAuthorized</span><span class="p">(</span><span class="nv">$user</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Any registered user can access public functions</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;prefix&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Only admins can access admin functions</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;prefix&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)(</span><span class="nv">$user</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;admin&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Default deny</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above callback would provide a very simple authorization system
+where only users with role = admin could access actions that were in
+the admin prefix.</p>
+</div>
+</div>
+<div class="section" id="configuration-options">
+<h2>Configuration options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
+<p>The following settings can all be defined either in your controller&#8217;s
+<code class="docutils literal"><span class="pre">initialize()</span></code> method or using <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;config()</span></code> in your <code class="docutils literal"><span class="pre">beforeFilter()</span></code>:</p>
+<dl class="docutils">
+<dt>ajaxLogin</dt>
+<dd>The name of an optional view element to render when an AJAX request is made
+with an invalid or expired session.</dd>
+<dt>allowedActions</dt>
+<dd>Controller actions for which user validation is not required.</dd>
+<dt>authenticate</dt>
+<dd>Set to an array of Authentication objects you want to use when
+logging users in. There are several core authentication objects;
+see the section on <a class="reference internal" href="#authentication-objects"><span class="std std-ref">Suggested Reading Before Continuing</span></a>.</dd>
+<dt>authError</dt>
+<dd><p class="first">Error to display when user attempts to access an object or action to which
+they do not have access.</p>
+<p class="last">You can suppress authError message from being displayed by setting this
+value to boolean <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</dd>
+<dt>authorize</dt>
+<dd>Set to an array of Authorization objects you want to use when
+authorizing users on each request; see the section on
+<a class="reference internal" href="#authorization-objects"><span class="std std-ref">Authorization</span></a>.</dd>
+<dt>flash</dt>
+<dd><p class="first">Settings to use when Auth needs to do a flash message with
+<code class="docutils literal"><span class="pre">FlashComponent::set()</span></code>.
+Available keys are:</p>
+<ul class="last simple">
+<li><code class="docutils literal"><span class="pre">element</span></code> - The element to use; defaults to &#8216;default&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">key</span></code> - The key to use; defaults to &#8216;auth&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">params</span></code> - The array of additional params to use; defaults to [].</li>
+</ul>
+</dd>
+<dt>loginAction</dt>
+<dd>A URL (defined as a string or array) to the controller action that handles
+logins. Defaults to <code class="docutils literal"><span class="pre">/users/login</span></code>.</dd>
+<dt>loginRedirect</dt>
+<dd>The URL (defined as a string or array) to the controller action users
+should be redirected to after logging in. This value will be ignored if the
+user has an <code class="docutils literal"><span class="pre">Auth.redirect</span></code> value in their session.</dd>
+<dt>logoutRedirect</dt>
+<dd>The default action to redirect to after the user is logged out. While
+AuthComponent does not handle post-logout redirection, a redirect URL will
+be returned from <a class="reference internal" href="#AuthComponent::logout" title="AuthComponent::logout"><code class="xref php php-meth docutils literal"><span class="pre">AuthComponent::logout()</span></code></a>. Defaults to
+<code class="docutils literal"><span class="pre">loginAction</span></code>.</dd>
+<dt>unauthorizedRedirect</dt>
+<dd>Controls handling of unauthorized access. By default unauthorized user is
+redirected to the referrer URL or <code class="docutils literal"><span class="pre">loginAction</span></code> or &#8216;/&#8217;.
+If set to <code class="docutils literal"><span class="pre">false</span></code>, a ForbiddenException exception is thrown instead of
+redirecting.</dd>
+<dt>storage</dt>
+<dd>Storage class to use for persisting user record. When using stateless
+authenticator you should set this to <code class="docutils literal"><span class="pre">Memory</span></code>. Defaults to <code class="docutils literal"><span class="pre">Session</span></code>.
+You can pass config options to storage class using array format. For e.g. to
+use a custom session key you can set <code class="docutils literal"><span class="pre">storage</span></code> to <code class="docutils literal"><span class="pre">['className'</span> <span class="pre">=&gt;</span> <span class="pre">'Session',</span> <span class="pre">'key'</span> <span class="pre">=&gt;</span> <span class="pre">'Auth.Admin']</span></code>.</dd>
+<dt>checkAuthIn</dt>
+<dd>Name of the event in which initial auth checks should be done. Defaults
+to <code class="docutils literal"><span class="pre">Controller.startup</span></code>. You can set it to <code class="docutils literal"><span class="pre">Controller.initialize</span></code>
+if you want the check to be done before controller&#8217;s <code class="docutils literal"><span class="pre">beforeFilter()</span></code>
+method is run.</dd>
+</dl>
+<p>You can get current configuration values by calling <code class="docutils literal"><span class="pre">$this-&gt;Auth-&gt;config()</span></code>::
+only the configuration option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;loginAction&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;loginAction&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>This is useful if you want to redirect a user to the <code class="docutils literal"><span class="pre">login</span></code> route for example.
+Without a parameter, the full configuration will be returned.</p>
+</div>
+<div class="section" id="testing-actions-protected-by-authcomponent">
+<h2>Testing Actions Protected By AuthComponent<a class="headerlink" href="#testing-actions-protected-by-authcomponent" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference internal" href="../../development/testing.html#testing-authentication"><span class="std std-ref">Testing Actions That Require Authentication</span></a> section for tips on how to test controller
+actions that are protected by <code class="docutils literal"><span class="pre">AuthComponent</span></code>.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

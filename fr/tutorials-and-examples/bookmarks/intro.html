@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutoriel de Bookmarker - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../../en/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="pt_BR" href="../../../pt/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="es" href="../../../es/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="ja" href="../../../ja/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="zh" href="../../../zh/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="tr" href="../../../tr/tutorials-and-examples/bookmarks/intro.html" /><link rel="alternate" hreflang="ru" href="../../../ru/tutorials-and-examples/bookmarks/intro.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../../index.html" />
+    <link rel="up" title="Tutoriels et exemples" href="../../tutorials-and-examples.html" />
+    <link rel="next" title="Tutoriel de Bookmarker Part 2" href="part-two.html" />
+    <link rel="prev" title="Tutoriels et exemples" href="../../tutorials-and-examples.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../../en/tutorials-and-examples/bookmarks/intro.html">en</a></li>
+                                            
+                                                <li><a href="../../../pt/tutorials-and-examples/bookmarks/intro.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/tutorials-and-examples/bookmarks/intro.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/tutorials-and-examples/bookmarks/intro.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../zh/tutorials-and-examples/bookmarks/intro.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/tutorials-and-examples/bookmarks/intro.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/tutorials-and-examples/bookmarks/intro.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/tutorials-and-examples/bookmarks/intro.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Tutoriel de Bookmarker</a><ul>
+<li><a class="reference internal" href="#recuperer-cakephp">Récupérer CakePHP</a></li>
+<li><a class="reference internal" href="#verifions-notre-installation">Vérifions notre Installation</a></li>
+<li><a class="reference internal" href="#creer-la-base-de-donnees">Créer la Base de Données</a></li>
+<li><a class="reference internal" href="#configuration-de-base-de-donnees">Configuration de Base de Données</a></li>
+<li><a class="reference internal" href="#generation-de-code-scaffold">Génération de Code Scaffold</a></li>
+<li><a class="reference internal" href="#ajouter-un-hashage-de-mot-de-passe">Ajouter un Hashage de Mot de Passe</a></li>
+<li><a class="reference internal" href="#recuperer-les-bookmarks-avec-un-tag-specifique">Récupérer les Bookmarks avec un Tag Spécifique</a><ul>
+<li><a class="reference internal" href="#creer-la-methode-finder">Créer la Méthode Finder</a></li>
+<li><a class="reference internal" href="#creer-la-vue">Créer la Vue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="tutoriel-de-bookmarker">
+<h1>Tutoriel de Bookmarker<a class="headerlink" href="#tutoriel-de-bookmarker" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Ce tutoriel va vous montrer la création d&#8217;une application simple
+de bookmarking (bookmarker). Pour commencer, nous allons installer CakePHP,
+créer notre base de données et utiliser les outils que CakePHP nous fournit pour
+créer une application rapidement.</p>
+<p>Voici ce dont vous allez avoir besoin:</p>
+<ol class="arabic simple">
+<li>Un serveur de base de données. Nous allons utiliser un serveur MySQL dans
+ce tutoriel. Vous devrez en savoir assez sur SQL pour créer une base de
+données: CakePHP prendra les rênes à partir de là. Puisque nous utilisons
+MySQL, assurez-vous aussi d&#8217;avoir <code class="docutils literal"><span class="pre">pdo_mysql</span></code> activé dans PHP.</li>
+<li>Des connaissances de base en PHP.</li>
+</ol>
+<p>Avant de commencer, vous devez vous assurer que votre version de PHP est à jour:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php -v
+</pre></div>
+</div>
+<p>Vous devez avoir installé au moins la version 5.6.0 (CLI) de PHP ou supérieure.
+La version de PHP de votre serveur web doit aussi être 5.6.0 ou supérieure, et
+doit être préférablement la même version que celle de votre interface en ligne
+de commande (CLI).
+Si vous souhaitez voir ce que donne l&#8217;application au final, regardez
+<a class="reference external" href="https://github.com/cakephp/bookmarker-tutorial">cakephp/bookmarker</a>. C&#8217;est
+parti !</p>
+<div class="section" id="recuperer-cakephp">
+<h2>Récupérer CakePHP<a class="headerlink" href="#recuperer-cakephp" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La façon la plus simple pour installer CakePHP est d&#8217;utiliser Composer. Composer
+est un moyen simple d&#8217;installer CakePHP depuis votre terminal ou votre
+prompteur de ligne de commandes. D&#8217;abord, vous aurez besoin de télécharger et
+d&#8217;installer Composer si vous ne l&#8217;avez pas déjà fait. Si vous avez cURL
+installé, c&#8217;est aussi facile que de lancer ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">curl</span> <span class="o">-</span><span class="nx">s</span> <span class="nx">https</span><span class="o">://</span><span class="nx">getcomposer</span><span class="o">.</span><span class="nx">org</span><span class="o">/</span><span class="nx">installer</span> <span class="o">|</span> <span class="nx">php</span>
+</pre></div>
+</div>
+<p>Ou alors vous pouvez télécharger <code class="docutils literal"><span class="pre">composer.phar</span></code> depuis le
+<a class="reference external" href="https://getcomposer.org/download/">site de Composer</a>.</p>
+<p>Ensuite tapez simplement la ligne suivante dans votre terminal à partir
+du répertoire d&#8217;installation pour installer le squelette d&#8217;application
+CakePHP dans le répertoire <strong>bookmarker</strong>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">composer</span><span class="o">.</span><span class="nx">phar</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="o">--</span><span class="nx">prefer</span><span class="o">-</span><span class="nx">dist</span> <span class="nx">cakephp</span><span class="o">/</span><span class="nx">app</span> <span class="nx">bookmarker</span>
+</pre></div>
+</div>
+<p>Si vous avez téléchargé et exécuté l&#8217;<a class="reference external" href="https://getcomposer.org/Composer-Setup.exe">installeur Windows de Composer</a>, tapez la ligne suivante dans
+votre terminal à partir de votre répertoire d&#8217;installation. (par exemple
+C:\wamp\www\dev\cakephp3):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">composer</span> <span class="nx">self</span><span class="o">-</span><span class="nx">update</span> <span class="o">&amp;&amp;</span> <span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="o">--</span><span class="nx">prefer</span><span class="o">-</span><span class="nx">dist</span> <span class="nx">cakephp</span><span class="o">/</span><span class="nx">app</span> <span class="nx">bookmarker</span>
+</pre></div>
+</div>
+<p>L&#8217;avantage d&#8217;utiliser Composer est qu&#8217;il va automatiquement faire des tâches
+de configuration importantes, comme de définir les bonnes permissions de
+fichier et créer votre fichier <strong>config/app.php</strong> pour vous.</p>
+<p>Il y a d&#8217;autres façons d&#8217;installer CakePHP. Si vous ne pouvez ou ne voulez pas
+utiliser Composer, consultez la section <a class="reference internal" href="../../installation.html"><span class="doc">Installation</span></a>.</p>
+<p>Peu importe la façon dont vous avez téléchargé et installé CakePHP, une fois
+que votre configuration est faite, votre répertoire devrait ressembler à
+ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">bookmarker</span>
+    <span class="o">/</span><span class="nx">bin</span>
+    <span class="o">/</span><span class="nx">config</span>
+    <span class="o">/</span><span class="nx">logs</span>
+    <span class="o">/</span><span class="nx">plugins</span>
+    <span class="o">/</span><span class="nx">src</span>
+    <span class="o">/</span><span class="nx">tests</span>
+    <span class="o">/</span><span class="nx">tmp</span>
+    <span class="o">/</span><span class="nx">vendor</span>
+    <span class="o">/</span><span class="nx">webroot</span>
+    <span class="o">.</span><span class="nx">editorconfig</span>
+    <span class="o">.</span><span class="nx">gitignore</span>
+    <span class="o">.</span><span class="nx">htaccess</span>
+    <span class="o">.</span><span class="nx">travis</span><span class="o">.</span><span class="nx">yml</span>
+    <span class="nx">composer</span><span class="o">.</span><span class="nx">json</span>
+    <span class="nx">index</span><span class="o">.</span><span class="nx">php</span>
+    <span class="nx">phpunit</span><span class="o">.</span><span class="nx">xml</span><span class="o">.</span><span class="nx">dist</span>
+    <span class="nx">README</span><span class="o">.</span><span class="nx">md</span>
+</pre></div>
+</div>
+<p>C&#8217;est le bon moment pour en apprendre un peu plus sur la façon dont la
+structure du répertoire de CakePHP fonctionne. Consultez la section
+<a class="reference internal" href="../../intro/cakephp-folder-structure.html"><span class="doc">Structure du dossier de CakePHP</span></a>.</p>
+</div>
+<div class="section" id="verifions-notre-installation">
+<h2>Vérifions notre Installation<a class="headerlink" href="#verifions-notre-installation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous pouvons rapidement vérifier que notre installation fonctionne, en
+vérifiant la page d&#8217;accueil par défaut. Avant de faire ceci, vous devrez
+démarrer le serveur de développement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">server</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sur Windows, cette commande doit être <code class="docutils literal"><span class="pre">bin\cake</span> <span class="pre">server</span></code> (notez l&#8217;antislash).</p>
+</div>
+<p>Ceci va lancer le serveur web intégré de PHP sur le port 8765. Ouvrez
+<strong>http://localhost:8765</strong> dans votre navigateur web pour voir la page d&#8217;accueil.
+Tous les points devront être cochés sauf pour CakePHP qui n&#8217;est pas encore
+capable de se connecter à votre base de données. Si ce n&#8217;est pas le cas, vous
+devrez installer des extensions PHP supplémentaires ou définir des permissions
+de répertoire.</p>
+</div>
+<div class="section" id="creer-la-base-de-donnees">
+<h2>Créer la Base de Données<a class="headerlink" href="#creer-la-base-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ensuite, configurons la base de données pour notre application de bookmarking.
+Si vous ne l&#8217;avez pas déjà fait, créez une base de données vide que nous
+allons utiliser dans ce tutoriel, avec un nom de votre choix, par exemple
+<code class="docutils literal"><span class="pre">cake_bookmarks</span></code>. Vous pouvez exécuter le SQL suivant pour créer les
+tables nécessaires:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">users</span> <span class="p">(</span>
+    <span class="nx">id</span> <span class="nx">INT</span> <span class="nx">AUTO_INCREMENT</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span><span class="p">,</span>
+    <span class="nx">email</span> <span class="nx">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">password</span> <span class="nx">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">created</span> <span class="nx">DATETIME</span><span class="p">,</span>
+    <span class="nx">modified</span> <span class="nx">DATETIME</span>
+<span class="p">);</span>
+
+<span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">bookmarks</span> <span class="p">(</span>
+    <span class="nx">id</span> <span class="nx">INT</span> <span class="nx">AUTO_INCREMENT</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span><span class="p">,</span>
+    <span class="nx">user_id</span> <span class="nx">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">title</span> <span class="nx">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="nx">description</span> <span class="nx">TEXT</span><span class="p">,</span>
+    <span class="nx">url</span> <span class="nx">TEXT</span><span class="p">,</span>
+    <span class="nx">created</span> <span class="nx">DATETIME</span><span class="p">,</span>
+    <span class="nx">modified</span> <span class="nx">DATETIME</span><span class="p">,</span>
+    <span class="nx">FOREIGN</span> <span class="nx">KEY</span> <span class="nx">user_key</span> <span class="p">(</span><span class="nx">user_id</span><span class="p">)</span> <span class="nx">REFERENCES</span> <span class="nx">users</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">tags</span> <span class="p">(</span>
+    <span class="nx">id</span> <span class="nx">INT</span> <span class="nx">AUTO_INCREMENT</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span><span class="p">,</span>
+    <span class="nx">title</span> <span class="nx">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="nx">created</span> <span class="nx">DATETIME</span><span class="p">,</span>
+    <span class="nx">modified</span> <span class="nx">DATETIME</span><span class="p">,</span>
+    <span class="nx">UNIQUE</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">bookmarks_tags</span> <span class="p">(</span>
+    <span class="nx">bookmark_id</span> <span class="nx">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">tag_id</span> <span class="nx">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">bookmark_id</span><span class="p">,</span> <span class="nx">tag_id</span><span class="p">),</span>
+    <span class="nx">FOREIGN</span> <span class="nx">KEY</span> <span class="nx">tag_key</span><span class="p">(</span><span class="nx">tag_id</span><span class="p">)</span> <span class="nx">REFERENCES</span> <span class="nx">tags</span><span class="p">(</span><span class="nx">id</span><span class="p">),</span>
+    <span class="nx">FOREIGN</span> <span class="nx">KEY</span> <span class="nx">bookmark_key</span><span class="p">(</span><span class="nx">bookmark_id</span><span class="p">)</span> <span class="nx">REFERENCES</span> <span class="nx">bookmarks</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous avez peut-être remarqué que la table <code class="docutils literal"><span class="pre">bookmarks_tags</span></code> utilisait une
+clé primaire composite. CakePHP accepte les clés primaires composites presque
+partout, facilitant la construction des applications à tenant multiples.</p>
+<p>La table et les noms de colonnes que nous avons utilisés n&#8217;étaient pas
+arbitraires. En utilisant les
+<a class="reference internal" href="../../intro/conventions.html"><span class="doc">conventions de nommage</span></a> de CakePHP, nous pouvons
+mieux contrôler CakePHP et éviter d&#8217;avoir à configurer le framework. CakePHP est
+assez flexible pour s&#8217;accommoder de tout schéma de base de données, mais
+suivre les conventions va vous faire gagner du temps.</p>
+</div>
+<div class="section" id="configuration-de-base-de-donnees">
+<h2>Configuration de Base de Données<a class="headerlink" href="#configuration-de-base-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ensuite, indiquons à CakePHP où se trouve notre base de données et comment
+s&#8217;y connecter.
+Pour la plupart d&#8217;entre vous, ce sera la première et la dernière fois que vous
+devrez configurer quelque chose.</p>
+<p>La configuration est assez simple: remplacez juste les valeurs dans le
+tableau <code class="docutils literal"><span class="pre">Datasources.default</span></code> dans le fichier <strong>config/app.php</strong> avec
+ceux qui correspondent à votre configuration. Un exemple simple de tableau
+de configuration pourrait ressembler à ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">[</span>
+    <span class="c1">// Plus de configuration au-dessus.</span>
+    <span class="s1">&#39;Datasources&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Connection&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\Database\Driver\Mysql&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;persistent&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+            <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakephp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;AngelF00dC4k3~&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cake_bookmarks&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;encoding&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;timezone&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UTC&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;cacheMetadata&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="c1">// Plus de configuration en dessous.</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Une fois que vous avez sauvegardé votre fichier <strong>config/app.php</strong>, vous
+devriez voir la section &#8216;CakePHP est capable de se connecter à la base de
+données&#8217; cochée.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Une copie du fichier de configuration par défaut de CakePHP se trouve dans
+<strong>config/app.default.php</strong>.</p>
+</div>
+</div>
+<div class="section" id="generation-de-code-scaffold">
+<h2>Génération de Code Scaffold<a class="headerlink" href="#generation-de-code-scaffold" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Comme notre base de données suit les conventions de CakePHP, nous pouvons
+utiliser l&#8217;application de
+<a class="reference internal" href="../../bake/usage.html"><span class="doc">console bake</span></a> pour
+générer rapidement une application basique. Dans votre terminal, lancez
+les commandes suivantes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Sur Windows vous devez utiliser bin\cake à la place.</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">all</span> <span class="nx">users</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">all</span> <span class="nx">bookmarks</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">all</span> <span class="nx">tags</span>
+</pre></div>
+</div>
+<p>Ceci va générer les controllers, models, views, leurs cas de tests
+correspondants et les fixtures pour nos ressources users, bookmarks et tags.
+Si vous avez stoppé votre serveur, relancez-le et allez sur
+<strong>http://localhost:8765/bookmarks</strong>.</p>
+<p>Vous devriez voir une application basique mais fonctionnelle fournissant
+des accès aux données vers les tables de la base de données de votre
+application. Une fois que vous avez la liste des bookmarks, ajoutez quelques
+users, bookmarks, et tags.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous avez une page Not Found (404), vérifiez que le module mod_rewrite
+d&#8217;Apache est chargé.</p>
+</div>
+</div>
+<div class="section" id="ajouter-un-hashage-de-mot-de-passe">
+<h2>Ajouter un Hashage de Mot de Passe<a class="headerlink" href="#ajouter-un-hashage-de-mot-de-passe" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Quand vous avez créé vos users, (en visitant
+<strong>http://localhost:8765/users</strong>) vous avez probablement remarqué que
+les mots de passe sont stockés en clair. C&#8217;est très mauvais d&#8217;un point du vue
+sécurité, donc réglons ceci.</p>
+<p>C&#8217;est aussi un bon moment pour parler de la couche model dans CakePHP. Dans
+CakePHP, nous séparons les méthodes qui agissent sur une collection d&#8217;objets, et
+celles qui agissent sur un objet unique, dans des classes différentes. Les
+méthodes qui agissent sur la collection des entities sont mises dans la classe
+<code class="docutils literal"><span class="pre">Table</span></code>, alors que les fonctionnalités correspondant à un enregistrement
+unique sont mises dans la classe <code class="docutils literal"><span class="pre">Entity</span></code>.</p>
+<p>Par exemple, le hashage des mots de passe se fait pour un enregistrement
+individuel, donc nous allons intégrer ce comportement sur l&#8217;objet entity.
+Comme nous voulons hasher le mot de passe à chaque fois qu&#8217;il est défini nous
+allons utiliser une méthode mutateur/setter. CakePHP va appeler les méthodes
+setter basées sur les conventions à chaque fois qu&#8217;une propriété est définie
+dans une de vos entities. Ajoutons un setter pour le mot de passe. Dans
+<strong>src/Model/Entity/User.php</strong>, ajoutez ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Auth\DefaultPasswordHasher</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="c1">// Code from bake.</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_setPassword</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$hasher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultPasswordHasher</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nv">$hasher</span><span class="o">-&gt;</span><span class="na">hash</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Maintenant mettez à jour un des users que vous avez créé précédemment, si vous
+changez son mot de passe, vous devriez voir un mot de passe hashé à la place de
+la valeur originale sur la liste ou les pages de vue. CakePHP hashe les mots de
+passe avec
+<a class="reference external" href="http://codahale.com/how-to-safely-store-a-password/">bcrypt</a> par défaut.
+Vous pouvez aussi utiliser sha1 ou md5 si vous travaillez avec une base de
+données existante.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si le mot de passe n&#8217;est pas haché, assurez-vous que vous avez suivi le même cas pour le mot de passe membre de la classe tout en nommant la fonction mutateur/setter</p>
+</div>
+</div>
+<div class="section" id="recuperer-les-bookmarks-avec-un-tag-specifique">
+<h2>Récupérer les Bookmarks avec un Tag Spécifique<a class="headerlink" href="#recuperer-les-bookmarks-avec-un-tag-specifique" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Maintenant que vous avez stocké les mots de passe de façon sécurisé, nous
+pouvons construire quelques fonctionnalités intéressantes dans notre
+application. Une fois que vous avez une collection de bookmarks, il peut
+être pratique de pouvoir les chercher par tag. Ensuite nous allons intégrer une
+route, une action de controller, et une méthode finder pour chercher les
+bookmarks par tag.</p>
+<p>Idéalement, nous aurions une URL qui ressemble à
+<strong>http://localhost:8765/bookmarks/tagged/funny/cat/gifs</strong> Cela nous aide à
+trouver tous les bookmarks qui ont les tags &#8216;funny&#8217;, &#8216;cat&#8217; ou &#8216;gifs&#8217;. Avant de
+pouvoir intégrer ceci, nous allons ajouter une nouvelle route. Votre fichier
+<strong>config/routes.php</strong> doit ressembler à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Cake\Routing\Route\DashedRoute</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Routing\Router</span><span class="p">;</span>
+
+<span class="nx">Router</span><span class="o">::</span><span class="na">defaultRouteClass</span><span class="p">(</span><span class="nx">DashedRoute</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+<span class="c1">// Nouvelle route ajoutée pour notre action &quot;tagged&quot;.</span>
+<span class="c1">// Le caractère `*` en fin de chaîne indique à CakePHP que cette action a</span>
+<span class="c1">// des paramètres passés</span>
+<span class="nx">Router</span><span class="o">::</span><span class="na">scope</span><span class="p">(</span>
+    <span class="s1">&#39;/bookmarks&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Bookmarks&#39;</span><span class="p">],</span>
+    <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;/tagged/*&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tags&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">Router</span><span class="o">::</span><span class="na">scope</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$routes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Connecte la page d&#39;accueil par défaut et les routes /pages/*.</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Pages&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span>
+    <span class="p">]);</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">(</span><span class="s1">&#39;/pages/*&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Pages&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;display&#39;</span>
+    <span class="p">]);</span>
+
+    <span class="c1">// Connecte les routes basées sur les conventions par défaut.</span>
+    <span class="nv">$routes</span><span class="o">-&gt;</span><span class="na">fallbacks</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus définit une nouvelle &#8216;route&#8217; qui connecte le chemin
+<strong>/bookmarks/tagged/*</strong>, vers <code class="docutils literal"><span class="pre">BookmarksController::tags()</span></code>. En définissant
+les routes, vous pouvez isoler la définition de vos URLs, de la façon dont elles
+sont intégrées. Si nous visitions <strong>http://localhost:8765/bookmarks/tagged</strong>,
+nous verrions une page d&#8217;erreur de CakePHP. Intégrons maintenant la méthode
+manquante. Dans <strong>src/Controller/BookmarksController.php</strong>, ajoutez ce qui
+suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">tags</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// La clé &#39;pass&#39; est fournie par CakePHP et contient tous les segments</span>
+    <span class="c1">// d&#39;URL de la &quot;request&quot; (instance de \Cake\Network\Request)</span>
+    <span class="nv">$tags</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">);</span>
+
+    <span class="c1">// On utilise l&#39;objet &quot;Bookmarks&quot; (une instance de</span>
+    <span class="c1">// \App\Model\Table\BookmarksTable) pour récupérer les bookmarks avec</span>
+    <span class="c1">// ces tags</span>
+    <span class="nv">$bookmarks</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Bookmarks</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;tagged&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="nv">$tags</span>
+    <span class="p">]);</span>
+
+    <span class="c1">// Passe les variables au template de vue (view).</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span>
+        <span class="s1">&#39;bookmarks&#39;</span> <span class="o">=&gt;</span> <span class="nv">$bookmarks</span><span class="p">,</span>
+        <span class="s1">&#39;tags&#39;</span> <span class="o">=&gt;</span> <span class="nv">$tags</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Pour accéder aux autres parties des données de la &#8220;request&#8221;, référez-vous à la
+section <a class="reference internal" href="../../controllers/request-response.html#cake-request"><span class="std std-ref">ServerRequest</span></a>.</p>
+<div class="section" id="creer-la-methode-finder">
+<h3>Créer la Méthode Finder<a class="headerlink" href="#creer-la-methode-finder" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans CakePHP, nous aimons garder les actions de notre controller légères, et
+mettre la plupart de la logique de notre application dans les models. Si vous
+visitez l&#8217;URL <strong>/bookmarks/tagged</strong> maintenant, vous verrez une erreur comme
+quoi la méthode <code class="docutils literal"><span class="pre">findTagged()</span></code> n&#8217;a pas été encore intégrée, donc faisons-le.
+Dans <strong>src/Model/Table/BookmarksTable.php</strong> ajoutez ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// L&#39;argument $query est une instance de \Cake\ORM\Query.</span>
+<span class="c1">// Le tableau $options contiendra les tags que nous avons passé à find(&#39;tagged&#39;)</span>
+<span class="c1">// dans l&#39;action de notre Controller</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">findTagged</span><span class="p">(</span><span class="nx">Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$bookmarks</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">]);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$bookmarks</span>
+            <span class="o">-&gt;</span><span class="na">leftJoinWith</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.title IS&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$bookmarks</span>
+            <span class="o">-&gt;</span><span class="na">innerJoinWith</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.title IN &#39;</span> <span class="o">=&gt;</span> <span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]]);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nv">$bookmarks</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">([</span><span class="s1">&#39;Bookmarks.id&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Nous intégrons juste <a class="reference internal" href="../../orm/retrieving-data-and-resultsets.html#custom-find-methods"><span class="std std-ref">des finders personnalisés</span></a>.
+C&#8217;est un concept très puissant dans CakePHP qui vous permet de faire un package
+réutilisable de vos requêtes. Les finders attendent toujours un objet
+<a class="reference internal" href="../../orm/query-builder.html"><span class="doc">Query Builder</span></a> et un tableau d&#8217;options en paramètre. Les finders
+peuvent manipuler les requêtes et ajouter n&#8217;importe quels conditions ou
+critères. Une fois qu&#8217;ils ont terminé, les finders doivent retourner l&#8217;objet
+Query modifié. Dans notre finder nous avons amené les méthodes
+<code class="docutils literal"><span class="pre">innerJoinWith()</span></code>, <code class="docutils literal"><span class="pre">where()</span></code> et <code class="docutils literal"><span class="pre">group()</span></code> qui nous permet de trouver les
+bookmarks distinct qui ont un tag correspondante.  Lorsque aucune tag n&#8217;est
+fournie, nous utilisons un <code class="docutils literal"><span class="pre">leftJoinWith()</span></code> et modifions la condition
+&#8216;where&#8217;, en trouvant des bookmarks sans tags.</p>
+</div>
+<div class="section" id="creer-la-vue">
+<h3>Créer la Vue<a class="headerlink" href="#creer-la-vue" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Maintenant si vous vous rendez à l&#8217;url <strong>/bookmarks/tagged</strong>, CakePHP va
+afficher une erreur vous disant que vous n&#8217;avez pas de fichier de vue.
+Construisons donc le fichier de vue pour notre action <code class="docutils literal"><span class="pre">tags()</span></code>. Dans
+<strong>src/Template/Bookmarks/tags.ctp</strong> mettez le contenu suivant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span>
+    <span class="nx">Bookmarks</span> <span class="nx">tagged</span> <span class="nx">with</span>
+    <span class="o">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">toList</span><span class="p">(</span><span class="nx">h</span><span class="p">(</span><span class="nv">$tags</span><span class="p">))</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">&lt;/h1&gt;</span>
+
+<span class="x">&lt;section&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$bookmarks</span> <span class="k">as</span> <span class="nv">$bookmark</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;article&gt;</span>
+<span class="x">        &lt;!-- Utilise le HtmlHelper pour créer un lien --&gt;</span>
+<span class="x">        &lt;h4&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Html</span><span class="o">-&gt;</span><span class="na">link</span><span class="p">(</span><span class="nv">$bookmark</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="nv">$bookmark</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h4&gt;</span>
+<span class="x">        &lt;small&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">h</span><span class="p">(</span><span class="nv">$bookmark</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/small&gt;</span>
+
+<span class="x">        &lt;!-- Utilise le TextHelper pour formater le texte --&gt;</span>
+<span class="x">        </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Text</span><span class="o">-&gt;</span><span class="na">autoParagraph</span><span class="p">(</span><span class="nx">h</span><span class="p">(</span><span class="nv">$bookmark</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">))</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;/article&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">&lt;/section&gt;</span>
+</pre></div>
+</div>
+<p>Dans le code ci-dessus, nous utilisons le <a class="reference internal" href="../../views/helpers/html.html"><span class="doc">Helper HTML</span></a>
+et le <a class="reference internal" href="../../views/helpers/text.html"><span class="doc">Helper Text</span></a> pour aider à la génération
+du contenu de notre vue. Nous utilisons également la fonction <a class="reference internal" href="../../core-libraries/global-constants-and-functions.html#h" title="h"><code class="xref php php-func docutils literal"><span class="pre">h</span></code></a>
+pour encoder la sortie en HTML. Vous devez vous rappeler de toujours utiliser
+<code class="docutils literal"><span class="pre">h()</span></code> lorsque vous affichez des données provenant des utilisateurs pour éviter
+les problèmes d&#8217;injection HTML.</p>
+<p>Le fichier <strong>tags.ctp</strong> que nous venons de créer suit la convention de nommage
+de CakePHP pour un ficher de template de vue. La convention d&#8217;avoir le nom
+de template en minuscule et en underscore du nom de l&#8217;action du controller.</p>
+<p>Vous avez peut-être remarqué que nous pouvions utiliser les variables
+<code class="docutils literal"><span class="pre">$tags</span></code> et <code class="docutils literal"><span class="pre">$bookmarks</span></code> dans notre vue. Quand nous utilisons la méthode
+<code class="docutils literal"><span class="pre">set()</span></code> dans notre controller, nous définissons les variables spécifiques à
+envoyer à la vue. La vue va rendre disponible toutes les variables passées
+dans les templates en variables locales.</p>
+<p>Vous devriez maintenant pouvoir visiter l&#8217;URL <strong>/bookmarks/tagged/funny</strong> et
+voir tous les bookmarks taggés avec &#8216;funny&#8217;.</p>
+<p>Ainsi nous avons créé une application basique pour gérer des bookmarks, des
+tags et des users.
+Cependant, tout le monde peut voir tous les tags de tout le monde. Dans le
+prochain chapitre, nous allons intégrer une authentification et restreindre
+la visibilité des bookmarks à ceux qui appartiennent à l&#8217;utilisateur courant.</p>
+<p>Maintenant continuons avec
+<a class="reference internal" href="part-two.html"><span class="doc">Tutoriel de Bookmarker Part 2</span></a>
+pour construire votre application ou <a class="reference internal" href="../../topics.html"><span class="doc">plongez dans la documentation</span></a> pour en apprendre plus sur ce que CakePHP peut faire pour vous.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorials-and-examples.html">Tutoriels et exemples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutoriel de Bookmarker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part-two.html">Tutoriel de Bookmarker Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/blog.html">Tutoriel d&#8217;un Blog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/part-two.html">Tutoriel d&#8217;un Blog - Partie 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/part-three.html">Tutoriel d&#8217;un Blog - Partie 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog-auth-example/auth.html">Tutoriel d&#8217;un Blog - Authentification et Autorisations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

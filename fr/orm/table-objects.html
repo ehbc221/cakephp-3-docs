@@ -1,0 +1,1082 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Les Objets Table - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/orm/table-objects.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/orm/table-objects.html" /><link rel="alternate" hreflang="es" href="../../es/orm/table-objects.html" /><link rel="alternate" hreflang="ja" href="../../ja/orm/table-objects.html" /><link rel="alternate" hreflang="zh" href="../../zh/orm/table-objects.html" /><link rel="alternate" hreflang="tr" href="../../tr/orm/table-objects.html" /><link rel="alternate" hreflang="ru" href="../../ru/orm/table-objects.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="Accès Base de Données &amp; ORM" href="../orm.html" />
+    <link rel="next" title="Entities" href="entities.html" />
+    <link rel="prev" title="Query Builder" href="query-builder.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/orm/table-objects.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/orm/table-objects.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/orm/table-objects.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/orm/table-objects.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/orm/table-objects.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/orm/table-objects.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/orm/table-objects.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/orm/table-objects.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Les Objets Table</a><ul>
+<li><a class="reference internal" href="#utilisation-basique">Utilisation Basique</a><ul>
+<li><a class="reference internal" href="#personnaliser-la-classe-entity-qu-une-table-utilise">Personnaliser la Classe Entity qu&#8217;une Table Utilise</a></li>
+<li><a class="reference internal" href="#obtenir-les-instances-d-une-classe-table">Obtenir les Instances d&#8217;une Classe Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#callbacks-du-cycle-de-vie">Callbacks du Cycle de Vie</a><ul>
+<li><a class="reference internal" href="#liste-des-events">Liste des Events</a></li>
+<li><a class="reference internal" href="#initialize">initialize</a></li>
+<li><a class="reference internal" href="#beforemarshal">beforeMarshal</a></li>
+<li><a class="reference internal" href="#beforefind">beforeFind</a></li>
+<li><a class="reference internal" href="#buildvalidator">buildValidator</a></li>
+<li><a class="reference internal" href="#buildrules">buildRules</a></li>
+<li><a class="reference internal" href="#beforerules">beforeRules</a></li>
+<li><a class="reference internal" href="#afterrules">afterRules</a></li>
+<li><a class="reference internal" href="#beforesave">beforeSave</a></li>
+<li><a class="reference internal" href="#aftersave">afterSave</a></li>
+<li><a class="reference internal" href="#aftersavecommit">afterSaveCommit</a></li>
+<li><a class="reference internal" href="#beforedelete">beforeDelete</a></li>
+<li><a class="reference internal" href="#afterdelete">afterDelete</a></li>
+<li><a class="reference internal" href="#afterdeletecommit">afterDeleteCommit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#behaviors">Behaviors</a></li>
+<li><a class="reference internal" href="#configurer-les-connexions">Configurer les Connexions</a></li>
+<li><a class="reference internal" href="#utiliser-le-tableregistry">Utiliser le TableRegistry</a><ul>
+<li><a class="reference internal" href="#configurer-les-objets-table">Configurer les Objets Table</a></li>
+<li><a class="reference internal" href="#vider-le-registre">Vider le Registre</a></li>
+<li><a class="reference internal" href="#configurer-le-namespace-pour-localiser-les-classes-de-l-orm">Configurer le Namespace pour Localiser les Classes de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\ORM">
+<span id="les-objets-table"></span><h1>Les Objets Table<a class="headerlink" href="#namespace-Cake\ORM" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">Cake\ORM\</code><code class="descname">Table</code></dt>
+<dd></dd></dl>
+
+<p>Les objets Table fournissent un accès à la collection des entities stockées
+dans une table spécifique. Chaque table dans votre application devra avoir une
+classe Table associée qui est utilisée pour interagir avec une table donnée. Si
+vous n&#8217;avez pas besoin de personnaliser le comportement d&#8217;une table donnée,
+CakePHP va générer une instance Table à utiliser pour vous.</p>
+<p>Avant d&#8217;essayer d&#8217;utiliser les objets Table et l&#8217;ORM, vous devriez vous assurer
+que vous avez configuré votre
+<a class="reference internal" href="database-basics.html#database-configuration"><span class="std std-ref">connection à la base de données</span></a>.</p>
+<div class="section" id="utilisation-basique">
+<h2>Utilisation Basique<a class="headerlink" href="#utilisation-basique" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour commencer, créez une classe Table. Ces classes se trouvent dans
+<strong>src/Model/Table</strong>. Les Tables sont une collection de type model spécifique
+aux bases de données relationnelles, et sont l&#8217;interface principale pour votre
+base de données dans l&#8217;ORM de CakePHP. La classe table la plus basique devrait
+ressembler à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Table/ArticlesTable.php</span>
+<span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notez que nous ne disons pas à l&#8217;ORM quelle table utiliser pour notre classe.
+Par convention, les objets Table vont utiliser une table avec la notation en
+minuscule et avec des underscores pour le nom de la classe. Dans l&#8217;exemple du
+dessus, la table <code class="docutils literal"><span class="pre">articles</span></code> va être utilisée. Si notre classe table était
+nommée <code class="docutils literal"><span class="pre">BlogPosts</span></code>, votre table serait nommée <code class="docutils literal"><span class="pre">blog_posts</span></code>. Vous pouvez
+spécifier la table en utilisant la méthode <code class="docutils literal"><span class="pre">setTable()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setTable</span><span class="p">(</span><span class="s1">&#39;my_table&#39;</span><span class="p">);</span>
+
+        <span class="c1">// Avant 3.4.0</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;my_table&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aucune convention d&#8217;inflection ne sera appliquée quand on spécifie une table.
+Par convention, l&#8217;ORM s&#8217;attend aussi à ce que chaque table ait une clé primaire
+avec le nom de <code class="docutils literal"><span class="pre">id</span></code>. Si vous avez besoin de modifier ceci, vous pouvez
+utiliser la méthode <code class="docutils literal"><span class="pre">setPrimaryKey()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">(</span><span class="s1">&#39;my_id&#39;</span><span class="p">);</span>
+
+        <span class="c1">// Avant 3.4.0</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">primaryKey</span><span class="p">(</span><span class="s1">&#39;my_id&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="personnaliser-la-classe-entity-qu-une-table-utilise">
+<h3>Personnaliser la Classe Entity qu&#8217;une Table Utilise<a class="headerlink" href="#personnaliser-la-classe-entity-qu-une-table-utilise" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Par défaut, les objets table utilisent une classe entity basée sur les
+conventions de nommage. Par exemple, si votre classe de table est appelée
+<code class="docutils literal"><span class="pre">ArticlesTable</span></code> l&#8217;entity sera <code class="docutils literal"><span class="pre">Article</span></code>. Si la classe table est
+<code class="docutils literal"><span class="pre">PurchaseOrdersTable</span></code> l&#8217;entity sera <code class="docutils literal"><span class="pre">PurchaseOrder</span></code>. Cependant si vous
+souhaitez utiliser une entity qui ne suit pas les conventions, vous pouvez
+utiliser la méthode <code class="docutils literal"><span class="pre">setEntityClass()</span></code> pour changer les choses:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PurchaseOrdersTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setEntityClass</span><span class="p">(</span><span class="s1">&#39;App\Model\Entity\PO&#39;</span><span class="p">);</span>
+
+        <span class="c1">// Avant 3.4.0</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">entityClass</span><span class="p">(</span><span class="s1">&#39;App\Model\Entity\PO&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Comme vu dans les exemples ci-dessus, les objets Table ont une méthode
+<code class="docutils literal"><span class="pre">initialize()</span></code> qui est appelée à la fin du constructeur. Il est recommandé
+d&#8217;utiliser cette méthode pour placer la logique d&#8217;initialisation au lieu
+de surcharger le constructeur.</p>
+</div>
+<div class="section" id="obtenir-les-instances-d-une-classe-table">
+<h3>Obtenir les Instances d&#8217;une Classe Table<a class="headerlink" href="#obtenir-les-instances-d-une-classe-table" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Avant de pouvoir requêter sur une table, vous aurez besoin d&#8217;obtenir une
+instance de la table. Vous pouvez faire ceci en utilisant la classe
+<code class="docutils literal"><span class="pre">TableRegistry</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode de table.</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\TableRegistry</span><span class="p">;</span>
+
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La classe TableRegistry fournit les divers dépendances pour construire la table,
+et maintient un registre de toutes les instances de table construites,
+facilitant la construction de relations et la configuration l&#8217;ORM. Regardez
+<a class="reference internal" href="#table-registry-usage"><span class="std std-ref">Utiliser le TableRegistry</span></a> pour plus d&#8217;informations.</p>
+<p>Si votre classe table est dans un plugin, assurez-vous d&#8217;utiliser le bon nom
+pour votre classe table. Ne pas le faire peut entraîner des résultats non voulus
+dans les règles de validation, ou que les callbacks ne soient pas récupérés car
+une classe par défaut est utilisée à la place de votre classe souhaitée. Pour
+charger correctement les classes table de votre plugin, utilisez ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Table de plugin</span>
+<span class="nv">$articlesTable</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;PluginName.Articles&#39;</span><span class="p">);</span>
+
+<span class="c1">// Table de plugin préfixé par Vendor</span>
+<span class="nv">$articlesTable</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;VendorName/PluginName.Articles&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="callbacks-du-cycle-de-vie">
+<span id="table-callbacks"></span><h2>Callbacks du Cycle de Vie<a class="headerlink" href="#callbacks-du-cycle-de-vie" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Comme vous l&#8217;avez vu ci-dessus les objets table déclenchent un certain nombre
+d&#8217;events. Les events sont des hook utiles si vous souhaitez et ajouter de la
+logique dans l&#8217;ORM sans faire de sous-classe ou sans surcharger les
+méthodes. Les écouteurs d&#8217;event peuvent être définis dans les classes
+table ou behavior. Vous pouvez aussi utiliser un gestionnaire d&#8217;event
+de table pour lier les écouteurs dedans.</p>
+<p>Lors de l&#8217;utilisation des méthodes callback des behaviors attachés dans la
+méthode <code class="docutils literal"><span class="pre">initialize()</span></code> va voir ses écouteurs lancés <strong>avant</strong> que les
+méthodes de callback de la table ne soient déclenchées. Ceci suit la même
+séquence que les controllers &amp; les components.</p>
+<p>Pour ajouter un écouteur d&#8217;event à une classe Table ou un Behavior,
+implémentez simplement les signatures de méthode comme décrit ci-dessus.
+Consultez les <a class="reference internal" href="../core-libraries/events.html"><span class="doc">Événements système</span></a> pour avoir plus de détails sur la
+façon d&#8217;utiliser le sous-système d&#8217;events.</p>
+<div class="section" id="liste-des-events">
+<h3>Liste des Events<a class="headerlink" href="#liste-des-events" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Model.initialize</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.beforeMarshal</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.beforeFind</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.buildValidator</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.buildRules</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.beforeRules</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.afterRules</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.beforeSave</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.afterSave</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.afterSaveCommit</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.beforeDelete</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.afterDelete</span></code></li>
+<li><code class="docutils literal"><span class="pre">Model.afterDeleteCommit</span></code></li>
+</ul>
+</div>
+<div class="section" id="initialize">
+<h3>initialize<a class="headerlink" href="#initialize" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::initialize">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>Event $event</em>, <em>ArrayObject $data</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::initialize" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.initialize</span></code> est déclenché après que les méthodes de
+constructeur et initialize sont appelées. Les classes <code class="docutils literal"><span class="pre">Table</span></code> n&#8217;écoutent pas
+cet event par défaut, et utilisent plutôt la méthode hook <code class="docutils literal"><span class="pre">initialize</span></code>.</p>
+<p>Pour répondre à l&#8217;event <code class="docutils literal"><span class="pre">Model.initialize</span></code>, vous pouvez créer une classe
+écouteur qui implémente <code class="docutils literal"><span class="pre">EventListenerInterface</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Event\EventListenerInterface</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">ModelInitializeListener</span> <span class="k">implements</span> <span class="nx">EventListenerInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">implementedEvents</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;Model.initialize&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;initializeEvent&#39;</span><span class="p">,</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initializeEvent</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">();</span>
+        <span class="c1">// faire quelque chose ici</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>et attacher l&#8217;écouteur à <code class="docutils literal"><span class="pre">EventManager</span></code> comme ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Event\EventManager</span><span class="p">;</span>
+<span class="nv">$listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ModelInitializeListener</span><span class="p">();</span>
+<span class="nx">EventManager</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">attach</span><span class="p">(</span><span class="nv">$listener</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ceci va appeler <code class="docutils literal"><span class="pre">initializeEvent</span></code> quand une classe <code class="docutils literal"><span class="pre">Table</span></code> est construite.</p>
+</div>
+<div class="section" id="beforemarshal">
+<h3>beforeMarshal<a class="headerlink" href="#beforemarshal" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::beforeMarshal">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">beforeMarshal</code><span class="sig-paren">(</span><em>Event $event</em>, <em>ArrayObject $data</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::beforeMarshal" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.beforeMarshal</span></code> est déclenché avant que les données de request
+ne soient converties en entities. Consultez la documentation
+<a class="reference internal" href="saving-data.html#before-marshal"><span class="std std-ref">Modifier les Données Requêtées Avant de Construire les Entities</span></a> pour plus d&#8217;informations.</p>
+</div>
+<div class="section" id="beforefind">
+<h3>beforeFind<a class="headerlink" href="#beforefind" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::beforeFind">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">beforeFind</code><span class="sig-paren">(</span><em>Event $event</em>, <em>Query $query</em>, <em>ArrayObject $options</em>, <em>$primary</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::beforeFind" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.beforeFind</span></code> est lancé avant chaque opération find. En
+stoppant l&#8217;event et en fournissant une valeur de retour, vous pouvez
+outrepasser entièrement l&#8217;opération find. Tout changement fait à l&#8217;instance
+$query sera retenu pour le reste du find. Le paramètre <code class="docutils literal"><span class="pre">$primary</span></code> indique
+si oui ou non ceci est la requête racine ou une requête associée. Toutes les
+associations participant à une requête vont avoir un event
+<code class="docutils literal"><span class="pre">Model.beforeFind</span></code> déclenché. Pour les associations qui utilisent les joins,
+une requête factice sera fournie. Dans votre écouteur d&#8217;event, vous pouvez
+définir des champs supplémentaires, des conditions, des joins ou des formateurs
+de résultat. Ces options/fonctionnalités seront copiées dans la requête racine.</p>
+<p>Vous pouvez utiliser ce callback pour restreindre les opérations find basées
+sur le rôle de l&#8217;utilisateur, ou prendre des décisions de mise en cache basées
+sur le chargement courant.</p>
+<p>Dans les versions précédentes de CakePHP, il y avait un callback <code class="docutils literal"><span class="pre">afterFind</span></code>,
+ceci a été remplacé par les fonctionnalités de <a class="reference internal" href="retrieving-data-and-resultsets.html#map-reduce"><span class="std std-ref">Modifier les Résultats avec Map/Reduce</span></a> et les
+constructeurs d&#8217;entity.</p>
+</div>
+<div class="section" id="buildvalidator">
+<h3>buildValidator<a class="headerlink" href="#buildvalidator" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::buildValidator">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">buildValidator</code><span class="sig-paren">(</span><em>Event $event</em>, <em>Validator $validator</em>, <em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::buildValidator" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.buildValidator</span></code> est déclenché lorsque le validator <code class="docutils literal"><span class="pre">$name</span></code>
+est créé. Les behaviors peuvent utiliser ce hook pour ajouter des méthodes
+de validation.</p>
+</div>
+<div class="section" id="buildrules">
+<h3>buildRules<a class="headerlink" href="#buildrules" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::buildRules">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">buildRules</code><span class="sig-paren">(</span><em>Event $event</em>, <em>RulesChecker $rules</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::buildRules" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.buildRules</span></code> est déclenché après qu&#8217;une instance de règles a été
+créée et après que la méthode <code class="docutils literal"><span class="pre">buildRules()</span></code> de la table a été appelée.</p>
+</div>
+<div class="section" id="beforerules">
+<h3>beforeRules<a class="headerlink" href="#beforerules" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::beforeRules">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">beforeRules</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em>, <em>$operation</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::beforeRules" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.beforeRules</span></code> est déclenché avant que les règles n&#8217;aient été
+appliquées à une entity. En stoppant cet event, vous pouvez retourner la valeur
+finale de l&#8217;opération de vérification des règles.</p>
+</div>
+<div class="section" id="afterrules">
+<h3>afterRules<a class="headerlink" href="#afterrules" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::afterRules">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">afterRules</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em>, <em>$result</em>, <em>$operation</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::afterRules" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.afterRules</span></code> est déclenché après que les règles soient
+appliquées à une entity. En stoppant cet event, vous pouvez retourner la valeur
+finale de l&#8217;opération de vérification des règles.</p>
+</div>
+<div class="section" id="beforesave">
+<h3>beforeSave<a class="headerlink" href="#beforesave" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::beforeSave">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">beforeSave</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::beforeSave" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.beforeSave</span></code> est déclenché avant que chaque entity ne soit
+sauvegardée. Stopper cet event va annuler l&#8217;opération de sauvegarde. Quand
+l&#8217;event est stoppé, le résultat de l&#8217;event sera retourné.
+La manière de stopper un event est documentée <a class="reference internal" href="../core-libraries/events.html#stopping-events"><span class="std std-ref">ici</span></a>.</p>
+</div>
+<div class="section" id="aftersave">
+<h3>afterSave<a class="headerlink" href="#aftersave" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::afterSave">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">afterSave</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::afterSave" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.afterSave</span></code> est déclenché après qu&#8217;une entity ne soit
+sauvegardée.</p>
+</div>
+<div class="section" id="aftersavecommit">
+<h3>afterSaveCommit<a class="headerlink" href="#aftersavecommit" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::afterSaveCommit">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">afterSaveCommit</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::afterSaveCommit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.afterSaveCommit</span></code> est lancé après que la transaction, dans
+laquelle l&#8217;opération de sauvegarde est fournie, a été committée. Il est aussi
+déclenché pour des sauvegardes non atomic, quand les opérations sur la base de
+données sont implicitement committées. L&#8217;event est déclenché seulement pour
+la table primaire sur laquelle <code class="docutils literal"><span class="pre">save()</span></code> est directement appelée. L&#8217;event
+n&#8217;est pas déclenché si une transaction est démarrée avant l&#8217;appel de save.</p>
+</div>
+<div class="section" id="beforedelete">
+<h3>beforeDelete<a class="headerlink" href="#beforedelete" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::beforeDelete">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">beforeDelete</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::beforeDelete" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.beforeDelete</span></code> est déclenché avant qu&#8217;une entity ne soit
+supprimée. En stoppant cet event, vous allez annuler l&#8217;opération de
+suppression. Quand l&#8217;event est stoppé le résultat de l&#8217;event sera retourné.
+La manière de stopper un event est documentée <a class="reference internal" href="../core-libraries/events.html#stopping-events"><span class="std std-ref">ici</span></a>.</p>
+</div>
+<div class="section" id="afterdelete">
+<h3>afterDelete<a class="headerlink" href="#afterdelete" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::afterDelete">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">afterDelete</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::afterDelete" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.afterDelete</span></code> est déclenché après qu&#8217;une entity a été supprimée.</p>
+</div>
+<div class="section" id="afterdeletecommit">
+<h3>afterDeleteCommit<a class="headerlink" href="#afterdeletecommit" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\ORM\Table::afterDeleteCommit">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">afterDeleteCommit</code><span class="sig-paren">(</span><em>Event $event</em>, <em>EntityInterface $entity</em>, <em>ArrayObject $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::afterDeleteCommit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>L&#8217;event <code class="docutils literal"><span class="pre">Model.afterDeleteCommit</span></code> est lancé après que la transaction, dans
+laquelle l&#8217;opération de sauvegarde est fournie, a été committée. Il est aussi
+déclenché pour des suppressions non atomic, quand les opérations sur la base de
+données sont implicitement committées. L&#8217;event est décenché seulement pour
+la table primaire sur laquelle <code class="docutils literal"><span class="pre">delete()</span></code> est directement appelée. L&#8217;event
+n&#8217;est pas déclenché si une transaction est démarrée avant l&#8217;appel de delete.</p>
+</div>
+</div>
+<div class="section" id="behaviors">
+<h2>Behaviors<a class="headerlink" href="#behaviors" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::addBehavior">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">addBehavior</code><span class="sig-paren">(</span><em>$name</em>, <em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::addBehavior" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les Behaviors fournissent une façon facile de créer des parties de logique
+réutilisables horizontalement liées aux classes table. Vous vous demandez
+peut-être pourquoi les behaviors sont des classes classiques et non des
+traits. La première raison est les écouteurs d&#8217;event. Alors que les traits
+permettent de réutiliser des parties de logique, ils compliqueraient la
+liaison des events.</p>
+<p>Pour ajouter un behavior à votre table, vous pouvez appeler la méthode
+<code class="docutils literal"><span class="pre">addBehavior()</span></code>. Généralement, le meilleur endroit pour le faire est dans la
+méthode <code class="docutils literal"><span class="pre">initialize()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Comme pour les associations, vous pouvez utiliser la <a class="reference internal" href="../appendices/glossary.html#term-syntaxe-de-plugin"><span class="xref std std-term">syntaxe de plugin</span></a>
+et fournir des options de configuration supplémentaires:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;events&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;Model.beforeSave&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;created_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;modified_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;always&#39;</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez en savoir plus sur les behaviors, y compris sur les behaviors
+fournis par CakePHP dans le chapitre sur les <a class="reference internal" href="behaviors.html"><span class="doc">Behaviors (Comportements)</span></a>.</p>
+</div>
+<div class="section" id="configurer-les-connexions">
+<span id="configuring-table-connections"></span><h2>Configurer les Connexions<a class="headerlink" href="#configurer-les-connexions" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut, toutes les instances de table utilisent la connexion à la base
+de données <code class="docutils literal"><span class="pre">default</span></code>. Si votre application utilise plusieurs connexions à la
+base de données, vous voudrez peut-être configurer quelles tables utilisent
+quelles connexions. C&#8217;est avec la méthode <code class="docutils literal"><span class="pre">defaultConnectionName()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">defaultConnectionName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;replica_db&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">La méthode <code class="docutils literal"><span class="pre">defaultConnectionName()</span></code> <strong>doit</strong> être statique.</p>
+</div>
+</div>
+<div class="section" id="utiliser-le-tableregistry">
+<span id="table-registry-usage"></span><h2>Utiliser le TableRegistry<a class="headerlink" href="#utiliser-le-tableregistry" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\ORM\TableRegistry">
+<em class="property">class </em><code class="descclassname">Cake\ORM\</code><code class="descname">TableRegistry</code><a class="headerlink" href="#Cake\ORM\TableRegistry" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Comme nous l&#8217;avons vu précédemment, la classe TableRegistry fournit un
+registre/fabrique facile d&#8217;utilisation pour accéder aux instances des tables
+de vos applications. Elle fournit aussi quelques autres fonctionnalités utiles.</p>
+<div class="section" id="configurer-les-objets-table">
+<h3>Configurer les Objets Table<a class="headerlink" href="#configurer-les-objets-table" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\ORM\TableRegistry::get">
+<em class="property">static </em><code class="descclassname">Cake\ORM\TableRegistry::</code><code class="descname">get</code><span class="sig-paren">(</span><em>$alias</em>, <em>$config</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\TableRegistry::get" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Lors du chargement des tables à partir du registry, vous pouvez personnaliser
+leurs dépendances, ou utiliser les objets factices en fournissant un tableau
+<code class="docutils literal"><span class="pre">$options</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;App\Custom\ArticlesTable&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_articles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="nv">$connectionObject</span><span class="p">,</span>
+    <span class="s1">&#39;schema&#39;</span> <span class="o">=&gt;</span> <span class="nv">$schemaObject</span><span class="p">,</span>
+    <span class="s1">&#39;entityClass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Custom\EntityClass&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;eventManager&#39;</span> <span class="o">=&gt;</span> <span class="nv">$eventManager</span><span class="p">,</span>
+    <span class="s1">&#39;behaviors&#39;</span> <span class="o">=&gt;</span> <span class="nv">$behaviorRegistry</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Remarquez les paramètres de configurations de la connexion et du schéma, ils
+ne sont pas des valeurs de type string mais des objets. La connection va
+prendre un objet <code class="docutils literal"><span class="pre">Cake\Database\Connection</span></code> et un schéma
+<code class="docutils literal"><span class="pre">Cake\Database\Schema\Collection</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si votre table fait aussi une configuration supplémentaire dans sa méthode
+<code class="docutils literal"><span class="pre">initialize()</span></code>, ces valeurs vont écraser celles fournies au registre.</p>
+</div>
+<p>Vous pouvez aussi pré-configurer le registre en utilisant la méthode
+<code class="docutils literal"><span class="pre">config()</span></code>. Les données de configuration sont stockées <em>par alias</em>, et peuvent
+être surchargées par une méthode <code class="docutils literal"><span class="pre">initialize()</span></code> de l&#8217;objet:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">TableRegistry</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;Users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_users&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Vous pouvez configurer une table avant ou pendant la <strong>première</strong> fois
+où vous accédez à l&#8217;alias. Faire ceci après que le registre est rempli
+n&#8217;aura aucun effet.</p>
+</div>
+</div>
+<div class="section" id="vider-le-registre">
+<h3>Vider le Registre<a class="headerlink" href="#vider-le-registre" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\ORM\TableRegistry::clear">
+<em class="property">static </em><code class="descclassname">Cake\ORM\TableRegistry::</code><code class="descname">clear</code><a class="headerlink" href="#Cake\ORM\TableRegistry::clear" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Pendant les cas de test, vous voudrez vider le registre. Faire ceci est souvent
+utile quand vous utilisez les objets factices, ou modifiez les dépendances d&#8217;une
+table:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">TableRegistry</span><span class="o">::</span><span class="na">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configurer-le-namespace-pour-localiser-les-classes-de-l-orm">
+<h3>Configurer le Namespace pour Localiser les Classes de l&#8217;ORM<a class="headerlink" href="#configurer-le-namespace-pour-localiser-les-classes-de-l-orm" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si vous n&#8217;avez pas suivi les conventions, il est probable que vos classes
+Table ou Entity ne soient pas detectées par CakePHP. Pour régler cela, vous
+pouvez définir un namespace avec la méthode <code class="docutils literal"><span class="pre">Cake\Core\Configure::write</span></code>.
+Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">src</span>
+    <span class="o">/</span><span class="nx">App</span>
+        <span class="o">/</span><span class="nx">My</span>
+            <span class="o">/</span><span class="k">Namespace</span>
+                <span class="o">/</span><span class="nx">Model</span>
+                    <span class="o">/</span><span class="nx">Entity</span>
+                    <span class="o">/</span><span class="nx">Table</span>
+</pre></div>
+</div>
+<p>Serait configuré avec:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cake\Core\Configure</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;App.namespace&#39;</span><span class="p">,</span> <span class="s1">&#39;App\My\Namespace&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="database-basics.html">Notions de Base de Base de Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query-builder.html">Query Builder</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Les Objets Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieving-data-and-resultsets.html">Récupérer les Données et les Ensembles de Résultats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Valider des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving-data.html">Sauvegarder les Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deleting-data.html">Supprimer des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="associations.html">Associations - Lier les Tables Ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviors.html">Behaviors (Comportements)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schema-system.html">Système de Schéma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../console-and-shells/orm-cache.html">Shell du Cache de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

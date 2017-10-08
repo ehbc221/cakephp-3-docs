@@ -1,0 +1,856 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tree - 3.x</title>
+    <link href="../../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../../en/orm/behaviors/tree.html" /><link rel="alternate" hreflang="pt_BR" href="../../../pt/orm/behaviors/tree.html" /><link rel="alternate" hreflang="es" href="../../../es/orm/behaviors/tree.html" /><link rel="alternate" hreflang="ja" href="../../../ja/orm/behaviors/tree.html" /><link rel="alternate" hreflang="zh" href="../../../zh/orm/behaviors/tree.html" /><link rel="alternate" hreflang="tr" href="../../../tr/orm/behaviors/tree.html" /><link rel="alternate" hreflang="ru" href="../../../ru/orm/behaviors/tree.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../../index.html" />
+    <link rel="up" title="Behaviors (Comportements)" href="../behaviors.html" />
+    <link rel="next" title="Système de Schéma" href="../schema-system.html" />
+    <link rel="prev" title="Translate" href="translate.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../../en/orm/behaviors/tree.html">en</a></li>
+                                            
+                                                <li><a href="../../../pt/orm/behaviors/tree.html">pt</a></li>
+                                            
+                                                <li><a href="../../../es/orm/behaviors/tree.html">es</a></li>
+                                            
+                                                <li><a href="../../../ja/orm/behaviors/tree.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../../zh/orm/behaviors/tree.html">zh</a></li>
+                                            
+                                                <li><a href="../../../tr/orm/behaviors/tree.html">tr</a></li>
+                                            
+                                                <li><a href="../../../ru/orm/behaviors/tree.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/orm/behaviors/tree.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Tree</a><ul>
+<li><a class="reference internal" href="#pre-requis">Pré-Requis</a></li>
+<li><a class="reference internal" href="#un-apercu-rapide">Un Aperçu Rapide</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#niveau-des-noeuds-profondeur">Niveau des Nœuds (profondeur)</a></li>
+<li><a class="reference internal" href="#scoping-et-arbres-multiples">Scoping et Arbres Multiples</a></li>
+<li><a class="reference internal" href="#recuperation-avec-un-tri-personnalise-du-champ">Récupération avec un Tri Personnalisé du Champ</a></li>
+<li><a class="reference internal" href="#sauvegarder-les-donnees-hierarchisees">Sauvegarder les Données Hiérarchisées</a></li>
+<li><a class="reference internal" href="#supprimer-les-noeuds">Supprimer les Nœuds</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\ORM\Behavior">
+<span id="tree"></span><h1>Tree<a class="headerlink" href="#namespace-Cake\ORM\Behavior" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt id="Cake\ORM\Behavior\TreeBehavior">
+<em class="property">class </em><code class="descclassname">Cake\ORM\Behavior\</code><code class="descname">TreeBehavior</code><a class="headerlink" href="#Cake\ORM\Behavior\TreeBehavior" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Il est courant de vouloir stocker des données hiérarchisées dans une table de
+base de données. Des exemples de ce type de données pourrait être des catégories
+sans limite de sous-catégories, les données liées à un système de menu
+multi-niveau ou une représentation littérale de la hiérarchie comme un
+département dans une entreprise.</p>
+<p>Les bases de données relationnelles ne sont couramment pas utilisées pour le
+stockage et la récupération de ce type de données, mais il y a quelques
+techniques connues qui les rendent possible pour fonctionner avec une
+information multi-niveau.</p>
+<p>Le TreeBehavior vous aide à maintenir une structure de données hiérarchisée
+dans la base de données qui peut être requêtée facilement et aide à reconstruire
+les données en arbre pour trouver et afficher les processus.</p>
+<div class="section" id="pre-requis">
+<h2>Pré-Requis<a class="headerlink" href="#pre-requis" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ce behavior nécessite que les colonnes suivantes soient présentes dans votre
+table:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">parent_id</span></code> (nullable) La colonne contenant l&#8217;ID de la ligne parente</li>
+<li><code class="docutils literal"><span class="pre">lft</span></code> (integer, signed) Utilisé pour maintenir la structure en arbre</li>
+<li><code class="docutils literal"><span class="pre">rght</span></code> (integer, signed) Utilisé pour maintenir la structure en arbre</li>
+</ul>
+<p>Vous pouvez configurer le nom de ces champs.
+Plus d&#8217;informations sur la signification des champs et comment ils sont utilisés
+peuvent être trouvées dans cet article décrivant la
+<a class="reference external" href="http://www.sitepoint.com/hierarchical-data-database-2/">MPTT logic</a></p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">TreeBehavior ne supporte pas les clés primaires composites pour le moment.</p>
+</div>
+</div>
+<div class="section" id="un-apercu-rapide">
+<h2>Un Aperçu Rapide<a class="headerlink" href="#un-apercu-rapide" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous activez le behavior Tree en l&#8217;ajoutant à la Table où vous voulez stocker
+les données hiérarchisées dans:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CategoriesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Tree&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Une fois ajoutées, vous pouvez laisser CakePHP construire la structure interne
+si la table contient déjà quelques lignes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$categories</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">);</span>
+<span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">recover</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Vous pouvez vérifier que cela fonctionne en récupérant toute ligne de la table
+et en demandant le nombre de descendants qu&#8217;il a:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$node</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">childCount</span><span class="p">(</span><span class="nv">$node</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Obtenir une liste aplatie des descendants pour un nœud est également facile:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$descendants</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;for&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$descendants</span> <span class="k">as</span> <span class="nv">$category</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$category</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si vous avez besoin de passer des conditions, vous pouvez le faire
+comme avec n&#8217;importe quelle requête:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$descendants</span> <span class="o">=</span> <span class="nv">$categories</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;for&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;name LIKE&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;%Foo%&#39;</span><span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$descendants</span> <span class="k">as</span> <span class="nv">$category</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$category</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si à la place, vous avez besoin d&#8217;une liste liée, où les enfants pour
+chaque nœud sont imbriqués dans une hiérarchie, vous pouvez utiliser le
+finder &#8216;threaded&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$children</span> <span class="o">=</span> <span class="nv">$categories</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;for&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;threaded&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$children</span> <span class="k">as</span> <span class="nv">$child</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">{</span><span class="nv">$child</span><span class="o">-&gt;</span><span class="na">name</span><span class="si">}</span><span class="s2"> has &quot;</span> <span class="o">.</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$child</span><span class="o">-&gt;</span><span class="na">children</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot; direct children&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Traverser les résultats threaded nécessitent habituellement des fonctions
+récursives, mais si vous avez besoin seulement d&#8217;un ensemble de résultats
+contenant un champ unique à partir de chaque niveau pour afficher une liste,
+dans un select HTML par exemple, il est préférable d&#8217;utiliser le finder
+&#8216;treeList&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$list</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;treeList&#39;</span><span class="p">);</span>
+
+<span class="c1">// Dans un fichier template de CakePHP:</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;categories&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="nv">$list</span><span class="p">]);</span>
+
+<span class="c1">// Ou vous pouvez l&#39;afficher en texte, par exemple dans un script de CLI</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$list</span> <span class="k">as</span> <span class="nv">$categoryName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$categoryName</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La sortie sera similaire à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">My</span> <span class="nx">Categories</span>
+<span class="nx">_Fun</span>
+<span class="nx">__Sport</span>
+<span class="nx">___Surfing</span>
+<span class="nx">___Skating</span>
+<span class="nx">_Trips</span>
+<span class="nx">__National</span>
+<span class="nx">__International</span>
+</pre></div>
+</div>
+<p>Le finder <code class="docutils literal"><span class="pre">treeList</span></code> accepte un certain nombre d&#8217;options:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">keyPath</span></code>: Le chemin séparé par des points pour récupérer le champ à
+utiliser en clé de tableau, ou une closure qui retourne la clé de la ligne
+fournie.</li>
+<li><code class="docutils literal"><span class="pre">valuePath</span></code>: Le chemin séparé par des points pour récupérer le champ à
+utiliser en valeur de tableau, ou une closure qui retourne la valeur de la
+ligne fournie.</li>
+<li><code class="docutils literal"><span class="pre">spacer</span></code>: Une chaîne de caractères utilisée en tant que préfixe pour
+désigner la profondeur dans l&#8217;arbre pour chaque item.</li>
+</ul>
+<p>Un exemple d&#8217;utilisation de toutes les options serait:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;treeList&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyPath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;valuePath&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;spacer&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39; &#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Une tâche classique est de trouver le chemin de l&#8217;arbre à partir d&#8217;un nœud en
+particulier vers la racine de l&#8217;arbre. C&#8217;est utile, par exemple, pour ajouter
+la liste des breadcrumbs pour une structure de menu:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$nodeId</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nv">$crumbs</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;for&#39;</span> <span class="o">=&gt;</span> <span class="nv">$nodeId</span><span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$crumbs</span> <span class="k">as</span> <span class="nv">$crumb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$crumb</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">.</span> <span class="s1">&#39; &gt; &#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les arbres construits avec TreeBehavior ne peuvent pas être triés avec d&#8217;autres
+colonnes que <code class="docutils literal"><span class="pre">lft</span></code>, ceci parce que la représentation interne de l&#8217;arbre
+dépend de ce tri. Heureusement, vous pouvez réorganiser les nœuds à
+l&#8217;intérieur du même niveau dans avoir à changer leur parent:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$node</span> <span class="o">=</span> <span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">// Déplace le nœud pour qu&#39;il monte d&#39;une position quand on liste les enfants.</span>
+<span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">moveUp</span><span class="p">(</span><span class="nv">$node</span><span class="p">);</span>
+
+<span class="c1">// Déplace le nœud vers le haut de la liste dans le même niveau.</span>
+<span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">moveUp</span><span class="p">(</span><span class="nv">$node</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Déplace le nœud vers le bas.</span>
+<span class="nv">$categories</span><span class="o">-&gt;</span><span class="na">moveDown</span><span class="p">(</span><span class="nv">$node</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si les noms de colonne par défaut qui sont utilisés par ce behavior ne
+correspondent pas à votre schéma, vous pouvez leur fournir des alias:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Tree&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;parent&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ancestor_id&#39;</span><span class="p">,</span> <span class="c1">// Utilise ceci plutôt que parent_id,</span>
+        <span class="s1">&#39;left&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tree_left&#39;</span><span class="p">,</span> <span class="c1">// Utilise ceci plutôt que lft</span>
+        <span class="s1">&#39;right&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;tree_right&#39;</span> <span class="c1">// Utilise ceci plutôt que rght</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="niveau-des-noeuds-profondeur">
+<h2>Niveau des Nœuds (profondeur)<a class="headerlink" href="#niveau-des-noeuds-profondeur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Connaître la profondeur d&#8217;une structure arbre peut être utile lorsque vous
+voulez récupérer des nœuds jusqu&#8217;à un certain niveau uniquement par exemple
+lorsque pour générer un menu. Vous pouvez utiliser l&#8217;option <code class="docutils literal"><span class="pre">level</span></code> pour
+spécifier les champs qui sauvegarderont la profondeur de chaque nœud:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Tree&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="c1">// Defaults to null, i.e. no level saving</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Si vous ne souhaitez pas mettre en cache le niveau en utilisant un champ
+de base de données, vous pouvez utiliser la méthode <code class="docutils literal"><span class="pre">TreeBehavior::getLevel()</span></code>
+pour connaître le niveau d&#8217;un nœuds.</p>
+</div>
+<div class="section" id="scoping-et-arbres-multiples">
+<h2>Scoping et Arbres Multiples<a class="headerlink" href="#scoping-et-arbres-multiples" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Parfois vous voulez avoir plus d&#8217;une structure d&#8217;arbre dans la même table, vous
+pouvez arriver à faire ceci en utilisant la configuration &#8216;scope&#8217;. Par exemple,
+dans une table locations vous voudrez créer un arbre par pays:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LocationsTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Tree&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;country_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">]</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans l&#8217;exemple précédent, toutes les opérations sur l&#8217;arbre seront scoped
+seulement pour les lignes ayant la colonne <code class="docutils literal"><span class="pre">country_name</span></code> défini à &#8216;Brazil&#8217;.
+Vous pouvez changer le scoping à la volée en utilisant la fonction &#8216;config&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">behaviors</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">Tree</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;scope&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;country_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;France&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>En option, vous pouvez avoir un contrôle plus fin du scope en passant une
+closure au scope:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">behaviors</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">Tree</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;scope&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$country</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getConfigureContry</span><span class="p">();</span> <span class="c1">// A made-up function</span>
+    <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;country_name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$country</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recuperation-avec-un-tri-personnalise-du-champ">
+<h2>Récupération avec un Tri Personnalisé du Champ<a class="headerlink" href="#recuperation-avec-un-tri-personnalise-du-champ" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.0.14.</span></p>
+</div>
+<p>Par défaut, recover() trie les items en utilisant la clé primaire. Ceci
+fonctionne bien s&#8217;il s&#8217;agit d&#8217;une colonne numérique (avec incrémentation auto),
+mais cela peut entraîner des résultats étranges si vous utilisez les UUIDs.</p>
+<p>Si vous avez besoin de tri personnalisé pour la récupération, vous pouvez
+définir une clause order personnalisée dans votre config:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBehavior</span><span class="p">(</span><span class="s1">&#39;Tree&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;recoverOrder&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;country_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sauvegarder-les-donnees-hierarchisees">
+<h2>Sauvegarder les Données Hiérarchisées<a class="headerlink" href="#sauvegarder-les-donnees-hierarchisees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Quand vous utilisez le behavior Tree, vous n&#8217;avez habituellement pas besoin
+de vous soucier de la représentation interne de la structure hiérarchisée. Les
+positions où les nœuds sont placés dans l&#8217;arbre se déduisent de la colonne
+&#8216;parent_id&#8217; dans chacune de vos entities:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$aCategory</span> <span class="o">=</span> <span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nv">$aCategory</span><span class="o">-&gt;</span><span class="na">parent_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$aCategory</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Fournir des ids de parent non existant lors de la sauvegarde ou tenter de
+créer une boucle dans l&#8217;arbre (faire un nœud enfant de lui-même) va lancer
+une exception.</p>
+<p>Vous pouvez faire un nœud à la racine de l&#8217;arbre en configurant la colonne
+&#8216;parent_id&#8217; à null:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$aCategory</span> <span class="o">=</span> <span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nv">$aCategory</span><span class="o">-&gt;</span><span class="na">parent_id</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$aCategory</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les enfants pour un nouveau nœud à la racine seront préservés.</p>
+</div>
+<div class="section" id="supprimer-les-noeuds">
+<h2>Supprimer les Nœuds<a class="headerlink" href="#supprimer-les-noeuds" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Supprimer un nœud et tout son sous-arbre (tout enfant qu&#8217;il peut avoir à tout
+niveau dans l&#8217;arbre) est facile:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$aCategory</span> <span class="o">=</span> <span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$aCategory</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>TreeBehavior va s&#8217;occuper de toutes les opérations internes de suppression.
+Il est aussi possible de supprimer seulement un nœud et de réassigner tous les
+enfants au nœud parent immédiatement supérieur dans l&#8217;arbre:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$aCategory</span> <span class="o">=</span> <span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">removeFromTree</span><span class="p">(</span><span class="nv">$aCategory</span><span class="p">);</span>
+<span class="nv">$categoriesTable</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$aCategory</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Tous les nœuds enfant seront conservés et un nouveau parent leur sera assigné.</p>
+<p>La suppression d&#8217;un noeud est basée sur les valeurs lft et rght de l&#8217;entity.
+C&#8217;est important de le noter quand on fait une boucle des différents enfants
+d&#8217;un noeud pour des suppressions conditionnelles:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$descendants</span> <span class="o">=</span> <span class="nv">$teams</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;for&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$descendants</span> <span class="k">as</span> <span class="nv">$descendant</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$team</span> <span class="o">=</span> <span class="nv">$teams</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$descendant</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span> <span class="c1">// cherche l&#39;objet entity mis à jour</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$team</span><span class="o">-&gt;</span><span class="na">expired</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$teams</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$team</span><span class="p">);</span> <span class="c1">// la suppression re-trie les entrées lft et rght de la base de données</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>TreeBehavior re-trie les valeurs lft et rght des enregistrements de la table
+quand un noeud est supprimé. Telles quelles, les valeurs lft et rght des
+entities dans <code class="docutils literal"><span class="pre">$descendants</span></code> (sauvegardées avant l&#8217;opération de suppression)
+seront erronées. Les entities devront être chargées et modifiées à la volée
+pour éviter les incohérences dans la table.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../views.html">Views (Vues)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../orm.html">Accès Base de Données &amp; ORM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../database-basics.html">Notions de Base de Base de Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../query-builder.html">Query Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../table-objects.html">Les Objets Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities.html">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../retrieving-data-and-resultsets.html">Récupérer les Données et les Ensembles de Résultats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validation.html">Valider des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../saving-data.html">Sauvegarder les Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deleting-data.html">Supprimer des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../associations.html">Associations - Lier les Tables Ensemble</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../behaviors.html">Behaviors (Comportements)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="counter-cache.html">CounterCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timestamp.html">Timestamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translate.html">Translate</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../schema-system.html">Système de Schéma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../console-and-shells/orm-cache.html">Shell du Cache de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

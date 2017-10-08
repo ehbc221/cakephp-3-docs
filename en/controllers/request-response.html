@@ -1,0 +1,1691 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Request and Response objects" lang="en" name="title" />
+<meta content="request controller,request parameters,array indexes,purpose index,response objects,domain information,request object,request data,interrogating,params,previous versions,introspection,dispatcher,rout,data structures,arrays,ip address,migration,indexes,cakephp,PSR-7,immutable" lang="en" name="keywords" />
+
+    <title>Request &amp; Response Objects - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/controllers/request-response.html" /><link rel="alternate" hreflang="es" href="../../es/controllers/request-response.html" /><link rel="alternate" hreflang="ja" href="../../ja/controllers/request-response.html" /><link rel="alternate" hreflang="fr" href="../../fr/controllers/request-response.html" /><link rel="alternate" hreflang="zh" href="../../zh/controllers/request-response.html" /><link rel="alternate" hreflang="tr" href="../../tr/controllers/request-response.html" /><link rel="alternate" hreflang="ru" href="../../ru/controllers/request-response.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Middleware" href="middleware.html" />
+    <link rel="prev" title="Dispatcher Filters" href="../development/dispatch-filters.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/controllers/request-response.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/controllers/request-response.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/controllers/request-response.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/controllers/request-response.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/controllers/request-response.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/controllers/request-response.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/controllers/request-response.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/controllers/request-response.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Request &amp; Response Objects</a><ul>
+<li><a class="reference internal" href="#request">Request</a><ul>
+<li><a class="reference internal" href="#request-parameters">Request Parameters</a></li>
+<li><a class="reference internal" href="#query-string-parameters">Query String Parameters</a></li>
+<li><a class="reference internal" href="#request-body-data">Request Body Data</a></li>
+<li><a class="reference internal" href="#put-patch-or-delete-data">PUT, PATCH or DELETE Data</a></li>
+<li><a class="reference internal" href="#environment-variables-from-server-and-env">Environment Variables (from $_SERVER and $_ENV)</a></li>
+<li><a class="reference internal" href="#xml-or-json-data">XML or JSON Data</a></li>
+<li><a class="reference internal" href="#path-information">Path Information</a></li>
+<li><a class="reference internal" href="#checking-request-conditions">Checking Request Conditions</a></li>
+<li><a class="reference internal" href="#session-data">Session Data</a></li>
+<li><a class="reference internal" href="#host-and-domain-name">Host and Domain Name</a></li>
+<li><a class="reference internal" href="#reading-the-http-method">Reading the HTTP Method</a></li>
+<li><a class="reference internal" href="#restricting-which-http-method-an-action-accepts">Restricting Which HTTP method an Action Accepts</a></li>
+<li><a class="reference internal" href="#reading-http-headers">Reading HTTP Headers</a></li>
+<li><a class="reference internal" href="#trusting-proxy-headers">Trusting Proxy Headers</a></li>
+<li><a class="reference internal" href="#checking-accept-headers">Checking Accept Headers</a></li>
+<li><a class="reference internal" href="#cookies">Cookies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#response">Response</a><ul>
+<li><a class="reference internal" href="#dealing-with-content-types">Dealing with Content Types</a></li>
+<li><a class="reference internal" href="#sending-files">Sending Files</a></li>
+<li><a class="reference internal" href="#sending-a-string-as-file">Sending a String as File</a></li>
+<li><a class="reference internal" href="#setting-headers">Setting Headers</a></li>
+<li><a class="reference internal" href="#setting-the-body">Setting the Body</a></li>
+<li><a class="reference internal" href="#setting-the-character-set">Setting the Character Set</a></li>
+<li><a class="reference internal" href="#interacting-with-browser-caching">Interacting with Browser Caching</a></li>
+<li><a class="reference internal" href="#fine-tuning-http-cache">Fine Tuning HTTP Cache</a><ul>
+<li><a class="reference internal" href="#the-cache-control-header">The Cache Control Header</a></li>
+<li><a class="reference internal" href="#the-expiration-header">The Expiration Header</a></li>
+<li><a class="reference internal" href="#the-etag-header">The Etag Header</a></li>
+<li><a class="reference internal" href="#the-last-modified-header">The Last Modified Header</a></li>
+<li><a class="reference internal" href="#the-vary-header">The Vary Header</a></li>
+<li><a class="reference internal" href="#sending-not-modified-responses">Sending Not-Modified Responses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-cookies">Setting Cookies</a></li>
+<li><a class="reference internal" href="#setting-cross-origin-request-headers-cors">Setting Cross Origin Request Headers (CORS)</a></li>
+<li><a class="reference internal" href="#common-mistakes-with-immutable-responses">Common Mistakes with Immutable Responses</a></li>
+<li><a class="reference internal" href="#cookie-collections">Cookie Collections</a><ul>
+<li><a class="reference internal" href="#creating-cookies">Creating Cookies</a></li>
+<li><a class="reference internal" href="#reading-cookies">Reading Cookies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Http">
+<span id="request-response-objects"></span><h1>Request &amp; Response Objects<a class="headerlink" href="#namespace-Cake\Http" title="Permalink to this headline">¶</a></h1>
+<p>The request and response objects provide an abstraction around HTTP requests and
+responses. The request object in CakePHP allows you to introspect an incoming
+request, while the response object allows you to effortlessly create HTTP
+responses from your controllers.</p>
+<div class="section" id="request">
+<span id="cake-request"></span><span id="index-0"></span><h2>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Http\ServerRequest">
+<em class="property">class </em><code class="descclassname">Cake\Http\</code><code class="descname">ServerRequest</code><a class="headerlink" href="#Cake\Http\ServerRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">ServerRequest</span></code> is the default request object used in CakePHP. It centralizes a
+number of features for interrogating and interacting with request data.
+On each request one Request is created and then passed by reference to the
+various layers of an application that use request data. By default the request
+is assigned to <code class="docutils literal"><span class="pre">$this-&gt;request</span></code>, and is available in Controllers, Cells, Views
+and Helpers. You can also access it in Components using the controller
+reference. Some of the duties <code class="docutils literal"><span class="pre">ServerRequest</span></code> performs include:</p>
+<ul class="simple">
+<li>Processing the GET, POST, and FILES arrays into the data structures you are
+familiar with.</li>
+<li>Providing environment introspection pertaining to the request. Information
+like the headers sent, the client&#8217;s IP address, and the subdomain/domain
+names the server your application is running on.</li>
+<li>Providing access to request parameters both as array indexes and object
+properties.</li>
+</ul>
+<p>As of 3.4.0, CakePHP&#8217;s request object implements the <a class="reference external" href="http://www.php-fig.org/psr/psr-7/">PSR-7
+ServerRequestInterface</a> making it easier to
+use libraries from outside of CakePHP.</p>
+<div class="section" id="request-parameters">
+<h3>Request Parameters<a class="headerlink" href="#request-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The request exposes the routing parameters through the <code class="docutils literal"><span class="pre">getParam()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$controllerName</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$controllerName</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">param</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>All <a class="reference internal" href="../development/routing.html#route-elements"><span class="std std-ref">Route Elements</span></a> are accessed through this interface.</p>
+<p>In addition to <a class="reference internal" href="../development/routing.html#route-elements"><span class="std std-ref">Route Elements</span></a>, you also often need access to
+<a class="reference internal" href="../development/routing.html#passed-arguments"><span class="std std-ref">Passed Arguments</span></a>. These are both available on the request object as
+well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Passed arguments</span>
+<span class="nv">$passedArgs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Will all provide you access to the passed arguments. There
+are several important/useful parameters that CakePHP uses internally, these
+are also all found in the routing parameters:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">plugin</span></code> The plugin handling the request. Will be null when there is no
+plugin.</li>
+<li><code class="docutils literal"><span class="pre">controller</span></code> The controller handling the current request.</li>
+<li><code class="docutils literal"><span class="pre">action</span></code> The action handling the current request.</li>
+<li><code class="docutils literal"><span class="pre">prefix</span></code> The prefix for the current action. See <a class="reference internal" href="../development/routing.html#prefix-routing"><span class="std std-ref">Prefix Routing</span></a> for
+more information.</li>
+</ul>
+</div>
+<div class="section" id="query-string-parameters">
+<h3>Query String Parameters<a class="headerlink" href="#query-string-parameters" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::getQuery">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">getQuery</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::getQuery" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Query string parameters can be read using the <code class="docutils literal"><span class="pre">getQuery()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// URL is /posts/index?page=1&amp;sort=title</span>
+<span class="nv">$page</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$page</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can either directly access the query property, or you can use
+<code class="docutils literal"><span class="pre">getQuery()</span></code> method to read the URL query array in an error-free manner.
+Any keys that do not exist will return <code class="docutils literal"><span class="pre">null</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">(</span><span class="s1">&#39;value_that_does_not_exist&#39;</span><span class="p">);</span>
+<span class="c1">// $foo === null</span>
+
+<span class="c1">// You can also provide default values</span>
+<span class="nv">$foo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">(</span><span class="s1">&#39;does_not_exist&#39;</span><span class="p">,</span> <span class="s1">&#39;default val&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you want to access all the query parameters you can use
+<code class="docutils literal"><span class="pre">getQueryParams()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getQueryParams</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.4.0: </span><code class="docutils literal"><span class="pre">getQueryParams()</span></code> and <code class="docutils literal"><span class="pre">getQuery()</span></code> were added in 3.4.0</p>
+</div>
+</div>
+<div class="section" id="request-body-data">
+<h3>Request Body Data<a class="headerlink" href="#request-body-data" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::getData">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">getData</code><span class="sig-paren">(</span><em>$name</em>, <em>$default = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::getData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>All POST data can be accessed using
+<a class="reference internal" href="#Cake\Http\ServerRequest::getData" title="Cake\Http\ServerRequest::getData"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::getData()</span></code></a>.  Any form data that
+contains a <code class="docutils literal"><span class="pre">data</span></code> prefix will have that data prefix removed. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// An input with a name attribute equal to &#39;MyModel[title]&#39; is accessible at</span>
+<span class="nv">$title</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;MyModel.title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Any keys that do not exist will return <code class="docutils literal"><span class="pre">null</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$foo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;Value.that.does.not.exist&#39;</span><span class="p">);</span>
+<span class="c1">// $foo == null</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="put-patch-or-delete-data">
+<h3>PUT, PATCH or DELETE Data<a class="headerlink" href="#put-patch-or-delete-data" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::input">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">input</code><span class="sig-paren">(</span><em>$callback</em><span class="optional">[</span>, <em>$options</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>When building REST services, you often accept request data on <code class="docutils literal"><span class="pre">PUT</span></code> and
+<code class="docutils literal"><span class="pre">DELETE</span></code> requests. Any <code class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></code> request body data
+will automatically be parsed and set to <code class="docutils literal"><span class="pre">$this-&gt;data</span></code> for <code class="docutils literal"><span class="pre">PUT</span></code> and
+<code class="docutils literal"><span class="pre">DELETE</span></code> requests. If you are accepting JSON or XML data, see below for how
+you can access those request bodies.</p>
+<p>When accessing the input data, you can decode it with an optional function.
+This is useful when interacting with XML or JSON request body content.
+Additional parameters for the decoding function can be passed as arguments to
+<code class="docutils literal"><span class="pre">input()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$jsonData</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;json_decode&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="environment-variables-from-server-and-env">
+<h3>Environment Variables (from $_SERVER and $_ENV)<a class="headerlink" href="#environment-variables-from-server-and-env" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::env">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">env</code><span class="sig-paren">(</span><em>$key</em>, <em>$value = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::env" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">ServerRequest::env()</span></code> is a wrapper for <code class="docutils literal"><span class="pre">env()</span></code> global function and acts as
+a getter/setter for enviromnent variables without having to modify globals
+<code class="docutils literal"><span class="pre">$_SERVER</span></code> and <code class="docutils literal"><span class="pre">$_ENV</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get the host</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">env</span><span class="p">(</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">);</span>
+
+<span class="c1">// Set a value, generally helpful in testing.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">env</span><span class="p">(</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To access all the environment variables in a request use <code class="docutils literal"><span class="pre">getServerParams()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$env</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getServerParams</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.4.0: </span><code class="docutils literal"><span class="pre">getServerParams()</span></code> was added in 3.4.0</p>
+</div>
+</div>
+<div class="section" id="xml-or-json-data">
+<h3>XML or JSON Data<a class="headerlink" href="#xml-or-json-data" title="Permalink to this headline">¶</a></h3>
+<p>Applications employing <a class="reference internal" href="../development/rest.html"><span class="doc">REST</span></a> often exchange data in
+non-URL-encoded post bodies. You can read input data in any format using
+<a class="reference internal" href="#Cake\Http\ServerRequest::input" title="Cake\Http\ServerRequest::input"><code class="xref php php-meth docutils literal"><span class="pre">Http\ServerRequest::input()</span></code></a>. By providing a decoding function,
+you can receive the content in a deserialized format:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get JSON encoded data submitted to a PUT/POST action</span>
+<span class="nv">$jsonData</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;json_decode&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Some deserializing methods require additional parameters when called, such as
+the &#8216;as array&#8217; parameter on <code class="docutils literal"><span class="pre">json_decode</span></code>. If you want XML converted into a
+DOMDocument object, <a class="reference internal" href="#Cake\Http\ServerRequest::input" title="Cake\Http\ServerRequest::input"><code class="xref php php-meth docutils literal"><span class="pre">Http\ServerRequest::input()</span></code></a> supports
+passing in additional parameters as well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get XML encoded data submitted to a PUT/POST action</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;Cake\Utility\Xml::build&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;return&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;domdocument&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="path-information">
+<h3>Path Information<a class="headerlink" href="#path-information" title="Permalink to this headline">¶</a></h3>
+<p>The request object also provides useful information about the paths in your
+application. The <code class="docutils literal"><span class="pre">base</span></code> and <code class="docutils literal"><span class="pre">webroot</span></code> attributes are useful for
+generating URLs, and determining whether or not your application is in a
+subdirectory. The attributes you can use are:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Assume the current request URL is /subdir/articles/edit/1?page=1</span>
+
+<span class="c1">// Holds /subdir/articles/edit/1?page=1</span>
+<span class="nv">$here</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">here</span><span class="p">();</span>
+
+<span class="c1">// Holds /subdir</span>
+<span class="nv">$base</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">);</span>
+
+<span class="c1">// Holds /subdir/</span>
+<span class="nv">$base</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$webroot</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">webroot</span><span class="p">;</span>
+<span class="nv">$base</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">base</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-request-conditions">
+<span id="check-the-request"></span><h3>Checking Request Conditions<a class="headerlink" href="#checking-request-conditions" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::is">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">is</code><span class="sig-paren">(</span><em>$type</em>, <em>$args...</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::is" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The request object provides an easy way to inspect certain conditions in a given
+request. By using the <code class="docutils literal"><span class="pre">is()</span></code> method you can check a number of common
+conditions, as well as inspect other application specific request criteria:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$isPost</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also extend the request detectors that are available, by using
+<a class="reference internal" href="#Cake\Http\ServerRequest::addDetector" title="Cake\Http\ServerRequest::addDetector"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::addDetector()</span></code></a> to create new kinds of
+detectors. There are four different types of detectors that you can create:</p>
+<ul class="simple">
+<li>Environment value comparison - Compares a value fetched from <a class="reference internal" href="../core-libraries/global-constants-and-functions.html#env" title="env"><code class="xref php php-func docutils literal"><span class="pre">env()</span></code></a>
+for equality with the provided value.</li>
+<li>Pattern value comparison - Pattern value comparison allows you to compare a
+value fetched from <a class="reference internal" href="../core-libraries/global-constants-and-functions.html#env" title="env"><code class="xref php php-func docutils literal"><span class="pre">env()</span></code></a> to a regular expression.</li>
+<li>Option based comparison -  Option based comparisons use a list of options to
+create a regular expression. Subsequent calls to add an already defined
+options detector will merge the options.</li>
+<li>Callback detectors - Callback detectors allow you to provide a &#8216;callback&#8217; type
+to handle the check. The callback will receive the request object as its only
+parameter.</li>
+</ul>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::addDetector">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">addDetector</code><span class="sig-paren">(</span><em>$name</em>, <em>$options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::addDetector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Some examples would be:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Add an environment detector.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">addDetector</span><span class="p">(</span>
+    <span class="s1">&#39;post&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;env&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;POST&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Add a pattern value detector.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">addDetector</span><span class="p">(</span>
+    <span class="s1">&#39;iphone&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;env&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;HTTP_USER_AGENT&#39;</span><span class="p">,</span> <span class="s1">&#39;pattern&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/iPhone/i&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Add an option detector</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">addDetector</span><span class="p">(</span><span class="s1">&#39;internalIp&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;env&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CLIENT_IP&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;192.168.0.101&#39;</span><span class="p">,</span> <span class="s1">&#39;192.168.0.100&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+
+<span class="c1">// Add a callback detector. Must be a valid callable.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">addDetector</span><span class="p">(</span>
+    <span class="s1">&#39;awesome&#39;</span><span class="p">,</span>
+    <span class="k">function</span> <span class="p">(</span><span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;awesome&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">// Add a detector that uses additional arguments. As of 3.3.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">addDetector</span><span class="p">(</span>
+    <span class="s1">&#39;controller&#39;</span><span class="p">,</span>
+    <span class="k">function</span> <span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getParam</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">Request</span></code> also includes methods like
+<a class="reference internal" href="#Cake\Http\ServerRequest::domain" title="Cake\Http\ServerRequest::domain"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::domain()</span></code></a>,
+<a class="reference internal" href="#Cake\Http\ServerRequest::subdomains" title="Cake\Http\ServerRequest::subdomains"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::subdomains()</span></code></a> and
+<a class="reference internal" href="#Cake\Http\ServerRequest::host" title="Cake\Http\ServerRequest::host"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\ServerRequest::host()</span></code></a> to help applications with subdomains,
+have a slightly easier life.</p>
+<p>There are several built-in detectors that you can use:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">is('get')</span></code> Check to see whether the current request is a GET.</li>
+<li><code class="docutils literal"><span class="pre">is('put')</span></code> Check to see whether the current request is a PUT.</li>
+<li><code class="docutils literal"><span class="pre">is('patch')</span></code> Check to see whether the current request is a PATCH.</li>
+<li><code class="docutils literal"><span class="pre">is('post')</span></code> Check to see whether the current request is a POST.</li>
+<li><code class="docutils literal"><span class="pre">is('delete')</span></code> Check to see whether the current request is a DELETE.</li>
+<li><code class="docutils literal"><span class="pre">is('head')</span></code> Check to see whether the current request is HEAD.</li>
+<li><code class="docutils literal"><span class="pre">is('options')</span></code> Check to see whether the current request is OPTIONS.</li>
+<li><code class="docutils literal"><span class="pre">is('ajax')</span></code> Check to see whether the current request came with
+X-Requested-With = XMLHttpRequest.</li>
+<li><code class="docutils literal"><span class="pre">is('ssl')</span></code> Check to see whether the request is via SSL.</li>
+<li><code class="docutils literal"><span class="pre">is('flash')</span></code> Check to see whether the request has a User-Agent of Flash.</li>
+<li><code class="docutils literal"><span class="pre">is('requested')</span></code> Check to see whether the request has a query param
+&#8216;requested&#8217; with value 1.</li>
+<li><code class="docutils literal"><span class="pre">is('json')</span></code> Check to see whether the request has &#8216;json&#8217; extension and
+accept &#8216;application/json&#8217; mimetype.</li>
+<li><code class="docutils literal"><span class="pre">is('xml')</span></code> Check to see whether the request has &#8216;xml&#8217; extension and accept
+&#8216;application/xml&#8217; or &#8216;text/xml&#8217; mimetype.</li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.3.0: </span>Detectors can take additional parameters as of 3.3.0.</p>
+</div>
+</div>
+<div class="section" id="session-data">
+<h3>Session Data<a class="headerlink" href="#session-data" title="Permalink to this headline">¶</a></h3>
+<p>To access the session for a given request use the <code class="docutils literal"><span class="pre">session()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$userName</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">session</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;Auth.User.name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For more information, see the <a class="reference internal" href="../development/sessions.html"><span class="doc">Sessions</span></a> documentation for how
+to use the session object.</p>
+</div>
+<div class="section" id="host-and-domain-name">
+<h3>Host and Domain Name<a class="headerlink" href="#host-and-domain-name" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::domain">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">domain</code><span class="sig-paren">(</span><em>$tldLength = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::domain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the domain name your application is running on:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Prints &#39;example.org&#39;</span>
+<span class="k">echo</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">domain</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::subdomains">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">subdomains</code><span class="sig-paren">(</span><em>$tldLength = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::subdomains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the subdomains your application is running on as an array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Returns [&#39;my&#39;, &#39;dev&#39;] for &#39;my.dev.example.org&#39;</span>
+<span class="nv">$subdomains</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">subdomains</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::host">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">host</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the host your application is on:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Prints &#39;my.dev.example.org&#39;</span>
+<span class="k">echo</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">host</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading-the-http-method">
+<h3>Reading the HTTP Method<a class="headerlink" href="#reading-the-http-method" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::getMethod">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">getMethod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::getMethod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the HTTP method the request was made with:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Output POST</span>
+<span class="k">echo</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">();</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="k">echo</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="restricting-which-http-method-an-action-accepts">
+<h3>Restricting Which HTTP method an Action Accepts<a class="headerlink" href="#restricting-which-http-method-an-action-accepts" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::allowMethod">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">allowMethod</code><span class="sig-paren">(</span><em>$methods</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::allowMethod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Set allowed HTTP methods. If not matched, will throw
+<code class="docutils literal"><span class="pre">MethodNotAllowedException</span></code>. The 405 response will include the required
+<code class="docutils literal"><span class="pre">Allow</span></code> header with the passed methods:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Only accept POST and DELETE requests</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">allowMethod</span><span class="p">([</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]);</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading-http-headers">
+<h3>Reading HTTP Headers<a class="headerlink" href="#reading-http-headers" title="Permalink to this headline">¶</a></h3>
+<p>Allows you to access any of the <code class="docutils literal"><span class="pre">HTTP_*</span></code> headers that were used
+for the request. For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get the header as a string</span>
+<span class="nv">$userAgent</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">);</span>
+
+<span class="c1">// Get an array of all values.</span>
+<span class="nv">$acceptHeader</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">&#39;Accept&#39;</span><span class="p">);</span>
+
+<span class="c1">// Check if a header exists</span>
+<span class="nv">$hasAcceptHeader</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="s1">&#39;Accept&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$userAgent</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>While some apache installs don&#8217;t make the <code class="docutils literal"><span class="pre">Authorization</span></code> header accessible,
+CakePHP will make it available through apache specific methods as required.</p>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::referer">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">referer</code><span class="sig-paren">(</span><em>$local = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::referer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the referring address for the request.</p>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::clientIp">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">clientIp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::clientIp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Returns the current visitor&#8217;s IP address.</p>
+</div>
+<div class="section" id="trusting-proxy-headers">
+<h3>Trusting Proxy Headers<a class="headerlink" href="#trusting-proxy-headers" title="Permalink to this headline">¶</a></h3>
+<p>If your application is behind a load balancer or running on a cloud service, you
+will often get the load balancer host, port and scheme in your requests. Often
+load balancers will also send <code class="docutils literal"><span class="pre">HTTP-X-Forwarded-*</span></code> headers with the original
+values. The forwarded headers will not be used by CakePHP out of the box. To
+have the request object use these headers set the <code class="docutils literal"><span class="pre">trustProxy</span></code> property to
+<code class="docutils literal"><span class="pre">true</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">trustProxy</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+
+<span class="c1">// These methods will now use the proxied headers.</span>
+<span class="nv">$port</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">port</span><span class="p">();</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">host</span><span class="p">();</span>
+<span class="nv">$scheme</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">scheme</span><span class="p">();</span>
+<span class="nv">$clientIp</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">clientIp</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-accept-headers">
+<h3>Checking Accept Headers<a class="headerlink" href="#checking-accept-headers" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::accepts">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">accepts</code><span class="sig-paren">(</span><em>$type = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::accepts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Find out which content types the client accepts, or check whether it accepts a
+particular type of content.</p>
+<p>Get all types:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$accepts</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">accepts</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Check for a single type:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$acceptsJson</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">accepts</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\Http\ServerRequest::acceptLanguage">
+<code class="descclassname">Cake\Http\ServerRequest::</code><code class="descname">acceptLanguage</code><span class="sig-paren">(</span><em>$language = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\ServerRequest::acceptLanguage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Get all the languages accepted by the client,
+or check whether a specific language is accepted.</p>
+<p>Get the list of accepted languages:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$acceptsLanguages</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">acceptLanguage</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Check whether a specific language is accepted:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$acceptsSpanish</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">acceptLanguage</span><span class="p">(</span><span class="s1">&#39;es-es&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cookies">
+<span id="request-cookies"></span><h3>Cookies<a class="headerlink" href="#cookies" title="Permalink to this headline">¶</a></h3>
+<p>Request cookies can be read through a number of methods:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get the cookie value, or null if the cookie is missing.</span>
+<span class="nv">$rememberMe</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getCookie</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">);</span>
+
+<span class="c1">// Read the value, or get the default of 0</span>
+<span class="nv">$rememberMe</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getCookie</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Get all cookies as an hash</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getCookieParams</span><span class="p">();</span>
+
+<span class="c1">// Get a CookieCollection instance (starting with 3.5.0)</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getCookieCollection</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="#Cake\Http\Cookie\CookieCollection" title="Cake\Http\Cookie\CookieCollection"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Cookie\CookieCollection</span></code></a> documentation for how
+to work with cookie collection.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span><code class="docutils literal"><span class="pre">ServerRequest::getCookieCollection()</span></code> was added in 3.5.0</p>
+</div>
+</div>
+</div>
+<div class="section" id="response">
+<span id="index-1"></span><h2>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Http\Response">
+<em class="property">class </em><code class="descclassname">Cake\Http\</code><code class="descname">Response</code><a class="headerlink" href="#Cake\Http\Response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><a class="reference internal" href="#Cake\Http\Response" title="Cake\Http\Response"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Response</span></code></a> is the default response class in CakePHP.
+It encapsulates a number of features and functionality for generating HTTP
+responses in your application. It also assists in testing, as it can be
+mocked/stubbed allowing you to inspect headers that will be sent.
+Like <a class="reference internal" href="#Cake\Http\ServerRequest" title="Cake\Http\ServerRequest"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\ServerRequest</span></code></a>, <a class="reference internal" href="#Cake\Http\Response" title="Cake\Http\Response"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Response</span></code></a>
+consolidates a number of methods previously found on <code class="xref php php-class docutils literal"><span class="pre">Controller</span></code>,
+<a class="reference internal" href="components/request-handling.html#RequestHandlerComponent" title="RequestHandlerComponent"><code class="xref php php-class docutils literal"><span class="pre">RequestHandlerComponent</span></code></a> and <code class="xref php php-class docutils literal"><span class="pre">Dispatcher</span></code>. The old
+methods are deprecated in favour of using <a class="reference internal" href="#Cake\Http\Response" title="Cake\Http\Response"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Response</span></code></a>.</p>
+<p><code class="docutils literal"><span class="pre">Response</span></code> provides an interface to wrap the common response-related
+tasks such as:</p>
+<ul class="simple">
+<li>Sending headers for redirects.</li>
+<li>Sending content type headers.</li>
+<li>Sending any header.</li>
+<li>Sending the response body.</li>
+</ul>
+<div class="section" id="dealing-with-content-types">
+<h3>Dealing with Content Types<a class="headerlink" href="#dealing-with-content-types" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withType">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withType</code><span class="sig-paren">(</span><em>$contentType = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can control the Content-Type of your application&#8217;s responses with
+<a class="reference internal" href="#Cake\Http\Response::withType" title="Cake\Http\Response::withType"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withType()</span></code></a>. If your application needs to deal
+with content types that are not built into Response, you can map them with
+<code class="docutils literal"><span class="pre">type()</span></code> as well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Add a vCard type</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">([</span><span class="s1">&#39;vcf&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;text/v-card&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Set the response Content-Type to vcard.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withType</span><span class="p">(</span><span class="s1">&#39;vcf&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">type</span><span class="p">(</span><span class="s1">&#39;vcf&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Usually, you&#8217;ll want to map additional content types in your controller&#8217;s
+<code class="xref php php-meth docutils literal"><span class="pre">beforeFilter()</span></code> callback, so you can leverage the
+automatic view switching features of <a class="reference internal" href="components/request-handling.html#RequestHandlerComponent" title="RequestHandlerComponent"><code class="xref php php-class docutils literal"><span class="pre">RequestHandlerComponent</span></code></a> if you
+are using it.</p>
+</div>
+<div class="section" id="sending-files">
+<span id="cake-response-file"></span><h3>Sending Files<a class="headerlink" href="#sending-files" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withFile">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withFile</code><span class="sig-paren">(</span><em>$path</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>There are times when you want to send files as responses for your requests.
+You can accomplish that by using <a class="reference internal" href="#Cake\Http\Response::withFile" title="Cake\Http\Response::withFile"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withFile()</span></code></a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">sendFile</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Attachments</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]);</span>
+    <span class="c1">// Return the response to prevent controller from trying to render</span>
+    <span class="c1">// a view.</span>
+    <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Attachments</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="nv">$file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]);</span>
+<span class="c1">// Return the response to prevent controller from trying to render</span>
+<span class="c1">// a view.</span>
+<span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As shown in the above example, you must pass the file path to the method.
+CakePHP will send a proper content type header if it&#8217;s a known file type listed
+in <cite>Cake\Http\Reponse::$_mimeTypes</cite>. You can add new types prior to calling
+<a class="reference internal" href="#Cake\Http\Response::withFile" title="Cake\Http\Response::withFile"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withFile()</span></code></a> by using the
+<a class="reference internal" href="#Cake\Http\Response::withType" title="Cake\Http\Response::withType"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withType()</span></code></a> method.</p>
+<p>If you want, you can also force a file to be downloaded instead of displayed in
+the browser by specifying the options:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withFile</span><span class="p">(</span>
+    <span class="nv">$file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;download&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span>
+    <span class="nv">$file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;download&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>The supported options are:</p>
+<dl class="docutils">
+<dt>name</dt>
+<dd>The name allows you to specify an alternate file name to be sent to
+the user.</dd>
+<dt>download</dt>
+<dd>A boolean value indicating whether headers should be set to force
+download.</dd>
+</dl>
+</div>
+<div class="section" id="sending-a-string-as-file">
+<h3>Sending a String as File<a class="headerlink" href="#sending-a-string-as-file" title="Permalink to this headline">¶</a></h3>
+<p>You can respond with a file that does not exist on the disk, such as a pdf or an
+ics generated on the fly from a string:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">sendIcs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$icsString</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Calendars</span><span class="o">-&gt;</span><span class="na">generateIcs</span><span class="p">();</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+    <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="nv">$icsString</span><span class="p">);</span>
+
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withType</span><span class="p">(</span><span class="s1">&#39;ics&#39;</span><span class="p">);</span>
+
+    <span class="c1">// Optionally force file download</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withDownload</span><span class="p">(</span><span class="s1">&#39;filename_for_download.ics&#39;</span><span class="p">);</span>
+
+    <span class="c1">// Return response object to prevent controller from trying to render</span>
+    <span class="c1">// a view.</span>
+    <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Callbacks can also return the body as a string:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/some/file.png&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-headers">
+<h3>Setting Headers<a class="headerlink" href="#setting-headers" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withHeader">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withHeader</code><span class="sig-paren">(</span><em>$header</em>, <em>$value</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withHeader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Setting headers is done with the <a class="reference internal" href="#Cake\Http\Response::withHeader" title="Cake\Http\Response::withHeader"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withHeader()</span></code></a>
+method. Like all of the PSR-7 interface methods, this method returns a <em>new</em>
+instance with the new header:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Add/replace a header</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-Extra&#39;</span><span class="p">,</span> <span class="s1">&#39;My header&#39;</span><span class="p">);</span>
+
+<span class="c1">// Set multiple headers</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-Extra&#39;</span><span class="p">,</span> <span class="s1">&#39;My header&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+
+<span class="c1">// Append a value to an existing header</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withAddedHeader</span><span class="p">(</span><span class="s1">&#39;Set-Cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;remember_me=1&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0 - Set a header</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Headers are not sent when set. Instead, they are held until the response is
+emitted by <code class="docutils literal"><span class="pre">Cake\Http\Server</span></code>.</p>
+<p>You can now use the convenience method
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withLocation()</span></code> to directly set or get the
+redirect location header.</p>
+</div>
+<div class="section" id="setting-the-body">
+<h3>Setting the Body<a class="headerlink" href="#setting-the-body" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withStringBody">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withStringBody</code><span class="sig-paren">(</span><em>$string</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withStringBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>To set a string as the response body, do the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Set a string into the body</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withStringBody</span><span class="p">(</span><span class="s1">&#39;My Body&#39;</span><span class="p">);</span>
+
+<span class="c1">// If you want a json response</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withType</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withStringBody</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span><span class="s1">&#39;Foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">]));</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.4.3: </span><code class="docutils literal"><span class="pre">withStringBody()</span></code> was added in 3.4.3</p>
+</div>
+<dl class="method">
+<dt id="Cake\Http\Response::withBody">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withBody</code><span class="sig-paren">(</span><em>$body</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>To set the response body, use the <code class="docutils literal"><span class="pre">withBody()</span></code> method, which is provided by the
+<code class="xref php php-class docutils literal"><span class="pre">Zend\Diactoros\MessageTrait</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withBody</span><span class="p">(</span><span class="nv">$stream</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0 - Set the body</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;My Body&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Be sure that <code class="docutils literal"><span class="pre">$stream</span></code> is a <code class="xref php php-class docutils literal"><span class="pre">Psr\Http\Message\StreamInterface</span></code> object.
+See below on how to create a new stream.</p>
+<p>You can also stream responses from files using <code class="xref php php-class docutils literal"><span class="pre">Zend\Diactoros\Stream</span></code> streams:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// To stream from a file</span>
+<span class="k">use</span> <span class="nx">Zend\Diactoros\Stream</span><span class="p">;</span>
+
+<span class="nv">$stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stream</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withBody</span><span class="p">(</span><span class="nv">$stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also stream responses from a callback using the <code class="docutils literal"><span class="pre">CallbackStream</span></code>. This
+is useful when you have resources like images, CSV files or PDFs you need to
+stream to the client:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Streaming from a callback</span>
+<span class="k">use</span> <span class="nx">Cake\Http\CallbackStream</span><span class="p">;</span>
+
+<span class="c1">// Create an image.</span>
+<span class="nv">$img</span> <span class="o">=</span> <span class="nb">imagecreate</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CallbackStream</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$img</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">imagepng</span><span class="p">(</span><span class="nv">$img</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">withBody</span><span class="p">(</span><span class="nv">$stream</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0 you can use the following to create streaming responses.</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="s1">&#39;/some/file.png&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">rewind</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+    <span class="nb">fpassthru</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-character-set">
+<h3>Setting the Character Set<a class="headerlink" href="#setting-the-character-set" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withCharset">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withCharset</code><span class="sig-paren">(</span><em>$charset</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withCharset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Sets the charset that will be used in the response:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withCharset</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+
+<span class="c1">// Prior to 3.4.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interacting-with-browser-caching">
+<h3>Interacting with Browser Caching<a class="headerlink" href="#interacting-with-browser-caching" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Http\Response::withDisabledCache">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withDisabledCache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withDisabledCache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You sometimes need to force browsers not to cache the results of a controller
+action. <a class="reference internal" href="#Cake\Http\Response::withDisabledCache" title="Cake\Http\Response::withDisabledCache"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withDisabledCache()</span></code></a> is intended for just
+that:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Disable caching</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withDisabledCache</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Disabling caching from SSL domains while trying to send
+files to Internet Explorer can result in errors.</p>
+</div>
+<dl class="method">
+<dt id="Cake\Http\Response::withCache">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withCache</code><span class="sig-paren">(</span><em>$since</em>, <em>$time = '+1 day'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withCache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can also tell clients that you want them to cache responses. By using
+<a class="reference internal" href="#Cake\Http\Response::withCache" title="Cake\Http\Response::withCache"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withCache()</span></code></a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Enable caching</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withCache</span><span class="p">(</span><span class="s1">&#39;-1 minute&#39;</span><span class="p">,</span> <span class="s1">&#39;+5 days&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above would tell clients to cache the resulting response for 5 days,
+hopefully speeding up your visitors&#8217; experience.
+The <code class="docutils literal"><span class="pre">withCache()</span></code> method sets the <code class="docutils literal"><span class="pre">Last-Modified</span></code> value to the first
+argument. <code class="docutils literal"><span class="pre">Expires</span></code> header and the <code class="docutils literal"><span class="pre">max-age</span></code> directive are set based on the
+second parameter. Cache-Control&#8217;s <code class="docutils literal"><span class="pre">public</span></code> directive is set as well.</p>
+</div>
+<div class="section" id="fine-tuning-http-cache">
+<span id="cake-response-caching"></span><h3>Fine Tuning HTTP Cache<a class="headerlink" href="#fine-tuning-http-cache" title="Permalink to this headline">¶</a></h3>
+<p>One of the best and easiest ways of speeding up your application is to use HTTP
+cache. Under this caching model, you are only required to help clients decide if
+they should use a cached copy of the response by setting a few headers such as
+modified time and response entity tag.</p>
+<p>Rather than forcing you to code the logic for caching and for invalidating
+(refreshing) it once the data has changed, HTTP uses two models, expiration and
+validation, which usually are much simpler to use.</p>
+<p>Apart from using <a class="reference internal" href="#Cake\Http\Response::withCache" title="Cake\Http\Response::withCache"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Http\Response::withCache()</span></code></a>, you can also use
+many other methods to fine-tune HTTP cache headers to take advantage of browser
+or reverse proxy caching.</p>
+<div class="section" id="the-cache-control-header">
+<h4>The Cache Control Header<a class="headerlink" href="#the-cache-control-header" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::withSharable">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withSharable</code><span class="sig-paren">(</span><em>$public</em>, <em>$time = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withSharable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Used under the expiration model, this header contains multiple indicators that
+can change the way browsers or proxies use the cached content. A
+<code class="docutils literal"><span class="pre">Cache-Control</span></code> header can look like this:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span><span class="o">:</span> <span class="k">private</span><span class="p">,</span> <span class="nb">max</span><span class="o">-</span><span class="nx">age</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="nx">must</span><span class="o">-</span><span class="nx">revalidate</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">Response</span></code> class helps you set this header with some utility methods that will
+produce a final valid <code class="docutils literal"><span class="pre">Cache-Control</span></code> header. The first is the
+<code class="docutils literal"><span class="pre">withSharable()</span></code> method, which indicates whether a response is to be
+considered sharable across different users or clients. This method actually
+controls the <code class="docutils literal"><span class="pre">public</span></code> or <code class="docutils literal"><span class="pre">private</span></code> part of this header.  Setting a response
+as private indicates that all or part of it is intended for a single user. To
+take advantage of shared caches, the control directive must be set as public.</p>
+<p>The second parameter of this method is used to specify a <code class="docutils literal"><span class="pre">max-age</span></code> for the
+cache, which is the number of seconds after which the response is no longer
+considered fresh:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// Set the Cache-Control as public for 3600 seconds</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withSharable</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">my_data</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// Set the Cache-Control as private for 3600 seconds</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withSharable</span><span class="p">(</span><span class="k">false</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">Response</span></code> exposes separate methods for setting each of the directives in
+the <code class="docutils literal"><span class="pre">Cache-Control</span></code> header.</p>
+</div>
+<div class="section" id="the-expiration-header">
+<h4>The Expiration Header<a class="headerlink" href="#the-expiration-header" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::withExpires">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withExpires</code><span class="sig-paren">(</span><em>$time</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withExpires" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>You can set the <code class="docutils literal"><span class="pre">Expires</span></code> header to a date and time after which the response
+is no longer considered fresh. This header can be set using the
+<code class="docutils literal"><span class="pre">withExpires()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withExpires</span><span class="p">(</span><span class="s1">&#39;+5 days&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This method also accepts a <code class="xref php php-class docutils literal"><span class="pre">DateTime</span></code> instance or any string that can
+be parsed by the <code class="xref php php-class docutils literal"><span class="pre">DateTime</span></code> class.</p>
+</div>
+<div class="section" id="the-etag-header">
+<h4>The Etag Header<a class="headerlink" href="#the-etag-header" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::withEtag">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withEtag</code><span class="sig-paren">(</span><em>$tag</em>, <em>$weak = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withEtag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Cache validation in HTTP is often used when content is constantly changing, and
+asks the application to only generate the response contents if the cache is no
+longer fresh. Under this model, the client continues to store pages in the
+cache, but it asks the application every time
+whether the resource has changed, instead of using it directly.
+This is commonly used with static resources such as images and other assets.</p>
+<p>The <code class="docutils literal"><span class="pre">withEtag()</span></code> method (called entity tag) is a string
+that uniquely identifies the requested resource, as a checksum does for a file,
+in order to determine whether it matches a cached resource.</p>
+<p>To take advantage of this header, you must either call the
+<code class="docutils literal"><span class="pre">checkNotModified()</span></code> method manually or include the
+<a class="reference internal" href="components/request-handling.html"><span class="doc">Request Handling</span></a> in your controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withEtag</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">generateHash</span><span class="p">(</span><span class="nv">$articles</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">checkNotModified</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most proxy users should probably consider using the Last Modified Header
+instead of Etags for performance and compatibility reasons.</p>
+</div>
+</div>
+<div class="section" id="the-last-modified-header">
+<h4>The Last Modified Header<a class="headerlink" href="#the-last-modified-header" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::withModified">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withModified</code><span class="sig-paren">(</span><em>$time</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withModified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Also, under the HTTP cache validation model, you can set the <code class="docutils literal"><span class="pre">Last-Modified</span></code>
+header to indicate the date and time at which the resource was modified for the
+last time. Setting this header helps CakePHP tell caching clients whether the
+response was modified or not based on their cache.</p>
+<p>To take advantage of this header, you must either call the
+<code class="docutils literal"><span class="pre">checkNotModified()</span></code> method manually or include the
+<a class="reference internal" href="components/request-handling.html"><span class="doc">Request Handling</span></a> in your controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withModified</span><span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">modified</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">checkNotModified</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-vary-header">
+<h4>The Vary Header<a class="headerlink" href="#the-vary-header" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::withVary">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">withVary</code><span class="sig-paren">(</span><em>$header</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::withVary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>In some cases, you might want to serve different content using the same URL.
+This is often the case if you have a multilingual page or respond with different
+HTML depending on the browser. Under such circumstances you can use the <code class="docutils literal"><span class="pre">Vary</span></code>
+header:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withVary</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withVary</span><span class="p">(</span><span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">,</span> <span class="s1">&#39;User-Agent&#39;</span><span class="p">);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withVary</span><span class="p">(</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sending-not-modified-responses">
+<h4>Sending Not-Modified Responses<a class="headerlink" href="#sending-not-modified-responses" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Http\Response::checkNotModified">
+<code class="descclassname">Cake\Http\Response::</code><code class="descname">checkNotModified</code><span class="sig-paren">(</span><em>Request $request</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Http\Response::checkNotModified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compares the cache headers for the request object with the cache header from the
+response and determines whether it can still be considered fresh. If so, deletes
+the response content, and sends the <cite>304 Not Modified</cite> header:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller action.</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">checkNotModified</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-cookies">
+<span id="response-cookies"></span><h2>Setting Cookies<a class="headerlink" href="#setting-cookies" title="Permalink to this headline">¶</a></h2>
+<p>Cookies can be added to response using either an array or a <a class="reference internal" href="#Cake\Http\Cookie\Cookie" title="Cake\Http\Cookie\Cookie"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Cookie\Cookie</span></code></a>
+object:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Add a cookie as an array using the immutable API (3.4.0+)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withCookie</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;httpOnly&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="s1">&#39;expire&#39;</span> <span class="o">=&gt;</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;+1 year&#39;</span><span class="p">)</span>
+<span class="p">]);</span>
+
+<span class="c1">// Before 3.4.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="s1">&#39;remember&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;value&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;httpOnly&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="s1">&#39;expire&#39;</span> <span class="o">=&gt;</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">&#39;+1 year&#39;</span><span class="p">)</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="#creating-cookies"><span class="std std-ref">Creating Cookies</span></a> section for how to use the cookie object. You
+can use <code class="docutils literal"><span class="pre">withExpiredCookie()</span></code> to send an expired cookie in the response. This
+will make the browser remove its local cookie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// As of 3.5.0</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withExpiredCookie</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-cross-origin-request-headers-cors">
+<span id="cors-headers"></span><h2>Setting Cross Origin Request Headers (CORS)<a class="headerlink" href="#setting-cross-origin-request-headers-cors" title="Permalink to this headline">¶</a></h2>
+<p>As of 3.2 you can use the <code class="docutils literal"><span class="pre">cors()</span></code> method to define <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP Access Control</a>
+related headers with a fluent interface:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">cors</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">allowOrigin</span><span class="p">([</span><span class="s1">&#39;*.cakephp.org&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">allowMethods</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">allowHeaders</span><span class="p">([</span><span class="s1">&#39;X-CSRF-Token&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">allowCredentials</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">exposeHeaders</span><span class="p">([</span><span class="s1">&#39;Link&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">maxAge</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>CORS related headers will only be applied to the response if the following
+criteria are met:</p>
+<ol class="arabic simple">
+<li>The request has an <code class="docutils literal"><span class="pre">Origin</span></code> header.</li>
+<li>The request&#8217;s <code class="docutils literal"><span class="pre">Origin</span></code> value matches one of the allowed Origin values.</li>
+</ol>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.2: </span>The <code class="docutils literal"><span class="pre">CorsBuilder</span></code> was added in 3.2</p>
+</div>
+</div>
+<div class="section" id="common-mistakes-with-immutable-responses">
+<h2>Common Mistakes with Immutable Responses<a class="headerlink" href="#common-mistakes-with-immutable-responses" title="Permalink to this headline">¶</a></h2>
+<p>As of CakePHP 3.4.0, response objects offer a number of methods that treat
+responses as immutable objects. Immutable objects help prevent difficult to
+track accidental side-effects, and reduce mistakes caused by method calls caused
+by refactoring that change ordering. While they offer a number of benefits,
+immutable objects can take some getting used to. Any method that starts with
+<code class="docutils literal"><span class="pre">with</span></code> operates on the response in an immutable fashion, and will <strong>always</strong>
+return a <strong>new</strong> instance. Forgetting to retain the modified instance is the most
+frequent mistake people make when working with immutable objects:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-CakePHP&#39;</span><span class="p">,</span> <span class="s1">&#39;yes!&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the above code, the response will be lacking the <code class="docutils literal"><span class="pre">X-CakePHP</span></code> header, as the
+return value of the <code class="docutils literal"><span class="pre">withHeader()</span></code> method was not retained. To correct the
+above code you would write:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-CakePHP&#39;</span><span class="p">,</span> <span class="s1">&#39;yes!&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<span class="target" id="namespace-Cake\Http\Cookie"></span></div>
+<div class="section" id="cookie-collections">
+<h2>Cookie Collections<a class="headerlink" href="#cookie-collections" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Http\Cookie\CookieCollection">
+<em class="property">class </em><code class="descclassname">Cake\Http\Cookie\</code><code class="descname">CookieCollection</code><a class="headerlink" href="#Cake\Http\Cookie\CookieCollection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">CookieCollection</span></code> objects are accessible from the request and response objects.
+They let you interact with groups of cookies using immutable patterns, which
+allow the immutability of the request and response to be preserved.</p>
+<div class="section" id="creating-cookies">
+<span id="id1"></span><h3>Creating Cookies<a class="headerlink" href="#creating-cookies" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="Cake\Http\Cookie\Cookie">
+<em class="property">class </em><code class="descclassname">Cake\Http\Cookie\</code><code class="descname">Cookie</code><a class="headerlink" href="#Cake\Http\Cookie\Cookie" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">Cookie</span></code> objects can be defined through constructor objects, or by using the
+fluent interface that follows immutable patterns:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Http\Cookie\Cookie</span><span class="p">;</span>
+
+<span class="c1">// All arguments in the constructor</span>
+<span class="nv">$cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cookie</span><span class="p">(</span>
+    <span class="s1">&#39;remember_me&#39;</span><span class="p">,</span> <span class="c1">// name</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="c1">// value</span>
+    <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;+1 year&#39;</span><span class="p">),</span> <span class="c1">// expiration time, if applicable</span>
+    <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="c1">// path, if applicable</span>
+    <span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="c1">// domain, if applicable</span>
+    <span class="k">false</span><span class="p">,</span> <span class="c1">// secure only?</span>
+    <span class="k">true</span> <span class="c1">// http only ?</span>
+<span class="p">);</span>
+
+<span class="c1">// Using the builder methods</span>
+<span class="nv">$cookie</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Cookie</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">withValue</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withExpiry</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;+1 year&#39;</span><span class="p">))</span>
+    <span class="o">-&gt;</span><span class="na">withPath</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withDomain</span><span class="p">(</span><span class="s1">&#39;example.com&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withSecure</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withHttpOnly</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once you have created a cookie, you can add it to a new or existing
+<code class="docutils literal"><span class="pre">CookieCollection</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Http\Cookie\CookieCollection</span><span class="p">;</span>
+
+<span class="c1">// Create a new collection</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CookieCollection</span><span class="p">([</span><span class="nv">$cookie</span><span class="p">]);</span>
+
+<span class="c1">// Add to an existing collection</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="nv">$cookies</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$cookie</span><span class="p">);</span>
+
+<span class="c1">// Remove a cookie by name</span>
+<span class="nv">$cookies</span> <span class="o">=</span> <span class="nv">$cookies</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember that collections are immutable and adding cookies into, or removing
+cookies from a collection, creates a <em>new</em> collection object.</p>
+</div>
+<p>You should use the <code class="docutils literal"><span class="pre">withCookie()</span></code> method to add cookies to <code class="docutils literal"><span class="pre">Response</span></code>
+objects as it is simpler to use:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withCookie</span><span class="p">(</span><span class="nv">$cookie</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cookies set to responses can be encrypted using the
+<a class="reference internal" href="middleware.html#encrypted-cookie-middleware"><span class="std std-ref">Encrypted Cookie Middleware</span></a>.</p>
+</div>
+<div class="section" id="reading-cookies">
+<h3>Reading Cookies<a class="headerlink" href="#reading-cookies" title="Permalink to this headline">¶</a></h3>
+<p>Once you have a <code class="docutils literal"><span class="pre">CookieCollection</span></code> instance, you can access the cookies it
+contains:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Check if a cookie exists</span>
+<span class="nv">$cookies</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">);</span>
+
+<span class="c1">// Get the number of cookies in the collection</span>
+<span class="nb">count</span><span class="p">(</span><span class="nv">$cookies</span><span class="p">);</span>
+
+<span class="c1">// Get a cookie instance</span>
+<span class="nv">$cookie</span> <span class="o">=</span> <span class="nv">$cookies</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;remember_me&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once you have a <code class="docutils literal"><span class="pre">Cookie</span></code> object you can interact with it&#8217;s state and modify
+it. Keep in mind that cookies are immutable, so you&#8217;ll need to update the
+collection if you modify a cookie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Get the value</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nv">$cookie</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">()</span>
+
+<span class="c1">// Access data inside a JSON value</span>
+<span class="nv">$id</span> <span class="o">=</span> <span class="nv">$cookie</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;User.id&#39;</span><span class="p">);</span>
+
+<span class="c1">// Check state</span>
+<span class="nv">$cookie</span><span class="o">-&gt;</span><span class="na">isHttpOnly</span><span class="p">();</span>
+<span class="nv">$cookie</span><span class="o">-&gt;</span><span class="na">isSecure</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.5.0: </span><code class="docutils literal"><span class="pre">CookieCollection</span></code> and <code class="docutils literal"><span class="pre">Cookie</span></code> were added in 3.5.0.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

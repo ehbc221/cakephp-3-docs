@@ -1,0 +1,1090 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Controllers" lang="en" name="title" />
+<meta content="correct models,controller class,controller controller,core library,single model,request data,middle man,bakery,mvc,attributes,logic,recipes" lang="en" name="keywords" />
+
+    <title>Controllers - 3.x</title>
+    <link href="_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../pt/controllers.html" /><link rel="alternate" hreflang="es" href="../es/controllers.html" /><link rel="alternate" hreflang="ja" href="../ja/controllers.html" /><link rel="alternate" hreflang="fr" href="../fr/controllers.html" /><link rel="alternate" hreflang="zh" href="../zh/controllers.html" /><link rel="alternate" hreflang="tr" href="../tr/controllers.html" /><link rel="alternate" hreflang="ru" href="../ru/controllers.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="index.html" />
+    <link rel="next" title="The Pages Controller" href="controllers/pages-controller.html" />
+    <link rel="prev" title="Middleware" href="controllers/middleware.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../pt/controllers.html">pt</a></li>
+                                            
+                                                <li><a href="../es/controllers.html">es</a></li>
+                                            
+                                                <li><a href="../ja/controllers.html">ja</a></li>
+                                            
+                                                <li><a href="../fr/controllers.html">fr</a></li>
+                                            
+                                                <li><a href="../zh/controllers.html">zh</a></li>
+                                            
+                                                <li><a href="../tr/controllers.html">tr</a></li>
+                                            
+                                                <li><a href="../ru/controllers.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/controllers.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Controllers</a><ul>
+<li><a class="reference internal" href="#the-app-controller">The App Controller</a></li>
+<li><a class="reference internal" href="#request-flow">Request Flow</a></li>
+<li><a class="reference internal" href="#controller-actions">Controller Actions</a></li>
+<li><a class="reference internal" href="#interacting-with-views">Interacting with Views</a><ul>
+<li><a class="reference internal" href="#setting-view-variables">Setting View Variables</a></li>
+<li><a class="reference internal" href="#setting-view-options">Setting View Options</a></li>
+<li><a class="reference internal" href="#rendering-a-view">Rendering a View</a><ul>
+<li><a class="reference internal" href="#rendering-a-specific-template">Rendering a Specific Template</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#redirecting-to-other-pages">Redirecting to Other Pages</a><ul>
+<li><a class="reference internal" href="#redirecting-to-another-action-on-the-same-controller">Redirecting to Another Action on the Same Controller</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#loading-additional-models">Loading Additional Models</a></li>
+<li><a class="reference internal" href="#paginating-a-model">Paginating a Model</a></li>
+<li><a class="reference internal" href="#configuring-components-to-load">Configuring Components to Load</a></li>
+<li><a class="reference internal" href="#configuring-helpers-to-load">Configuring Helpers to Load</a></li>
+<li><a class="reference internal" href="#request-life-cycle-callbacks">Request Life-cycle Callbacks</a><ul>
+<li><a class="reference internal" href="#event-list">Event List</a></li>
+<li><a class="reference internal" href="#controller-callback-methods">Controller Callback Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-on-controllers">More on Controllers</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Controller">
+<span id="controllers"></span><h1>Controllers<a class="headerlink" href="#namespace-Cake\Controller" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Cake\Controller\Controller">
+<em class="property">class </em><code class="descclassname">Cake\Controller\</code><code class="descname">Controller</code><a class="headerlink" href="#Cake\Controller\Controller" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Controllers are the &#8216;C&#8217; in MVC. After routing has been applied and the correct
+controller has been found, your controller&#8217;s action is called. Your controller
+should handle interpreting the request data, making sure the correct models
+are called, and the right response or view is rendered. Controllers can be
+thought of as middle layer between the Model and View. You want to keep your
+controllers thin, and your models fat. This will help you reuse
+your code and makes your code easier to test.</p>
+<p>Commonly, a controller is used to manage the logic around a single model. For
+example, if you were building a site for an online bakery, you might have a
+RecipesController managing your recipes and an IngredientsController managing your
+ingredients. However, it&#8217;s also possible to have controllers work with more than
+one model. In CakePHP, a controller is named after the primary model it
+handles.</p>
+<p>Your application&#8217;s controllers extend the <code class="docutils literal"><span class="pre">AppController</span></code> class, which in turn
+extends the core <a class="reference internal" href="#Cake\Controller\Controller" title="Cake\Controller\Controller"><code class="xref php php-class docutils literal"><span class="pre">Controller</span></code></a> class. The <code class="docutils literal"><span class="pre">AppController</span></code>
+class can be defined in <strong>src/Controller/AppController.php</strong> and it should
+contain methods that are shared between all of your application&#8217;s controllers.</p>
+<p>Controllers provide a number of methods that handle requests. These are called
+<em>actions</em>. By default, each public method in
+a controller is an action, and is accessible from a URL. An action is responsible
+for interpreting the request and creating the response. Usually responses are
+in the form of a rendered view, but there are other ways to create responses as
+well.</p>
+<div class="section" id="the-app-controller">
+<span id="app-controller"></span><h2>The App Controller<a class="headerlink" href="#the-app-controller" title="Permalink to this headline">¶</a></h2>
+<p>As stated in the introduction, the <code class="docutils literal"><span class="pre">AppController</span></code> class is the parent class
+to all of your application&#8217;s controllers.  <code class="docutils literal"><span class="pre">AppController</span></code> itself extends the
+<a class="reference internal" href="#Cake\Controller\Controller" title="Cake\Controller\Controller"><code class="xref php php-class docutils literal"><span class="pre">Cake\Controller\Controller</span></code></a> class included in CakePHP.
+<code class="docutils literal"><span class="pre">AppController</span></code> is defined in <strong>src/Controller/AppController.php</strong> as
+follows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Controller\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Controller attributes and methods created in your <code class="docutils literal"><span class="pre">AppController</span></code> will be
+available in all controllers that extend it. Components (which you&#8217;ll
+learn about later) are best used for code that is used in many (but not
+necessarily all) controllers.</p>
+<p>You can use your <code class="docutils literal"><span class="pre">AppController</span></code> to load components that will be used in every
+controller in your application. CakePHP provides a <code class="docutils literal"><span class="pre">initialize()</span></code> method that
+is invoked at the end of a Controller&#8217;s constructor for this kind of use:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Controller\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Always enable the CSRF component.</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Csrf&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In addition to the <code class="docutils literal"><span class="pre">initialize()</span></code> method, the older <code class="docutils literal"><span class="pre">$components</span></code> property
+will also allow you to declare which components should be loaded. While normal
+object-oriented inheritance rules apply, the components and helpers used by
+a controller are treated specially. In these cases, <code class="docutils literal"><span class="pre">AppController</span></code> property
+values are merged with child controller class arrays.  The values in the child
+class will always override those in <code class="docutils literal"><span class="pre">AppController</span></code>.</p>
+</div>
+<div class="section" id="request-flow">
+<h2>Request Flow<a class="headerlink" href="#request-flow" title="Permalink to this headline">¶</a></h2>
+<p>When a request is made to a CakePHP application, CakePHP&#8217;s
+<a class="reference internal" href="development/routing.html#Cake\Routing\Router" title="Cake\Routing\Router"><code class="xref php php-class docutils literal"><span class="pre">Cake\Routing\Router</span></code></a> and <code class="xref php php-class docutils literal"><span class="pre">Cake\Routing\Dispatcher</span></code>
+classes use <a class="reference internal" href="development/routing.html#routes-configuration"><span class="std std-ref">Connecting Routes</span></a> to find and create the correct
+controller instance. The request data is encapsulated in a request object.
+CakePHP puts all of the important request information into the <code class="docutils literal"><span class="pre">$this-&gt;request</span></code>
+property. See the section on <a class="reference internal" href="controllers/request-response.html#cake-request"><span class="std std-ref">Request</span></a> for more information on the
+CakePHP request object.</p>
+</div>
+<div class="section" id="controller-actions">
+<h2>Controller Actions<a class="headerlink" href="#controller-actions" title="Permalink to this headline">¶</a></h2>
+<p>Controller actions are responsible for converting the request parameters into a
+response for the browser/user making the request. CakePHP uses conventions to
+automate this process and remove some boilerplate code you would otherwise need
+to write.</p>
+<p>By convention, CakePHP renders a view with an inflected version of the action
+name. Returning to our online bakery example, our RecipesController might contain the
+<code class="docutils literal"><span class="pre">view()</span></code>, <code class="docutils literal"><span class="pre">share()</span></code>, and <code class="docutils literal"><span class="pre">search()</span></code> actions. The controller would be found
+in <strong>src/Controller/RecipesController.php</strong> and contain:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Controller/RecipesController.php</span>
+
+<span class="k">class</span> <span class="nc">RecipesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">view</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Action logic goes here.</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">share</span><span class="p">(</span><span class="nv">$customerId</span><span class="p">,</span> <span class="nv">$recipeId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Action logic goes here.</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">search</span><span class="p">(</span><span class="nv">$query</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Action logic goes here.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The template files for these actions would be <strong>src/Template/Recipes/view.ctp</strong>,
+<strong>src/Template/Recipes/share.ctp</strong>, and <strong>src/Template/Recipes/search.ctp</strong>. The
+conventional view file name is the lowercased and underscored version of the
+action name.</p>
+<p>Controller actions generally use
+<code class="docutils literal"><span class="pre">Controller::set()</span></code> to create a context that
+<code class="docutils literal"><span class="pre">View</span></code> uses to render the view layer. Because of the conventions that
+CakePHP uses, you don&#8217;t need to create and render the view manually. Instead,
+once a controller action has completed, CakePHP will handle rendering and
+delivering the View.</p>
+<p>If for some reason you&#8217;d like to skip the default behavior, you can return a
+<a class="reference internal" href="controllers/request-response.html#Cake\Http\Response" title="Cake\Http\Response"><code class="xref php php-class docutils literal"><span class="pre">Cake\Http\Response</span></code></a> object from the action with the fully
+created response.</p>
+<p>In order for you to use a controller effectively in your own application, we&#8217;ll
+cover some of the core attributes and methods provided by CakePHP&#8217;s controllers.</p>
+</div>
+<div class="section" id="interacting-with-views">
+<h2>Interacting with Views<a class="headerlink" href="#interacting-with-views" title="Permalink to this headline">¶</a></h2>
+<p>Controllers interact with views in a number of ways. First, they
+are able to pass data to the views, using <code class="docutils literal"><span class="pre">Controller::set()</span></code>. You can also
+decide which view class to use, and which view file should be
+rendered from the controller.</p>
+<div class="section" id="setting-view-variables">
+<span id="id1"></span><h3>Setting View Variables<a class="headerlink" href="#setting-view-variables" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Controller\Controller::set">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">set</code><span class="sig-paren">(</span><em>string $var</em>, <em>mixed $value</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The <code class="docutils literal"><span class="pre">Controller::set()</span></code> method is the main way to send data from your
+controller to your view. Once you&#8217;ve used <code class="docutils literal"><span class="pre">Controller::set()</span></code>, the variable
+can be accessed in your view:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// First you pass data from the controller:</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">);</span>
+
+<span class="c1">// Then, in the view, you can utilize the data:</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">You have selected </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">h</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"> icing for the cake.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">Controller::set()</span></code> method also takes an
+associative array as its first parameter. This can often be a quick way to
+assign a set of information to the view:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;color&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pink&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sugar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;base_price&#39;</span> <span class="o">=&gt;</span> <span class="mf">23.95</span>
+<span class="p">];</span>
+
+<span class="c1">// Make $color, $type, and $base_price</span>
+<span class="c1">// available to the view:</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-view-options">
+<h3>Setting View Options<a class="headerlink" href="#setting-view-options" title="Permalink to this headline">¶</a></h3>
+<p>If you want to customize the view class, layout/template paths, helpers or the
+theme that will be used when rendering the view, you can use the
+<code class="docutils literal"><span class="pre">viewBuilder()</span></code> method to get a builder. This builder can be used to define
+properties of the view before it is created:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">viewBuilder</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">helpers</span><span class="p">([</span><span class="s1">&#39;MyCustom&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">theme</span><span class="p">(</span><span class="s1">&#39;Modern&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">className</span><span class="p">(</span><span class="s1">&#39;Modern.Admin&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The above shows how you can load custom helpers, set the theme and use a custom
+view class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.1: </span>ViewBuilder was added in 3.1</p>
+</div>
+</div>
+<div class="section" id="rendering-a-view">
+<h3>Rendering a View<a class="headerlink" href="#rendering-a-view" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Controller\Controller::render">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">render</code><span class="sig-paren">(</span><em>string $view</em>, <em>string $layout</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::render" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The <code class="docutils literal"><span class="pre">Controller::render()</span></code> method is automatically called at the end of each requested
+controller action. This method performs all the view logic (using the data
+you&#8217;ve submitted using the <code class="docutils literal"><span class="pre">Controller::set()</span></code> method), places the view inside its
+<code class="docutils literal"><span class="pre">View::$layout</span></code>, and serves it back to the end user.</p>
+<p>The default view file used by render is determined by convention.
+If the <code class="docutils literal"><span class="pre">search()</span></code> action of the RecipesController is requested,
+the view file in <strong>src/Template/Recipes/search.ctp</strong> will be rendered:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RecipesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+<span class="c1">// ...</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">search</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Render the view in src/Template/Recipes/search.ctp</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Although CakePHP will automatically call it after every action&#8217;s logic
+(unless you&#8217;ve set <code class="docutils literal"><span class="pre">$this-&gt;autoRender</span></code> to <code class="docutils literal"><span class="pre">false</span></code>), you can use it to specify
+an alternate view file by specifying a view file name as first argument of
+<code class="docutils literal"><span class="pre">Controller::render()</span></code> method.</p>
+<p>If <code class="docutils literal"><span class="pre">$view</span></code> starts with &#8216;/&#8217;, it is assumed to be a view or
+element file relative to the <strong>src/Template</strong> folder. This allows
+direct rendering of elements, very useful in AJAX calls:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Render the element in src/Template/Element/ajaxreturn.ctp</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;/Element/ajaxreturn&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The second parameter <code class="docutils literal"><span class="pre">$layout</span></code> of <code class="docutils literal"><span class="pre">Controller::render()</span></code> allows you to specify the layout
+with which the view is rendered.</p>
+<div class="section" id="rendering-a-specific-template">
+<h4>Rendering a Specific Template<a class="headerlink" href="#rendering-a-specific-template" title="Permalink to this headline">¶</a></h4>
+<p>In your controller, you may want to render a different view than the
+conventional one. You can do this by calling <code class="docutils literal"><span class="pre">Controller::render()</span></code> directly. Once you
+have called <code class="docutils literal"><span class="pre">Controller::render()</span></code>, CakePHP will not try to re-render the view:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">my_action</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;custom_file&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This would render <strong>src/Template/Posts/custom_file.ctp</strong> instead of
+<strong>src/Template/Posts/my_action.ctp</strong>.</p>
+<p>You can also render views inside plugins using the following syntax:
+<code class="docutils literal"><span class="pre">$this-&gt;render('PluginName.PluginController/custom_file')</span></code>.
+For example:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">my_action</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;Users.UserDetails/custom_file&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This would render <strong>plugins/Users/src/Template/UserDetails/custom_file.ctp</strong></p>
+</div>
+</div>
+</div>
+<div class="section" id="redirecting-to-other-pages">
+<h2>Redirecting to Other Pages<a class="headerlink" href="#redirecting-to-other-pages" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Controller\Controller::redirect">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">redirect</code><span class="sig-paren">(</span><em>string|array $url</em>, <em>integer $status</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::redirect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The flow control method you&#8217;ll use most often is <code class="docutils literal"><span class="pre">Controller::redirect()</span></code>.
+This method takes its first parameter in the form of a
+CakePHP-relative URL. When a user has successfully placed an order,
+you might wish to redirect him to a receipt screen.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">place_order</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Logic for finalizing order goes here</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Orders&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;thanks&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span>
+        <span class="p">[</span><span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Orders&#39;</span><span class="p">,</span> <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;confirm&#39;</span><span class="p">]</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The method will return the response instance with appropriate headers set.
+You should return the response instance from your action to prevent
+view rendering and let the dispatcher handle actual redirection.</p>
+<p>You can also use a relative or absolute URL as the $url argument:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="s1">&#39;/orders/thanks&#39;</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="s1">&#39;http://www.example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also pass data to the action:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span><span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>The second parameter of <code class="docutils literal"><span class="pre">Controller::redirect()</span></code> allows you to define an HTTP
+status code to accompany the redirect. You may want to use 301
+(moved permanently) or 303 (see other), depending on the nature of
+the redirect.</p>
+<p>If you need to redirect to the referer page you can use:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">referer</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>An example using query strings and hash would look like:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">redirect</span><span class="p">([</span>
+    <span class="s1">&#39;controller&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Orders&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;confirm&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;?&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;product&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pizza&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;quantity&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;#&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;top&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The generated URL would be:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">http</span><span class="o">://</span><span class="nx">www</span><span class="o">.</span><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">orders</span><span class="o">/</span><span class="nx">confirm</span><span class="o">?</span><span class="nx">product</span><span class="o">=</span><span class="nx">pizza</span><span class="o">&amp;</span><span class="nx">quantity</span><span class="o">=</span><span class="mi">5</span><span class="c1">#top</span>
+</pre></div>
+</div>
+<div class="section" id="redirecting-to-another-action-on-the-same-controller">
+<h3>Redirecting to Another Action on the Same Controller<a class="headerlink" href="#redirecting-to-another-action-on-the-same-controller" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Controller\Controller::setAction">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">setAction</code><span class="sig-paren">(</span><em>$action</em>, <em>$args...</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::setAction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>If you need to forward the current action to a different action on the <em>same</em>
+controller, you can use <code class="docutils literal"><span class="pre">Controller::setAction()</span></code> to update the request object, modify the
+view template that will be rendered and forward execution to the named action:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// From a delete action, you can render the updated</span>
+<span class="c1">// list page.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setAction</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-additional-models">
+<h2>Loading Additional Models<a class="headerlink" href="#loading-additional-models" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Controller\Controller::loadModel">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">loadModel</code><span class="sig-paren">(</span><em>string $modelClass</em>, <em>string $type</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::loadModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The <code class="docutils literal"><span class="pre">loadModel()</span></code> function comes handy when you need to use a model
+table/collection that is not the controller&#8217;s default one:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller method.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadModel</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$recentArticles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Articles.created DESC&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>If you are using a table provider other than the built-in ORM you can
+link that table system into CakePHP&#8217;s controllers by connecting its
+factory method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller method.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">modelFactory</span><span class="p">(</span>
+    <span class="s1">&#39;ElasticIndex&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;ElasticIndexes&#39;</span><span class="p">,</span> <span class="s1">&#39;factory&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>After registering a table factory, you can use <code class="docutils literal"><span class="pre">loadModel</span></code> to load
+instances:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// In a controller method.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadModel</span><span class="p">(</span><span class="s1">&#39;Locations&#39;</span><span class="p">,</span> <span class="s1">&#39;ElasticIndex&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The built-in ORM&#8217;s TableRegistry is connected by default as the &#8216;Table&#8217;
+provider.</p>
+</div>
+</div>
+<div class="section" id="paginating-a-model">
+<h2>Paginating a Model<a class="headerlink" href="#paginating-a-model" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Controller\Controller::paginate">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">paginate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::paginate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This method is used for paginating results fetched by your models.
+You can specify page sizes, model find conditions and more. See the
+<a class="reference internal" href="controllers/components/pagination.html"><span class="doc">pagination</span></a> section for more details on
+how to use <code class="docutils literal"><span class="pre">paginate()</span></code></p>
+<p>The paginate attribute gives you an easy way to customize how <code class="docutils literal"><span class="pre">paginate()</span></code>
+behaves:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$paginate</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;Articles&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;conditions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-components-to-load">
+<h2>Configuring Components to Load<a class="headerlink" href="#configuring-components-to-load" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Controller\Controller::loadComponent">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">loadComponent</code><span class="sig-paren">(</span><em>$name</em>, <em>$config = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::loadComponent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>In your Controller&#8217;s <code class="docutils literal"><span class="pre">initialize()</span></code> method you can define any components you
+want loaded, and any configuration data for them:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Csrf&#39;</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="nx">Configure</span><span class="o">::</span><span class="na">read</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="attr">
+<dt id="Cake\Controller\Controller::$components">
+<em class="property">property </em><code class="descclassname">Cake\Controller\Controller::$</code><code class="descname">components</code><a class="headerlink" href="#Cake\Controller\Controller::$components" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The <code class="docutils literal"><span class="pre">$components</span></code> property on your controllers allows you to configure
+components. Configured components and their dependencies will be created by
+CakePHP for you. Read the <a class="reference internal" href="controllers/components.html#configuring-components"><span class="std std-ref">Configuring Components</span></a> section for more
+information. As mentioned earlier the <code class="docutils literal"><span class="pre">$components</span></code> property will be merged
+with the property defined in each of you controller&#8217;s parent classes.</p>
+</div>
+<div class="section" id="configuring-helpers-to-load">
+<h2>Configuring Helpers to Load<a class="headerlink" href="#configuring-helpers-to-load" title="Permalink to this headline">¶</a></h2>
+<dl class="attr">
+<dt id="Cake\Controller\Controller::$helpers">
+<em class="property">property </em><code class="descclassname">Cake\Controller\Controller::$</code><code class="descname">helpers</code><a class="headerlink" href="#Cake\Controller\Controller::$helpers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Let&#8217;s look at how to tell a CakePHP Controller that you plan to use
+additional MVC classes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RecipesController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$helpers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Form&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each of these variables are merged with their inherited values,
+therefore it is not necessary (for example) to redeclare the
+<code class="docutils literal"><span class="pre">FormHelper</span></code>, or anything that is declared in your <code class="docutils literal"><span class="pre">AppController</span></code>.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 3.0: </span>Loading Helpers from the controller is provided for backwards compatibility
+reasons. You should see <a class="reference internal" href="views/helpers.html#configuring-helpers"><span class="std std-ref">Configuring Helpers</span></a> for how to load helpers.</p>
+</div>
+</div>
+<div class="section" id="request-life-cycle-callbacks">
+<span id="controller-life-cycle"></span><h2>Request Life-cycle Callbacks<a class="headerlink" href="#request-life-cycle-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>CakePHP controllers trigger several events/callbacks that you can use to insert
+logic around the request life-cycle:</p>
+<div class="section" id="event-list">
+<h3>Event List<a class="headerlink" href="#event-list" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Controller.initialize</span></code></li>
+<li><code class="docutils literal"><span class="pre">Controller.startup</span></code></li>
+<li><code class="docutils literal"><span class="pre">Controller.beforeRedirect</span></code></li>
+<li><code class="docutils literal"><span class="pre">Controller.beforeRender</span></code></li>
+<li><code class="docutils literal"><span class="pre">Controller.shutdown</span></code></li>
+</ul>
+</div>
+<div class="section" id="controller-callback-methods">
+<h3>Controller Callback Methods<a class="headerlink" href="#controller-callback-methods" title="Permalink to this headline">¶</a></h3>
+<p>By default the following callback methods are connected to related events if the
+methods are implemented by your controllers</p>
+<dl class="method">
+<dt id="Cake\Controller\Controller::beforeFilter">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">beforeFilter</code><span class="sig-paren">(</span><em>Event $event</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::beforeFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called during the <code class="docutils literal"><span class="pre">Controller.initialize</span></code> event which occurs before every
+action in the controller.  It&#8217;s a handy place to check for an active session
+or inspect user permissions.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The beforeFilter() method will be called for missing actions.</p>
+</div>
+<p>Returning a response from a <code class="docutils literal"><span class="pre">beforeFilter</span></code> method will not prevent other
+listeners of the same event from being called. You must explicitly
+<a class="reference internal" href="core-libraries/events.html#stopping-events"><span class="std std-ref">stop the event</span></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Controller\Controller::beforeRender">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">beforeRender</code><span class="sig-paren">(</span><em>Event $event</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::beforeRender" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called during the <code class="docutils literal"><span class="pre">Controller.beforeRender</span></code> event which occurs after
+controller action logic, but before the view is rendered. This callback is
+not used often, but may be needed if you are calling
+<a class="reference internal" href="#Cake\Controller\Controller::render" title="Cake\Controller\Controller::render"><code class="xref php php-meth docutils literal"><span class="pre">Controller\Controller::render()</span></code></a> manually before the end
+of a given action.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Controller\Controller::afterFilter">
+<code class="descclassname">Cake\Controller\Controller::</code><code class="descname">afterFilter</code><span class="sig-paren">(</span><em>Event $event</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Controller\Controller::afterFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called during the <code class="docutils literal"><span class="pre">Controller.shutdown</span></code> event which is triggered after
+every controller action, and after rendering is complete. This is the last
+controller method to run.</p>
+</dd></dl>
+
+<p>In addition to controller life-cycle callbacks, <a class="reference internal" href="controllers/components.html"><span class="doc">Components</span></a>
+also provide a similar set of callbacks.</p>
+<p>Remember to call <code class="docutils literal"><span class="pre">AppController</span></code>&#8216;s callbacks within child controller callbacks
+for best results:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">beforeFilter</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">beforeFilter</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="more-on-controllers">
+<h2>More on Controllers<a class="headerlink" href="#more-on-controllers" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers/pages-controller.html">The Pages Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components.html">Components</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers/pages-controller.html">The Pages Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers/components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1901 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Récupérer les Données et les Ensembles de Résultats - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="es" href="../../es/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="ja" href="../../ja/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="zh" href="../../zh/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="tr" href="../../tr/orm/retrieving-data-and-resultsets.html" /><link rel="alternate" hreflang="ru" href="../../ru/orm/retrieving-data-and-resultsets.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="Accès Base de Données &amp; ORM" href="../orm.html" />
+    <link rel="next" title="Valider des Données" href="validation.html" />
+    <link rel="prev" title="Entities" href="entities.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/orm/retrieving-data-and-resultsets.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/orm/retrieving-data-and-resultsets.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/orm/retrieving-data-and-resultsets.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/orm/retrieving-data-and-resultsets.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/orm/retrieving-data-and-resultsets.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/orm/retrieving-data-and-resultsets.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/orm/retrieving-data-and-resultsets.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/orm/retrieving-data-and-resultsets.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Récupérer les Données et les Ensembles de Résultats</a><ul>
+<li><a class="reference internal" href="#debugger-les-queries-et-les-resultsets">Débugger les Queries et les ResultSets</a></li>
+<li><a class="reference internal" href="#recuperer-une-entity-unique-avec-une-cle-primaire">Récupérer une Entity Unique avec une Clé Primaire</a></li>
+<li><a class="reference internal" href="#utiliser-les-finders-pour-charger-les-donnees">Utiliser les Finders pour Charger les Données</a></li>
+<li><a class="reference internal" href="#recuperer-les-premiers-resultats">Récupérer les Premiers Résultats</a></li>
+<li><a class="reference internal" href="#recuperer-un-nombre-de-resultats">Récupérer un Nombre de Résultats</a></li>
+<li><a class="reference internal" href="#trouver-les-paires-de-cle-valeur">Trouver les Paires de Clé/Valeur</a><ul>
+<li><a class="reference internal" href="#personnaliser-la-sortie-cle-valeur">Personnaliser la Sortie Clé-Valeur</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trouver-des-donnees-threaded">Trouver des Données Threaded</a></li>
+<li><a class="reference internal" href="#methodes-finder-personnalisees">Méthodes Finder Personnalisées</a></li>
+<li><a class="reference internal" href="#finders-dynamiques">Finders Dynamiques</a></li>
+<li><a class="reference internal" href="#recuperer-les-donnees-associees">Récupérer les Données Associées</a></li>
+<li><a class="reference internal" href="#eager-loading-des-associations-via-contain">Eager Loading des Associations Via Contain</a><ul>
+<li><a class="reference internal" href="#passer-des-conditions-a-contain">Passer des Conditions à Contain</a></li>
+<li><a class="reference internal" href="#ordonner-les-associations-contain">Ordonner les Associations Contain</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filtrer-par-les-donnees-associees-via-matching-et-joins">Filtrer par les Données Associées Via Matching et Joins</a><ul>
+<li><a class="reference internal" href="#utiliser-innerjoinwith">Utiliser innerJoinWith</a></li>
+<li><a class="reference internal" href="#utiliser-notmatching">Utiliser notMatching</a></li>
+<li><a class="reference internal" href="#utiliser-leftjoinwith">Utiliser leftJoinWith</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changer-les-strategies-de-recuperation">Changer les Stratégies de Récupération</a><ul>
+<li><a class="reference internal" href="#recuperation-avec-la-strategie-de-sous-requete">Récupération Avec la Stratégie de Sous-Requête</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lazy-loading-des-associations">Lazy loading des Associations</a></li>
+<li><a class="reference internal" href="#travailler-avec-des-ensembles-de-resultat">Travailler avec des Ensembles de Résultat</a><ul>
+<li><a class="reference internal" href="#recuperer-le-premier-dernier-enregistrement-a-partir-d-un-resultset">Récupérer le Premier &amp; Dernier enregistrement à partir d&#8217;un ResultSet</a></li>
+<li><a class="reference internal" href="#recuperer-un-index-arbitraire-a-partir-d-un-resultset">Récupérer un Index arbitraire à partir d&#8217;un ResultSet</a></li>
+<li><a class="reference internal" href="#verifier-si-une-requete-query-ou-un-resultset-est-vide">Vérifier si une Requête Query ou un ResultSet est vide</a></li>
+<li><a class="reference internal" href="#chargement-d-associations-additionnelles">Chargement d&#8217;Associations Additionnelles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modifier-les-resultats-avec-map-reduce">Modifier les Résultats avec Map/Reduce</a><ul>
+<li><a class="reference internal" href="#stacking-multiple-operations">Stacking Multiple Operations</a></li>
+<li><a class="reference internal" href="#retirer-toutes-les-operations-map-reduce-empilees">Retirer Toutes les Opérations Map-reduce Empilées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\ORM">
+<span id="recuperer-les-donnees-et-les-ensembles-de-resultats"></span><h1>Récupérer les Données et les Ensembles de Résultats<a class="headerlink" href="#namespace-Cake\ORM" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt id="Cake\ORM\Table">
+<em class="property">class </em><code class="descclassname">Cake\ORM\</code><code class="descname">Table</code><a class="headerlink" href="#Cake\ORM\Table" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Alors que les objets table fournissent une abstraction autour d&#8217;un &#8216;dépôt&#8217; ou
+d&#8217;une collection d&#8217;objets, quand vous faîtes une requête pour des
+enregistrements individuels, vous récupérez des objets &#8216;entity&#8217;. Cette section
+parle des différentes façons pour trouver et charger les entities, mais vous
+pouvez lire la section <a class="reference internal" href="entities.html"><span class="doc">Entities</span></a> pour plus d&#8217;informations sur les
+entities.</p>
+<div class="section" id="debugger-les-queries-et-les-resultsets">
+<h2>Débugger les Queries et les ResultSets<a class="headerlink" href="#debugger-les-queries-et-les-resultsets" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Etant donné que l&#8217;ORM retourne maintenant des Collections et des Entities,
+débugger ces objets peut être plus compliqué qu&#8217;avec les versions précédentes
+de CakePHP. Il y a maintenant plusieurs façons d&#8217;inspecter les données
+retournées par l&#8217;ORM.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">debug($query)</span></code> Montre le SQL et les paramètres liés, ne montre pas les
+résultats.</li>
+<li><code class="docutils literal"><span class="pre">debug($query-&gt;all())</span></code> Montre les propriétés de ResultSet (pas les
+résultats).</li>
+<li><code class="docutils literal"><span class="pre">debug($query-&gt;toArray())</span></code> Une façon facile de montrer chacun des résultats.</li>
+<li><code class="docutils literal"><span class="pre">debug(json_encode($query,</span> <span class="pre">JSON_PRETTY_PRINT))</span></code> Résultats plus lisibles.</li>
+<li><code class="docutils literal"><span class="pre">debug($query-&gt;first())</span></code> Montre les propriétés de la première entity que
+votre requête retournera.</li>
+<li><code class="docutils literal"><span class="pre">debug((string)$query-&gt;first())</span></code> Montre les propriétés de la première entity
+que votre requête retournera en JSON.</li>
+</ul>
+</div>
+<div class="section" id="recuperer-une-entity-unique-avec-une-cle-primaire">
+<h2>Récupérer une Entity Unique avec une Clé Primaire<a class="headerlink" href="#recuperer-une-entity-unique-avec-une-cle-primaire" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::get">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">get</code><span class="sig-paren">(</span><em>$id</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::get" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>C&#8217;est souvent pratique de charger une entity unique à partir de la base de
+données quand vous modifiez ou visualisez les entities et leurs données liées.
+Vous pouvez faire ceci en utilisant <code class="docutils literal"><span class="pre">get()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+
+<span class="c1">// Récupère un article unique</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+<span class="c1">// Récupère un article unique, et les commentaires liés</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;contain&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Comments&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Si l&#8217;opération get ne trouve aucun résultat, une
+<code class="docutils literal"><span class="pre">Cake\Datasource\Exception\RecordNotFoundException</span></code> sera levée. Vous pouvez
+soit attraper cette exception vous-même, ou permettre à CakePHP de la convertir
+en une erreur 404.</p>
+<p>Comme <code class="docutils literal"><span class="pre">find()</span></code>, <code class="docutils literal"><span class="pre">get()</span></code> a un cache intégré. Vous pouvez utiliser l&#8217;option
+<code class="docutils literal"><span class="pre">cache</span></code> quand vous appelez <code class="docutils literal"><span class="pre">get()</span></code> pour appliquer la mise en cache:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+
+<span class="c1">// Utilise toute config de cache ou une instance de CacheEngine &amp; une clé générée</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;cache&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+
+<span class="c1">// Utilise toute config de cache ou une instance de CacheEngine &amp; une clé spécifique</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;cache&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mykey&#39;</span>
+<span class="p">]);</span>
+
+<span class="c1">// Désactive explicitement la mise en cache</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;cache&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>En option, vous pouvez faire un <code class="docutils literal"><span class="pre">get()</span></code> d&#8217;une entity en utilisant
+<a class="reference internal" href="#custom-find-methods"><span class="std std-ref">Méthodes Finder Personnalisées</span></a>. Par exemple vous souhaitez récupérer toutes les
+traductions pour une entity. Vous pouvez le faire en utilisant l&#8217;option
+<code class="docutils literal"><span class="pre">finder</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;finder&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;translations&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-les-finders-pour-charger-les-donnees">
+<h2>Utiliser les Finders pour Charger les Données<a class="headerlink" href="#utiliser-les-finders-pour-charger-les-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Table::find">
+<code class="descclassname">Cake\ORM\Table::</code><code class="descname">find</code><span class="sig-paren">(</span><em>$type</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Table::find" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Avant de travailler avec les entities, vous devrez les charger. La façon la
+plus facile de le faire est d&#8217;utiliser la méthode <code class="docutils literal"><span class="pre">find</span></code>. La méthode find
+est un moyen facile et extensible pour trouver les données qui vous
+intéressent:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+
+<span class="c1">// Trouver tous les articles</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La valeur retournée de toute méthode <code class="docutils literal"><span class="pre">find</span></code> est toujours un objet
+<a class="reference internal" href="query-builder.html#Cake\ORM\Query" title="Cake\ORM\Query"><code class="xref php php-class docutils literal"><span class="pre">Cake\ORM\Query</span></code></a>. La classe Query vous permet de redéfinir
+une requête plus tard après l&#8217;avoir créée. Les objets Query sont évalués
+lazily, et ne s&#8217;exécutent qu&#8217;à partir du moment où vous commencez à récupérer
+des lignes, les convertissez en tableau, ou quand la méthode
+<code class="docutils literal"><span class="pre">all()</span></code> est appelée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+
+<span class="c1">// Trouver tous les articles.</span>
+<span class="c1">// A ce niveau, la requête n&#39;est pas lancée.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+
+<span class="c1">// L&#39;itération va exécuter la requête.</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="c1">// Appeler all() va exécuter la requête</span>
+<span class="c1">// et retourne l&#39;ensemble de résultats.</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="c1">// Once we have a result set we can get all the rows</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="c1">// Convertir la requête en tableau va l&#39;exécuter.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Une fois que vous avez commencé une requête, vous pouvez utiliser
+l&#8217;interface <a class="reference internal" href="query-builder.html"><span class="doc">Query Builder</span></a> pour construire des requêtes
+plus complexes, d&#8217;ajouter des conditions supplémentaires, des limites,
+ou d&#8217;inclure des associations en utilisant l&#8217;interface courante.</p>
+</div>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Articles.created &gt;&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;-10 days&#39;</span><span class="p">)])</span>
+    <span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="s1">&#39;Authors&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi fournir plusieurs options couramment utilisées avec
+<code class="docutils literal"><span class="pre">find()</span></code>. Ceci peut aider pour le test puisqu&#8217;il y a peu de méthodes à
+mocker:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;conditions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Articles.created &gt;&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;-10 days&#39;</span><span class="p">)],</span>
+    <span class="s1">&#39;contain&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Authors&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>La liste d&#8217;options supportées par find() sont:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">conditions</span></code> fournit des conditions pour la clause WHERE de la requête.</li>
+<li><code class="docutils literal"><span class="pre">limit</span></code> Définit le nombre de lignes que vous voulez.</li>
+<li><code class="docutils literal"><span class="pre">offset</span></code> Définit l&#8217;offset de la page que vous souhaitez. Vous pouvez aussi
+utiliser <code class="docutils literal"><span class="pre">page</span></code> pour faciliter le calcul.</li>
+<li><code class="docutils literal"><span class="pre">contain</span></code> définit les associations à charger en eager.</li>
+<li><code class="docutils literal"><span class="pre">fields</span></code> limite les champs chargés dans l&#8217;entity. Charger seulement quelques
+champs peut faire que les entities se comportent de manière incorrecte.</li>
+<li><code class="docutils literal"><span class="pre">group</span></code> ajoute une clause GROUP BY à votre requête. C&#8217;est utile quand vous
+utilisez les fonctions d&#8217;agrégation.</li>
+<li><code class="docutils literal"><span class="pre">having</span></code> ajoute une clause HAVING à votre requête.</li>
+<li><code class="docutils literal"><span class="pre">join</span></code> définit les jointures personnalisées supplémentaires.</li>
+<li><code class="docutils literal"><span class="pre">order</span></code> ordonne l&#8217;ensemble des résultats.</li>
+</ul>
+<p>Toute option qui n&#8217;est pas dans la liste sera passée aux écouteurs de beforeFind
+où ils peuvent être utilisés pour modifier l&#8217;objet requête. Vous pouvez utiliser
+la méthode <code class="docutils literal"><span class="pre">getOptions</span></code> sur un objet query pour récupérer les options
+utilisées. Alors que vous pouvez très facilement passer des objets requête à
+vos controllers, nous recommandons que vous fassiez plutôt des packages de vos
+requêtes en tant que <a class="reference internal" href="#custom-find-methods"><span class="std std-ref">Méthodes Finder Personnalisées</span></a>.
+Utiliser des méthodes finder personnalisées va vous laisser réutiliser vos
+requêtes et faciliter les tests.</p>
+<p>Par défaut, les requêtes et les ensembles de résultat seront retournés
+en objets <a class="reference internal" href="entities.html"><span class="doc">Entities</span></a>. Vous pouvez récupérer des tableaux basiques en
+désactivant l&#8217;hydratation:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">enableHydration</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">hydrate</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// $data est le ResultSet qui contient le tableau de données.</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recuperer-les-premiers-resultats">
+<span id="table-find-first"></span><h2>Récupérer les Premiers Résultats<a class="headerlink" href="#recuperer-les-premiers-resultats" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La méthode <code class="docutils literal"><span class="pre">first()</span></code> vous permet de récupérer seulement la première ligne
+à partir d&#8217;une query. Si la query n&#8217;a pas été exécutée, une clause <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">1</span></code>
+sera appliquée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Article.created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DESC&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Cette approche remplace le <code class="docutils literal"><span class="pre">find('first')</span></code> des versions précédentes de
+CakePHP. Vous pouvez aussi utiliser la méthode <code class="docutils literal"><span class="pre">get()</span></code> si vous chargez les
+entities avec leur clé primaire.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">La méthode <code class="docutils literal"><span class="pre">first()</span></code> va retourner <code class="docutils literal"><span class="pre">null</span></code> si aucun résultat n&#8217;est trouvé.</p>
+</div>
+</div>
+<div class="section" id="recuperer-un-nombre-de-resultats">
+<h2>Récupérer un Nombre de Résultats<a class="headerlink" href="#recuperer-un-nombre-de-resultats" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fois que vous avez créé un objet query, vous pouvez utiliser la méthode
+<code class="docutils literal"><span class="pre">count()</span></code> pour récupérer un nombre de résultats de cette query:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;conditions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Articles.title LIKE&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;%Ovens%&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+<span class="nv">$number</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Consultez <a class="reference internal" href="query-builder.html#query-count"><span class="std std-ref">Retourner le Nombre Total des Enregistrements</span></a> pour l&#8217;utilisation supplémentaire de la méthode
+<code class="docutils literal"><span class="pre">count()</span></code>.</p>
+</div>
+<div class="section" id="trouver-les-paires-de-cle-valeur">
+<span id="table-find-list"></span><h2>Trouver les Paires de Clé/Valeur<a class="headerlink" href="#trouver-les-paires-de-cle-valeur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>C&#8217;est souvent pratique pour générer un tableau associatif de données à partir
+des données de votre application. Par exemple, c&#8217;est très utile quand vous
+créez des elements <cite>&lt;select&gt;</cite>. CakePHP fournit une méthode simple à utiliser
+pour générer des &#8216;lists&#8217; de données:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode de table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">);</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="c1">// Les données ressemblent maintenant à ceci</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;First post&#39;</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second article I wrote&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Avec aucune option supplémentaire, les clés de <code class="docutils literal"><span class="pre">$data</span></code> seront la clé primaire
+de votre table, alors que les valeurs seront le &#8216;displayField&#8217; (champAAfficher)
+de la table. Vous pouvez utiliser la méthode <code class="docutils literal"><span class="pre">setDisplayField()</span></code> sur un objet
+table pour configurer le champ à afficher sur une table:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Articles</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setDisplayField</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+        <span class="c1">// Avant 3.4.0</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">displayField</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quand vous appelez <code class="docutils literal"><span class="pre">list</span></code>, vous pouvez configurer les champs utilisés pour
+la clé et la valeur avec respectivement les options <code class="docutils literal"><span class="pre">keyField</span></code> et
+<code class="docutils literal"><span class="pre">valueField</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode de table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;slug&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;valueField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title&#39;</span>
+<span class="p">]);</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="c1">// Les données ressemblent maintenant à</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;first-post&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First post&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;second-article-i-wrote&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second article I wrote&#39;</span><span class="p">,</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Les résultats peuvent être groupés en des ensembles imbriqués. C&#8217;est utile
+quand vous voulez des ensembles bucketed ou que vous voulez construire des
+elements <code class="docutils literal"><span class="pre">&lt;optgroup&gt;</span></code> avec FormHelper:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode de table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;slug&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;valueField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;groupField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;author_id&#39;</span>
+<span class="p">]);</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="c1">// Les données ressemblent maintenant à</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;first-post&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First post&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;second-article-i-wrote&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Second article I wrote&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// Plus de données.</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi créer une liste de données à partir des associations qui
+peuvent être atteintes avec les jointures:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;valueField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;author.name&#39;</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Authors&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="section" id="personnaliser-la-sortie-cle-valeur">
+<h3>Personnaliser la Sortie Clé-Valeur<a class="headerlink" href="#personnaliser-la-sortie-cle-valeur" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Enfin il est possible d&#8217;utiliser les closures pour accéder aux méthodes de
+mutation des entities dans vos finds list.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dasn votre Entity Authors, créez un champ virtuel à utiliser en tant que</span>
+<span class="nx">champ</span> <span class="nx">à</span> <span class="nx">afficher</span><span class="o">:</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">_getLabel</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_properties</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39; &#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_properties</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">]</span>
+      <span class="o">.</span> <span class="s1">&#39; / &#39;</span> <span class="o">.</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;User ID %s&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_properties</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cet exemple montre l&#8217;utilisation de la méthode accesseur <code class="docutils literal"><span class="pre">_getLabel()</span></code> à
+partir de l&#8217;entity Author.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans vos finders/controller:</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;valueField&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$article</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">author</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi récupérer le label dans la liste directement en utilisant.</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans AuthorsTable::initialize():</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setDisplayField</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">);</span> <span class="c1">// Va utiliser Author::_getLabel()</span>
+<span class="c1">// Dans votre finders/controller:</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$authors</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">);</span> <span class="c1">// Va utiliser AuthorsTable::getDisplayField()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="trouver-des-donnees-threaded">
+<h2>Trouver des Données Threaded<a class="headerlink" href="#trouver-des-donnees-threaded" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le finder <code class="docutils literal"><span class="pre">find('threaded')</span></code> retourne les entities imbriquées qui sont
+threaded ensemble à travers un champ clé. Par défaut, ce champ est
+<code class="docutils literal"><span class="pre">parent_id</span></code>. Ce finder vous permet d&#8217;accéder aux données stockées dans une
+table de style &#8216;liste adjacente&#8217;. Toutes les entities qui matchent un
+<code class="docutils literal"><span class="pre">parent_id</span></code> donné sont placées sous l&#8217;attribut <code class="docutils literal"><span class="pre">children</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode table.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$comments</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;threaded&#39;</span><span class="p">);</span>
+
+<span class="c1">// Expanded les valeurs par défaut</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$comments</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;threaded&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;keyField&#39;</span> <span class="o">=&gt;</span> <span class="nv">$comments</span><span class="o">-&gt;</span><span class="na">primaryKey</span><span class="p">(),</span>
+    <span class="s1">&#39;parentField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;parent_id&#39;</span>
+<span class="p">]);</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">children</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Les clés <code class="docutils literal"><span class="pre">parentField</span></code> et <code class="docutils literal"><span class="pre">keyField</span></code> peuvent être utilisées pour définir
+les champs sur lesquels le threading va être.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Astuce</p>
+<p class="last">Si vous devez gérer des données en arbre plus compliquées, pensez à
+utiliser <a class="reference internal" href="behaviors/tree.html"><span class="doc">Tree</span></a> à la place.</p>
+</div>
+</div>
+<div class="section" id="methodes-finder-personnalisees">
+<span id="custom-find-methods"></span><h2>Méthodes Finder Personnalisées<a class="headerlink" href="#methodes-finder-personnalisees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les exemples ci-dessus montrent la façon d&#8217;utiliser les finders intégrés
+<code class="docutils literal"><span class="pre">all</span></code> et <code class="docutils literal"><span class="pre">list</span></code>. Cependant, il est possible et recommandé d&#8217;intégrer
+vos propres méthodes finder. Les méthodes finder sont idéales pour faire
+des packages de requêtes utilisées couramment, vous permettant de faire
+abstraction de détails de a requête en une méthode facile à utiliser. Les
+méthodes finder sont définies en créant les méthodes en suivant la convention
+<code class="docutils literal"><span class="pre">findFoo</span></code> où <code class="docutils literal"><span class="pre">Foo</span></code> est le nom du finder que vous souhaitez créer. Par
+exemple si nous voulons ajouter un finder à notre table articles pour trouver
+des articles publiés, nous ferions ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\ORM\Query</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findPublished</span><span class="p">(</span><span class="nx">Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span>
+            <span class="s1">&#39;Articles.published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+            <span class="s1">&#39;Articles.moderated&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+        <span class="p">]);</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Dans un controller ou dans une méthode table.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les méthodes finder peuvent modifier la requête comme ceci, ou utiliser
+<code class="docutils literal"><span class="pre">$options</span></code> pour personnaliser l&#8217;opération finder avec la logique
+d&#8217;application concernée. Vous pouvez aussi &#8216;stack&#8217; les finders, vous
+permettant de faire des requêtes complexes sans efforts. En supposant que
+vous avez à la fois les finders &#8216;published&#8217; et &#8216;recent&#8217;, vous pouvez faire
+ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou dans une méthode de table.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;recent&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Alors que les exemples pour l&#8217;instant ont montré les méthodes finder sur les
+classes table, les méthodes finder peuvent aussi être définies sur les
+<a class="reference internal" href="behaviors.html"><span class="doc">Behaviors (Comportements)</span></a>.</p>
+<p>Si vous devez modifier les résultats après qu&#8217;ils ont été récupérés, vous
+pouvez utiliser une fonction <a class="reference internal" href="#map-reduce"><span class="std std-ref">Modifier les Résultats avec Map/Reduce</span></a> pour modifier les résultats.
+Les fonctionnalités de map reduce remplacent le callback &#8216;afterFind&#8217; qu&#8217;on
+avait dans les versions précédentes de CakePHP.</p>
+</div>
+<div class="section" id="finders-dynamiques">
+<span id="dynamic-finders"></span><h2>Finders Dynamiques<a class="headerlink" href="#finders-dynamiques" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;ORM de CakePHP fournit des méthodes de finder construites dynamiquement qui
+vous permettent d&#8217;exprimer des requêtes simples sans aucun code supplémentaire.
+Par exemple si vous vouliez trouver un utilisateur selon son username, vous
+pourriez faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller</span>
+<span class="c1">// Les deux appels suivants sont équivalents.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">findByUsername</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">findAllByUsername</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">);</span>
+
+<span class="c1">// Dans une méthode de table</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Users&#39;</span><span class="p">);</span>
+<span class="c1">// Les deux appels suivants sont équivalents.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">findByUsername</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">findAllByUsername</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors de l&#8217;utilisation de finders dynamiques, vous pouvez faire des contraintes
+sur plusieurs champs:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">findAllByUsernameAndApproved</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi créer des conditions <code class="docutils literal"><span class="pre">OR</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">findAllByUsernameOrEmail</span><span class="p">(</span><span class="s1">&#39;joebob&#39;</span><span class="p">,</span> <span class="s1">&#39;joe@example.com&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Alors que vous pouvez utiliser des conditions OR ou AND, vous ne pouvez pas
+combiner les deux dans un finder unique dynamique. Les autres options de requête
+comme <code class="docutils literal"><span class="pre">contain</span></code> ne sont aussi pas supportées avec les finders dynamiques. Vous
+devrez utiliser <a class="reference internal" href="#custom-find-methods"><span class="std std-ref">Méthodes Finder Personnalisées</span></a> pour encapsuler plus de requêtes
+complexes. Dernier point, vous pouvez aussi combiner les finders dynamiques
+avec des finders personnalisés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">findTrollsByUsername</span><span class="p">(</span><span class="s1">&#39;bro&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus se traduirait dans ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$users</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;trolls&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;conditions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bro&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Une fois que vous avez un objet query à partir d&#8217;un finder dynamique, vous
+devrez appeler <code class="docutils literal"><span class="pre">first()</span></code> si vous souhaitez le premier résultat.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Alors que les finders dynamiques facilitent la gestion des requêtes, ils
+entraînent des coûts de performance supplémentaires.</p>
+</div>
+</div>
+<div class="section" id="recuperer-les-donnees-associees">
+<h2>Récupérer les Données Associées<a class="headerlink" href="#recuperer-les-donnees-associees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Quand vous voulez récupérer des données associées, ou filtrer selon les données
+associées, il y a deux façons:</p>
+<ul class="simple">
+<li>utiliser les fonctions query de l&#8217;ORM de CakePHP comme <code class="docutils literal"><span class="pre">contain()</span></code> et
+<code class="docutils literal"><span class="pre">matching()</span></code></li>
+<li>utiliser les fonctions de jointures comme <code class="docutils literal"><span class="pre">innerJoin()</span></code>, <code class="docutils literal"><span class="pre">leftJoin()</span></code>, et
+<code class="docutils literal"><span class="pre">rightJoin()</span></code></li>
+</ul>
+<p>Vous pouvez utiliser <code class="docutils literal"><span class="pre">contain()</span></code> quand vous voulez charger le model primaire
+et ses données associées. Alors que <code class="docutils literal"><span class="pre">contain()</span></code> va vous laisser appliquer
+des conditions supplémentaires aux associations chargées, vous ne pouvez pas
+donner des contraintes au model primaire selon les associations. Pour plus de
+détails sur <code class="docutils literal"><span class="pre">contain()</span></code>, consultez <a class="reference internal" href="#eager-loading-associations"><span class="std std-ref">Eager Loading des Associations Via Contain</span></a>.</p>
+<p>Vous pouvez utiliser <code class="docutils literal"><span class="pre">matching()</span></code> quand vous souhaitez donner des contraintes
+au model primaire selon les associations. Par exemple, vous voulez charger tous
+les articles qui ont un tag spécifique. Pour plus de détails sur <code class="docutils literal"><span class="pre">matching()</span></code>,
+consultez <a class="reference internal" href="#filtering-by-associated-data"><span class="std std-ref">Filtrer par les Données Associées Via Matching et Joins</span></a>.</p>
+<p>Si vous préférez utiliser les fonctions de jointure, vous pouvez consulter
+<a class="reference internal" href="query-builder.html#adding-joins"><span class="std std-ref">Ajouter des Jointures</span></a> pour plus d&#8217;informations.</p>
+</div>
+<div class="section" id="eager-loading-des-associations-via-contain">
+<span id="eager-loading-associations"></span><h2>Eager Loading des Associations Via Contain<a class="headerlink" href="#eager-loading-des-associations-via-contain" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut, CakePHP ne charge <strong>aucune</strong> donnée associée lors de l&#8217;utilisation
+de <code class="docutils literal"><span class="pre">find()</span></code>. Vous devez faire un &#8216;contain&#8217; ou charger en eager chaque
+association que vous souhaitez charger dans vos résultats.</p>
+<p>Chaque Eager loading évite plusieurs problèmes potentiels de chargement
+lors du lazy loading dans un ORM. Les requêtes générées par le eager loading
+peuvent augmenter l&#8217;impact des jointures, permettant de faire des
+requêtes plus efficaces. Dans CakePHP vous définissez des associations chargées
+en eager en utilisant la méthode &#8216;contain&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+
+<span class="c1">// En option du find()</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;contain&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Authors&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span><span class="p">]]);</span>
+
+<span class="c1">// En méthode sur un objet query</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Authors&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus va charger les auteurs et commentaires liés pour chaque
+article de l&#8217;ensemble de résultats. Vous pouvez charger les associations
+imbriquées en utilisant les tableaux imbriqués pour définir les
+associations à charger:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Authors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Addresses&#39;</span><span class="p">],</span> <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Authors&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>D&#8217;une autre façon, vous pouvez exprimer des associations imbriquées en utilisant
+la notation par point:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Authors.Addresses&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Comments.Authors&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vous pouvez charger les associations en eager aussi profondément que vous le
+souhaitez:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$products</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Shops.Cities.Countries&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Shops.Managers&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vous pouvez sélectionner des champs de toutes les associations en utilisant
+plusieurs appels à <code class="docutils literal"><span class="pre">contain()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span>
+    <span class="s1">&#39;Realestates.id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Realestates.title&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Realestates.description&#39;</span>
+<span class="p">])</span>
+<span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;RealestateAttributes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;Attributes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="c1">// Les champs alias dans contain() doivent</span>
+                <span class="c1">// inclure le préfixe du modèle à mapper correctement.</span>
+                <span class="s1">&#39;Attributes__name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;attr_name&#39;</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">])</span>
+<span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;RealestateAttributes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;RealestateAttributes.realestate_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;RealestateAttributes.value&#39;</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">])</span>
+<span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="nv">$condition</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Si vous avez besoin de remettre les contain sur une requête, vous pouvez
+définir le second argument à <code class="docutils literal"><span class="pre">true</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Authors&#39;</span><span class="p">,</span> <span class="s1">&#39;Comments&#39;</span><span class="p">],</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="passer-des-conditions-a-contain">
+<h3>Passer des Conditions à Contain<a class="headerlink" href="#passer-des-conditions-a-contain" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Avec l&#8217;utilisation de <code class="docutils literal"><span class="pre">contain()</span></code>, vous pouvez restreindre les données
+retournées par les associations et les filtrer par conditions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nv">$q</span>
+        <span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author_id&#39;</span><span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Comments.approved&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Cela fonctionne aussi pour la pagination au niveau du Controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">[</span><span class="s1">&#39;contain&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nx">\Cake\ORM\Query</span> <span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;author_id&#39;</span><span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Comments.approved&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Quand vous limitez les champs qui sont récupérés d&#8217;une association, vous
+<strong>devez</strong> vous assurer que les colonnes de clé étrangère soient
+sélectionnées. Ne pas sélectionner les champs de clé étrangère va entraîner
+la non présence des données associées dans le résultat final.</p>
+</div>
+<p>Il est aussi possible de restreindre les associations imbriquées profondément
+en utilisant la notation par point:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Comments&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Authors.Profiles&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Profiles.is_published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Dans l&#8217;exemple ci-dessus, vous obtiendrez les auteurs même s&#8217;ils n&#8217;ont pas
+de profil publié. Pour ne récupérer que les auteurs avec un profil publié,
+utilisez <a class="reference internal" href="#filtering-by-associated-data"><span class="std std-ref">matching()</span></a>.</p>
+<p>Si vous avez des méthodes de finder personnalisées dans votre table associée,
+vous pouvez les utiliser à l&#8217;intérieur de <code class="docutils literal"><span class="pre">contain()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Récupère tous les articles, mais récupère seulement les commentaires qui</span>
+<span class="c1">// sont approuvés et populaires.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;approved&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;popular&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pour les associations <code class="docutils literal"><span class="pre">BelongsTo</span></code> et <code class="docutils literal"><span class="pre">HasOne</span></code>, seules les clauses
+<code class="docutils literal"><span class="pre">where</span></code> et <code class="docutils literal"><span class="pre">select</span></code> sont utilisées lors du chargement des
+enregistrements associés. Pour le reste des types d&#8217;association, vous pouvez
+utiliser chaque clause que l&#8217;objet query fournit.</p>
+</div>
+<p>Si vous devez prendre le contrôle total d&#8217;une requête qui est générée, vous
+pouvez appeler <code class="docutils literal"><span class="pre">contain()</span></code> pour ne pas ajouter les contraintes <code class="docutils literal"><span class="pre">foreignKey</span></code>
+à la requête générée. Dans ce cas, vous devez utiliser un tableau en passant
+<code class="docutils literal"><span class="pre">foreignKey</span></code> et <code class="docutils literal"><span class="pre">queryBuilder</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Authors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foreignKey&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="s1">&#39;queryBuilder&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="o">...</span><span class="p">);</span> <span class="c1">// Full conditions for filtering</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Si vous avez limité les champs que vous chargez avec <code class="docutils literal"><span class="pre">select()</span></code> mais que
+vous souhaitez aussi charger les champs enlevés des associations avec contain,
+vous pouvez passer l&#8217;objet association à <code class="docutils literal"><span class="pre">select()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Sélectionne id &amp; title de articles, mais tous les champs enlevés pour Users.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">Users</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Users&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>D&#8217;une autre façon, si vous pouvez faire des associations multiples, vous
+pouvez utiliser <code class="docutils literal"><span class="pre">enableAutoFields()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Sélectionne id &amp; title de articles, mais tous les champs enlevés de</span>
+<span class="c1">// Users, Comments et Tags.</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="s1">&#39;Tags&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">enableAutoFields</span><span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="c1">// Avant 3.4.0 utilisez autoFields(true)</span>
+    <span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Users&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">autoFields</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+    <span class="p">}]);</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>La sélection des colonnes via un objet association a été ajouté dans 3.1</p>
+</div>
+</div>
+<div class="section" id="ordonner-les-associations-contain">
+<h3>Ordonner les Associations Contain<a class="headerlink" href="#ordonner-les-associations-contain" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Quand vous chargez des associations HasMany et BelongsToMany, vous pouvez
+utiliser l&#8217;option <code class="docutils literal"><span class="pre">sort</span></code> pour ordonner les données dans ces associations:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;sort&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Comments.created&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DESC&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="filtrer-par-les-donnees-associees-via-matching-et-joins">
+<span id="filtering-by-associated-data"></span><h2>Filtrer par les Données Associées Via Matching et Joins<a class="headerlink" href="#filtrer-par-les-donnees-associees-via-matching-et-joins" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un cas de requête couramment fait avec les associations est de trouver les
+enregistrements qui &#8216;matchent&#8217; les données associées spécifiques. Par exemple
+si vous avez &#8216;Articles belongsToMany Tags&#8217;, vous aurez probablement envie de
+trouver les Articles qui ont le tag CakePHP. C&#8217;est extrêmement simple
+à faire avec l&#8217;ORM de CakePHP:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou table de méthode.</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">matching</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi appliquer cette stratégie aux associations HasMany. Par
+exemple si &#8216;Authors HasMany Articles&#8217;, vous pouvez trouver tous les auteurs
+avec les articles récemment publiés en utilisant ce qui suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$authors</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">matching</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Articles.created &gt;=&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;-10 days&#39;</span><span class="p">)]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Filtrer des associations imbriquées est étonnamment facile, et la syntaxe doit
+déjà vous être familière:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une table de méthode.</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$products</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">matching</span><span class="p">(</span>
+    <span class="s1">&#39;Shops.Cities.Countries&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Countries.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Japan&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">// Récupère les articles uniques qui étaient commentés par &#39;markstory&#39;</span>
+<span class="c1">// en utilisant la variable passée</span>
+<span class="c1">// Les chemins avec points doivent être utilisés plutôt que les appels</span>
+<span class="c1">// imbriqués de matching()</span>
+<span class="nv">$username</span> <span class="o">=</span> <span class="s1">&#39;markstory&#39;</span><span class="p">;</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">matching</span><span class="p">(</span><span class="s1">&#39;Comments.Users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$username</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nv">$username</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Comme cette fonction va créer un <code class="docutils literal"><span class="pre">INNER</span> <span class="pre">JOIN</span></code>, vous pouvez appeler
+<code class="docutils literal"><span class="pre">distinct</span></code> sur le find de la requête puisque vous aurez des lignes
+dupliquées si les conditions ne les excluent pas déjà. Ceci peut être le
+cas, par exemple, quand les mêmes utilisateurs commentent plus d&#8217;une fois
+un article unique.</p>
+</div>
+<p>Les données des associations qui sont &#8216;matchés&#8217; (appairés) seront disponibles
+dans l&#8217;attribut <code class="docutils literal"><span class="pre">_matchingData</span></code> des entities. Si vous utilisez à la fois
+match et contain sur la même association, vous pouvez vous attendre à recevoir
+à la fois la propriété <code class="docutils literal"><span class="pre">_matchingData</span></code> et la propriété standard d&#8217;association
+dans vos résultats.</p>
+<div class="section" id="utiliser-innerjoinwith">
+<h3>Utiliser innerJoinWith<a class="headerlink" href="#utiliser-innerjoinwith" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Utiliser la fonction <code class="docutils literal"><span class="pre">matching()</span></code>, comme nous l&#8217;avons vu précédemment, va
+créer un <code class="docutils literal"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> avec l&#8217;association spécifiée et va aussi charger les
+champs dans un ensemble de résultats.</p>
+<p>Il peut arriver que vous vouliez utiliser <code class="docutils literal"><span class="pre">matching()</span></code> mais que vous n&#8217;êtes
+pas intéressé par le chargement des champs dans un ensemble de résultats. Dans
+ce cas, vous pouvez utiliser <code class="docutils literal"><span class="pre">innerJoinWith()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">innerJoinWith</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CakePHP&#39;</span><span class="p">]);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>La méthode <code class="docutils literal"><span class="pre">innerJoinWith()</span></code> fonctionne de la même manière que <code class="docutils literal"><span class="pre">matching()</span></code>,
+ce qui signifie que vous pouvez utiliser la notation par points pour faire des
+jointures pour les associations imbriquées profondément:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$products</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">innerJoinWith</span><span class="p">(</span>
+    <span class="s1">&#39;Shops.Cities.Countries&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Countries.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Japan&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>De même, la seule différence est qu&#8217;aucune colonne supplémentaire ne sera
+ajoutée à l&#8217;ensemble de résultats et aucune propriété <code class="docutils literal"><span class="pre">_matchingData</span></code> ne sera
+définie.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>Query::innerJoinWith() a été ajoutée dans 3.1</p>
+</div>
+</div>
+<div class="section" id="utiliser-notmatching">
+<h3>Utiliser notMatching<a class="headerlink" href="#utiliser-notmatching" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L&#8217;opposé de <code class="docutils literal"><span class="pre">matching()</span></code> est <code class="docutils literal"><span class="pre">notMatching()</span></code>. Cette fonction va changer
+la requête pour qu&#8217;elle filtre les résultats qui n&#8217;ont pas de relation avec
+l&#8217;association spécifiée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articlesTable</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">notMatching</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boring&#39;</span><span class="p">]);</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<p>L&#8217;exemple ci-dessus va trouver tous les articles qui n&#8217;étaient pas taggés avec
+le mot <code class="docutils literal"><span class="pre">boring</span></code>. Vous pouvez aussi utiliser cette méthode avec les
+associations HasMany. Vous pouvez, par exemple, trouver tous les auteurs qui
+n&#8217;ont aucun article dans les 10 derniers jours:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$authorsTable</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">notMatching</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Articles.created &gt;=&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\DateTime</span><span class="p">(</span><span class="s1">&#39;-10 days&#39;</span><span class="p">)]);</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<p>Il est aussi possible d&#8217;utiliser cette méthode pour filtrer les enregistrements
+qui ne matchent pas les associations profondes. Par exemple, vous pouvez
+trouver les articles qui n&#8217;ont pas été commentés par un utilisateur précis:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articlesTable</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">notMatching</span><span class="p">(</span><span class="s1">&#39;Comments.Users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;jose&#39;</span><span class="p">]);</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<p>Puisque les articles avec aucun commentaire satisfont aussi la condition
+du dessus, vous pouvez combiner <code class="docutils literal"><span class="pre">matching()</span></code> et <code class="docutils literal"><span class="pre">notMatching()</span></code> dans la
+même requête. L&#8217;exemple suivant va trouver les articles ayant au moins un
+commentaire, mais non commentés par un utilisateur précis:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articlesTable</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">notMatching</span><span class="p">(</span><span class="s1">&#39;Comments.Users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;jose&#39;</span><span class="p">]);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">matching</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Comme <code class="docutils literal"><span class="pre">notMatching()</span></code> va créer un <code class="docutils literal"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>, vous pouvez envisager
+d&#8217;appeler <code class="docutils literal"><span class="pre">distinct</span></code> sur la requête find puisque sinon vous allez avoir
+des lignes dupliquées.</p>
+</div>
+<p>Gardez à l&#8217;esprit que le contraire de la fonction <code class="docutils literal"><span class="pre">matching()</span></code>,
+<code class="docutils literal"><span class="pre">notMatching()</span></code> ne va pas ajouter toutes les données à la propriété
+<code class="docutils literal"><span class="pre">_matchingData</span></code> dans les résultats.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>Query::notMatching() a été ajoutée dans 3.1</p>
+</div>
+</div>
+<div class="section" id="utiliser-leftjoinwith">
+<h3>Utiliser leftJoinWith<a class="headerlink" href="#utiliser-leftjoinwith" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans certaines situations, vous aurez à calculer un résultat selon une
+association, sans avoir à charger tous les enregistrements. Par
+exemple, si vous voulez charger le nombre total de commentaires qu&#8217;un article
+a, ainsi que toutes les données de l&#8217;article, vous pouvez utiliser la fonction
+<code class="docutils literal"><span class="pre">leftJoinWith()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articlesTable</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">();</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;total_comments&#39;</span> <span class="o">=&gt;</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">func</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">(</span><span class="s1">&#39;Comments.id&#39;</span><span class="p">)])</span>
+    <span class="o">-&gt;</span><span class="na">leftJoinWith</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">group</span><span class="p">([</span><span class="s1">&#39;Articles.id&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">enableAutoFields</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// Avant 3.4.0 utilisez autoFields(true)</span>
+</pre></div>
+</div>
+<p>Le résultat de la requête ci-dessus va contenir les données de l&#8217;article et
+la propriété <code class="docutils literal"><span class="pre">total_comments</span></code> pour chacun d&#8217;eux.</p>
+<p><code class="docutils literal"><span class="pre">leftJoinWith()</span></code> peut aussi être utilisée avec des associations profondes.
+C&#8217;est utile par exemple pour rapporter le nombre d&#8217;articles taggés par l&#8217;auteur
+avec un certain mot:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$authorsTable</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">&#39;total_articles&#39;</span> <span class="o">=&gt;</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">func</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">(</span><span class="s1">&#39;Articles.id&#39;</span><span class="p">)])</span>
+    <span class="o">-&gt;</span><span class="na">leftJoinWith</span><span class="p">(</span><span class="s1">&#39;Articles.Tags&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Tags.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;awesome&#39;</span><span class="p">]);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">group</span><span class="p">([</span><span class="s1">&#39;Authors.id&#39;</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">enableAutoFields</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// Avant 3.4.0 utilisez autoFields(true)</span>
+</pre></div>
+</div>
+<p>Cette fonction ne va charger aucune colonne des associations spécifiées dans
+l&#8217;ensemble de résultats.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>Query::leftJoinWith() a été ajoutée dans 3.1</p>
+</div>
+</div>
+</div>
+<div class="section" id="changer-les-strategies-de-recuperation">
+<h2>Changer les Stratégies de Récupération<a class="headerlink" href="#changer-les-strategies-de-recuperation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Comme vous le savez peut-être déjà, les associations <code class="docutils literal"><span class="pre">belongsTo</span></code> et <code class="docutils literal"><span class="pre">hasOne</span></code>
+sont chargées en utilisant un <code class="docutils literal"><span class="pre">JOIN</span></code> dans la requête du finder principal.
+Bien que ceci améliore la requête et la vitesse de récupération des données et
+permet de créer des conditions plus parlantes lors de la récupération des
+données, cela peut devenir un problème quand vous devez appliquer certaines
+clauses à la requête finder pour l&#8217;association, comme <code class="docutils literal"><span class="pre">order()</span></code> ou
+<code class="docutils literal"><span class="pre">limit()</span></code>.</p>
+<p>Par exemple, si vous souhaitez récupérer le premier commentaire d&#8217;un article
+en association:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">hasOne</span><span class="p">(</span><span class="s1">&#39;FirstComment&#39;</span><span class="p">,</span> <span class="p">[</span>
+     <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Comments&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;foreignKey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;article_id&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Afin de récupérer correctement les données de cette association, nous devrons
+dire à la requête d&#8217;utiliser la stratégie <code class="docutils literal"><span class="pre">select</span></code>, puisque nous voulons
+trier selon une colonne en particulier:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;FirstComment&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;strategy&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;select&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;queryBuilder&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">order</span><span class="p">([</span><span class="s1">&#39;FirstComment.created&#39;</span> <span class="o">=&gt;</span><span class="s1">&#39;ASC&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Changer la stratégie de façon dynamique de cette façon va seulement l&#8217;appliquer
+pour une requête spécifique. Si vous souhaitez rendre le changement de stratégie
+permanent, vous pouvez faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">FirstComment</span><span class="o">-&gt;</span><span class="na">setStrategy</span><span class="p">(</span><span class="s1">&#39;seelct&#39;</span><span class="p">);</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">FirstComment</span><span class="o">-&gt;</span><span class="na">strategy</span><span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Utiliser la stratégie <code class="docutils literal"><span class="pre">select</span></code> est aussi une bonne façon de faire des
+associations avec des tables d&#8217;une autre base de données, puisqu&#8217;il ne serait
+pas possible de récupérer des enregistrements en utilisant <code class="docutils literal"><span class="pre">joins</span></code>.</p>
+<div class="section" id="recuperation-avec-la-strategie-de-sous-requete">
+<h3>Récupération Avec la Stratégie de Sous-Requête<a class="headerlink" href="#recuperation-avec-la-strategie-de-sous-requete" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Avec la taille de vos tables qui grandit, la récupération des associations
+peut devenir lente, spécialement si vous faîtes des grandes requêtes en une
+fois. Un bon moyen d&#8217;optimiser le chargement des associations <code class="docutils literal"><span class="pre">hasMany</span></code> et
+<code class="docutils literal"><span class="pre">belongsToMany</span></code> est d&#8217;utiliser la stratégie <code class="docutils literal"><span class="pre">subquery</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span>
+    <span class="s1">&#39;Comments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;strategy&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;subquery&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;queryBuilder&#39;</span> <span class="o">=&gt;</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$q</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$q</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;Comments.approved&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+            <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Le résultat va rester le même que pour la stratégie par défaut, mais
+ceci peut grandement améliorer la requête et son temps de récupération dans
+certaines bases de données, en particulier cela va permettre de récupérer des
+grandes portions de données en même temps, dans des bases de données qui
+limitent le nombre de paramètres liés par requête, comme le <strong>Serveur Microsoft
+SQL</strong>.</p>
+<p>Vous pouvez aussi rendre la stratégie pour les associations permanente en
+faisant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">Comments</span><span class="o">-&gt;</span><span class="na">setStrategy</span><span class="p">(</span><span class="s1">&#39;subquery&#39;</span><span class="p">);</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">Comments</span><span class="o">-&gt;</span><span class="na">strategy</span><span class="p">(</span><span class="s1">&#39;subquery&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="lazy-loading-des-associations">
+<h2>Lazy loading des Associations<a class="headerlink" href="#lazy-loading-des-associations" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Bien que CakePHP facilite le chargement en eager de vos associations, il y a des
+cas où vous devrez charger en lazy les associations. Vous devez vous référer
+aux sections <a class="reference internal" href="entities.html#lazy-load-associations"><span class="std std-ref">Lazy Loading des Associations</span></a> et
+<a class="reference internal" href="#loading-additional-associations"><span class="std std-ref">Chargement d&#8217;Associations Additionnelles</span></a> pour plus d&#8217;informations.</p>
+</div>
+<div class="section" id="travailler-avec-des-ensembles-de-resultat">
+<h2>Travailler avec des Ensembles de Résultat<a class="headerlink" href="#travailler-avec-des-ensembles-de-resultat" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fois qu&#8217;une requête est exécutée avec <code class="docutils literal"><span class="pre">all()</span></code>, vous récupèrerez une
+instance de <code class="xref php php-class docutils literal"><span class="pre">Cake\ORM\ResultSet</span></code>. Cet objet permet de manipuler les
+données résultantes de vos requêtes. Comme les objets Query, les ensembles de
+résultats sont une <a class="reference internal" href="../core-libraries/collections.html"><span class="doc">Collection</span></a> et vous
+pouvez utiliser toute méthode de collection sur des objets ResultSet.</p>
+<p>Les objets ResultSet vont charger lazily les lignes à partir de la requête
+préparée sous-jacente.
+Par défaut, les résultats seront mis en mémoire vous permettant
+d&#8217;itérer un ensemble de résultats plusieurs fois, ou de mettre en cache et
+d&#8217;itérer les résultats. Si vous devez travailler sur un ensemble de données qui
+ne rentre pas dans la mémoire, vous pouvez désactiver la mise en mémoire sur la
+requête pour faire un stream des résultats:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">enableBufferResults</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">bufferResults</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Stopper la mise en mémoire tampon nécessite quelques mises en garde:</p>
+<ol class="arabic simple">
+<li>Vous ne pourrez plus itérer un ensemble de résultats plus d&#8217;une fois.</li>
+<li>Vous ne pourrez plus aussi itérer et mettre en cache les résultats.</li>
+<li>La mise en mémoire tampon ne peut pas être désactivé pour les requêtes qui
+chargent en eager les associations hasMany ou belongsToMany, puisque ces
+types d&#8217;association nécessitent le chargement en eager de tous les résultats
+pour que les requêtes dépendantes puissent être générées.</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Les résultats de streaming alloueront toujours l&#8217;espace mémoire nécessaire
+pour les résultats complets lorsque vous utilisez PostgreSQL et SQL Server.
+Ceci est dû à des limitations dans PDO.</p>
+</div>
+<p>Les ensembles de résultat vous permettent de mettre en cache/serializer ou
+d&#8217;encoder en JSON les résultats pour les résultats d&#8217;une API:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="c1">// Serializé</span>
+<span class="nv">$serialized</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+
+<span class="c1">// Json</span>
+<span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les sérialisations et encodage en JSON des ensembles de résultats fonctionne
+comme vous pouvez vous attendre. Les données sérialisées peuvent être
+désérializées en un ensemble de résultats de travail. Convertir en JSON
+garde les configurations de champ caché &amp; virtuel sur tous les objets
+entity dans un ensemble de résultat.</p>
+<p>En plus de faciliter la sérialisation, les ensembles de résultats sont un
+objet &#8216;Collection&#8217; et supportent les mêmes méthodes que les
+<a class="reference internal" href="../core-libraries/collections.html"><span class="doc">objets collection</span></a>. Par exemple, vous
+pouvez extraire une liste des tags uniques sur une collection d&#8217;articles en
+exécutant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans un controller ou une méthode de table.</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Tags&#39;</span><span class="p">]);</span>
+
+<span class="nv">$reducer</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$output</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$output</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$output</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$output</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nv">$uniqueTags</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">extract</span><span class="p">(</span><span class="s1">&#39;tags.name&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">reduce</span><span class="p">(</span><span class="nv">$reducer</span><span class="p">,</span> <span class="p">[]);</span>
+</pre></div>
+</div>
+<p>Ci-dessous quelques autres exemples des méthodes de collection utilisées
+avec des ensembles de données:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Filtre les lignes sur une propriété calculée</span>
+<span class="nv">$filtered</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">filter</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$row</span><span class="o">-&gt;</span><span class="na">is_recent</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// Crée un tableau associatif depuis les propriétés du résultat</span>
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">([</span><span class="s1">&#39;Authors&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="nv">$authorList</span> <span class="o">=</span> <span class="nv">$results</span><span class="o">-&gt;</span><span class="na">combine</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;author.name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le chapitre <a class="reference internal" href="../core-libraries/collections.html"><span class="doc">Collections</span></a> comporte plus de détails sur
+ce qui peut être fait avec les ensembles de résultat en utilisant les
+fonctionnalités des collections.</p>
+<div class="section" id="recuperer-le-premier-dernier-enregistrement-a-partir-d-un-resultset">
+<h3>Récupérer le Premier &amp; Dernier enregistrement à partir d&#8217;un ResultSet<a class="headerlink" href="#recuperer-le-premier-dernier-enregistrement-a-partir-d-un-resultset" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez utiliser les méthodes <code class="docutils literal"><span class="pre">first()</span></code> et <code class="docutils literal"><span class="pre">last()</span></code> pour récupérer
+les enregistrements respectifs à partir d&#8217;un ensemble de résultats:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="c1">// Récupère le premier et/ou le dernier résultat.</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">last</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recuperer-un-index-arbitraire-a-partir-d-un-resultset">
+<h3>Récupérer un Index arbitraire à partir d&#8217;un ResultSet<a class="headerlink" href="#recuperer-un-index-arbitraire-a-partir-d-un-resultset" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez utiliser <code class="docutils literal"><span class="pre">skip()</span></code> et <code class="docutils literal"><span class="pre">first()</span></code> pour récupérer un enregistrement
+arbitraire à partir d&#8217;un ensemble de résultats:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+<span class="c1">// Récupère le 5ème enregistrement</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">skip</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verifier-si-une-requete-query-ou-un-resultset-est-vide">
+<h3>Vérifier si une Requête Query ou un ResultSet est vide<a class="headerlink" href="#verifier-si-une-requete-query-ou-un-resultset-est-vide" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez utiliser la méthode <code class="docutils literal"><span class="pre">isEmpty()</span></code> sur un objet Query ou ResultSet
+pour voir s&#8217;il contient au moins une colonne. Appeler <code class="docutils literal"><span class="pre">isEmpty()</span></code> sur un
+objet Query va évaluer la requête:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// VérifieCheck une requête.</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">isEmpty</span><span class="p">();</span>
+
+<span class="c1">// Vérifie les résultats.</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+<span class="nv">$results</span><span class="o">-&gt;</span><span class="na">isEmpty</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chargement-d-associations-additionnelles">
+<span id="loading-additional-associations"></span><h3>Chargement d&#8217;Associations Additionnelles<a class="headerlink" href="#chargement-d-associations-additionnelles" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Une fois que vous avez créé un ensemble de résultats, vous pourriez vouloir
+charger en eager des associations additionnelles. C&#8217;est le moment idéal pour charger
+des données. Vous pouvez charger des associations additionnelles en utilisant
+<code class="docutils literal"><span class="pre">loadInto()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articles</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+<span class="nv">$withMore</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">loadInto</span><span class="p">(</span><span class="nv">$articles</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="s1">&#39;Users&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vous pouvez charger en eager des données additionnelles dans une entity unique
+ou une collection d&#8217;entites.</p>
+</div>
+</div>
+<div class="section" id="modifier-les-resultats-avec-map-reduce">
+<span id="map-reduce"></span><h2>Modifier les Résultats avec Map/Reduce<a class="headerlink" href="#modifier-les-resultats-avec-map-reduce" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La plupart du temps, les opérations <code class="docutils literal"><span class="pre">find</span></code> nécessitent un traitement
+postérieur des données qui se trouvent dans la base de données. Alors que les
+méthodes <code class="docutils literal"><span class="pre">getter</span></code> des <code class="docutils literal"><span class="pre">entities</span></code> peuvent s&#8217;occuper de la plupart de la
+génération de propriété virtuelle ou un formatage de données spéciales, parfois
+vous devez changer la structure des données d&#8217;une façon plus fondamentale.</p>
+<p>Pour ces cas, l&#8217;objet <code class="docutils literal"><span class="pre">Query</span></code> offre la méthode <code class="docutils literal"><span class="pre">mapReduce()</span></code>, qui est une
+façon de traiter les résultats une fois qu&#8217;ils ont été récupérés dans la
+base de données.</p>
+<p>Un exemple habituel de changement de structure de données est le groupement de
+résultats basé sur certaines conditions. Pour cette tâche, nous
+pouvons utiliser la fonction <code class="docutils literal"><span class="pre">mapReduce()</span></code>. Nous avons besoin de deux
+fonctions appelables <code class="docutils literal"><span class="pre">$mapper</span></code> et <code class="docutils literal"><span class="pre">$reducer</span></code>.
+La callable <code class="docutils literal"><span class="pre">$mapper</span></code> reçoit le résultat courant de la base de données en
+premier argument, la clé d&#8217;itération en second paramètre et finalement elle
+reçoit une instance de la routine <code class="docutils literal"><span class="pre">MapReduce</span></code> qu&#8217;elle lance:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$mapper</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$mapReduce</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$status</span> <span class="o">=</span> <span class="s1">&#39;published&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">isDraft</span><span class="p">()</span> <span class="o">||</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">isInReview</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nv">$status</span> <span class="o">=</span> <span class="s1">&#39;unpublished&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$mapReduce</span><span class="o">-&gt;</span><span class="na">emitIntermediate</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$status</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Dans l&#8217;exemple ci-dessus, <code class="docutils literal"><span class="pre">$mapper</span></code> calcule le statut d&#8217;un article, soit
+publié (published) soit non publié (unpublished), ensuite il appelle
+<code class="docutils literal"><span class="pre">emitIntermediate()</span></code> sur l&#8217;instance <code class="docutils literal"><span class="pre">MapReduce</span></code>. Cette méthode stocke
+l&#8217;article dans la liste des articles avec pour label soit publié (published)
+ou non publié (unpublished).</p>
+<p>La prochaine étape dans le processus de map-reduce  est de consolider les
+résultats finaux. Pour chaque statut créé dans le mapper, la fonction
+<code class="docutils literal"><span class="pre">$reducer</span></code> va être appelée donc vous pouvez faire des traitements
+supplémentaires. Cette fonction va recevoir la liste des articles dans un
+&#8220;bucket&#8221; particulier en premier paramètre, le nom du &#8220;bucket&#8221; dont il a
+besoin pour faire le traitement en second paramètre, et encore une fois, comme
+dans la fonction <code class="docutils literal"><span class="pre">mapper()</span></code>, l&#8217;instance de la routine <code class="docutils literal"><span class="pre">MapReduce</span></code> en
+troisième paramètre. Dans notre exemple, nous n&#8217;avons pas fait de traitement
+supplémentaire, donc nous avons juste <code class="docutils literal"><span class="pre">emit()</span></code> les résultats finaux:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$reducer</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$articles</span><span class="p">,</span> <span class="nv">$status</span><span class="p">,</span> <span class="nv">$mapReduce</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$mapReduce</span><span class="o">-&gt;</span><span class="na">emit</span><span class="p">(</span><span class="nv">$articles</span><span class="p">,</span> <span class="nv">$status</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Finalement, nous pouvons mettre ces deux fonctions ensemble pour faire le
+groupement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$articlesByStatus</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;author_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">,</span> <span class="nv">$reducer</span><span class="p">);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$articlesByStatus</span> <span class="k">as</span> <span class="nv">$status</span> <span class="o">=&gt;</span> <span class="nv">$articles</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s2">&quot;The are %d %s articles&quot;</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$articles</span><span class="p">),</span> <span class="nv">$status</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus va afficher les lignes suivantes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">There</span> <span class="nx">are</span> <span class="mi">4</span> <span class="nx">published</span> <span class="nx">articles</span>
+<span class="nx">There</span> <span class="nx">are</span> <span class="mi">5</span> <span class="nx">unpublished</span> <span class="nx">articles</span>
+</pre></div>
+</div>
+<p>Bien sûr, ceci est un exemple simple qui pourrait être solutionné d&#8217;une autre
+façon sans l&#8217;aide d&#8217;un traitement map-reduce. Maintenant, regardons un autre
+exemple dans lequel la fonction reducer sera nécessaire pour faire quelque
+chose de plus que d&#8217;émettre les résultats.</p>
+<p>Calculer les mots mentionnés le plus souvent, où les articles contiennent
+l&#8217;information sur CakePHP, comme d&#8217;habitude nous avons besoin d&#8217;une fonction
+mapper:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$mapper</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$mapReduce</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">stripos</span><span class="p">(</span><span class="nv">$article</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">],</span> <span class="s1">&#39;cakephp&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$words</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="s1">&#39;strtolower&#39;</span><span class="p">,</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nv">$article</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]));</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$words</span> <span class="k">as</span> <span class="nv">$word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$mapReduce</span><span class="o">-&gt;</span><span class="na">emitIntermediate</span><span class="p">(</span><span class="nv">$article</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="nv">$word</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Elle vérifie d&#8217;abord si le mot &#8220;cakephp&#8221; est dans le corps de l&#8217;article, et
+ensuite coupe le corps en mots individuels. Chaque mot va créer son propre
+<code class="docutils literal"><span class="pre">bucket</span></code> où chaque id d&#8217;article sera stocké. Maintenant réduisons nos
+résultats pour extraire seulement le compte:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$reducer</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$occurrences</span><span class="p">,</span> <span class="nv">$word</span><span class="p">,</span> <span class="nv">$mapReduce</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$mapReduce</span><span class="o">-&gt;</span><span class="na">emit</span><span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$occurrences</span><span class="p">),</span> <span class="nv">$word</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finalement, nous mettons tout ensemble:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$wordCount</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">([</span><span class="s1">&#39;published_date &gt;=&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;2014-01-01&#39;</span><span class="p">)])</span>
+    <span class="o">-&gt;</span><span class="na">enableHydrate</span><span class="p">(</span><span class="k">false</span><span class="p">)</span> <span class="c1">// Avant 3.4.0 utilisez hydrate(false)</span>
+    <span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">,</span> <span class="nv">$reducer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Ceci pourrait retourner un tableau très grand si nous ne nettoyons pas les mots
+interdits, mais il pourrait ressembler à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;cakephp&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;awesome&#39;</span> <span class="o">=&gt;</span> <span class="mi">39</span><span class="p">,</span>
+    <span class="s1">&#39;impressive&#39;</span> <span class="o">=&gt;</span> <span class="mi">57</span><span class="p">,</span>
+    <span class="s1">&#39;outstanding&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;mind-blowing&#39;</span> <span class="o">=&gt;</span> <span class="mi">83</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Un dernier exemple et vous serez un expert de map-reduce. Imaginez que vous
+avez une table de <code class="docutils literal"><span class="pre">friends</span></code> et que vous souhaitiez trouver les &#8220;fake friends&#8221;
+dans notre base de données ou, autrement dit, les gens qui ne se suivent pas
+mutuellement. Commençons avec notre fonction <code class="docutils literal"><span class="pre">mapper()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$mapper</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$rel</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$mr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$mr</span><span class="o">-&gt;</span><span class="na">emitIntermediate</span><span class="p">(</span><span class="nv">$rel</span><span class="p">[</span><span class="s1">&#39;target_user_id&#39;</span><span class="p">],</span> <span class="nv">$rel</span><span class="p">[</span><span class="s1">&#39;source_user_id&#39;</span><span class="p">]);</span>
+    <span class="nv">$mr</span><span class="o">-&gt;</span><span class="na">emitIntermediate</span><span class="p">(</span><span class="o">-</span><span class="nv">$rel</span><span class="p">[</span><span class="s1">&#39;source_user_id&#39;</span><span class="p">],</span> <span class="nv">$rel</span><span class="p">[</span><span class="s1">&#39;target_user_id&#39;</span><span class="p">]);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Le tableau intermédiaire ressemblera à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="mi">4</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">5</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="mi">6</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>La clé de premier niveau étant un utilisateur, les nombres positifs indiquent
+que l&#8217;utilisateur suit d&#8217;autres utilisateurs et les nombres négatifs qu&#8217;il est
+suivi par d&#8217;autres utilisateurs.</p>
+<p>Maintenant, il est temps de la réduire. Pour chaque appel au reducer, il va recevoir
+une liste de followers par utilisateur:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$reducer</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$friends</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$mr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$fakeFriends</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$friends</span> <span class="k">as</span> <span class="nv">$friend</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$friend</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="o">-</span><span class="nv">$friend</span><span class="p">,</span> <span class="nv">$friends</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$fakeFriends</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$friend</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$fakeFriends</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$mr</span><span class="o">-&gt;</span><span class="na">emit</span><span class="p">(</span><span class="nv">$fakeFriends</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Et nous fournissons nos fonctions à la requête:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$fakeFriends</span> <span class="o">=</span> <span class="nv">$friends</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">enableHydrate</span><span class="p">(</span><span class="k">false</span><span class="p">)</span> <span class="c1">// Avant 3.4.0 utilisez hydrate(false)</span>
+    <span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">,</span> <span class="nv">$reducer</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Ceci retournerait un tableau similaire à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Les tableaux résultants signifient, par exemple, que l&#8217;utilisateur avec l&#8217;id
+<code class="docutils literal"><span class="pre">1</span></code> suit les utilisateurs <code class="docutils literal"><span class="pre">2</span></code> and <code class="docutils literal"><span class="pre">4</span></code>, mais ceux-ci ne suivent pas
+<code class="docutils literal"><span class="pre">1</span></code> de leur côté.</p>
+<div class="section" id="stacking-multiple-operations">
+<h3>Stacking Multiple Operations<a class="headerlink" href="#stacking-multiple-operations" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L&#8217;utilisation de <cite>mapReduce</cite> dans une requête ne va pas l&#8217;exécuter
+immédiatement. L&#8217;opération va être enregistrée pour être lancée dès que
+l&#8217;on tentera de récupérer le premier résultat.
+Ceci vous permet de continuer à chainer les méthodes et les filtres
+à la requête même après avoir ajouté une routine map-reduce:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">,</span> <span class="nv">$reducer</span><span class="p">);</span>
+
+<span class="c1">// Plus loin dans votre app:</span>
+<span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;created &gt;=&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;1 day ago&#39;</span><span class="p">)]);</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>C&#8217;est particulièrement utile pour construire des méthodes finder personnalisées</dt>
+<dd><p class="first">comme décrit dans la section <a class="reference internal" href="#custom-find-methods"><span class="std std-ref">Méthodes Finder Personnalisées</span></a>:</p>
+<div class="last highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">findPublished</span><span class="p">(</span><span class="nx">Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;published&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">findRecent</span><span class="p">(</span><span class="nx">Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;created &gt;=&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;1 day ago&#39;</span><span class="p">)]);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">findCommonWords</span><span class="p">(</span><span class="nx">Query</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Same as in the common words example in the previous section</span>
+    <span class="nv">$mapper</span> <span class="o">=</span> <span class="o">...</span><span class="p">;</span>
+    <span class="nv">$reducer</span> <span class="o">=</span> <span class="o">...</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">,</span> <span class="nv">$reducer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$commonWords</span> <span class="o">=</span> <span class="nv">$articles</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;commonWords&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;recent&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>En plus, il est aussi possible d&#8217;empiler plus d&#8217;une opération <code class="docutils literal"><span class="pre">mapReduce</span></code>
+pour une requête unique. Par exemple, si nous souhaitons avoir les mots les
+plus couramment utilisés pour les articles, mais ensuite les filtrer pour
+seulement retourner les mots qui étaient mentionnés plus de 20 fois tout au long
+des articles:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$mapper</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$count</span><span class="p">,</span> <span class="nv">$word</span><span class="p">,</span> <span class="nv">$mr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$count</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$mr</span><span class="o">-&gt;</span><span class="na">emit</span><span class="p">(</span><span class="nv">$count</span><span class="p">,</span> <span class="nv">$word</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nv">$articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;commonWords&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="nv">$mapper</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retirer-toutes-les-operations-map-reduce-empilees">
+<h3>Retirer Toutes les Opérations Map-reduce Empilées<a class="headerlink" href="#retirer-toutes-les-operations-map-reduce-empilees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans les mêmes circonstances vous voulez modifier un objet <code class="docutils literal"><span class="pre">Query</span></code> pour
+que les opérations <code class="docutils literal"><span class="pre">mapReduce</span></code> ne soient pas exécutées du tout. Ceci peut
+être fait en appelant la méthode avec les deux paramètres à null et le troisième
+paramètre (overwrite) à <code class="docutils literal"><span class="pre">true</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">mapReduce</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="database-basics.html">Notions de Base de Base de Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query-builder.html">Query Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table-objects.html">Les Objets Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entities.html">Entities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Récupérer les Données et les Ensembles de Résultats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Valider des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving-data.html">Sauvegarder les Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deleting-data.html">Supprimer des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="associations.html">Associations - Lier les Tables Ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviors.html">Behaviors (Comportements)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schema-system.html">Système de Schéma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../console-and-shells/orm-cache.html">Shell du Cache de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

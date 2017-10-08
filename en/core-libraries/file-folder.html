@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Folder &amp; File" lang="en" name="title" />
+<meta content="The Folder and File utilities are convenience classes to help you read, write, and append to files; list files within a folder and other common directory related tasks." lang="en" name="description" />
+<meta content="file,folder,cakephp utility,read file,write file,append file,recursively copy,copy options,folder path,class folder,file php,php files,change directory,file utilities,new folder,directory structure,delete file" lang="en" name="keywords" />
+
+    <title>Folder &amp; File - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/file-folder.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/file-folder.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/file-folder.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/file-folder.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/file-folder.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/file-folder.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/file-folder.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Hash" href="hash.html" />
+    <link rel="prev" title="Collections" href="collections.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/file-folder.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/file-folder.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/file-folder.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/file-folder.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/file-folder.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/file-folder.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/file-folder.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/file-folder.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Folder &amp; File</a><ul>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li><a class="reference internal" href="#folder-api">Folder API</a></li>
+<li><a class="reference internal" href="#file-api">File API</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Filesystem">
+<span id="folder-file"></span><h1>Folder &amp; File<a class="headerlink" href="#namespace-Cake\Filesystem" title="Permalink to this headline">¶</a></h1>
+<p>The Folder and File utilities are convenience classes to help you read from and
+write/append to files; list files within a folder and other common directory
+related tasks.</p>
+<div class="section" id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>Ensure the classes are loaded:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Filesystem\Folder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Filesystem\File</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then we can setup a new folder instance:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;/path/to/folder&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and search for all <em>.ctp</em> files within that folder using regex:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$files</span> <span class="o">=</span> <span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;.*\.ctp&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now we can loop through the files and read from or write/append to the contents or
+simply delete the file:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$files</span> <span class="k">as</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$file</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">pwd</span><span class="p">()</span> <span class="o">.</span> <span class="nx">DS</span> <span class="o">.</span> <span class="nv">$file</span><span class="p">);</span>
+    <span class="nv">$contents</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">();</span>
+    <span class="c1">// $file-&gt;write(&#39;I am overwriting the contents of this file&#39;);</span>
+    <span class="c1">// $file-&gt;append(&#39;I am adding to the bottom of this file.&#39;);</span>
+    <span class="c1">// $file-&gt;delete(); // I am deleting this file</span>
+    <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span> <span class="c1">// Be sure to close the file when you&#39;re done</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="folder-api">
+<h2>Folder API<a class="headerlink" href="#folder-api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Filesystem\Folder">
+<em class="property">class </em><code class="descclassname">Cake\Filesystem\</code><code class="descname">Folder</code><span class="sig-paren">(</span><em>string $path = false</em>, <em>boolean $create = false</em>, <em>string|boolean $mode = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Create a new folder with 0755 permissions</span>
+<span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;/path/to/folder&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="mo">0755</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="attr">
+<dt id="Cake\Filesystem\Folder::$path">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\Folder::$</code><code class="descname">path</code><a class="headerlink" href="#Cake\Filesystem\Folder::$path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the current folder. <a class="reference internal" href="#Cake\Filesystem\Folder::pwd" title="Cake\Filesystem\Folder::pwd"><code class="xref php php-meth docutils literal"><span class="pre">Folder::pwd()</span></code></a> will return the same
+information.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\Folder::$sort">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\Folder::$</code><code class="descname">sort</code><a class="headerlink" href="#Cake\Filesystem\Folder::$sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether or not the list results should be sorted by name.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\Folder::$mode">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\Folder::$</code><code class="descname">mode</code><a class="headerlink" href="#Cake\Filesystem\Folder::$mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mode to be used when creating folders. Defaults to <code class="docutils literal"><span class="pre">0755</span></code>. Does nothing on
+Windows machines.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::addPathElement">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">addPathElement</code><span class="sig-paren">(</span><em>string $path</em>, <em>string $element</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::addPathElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns $path with $element added, with correct slash in-between:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="nx">Folder</span><span class="o">::</span><span class="na">addPathElement</span><span class="p">(</span><span class="s1">&#39;/a/path/for&#39;</span><span class="p">,</span> <span class="s1">&#39;testing&#39;</span><span class="p">);</span>
+<span class="c1">// $path equals /a/path/for/testing</span>
+</pre></div>
+</div>
+<p>$element can also be an array:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="nx">Folder</span><span class="o">::</span><span class="na">addPathElement</span><span class="p">(</span><span class="s1">&#39;/a/path/for&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;testing&#39;</span><span class="p">,</span> <span class="s1">&#39;another&#39;</span><span class="p">]);</span>
+<span class="c1">// $path equals /a/path/for/testing/another</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::cd">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">cd</code><span class="sig-paren">(</span><em>$path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::cd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change directory to $path. Returns <code class="docutils literal"><span class="pre">false</span></code> on failure:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$folder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;/foo&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">path</span><span class="p">;</span> <span class="c1">// Prints /foo</span>
+<span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">cd</span><span class="p">(</span><span class="s1">&#39;/bar&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">path</span><span class="p">;</span> <span class="c1">// Prints /bar</span>
+<span class="nv">$false</span> <span class="o">=</span> <span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">cd</span><span class="p">(</span><span class="s1">&#39;/non-existent-folder&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::chmod">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">chmod</code><span class="sig-paren">(</span><em>string $path</em>, <em>integer $mode = false</em>, <em>boolean $recursive = true</em>, <em>array $exceptions = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::chmod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the mode on a directory structure recursively. This includes
+changing the mode on files as well:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">();</span>
+<span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">chmod</span><span class="p">(</span><span class="s1">&#39;/path/to/folder&#39;</span><span class="p">,</span> <span class="mo">0755</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;skip_me.php&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::copy">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">copy</code><span class="sig-paren">(</span><em>array|string $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively copy a directory. The only parameter $options can either
+be a path into copy to or an array of options:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$folder1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;/path/to/folder1&#39;</span><span class="p">);</span>
+<span class="nv">$folder1</span><span class="o">-&gt;</span><span class="na">copy</span><span class="p">(</span><span class="s1">&#39;/path/to/folder2&#39;</span><span class="p">);</span>
+<span class="c1">// Will put folder1 and all its contents into folder2</span>
+
+<span class="nv">$folder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;/path/to/folder&#39;</span><span class="p">);</span>
+<span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">copy</span><span class="p">([</span>
+    <span class="s1">&#39;to&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/new/folder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;from&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/copy/from&#39;</span><span class="p">,</span> <span class="c1">// Will cause a cd() to occur</span>
+    <span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="mo">0755</span><span class="p">,</span>
+    <span class="s1">&#39;skip&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;skip-me.php&#39;</span><span class="p">,</span> <span class="s1">&#39;.git&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;scheme&#39;</span> <span class="o">=&gt;</span> <span class="nx">Folder</span><span class="o">::</span><span class="na">SKIP</span>  <span class="c1">// Skip directories/files that already exist.</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>There are 3 supported schemes:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Folder::SKIP</span></code> skip copying/moving files &amp; directories that exist in the
+destination directory.</li>
+<li><code class="docutils literal"><span class="pre">Folder::MERGE</span></code> merge the source/destination directories. Files in the
+source directory will replace files in the target directory. Directory
+contents will be merged.</li>
+<li><code class="docutils literal"><span class="pre">Folder::OVERWRITE</span></code> overwrite existing files &amp; directories in the target
+directory with those in the source directory. If both the target and
+destination contain the same subdirectory, the target directory&#8217;s contents
+will be removed and replaced with the source&#8217;s.</li>
+</ul>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::correctSlashFor">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">correctSlashFor</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::correctSlashFor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a correct set of slashes for given $path (&#8216;\&#8217; for
+Windows paths and &#8216;/&#8217; for other paths).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::create">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">create</code><span class="sig-paren">(</span><em>string $pathname</em>, <em>integer $mode = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a directory structure recursively. Can be used to create
+deep path structures like <cite>/foo/bar/baz/shoe/horn</cite>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$folder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span> <span class="o">.</span> <span class="nx">DS</span> <span class="o">.</span> <span class="s1">&#39;bar&#39;</span> <span class="o">.</span> <span class="nx">DS</span> <span class="o">.</span> <span class="s1">&#39;baz&#39;</span> <span class="o">.</span> <span class="nx">DS</span> <span class="o">.</span> <span class="s1">&#39;shoe&#39;</span> <span class="o">.</span> <span class="nx">DS</span> <span class="o">.</span> <span class="s1">&#39;horn&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Successfully created the nested folders</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::delete">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">delete</code><span class="sig-paren">(</span><em>string $path = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively remove directories if the system allows:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$folder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$folder</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Successfully deleted foo and its nested folders</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::dirsize">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">dirsize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::dirsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the size in bytes of this Folder and its contents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::errors">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">errors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the error from latest method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::find">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">find</code><span class="sig-paren">(</span><em>string $regexpPattern = '.*'</em>, <em>boolean $sort = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of all matching files in the current directory:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Find all .png in your webroot/img/ folder and sort the results</span>
+<span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="nx">WWW_ROOT</span> <span class="o">.</span> <span class="s1">&#39;img&#39;</span><span class="p">);</span>
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;.*\.png&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [0] =&gt; cake.icon.png</span>
+<span class="cm">    [1] =&gt; test-error-icon.png</span>
+<span class="cm">    [2] =&gt; test-fail-icon.png</span>
+<span class="cm">    [3] =&gt; test-pass-icon.png</span>
+<span class="cm">    [4] =&gt; test-skip-icon.png</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The folder find and findRecursive methods will only find files. If you
+would like to get folders and files see <a class="reference internal" href="#Cake\Filesystem\Folder::read" title="Cake\Filesystem\Folder::read"><code class="xref php php-meth docutils literal"><span class="pre">Folder::read()</span></code></a> or
+<a class="reference internal" href="#Cake\Filesystem\Folder::tree" title="Cake\Filesystem\Folder::tree"><code class="xref php php-meth docutils literal"><span class="pre">Folder::tree()</span></code></a></p>
+</div>
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::findRecursive">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">findRecursive</code><span class="sig-paren">(</span><em>string $pattern = '.*'</em>, <em>boolean $sort = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::findRecursive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of all matching files in and below the current directory:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Recursively find files beginning with test or index</span>
+<span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="nx">WWW_ROOT</span><span class="p">);</span>
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">findRecursive</span><span class="p">(</span><span class="s1">&#39;(test|index).*&#39;</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [0] =&gt; /var/www/cake/webroot/index.php</span>
+<span class="cm">    [1] =&gt; /var/www/cake/webroot/test.php</span>
+<span class="cm">    [2] =&gt; /var/www/cake/webroot/img/test-skip-icon.png</span>
+<span class="cm">    [3] =&gt; /var/www/cake/webroot/img/test-fail-icon.png</span>
+<span class="cm">    [4] =&gt; /var/www/cake/webroot/img/test-error-icon.png</span>
+<span class="cm">    [5] =&gt; /var/www/cake/webroot/img/test-pass-icon.png</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::inCakePath">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">inCakePath</code><span class="sig-paren">(</span><em>string $path = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::inCakePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file is in a given CakePath.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::inPath">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">inPath</code><span class="sig-paren">(</span><em>string $path = ''</em>, <em>boolean $reverse = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::inPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file is in the given path:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$Folder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="nx">WWW_ROOT</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$Folder</span><span class="o">-&gt;</span><span class="na">inPath</span><span class="p">(</span><span class="nx">APP</span><span class="p">);</span>
+<span class="c1">// $result = true, /var/www/example/ is in /var/www/example/webroot/</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$Folder</span><span class="o">-&gt;</span><span class="na">inPath</span><span class="p">(</span><span class="nx">WWW_ROOT</span> <span class="o">.</span> <span class="s1">&#39;img&#39;</span> <span class="o">.</span> <span class="nx">DS</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// $result = true, /var/www/example/webroot/ is in /var/www/example/webroot/img/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::isAbsolute">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">isAbsolute</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::isAbsolute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the given $path is an absolute path.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::isSlashTerm">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">isSlashTerm</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::isSlashTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if given $path ends in a slash (i.e. is slash-terminated):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">Folder</span><span class="o">::</span><span class="na">isSlashTerm</span><span class="p">(</span><span class="s1">&#39;/my/test/path&#39;</span><span class="p">);</span>
+<span class="c1">// $result = false</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nx">Folder</span><span class="o">::</span><span class="na">isSlashTerm</span><span class="p">(</span><span class="s1">&#39;/my/test/path/&#39;</span><span class="p">);</span>
+<span class="c1">// $result = true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::isWindowsPath">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">isWindowsPath</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::isWindowsPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the given $path is a Windows path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::messages">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">messages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the messages from the latest method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::move">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">move</code><span class="sig-paren">(</span><em>array $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursive directory move.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::normalizePath">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">normalizePath</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::normalizePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a correct set of slashes for given $path (&#8216;\&#8217; for
+Windows paths and &#8216;/&#8217; for other paths).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::pwd">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">pwd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::pwd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return current path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::read">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">read</code><span class="sig-paren">(</span><em>boolean $sort = true</em>, <em>array|boolean $exceptions = false</em>, <em>boolean $fullPath = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of the contents of the current directory. The
+returned array holds two sub arrays: One of directories and one of files:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$dir</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Folder</span><span class="p">(</span><span class="nx">WWW_ROOT</span><span class="p">);</span>
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$dir</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="s1">&#39;index.php&#39;</span><span class="p">]);</span>
+<span class="cm">/*</span>
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [0] =&gt; Array // Folders</span>
+<span class="cm">        (</span>
+<span class="cm">            [0] =&gt; css</span>
+<span class="cm">            [1] =&gt; img</span>
+<span class="cm">            [2] =&gt; js</span>
+<span class="cm">        )</span>
+<span class="cm">    [1] =&gt; Array // Files</span>
+<span class="cm">        (</span>
+<span class="cm">            [0] =&gt; .htaccess</span>
+<span class="cm">            [1] =&gt; favicon.ico</span>
+<span class="cm">            [2] =&gt; test.php</span>
+<span class="cm">        )</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::realpath">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">realpath</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::realpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the real path (taking &#8221;..&#8221; and such into account).</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\Folder::slashTerm">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">slashTerm</code><span class="sig-paren">(</span><em>string $path</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::slashTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns $path with added terminating slash (corrected for
+Windows or other OS).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\Folder::tree">
+<code class="descclassname">Cake\Filesystem\Folder::</code><code class="descname">tree</code><span class="sig-paren">(</span><em>null|string $path = null</em>, <em>array|boolean $exceptions = true</em>, <em>null|string $type = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\Folder::tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of nested directories and files in each directory.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="file-api">
+<h2>File API<a class="headerlink" href="#file-api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Filesystem\File">
+<em class="property">class </em><code class="descclassname">Cake\Filesystem\</code><code class="descname">File</code><span class="sig-paren">(</span><em>string $path</em>, <em>boolean $create = false</em>, <em>integer $mode = 755</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Create a new file with 0644 permissions</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="s1">&#39;/path/to/file.php&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="mo">0644</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$Folder">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">Folder</code><a class="headerlink" href="#Cake\Filesystem\File::$Folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Folder object of the file.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$name">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">name</code><a class="headerlink" href="#Cake\Filesystem\File::$name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the file with the extension. Differs from
+<a class="reference internal" href="#Cake\Filesystem\File::name" title="Cake\Filesystem\File::name"><code class="xref php php-meth docutils literal"><span class="pre">File::name()</span></code></a> which returns the name without the extension.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$info">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">info</code><a class="headerlink" href="#Cake\Filesystem\File::$info" title="Permalink to this definition">¶</a></dt>
+<dd><p>An array of file info. Use <a class="reference internal" href="#Cake\Filesystem\File::info" title="Cake\Filesystem\File::info"><code class="xref php php-meth docutils literal"><span class="pre">File::info()</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$handle">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">handle</code><a class="headerlink" href="#Cake\Filesystem\File::$handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds the file handler resource if the file is opened.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$lock">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">lock</code><a class="headerlink" href="#Cake\Filesystem\File::$lock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable locking for file reading and writing.</p>
+</dd></dl>
+
+<dl class="attr">
+<dt id="Cake\Filesystem\File::$path">
+<em class="property">property </em><code class="descclassname">Cake\Filesystem\File::$</code><code class="descname">path</code><a class="headerlink" href="#Cake\Filesystem\File::$path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current file&#8217;s absolute path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::append">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">append</code><span class="sig-paren">(</span><em>string $data</em>, <em>boolean $force = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append the given data string to the current file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::close">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the current file if it is opened.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::copy">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">copy</code><span class="sig-paren">(</span><em>string $dest</em>, <em>boolean $overwrite = true</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the file to $dest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::create">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::delete">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::executable">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">executable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::executable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file is executable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::exists">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">exists</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file exists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::ext">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">ext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file extension.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::Folder">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">Folder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::Folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current folder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::group">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file&#8217;s group, or <code class="docutils literal"><span class="pre">false</span></code> in case of an error.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::info">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file info.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::lastAccess">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">lastAccess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::lastAccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns last access time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::lastChange">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">lastChange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::lastChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns last modified time, or <code class="docutils literal"><span class="pre">false</span></code> in case of an error.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::md5">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">md5</code><span class="sig-paren">(</span><em>integer|boolean $maxsize = 5</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::md5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the MD5 Checksum of file with previous check of filesize,
+or <code class="docutils literal"><span class="pre">false</span></code> in case of an error.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::name">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file name without extension.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::offset">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">offset</code><span class="sig-paren">(</span><em>integer|boolean $offset = false</em>, <em>integer $seek = 0</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets or gets the offset for the currently opened file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::open">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">open</code><span class="sig-paren">(</span><em>string $mode = 'r'</em>, <em>boolean $force = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens the current file with the given $mode.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::owner">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">owner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file&#8217;s owner.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::perms">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">perms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::perms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the &#8220;chmod&#8221; (permissions) of the file.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Filesystem\File::prepare">
+<em class="property">static </em><code class="descclassname">Cake\Filesystem\File::</code><code class="descname">prepare</code><span class="sig-paren">(</span><em>string $data</em>, <em>boolean $forceWindows = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares a ascii string for writing. Converts line endings to the
+correct terminator for the current platform. For Windows &#8220;\r\n&#8221;
+will be used, &#8220;\n&#8221; for all other platforms.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::pwd">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">pwd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::pwd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the full path of the file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::read">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">read</code><span class="sig-paren">(</span><em>string $bytes = false</em>, <em>string $mode = 'rb'</em>, <em>boolean $force = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the contents of the current file as a string or return <code class="docutils literal"><span class="pre">false</span></code> on failure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::readable">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">readable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::readable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file is readable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::safe">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">safe</code><span class="sig-paren">(</span><em>string $name = null</em>, <em>string $ext = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::safe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes filename safe for saving.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::size">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the filesize in bytes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::writable">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">writable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::writable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the file is writable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::write">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">write</code><span class="sig-paren">(</span><em>string $data</em>, <em>string $mode = 'w'</em>, <em>boolean$force = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write given data to the current file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::mime">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">mime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::mime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the file&#8217;s mimetype, returns <code class="docutils literal"><span class="pre">false</span></code> on failure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Filesystem\File::replaceText">
+<code class="descclassname">Cake\Filesystem\File::</code><code class="descname">replaceText</code><span class="sig-paren">(</span><em>$search</em>, <em>$replace</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Filesystem\File::replaceText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces text in a file. Returns <code class="docutils literal"><span class="pre">false</span></code> on failure and <code class="docutils literal"><span class="pre">true</span></code> on success.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1082 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Événements système" lang="fr" name="title" />
+<meta content="events, événements, dispatch, decoupling, cakephp, callbacks, triggers, hooks, php" lang="fr" name="keywords" />
+
+    <title>Événements système - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/core-libraries/events.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/events.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/events.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/events.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/events.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/events.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/events.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="next" title="Internationalisation &amp; Localisation" href="internationalization-and-localization.html" />
+    <link rel="prev" title="Gestion des Erreurs &amp; Exceptions" href="../development/errors.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/core-libraries/events.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/events.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/events.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/events.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/events.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/events.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/events.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/core-libraries/events.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Événements système</a><ul>
+<li><a class="reference internal" href="#exemple-d-utilisation-d-evenement">Exemple d&#8217;Utilisation d&#8217;Événement</a></li>
+<li><a class="reference internal" href="#acceder-aux-gestionnaires-d-evenements">Accéder aux Gestionnaires d&#8217;Événements</a><ul>
+<li><a class="reference internal" href="#le-gestionnaire-d-evenement-global">Le Gestionnaire d&#8217;Événement Global</a></li>
+<li><a class="reference internal" href="#suivre-la-trace-des-evenements">Suivre la Trace des Événements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#events-du-coeur">Events du Cœur</a></li>
+<li><a class="reference internal" href="#enregistrer-les-listeners">Enregistrer les Listeners</a><ul>
+<li><a class="reference internal" href="#enregistrer-des-ecouteurs-anonymes">Enregistrer des Écouteurs Anonymes</a></li>
+<li><a class="reference internal" href="#interagir-avec-les-listeners-existants">Interagir avec les Listeners Existants</a></li>
+<li><a class="reference internal" href="#etablir-des-priorites">Etablir des Priorités</a></li>
+<li><a class="reference internal" href="#obtenir-des-donnees-d-event-en-parametres-de-fonction">Obtenir des Données d&#8217;Event en Paramètres de Fonction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dispatcher-les-events">Dispatcher les Events</a><ul>
+<li><a class="reference internal" href="#stopper-les-events">Stopper les Events</a></li>
+<li><a class="reference internal" href="#obtenir-des-resultats-d-evenement">Obtenir des Résultats d&#8217;Evenement</a></li>
+<li><a class="reference internal" href="#retirer-les-callbacks-et-les-listeners">Retirer les Callbacks et les Listeners</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lecture-supplementaire">Lecture Supplémentaire</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="evenements-systeme">
+<h1>Événements système<a class="headerlink" href="#evenements-systeme" title="Lien permanent vers ce titre">¶</a></h1>
+<p>La création d&#8217;applications maintenables est à la fois une science et un art.
+Il est bien connu que la clé pour avoir un code de bonne qualité est d&#8217;avoir
+un couplage plus lâche et une cohésion plus élevée. La cohésion signifie
+que toutes les méthodes et propriétés pour une classe sont fortement liées à la
+classe elle-même et qu&#8217;elles n&#8217;essaient pas de faire le travail que d&#8217;autre
+objets devraient faire, alors qu&#8217;un couplage plus lâche est la mesure du degré
+de connexions d&#8217;une classe par rapport aux objets externes, et comment cette
+classe en dépend.</p>
+<p>Alors que la plupart des structures CakePHP et des librairies par défaut vous
+aideront à atteindre ce but, il y a certains cas où vous avez besoin de
+communiquer proprement avec les autres parties du système sans avoir à coder en
+dur ces dépendances, ce qui réduit la cohésion et augmente le couplage de
+classe. Un motif de conception (design pattern) fonctionnant très bien dans
+l&#8217;ingénierie software est le modèle obervateur (Observer pattern), où les objets
+peuvent générer des événements (events) et notifier à des écouteurs (listener)
+possiblement anonymes des changements d&#8217;états internes.</p>
+<p>Les écouteurs (listener) dans le modèle observateur (Observer pattern) peuvent
+s&#8217;abonner à de tels événements et choisir d&#8217;agir sur eux, modifier l&#8217;état du
+sujet ou simplement créer des fichiers de logs. Si vous avez utilisé JavaScript
+dans le passé, vous avez la chance d&#8217;être déjà familier avec la programmation
+événementielle.</p>
+<p>CakePHP émule plusieurs aspects sur la façon dont les événements sont déclenchés
+et managés dans des frameworks JavaScript comme le populaire jQuery, tout en
+restant fidèle à sa conception orientée objet. Dans cette implémentation, un
+objet événement est transporté a travers tous les écouteurs qui détiennent
+l&#8217;information et la possibilité d&#8217;arrêter la propagation des événements à tout
+moment. Les écouteurs peuvent s&#8217;enregistrer eux-mêmes ou peuvent déléguer cette
+tâche a d&#8217;autres objets et peuvent modifier l&#8217;état et l&#8217;événement lui-même pour
+le reste des callbacks.</p>
+<p>Le sous-système d&#8217;événement est au cœur des callbacks de Model, de Behavior, de
+Controller, de View et de Helper. Si vous avez déjà utilisé l&#8217;un d&#8217;eux, vous
+êtes quelque part déjà familiarisé avec les événements dans CakePHP.</p>
+<div class="section" id="exemple-d-utilisation-d-evenement">
+<h2>Exemple d&#8217;Utilisation d&#8217;Événement<a class="headerlink" href="#exemple-d-utilisation-d-evenement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Imaginons que vous être en train de construire un plugin Caddie, mais que vous
+ne voulez pas vraiment l&#8217;encombrer avec une logique d&#8217;expédition, expédier un
+mail à l&#8217;utilisateur ou décrémenter les articles depuis le stock, c&#8217;est votre
+souhait de traiter tout cela séparément dans un autre plugin ou dans le code de
+l&#8217;application. Typiquement, quand vous n&#8217;utilisez pas directement le modèle
+observateur (observer pattern) vous feriez cela en attachant des behaviors à la
+volée à vos models, et peut être quelques components aux controllers.</p>
+<p>A la place, vous pouvez utiliser les événements pour vous permettre de séparer
+clairement ce qui concerne votre code et permettre d&#8217;ajouter des besoins
+supplémentaires dans votre plugin en utilisant les événements. Par exemple dans
+votre plugin Cart, vous avez un model Orders qui gère la création des commandes.
+Vous voulez notifier au reste de l&#8217;application qu&#8217;une commande a été créée. Pour
+garder votre model Orders propre, vous pouvez utiliser les événements:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Cart/Model/Table/OrdersTable.php</span>
+<span class="k">namespace</span> <span class="nx">Cart\Model\Table</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Event\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\Table</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">OrdersTable</span> <span class="k">extends</span> <span class="nx">Table</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">place</span><span class="p">(</span><span class="nv">$order</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$order</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Cart</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$order</span><span class="p">);</span>
+            <span class="nv">$event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;Model.Orders.afterPlace&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="nv">$order</span>
+            <span class="p">]);</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Le code ci-dessus vous permet de notifier aux autres parties de l&#8217;application
+qu&#8217;une commande a été créée. Vous pouvez ensuite faire des tâches comme envoyer
+les notifications par mail, mettre à jour le stock, créer un fichier de log des
+statistiques pertinents et d&#8217;autres tâches dans les objets séparés qui se
+focalisent sur ces préoccupations.</p>
+</div>
+<div class="section" id="acceder-aux-gestionnaires-d-evenements">
+<h2>Accéder aux Gestionnaires d&#8217;Événements<a class="headerlink" href="#acceder-aux-gestionnaires-d-evenements" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans CakePHP, les événements sont attrapés par les gestionnaires d&#8217;événements.
+Les gestionnaires d&#8217;événements sont disponible dans chaque Table, View et
+Controller en utilisant <code class="docutils literal"><span class="pre">eventManager()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$events</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Chaque Model a un gestionnaire d&#8217;événements séparé, alors que View et Controller
+en partagent un. Cela permet aux événements de Model d&#8217;être autonomes, et permet
+aux components ou aux controllers d&#8217;agir sur les événements créés dans la vue si
+nécessaire.</p>
+<div class="section" id="le-gestionnaire-d-evenement-global">
+<h3>Le Gestionnaire d&#8217;Événement Global<a class="headerlink" href="#le-gestionnaire-d-evenement-global" title="Lien permanent vers ce titre">¶</a></h3>
+<p>En plus des gestionnaires au niveau des instances d&#8217;événement, CakePHP fournit
+un gestionnaire d&#8217;événements global qui vous permet d&#8217;écouter tout événement
+déclenché dans une application. C&#8217;est utile quand attacher des écouteurs à une
+instance spécifique semble lent ou difficile. Le gestionnaire global est une
+instance singleton de <code class="xref php php-class docutils literal"><span class="pre">Cake\Event\EventManager</span></code> qui reçoit chaque
+événement <strong>avant</strong> que les gestionnaires d&#8217;instance ne le reçoivent. En plus de
+recevoir les événements en premier, le gestionnaire global maintient aussi une
+pile de priorité distincte pour les écouteurs. Une fois qu&#8217;un événement a été
+dispatché au gestionnaire global, il sera dispatché au gestionnaire au niveau de
+l&#8217;instance. Vous pouvez accéder au gestionnaire global en utilisant une méthode
+statique:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans tout fichier de configuration ou partie de code qui s&#39;execute avant l&#39;événement</span>
+<span class="k">use</span> <span class="nx">Cake\Event\EventManager</span><span class="p">;</span>
+
+<span class="nx">EventManager</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span>
+    <span class="s1">&#39;Model.Order.afterPlace&#39;</span><span class="p">,</span>
+    <span class="nv">$aCallback</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Une chose importante que vous devriez considérer est que les événements qui
+seront attrapés auront le même nom mais des sujets différents, ainsi le vérifier
+dans l&#8217;objet event est habituellement nécessaire dans toute fonction qui devient
+attachée globalement afin d&#8217;éviter tout bug. Rappelez-vous que la flexibilité du
+gestionnaire global entraîne une complexité supplémentaire à gérer.</p>
+<p>La méthode <code class="xref php php-meth docutils literal"><span class="pre">Cake\Event\EventManager::dispatch()</span></code> accepte l&#8217;objet
+event en argument et notifie à tous les écouteurs et les callbacks qui passent
+cet objet. Les écouteurs vont gérer toute la logique supplémentaire autour de
+l&#8217;événement <code class="docutils literal"><span class="pre">afterPlace</span></code>, vous pouvez faire le log du time, envoyer les
+emails, mettre à jour les statistiques d&#8217;un utilisateur, si possible dans des
+objets séparés et même le déléguer à des tâches offline si vous avez ce
+besoin.</p>
+</div>
+<div class="section" id="suivre-la-trace-des-evenements">
+<span id="tracking-events"></span><h3>Suivre la Trace des Événements<a class="headerlink" href="#suivre-la-trace-des-evenements" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour garder une liste des événements qui sont déclenchés pour un
+<code class="docutils literal"><span class="pre">EventManager</span></code> en particulier, vous pouvez activer le tracking d&#8217;événements.
+Pour ce faire, attachez simplement une <code class="xref php php-class docutils literal"><span class="pre">Cake\Event\EventList</span></code> au
+gestionnaire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">EventManager</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setEventList</span><span class="p">(</span><span class="k">new</span> <span class="nx">EventList</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Après avoir déclenché un événement sur le gestionnaire, vous pouvez le récupérer
+à partir de la liste d&#8217;événements:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$eventsFired</span> <span class="o">=</span> <span class="nx">EventManager</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getEventList</span><span class="p">();</span>
+<span class="nv">$firstEvent</span> <span class="o">=</span> <span class="nv">$eventsFired</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Le tracking peut être désactivé en retirant la liste d&#8217;événements ou en appelant
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Event\EventList::trackEvents(false)</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.2.11: </span>Le tracking d&#8217;événements et <code class="xref php php-class docutils literal"><span class="pre">Cake\Event\EventList</span></code> ont été
+ajoutés.</p>
+</div>
+</div>
+</div>
+<div class="section" id="events-du-coeur">
+<h2>Events du Cœur<a class="headerlink" href="#events-du-coeur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il y a de certain nombre d&#8217;événements du cœur du framework que votre application
+peut écouter. Chaque couche de CakePHP émet des événements que vous pouvez
+écouter dans votre application.</p>
+<ul class="simple">
+<li><a class="reference internal" href="../orm/table-objects.html#table-callbacks"><span class="std std-ref">Events de l&#8217;ORM et du Model</span></a></li>
+<li><a class="reference internal" href="../controllers.html#controller-life-cycle"><span class="std std-ref">Events du Controller</span></a></li>
+<li><a class="reference internal" href="../views.html#view-events"><span class="std std-ref">Events de View</span></a></li>
+</ul>
+</div>
+<div class="section" id="enregistrer-les-listeners">
+<span id="registering-event-listeners"></span><h2>Enregistrer les Listeners<a class="headerlink" href="#enregistrer-les-listeners" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les listeners (écouteurs) sont le meilleur moyen d&#8217;enregistrer les callbacks
+pour un événement. Ceci est fait en intégrant l&#8217;interface
+<code class="xref php php-class docutils literal"><span class="pre">Cake\Event\EventListenerInterface</span></code> dans toute classe dans laquelle
+vous souhaitez enregistrer des callbacks. Les classes l&#8217;intégrant ont besoin de
+fournir la méthode <code class="docutils literal"><span class="pre">implementedEvents()</span></code>. Cette méthode doit retourner un
+tableau associatif avec tous les noms d&#8217;événement que la classe va gérer.</p>
+<p>Pour continuer notre exemple précédent, imaginons que nous ayons une classe
+UserStatistic qui s&#8217;occupe de calculer l&#8217;historique des achats d&#8217;un utilisateur
+et les compile dans des statistiques globales du site. C&#8217;est un bon cas pour
+utiliser une classe listener. Faire ceci vous permet aussi de vous concentrer
+sur la logique des statistiques à un endroit et de réagir aux événements si
+nécessaire. Notre écouteur <code class="docutils literal"><span class="pre">UserStatistics</span></code> pourrait commencer comme ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Event\EventListenerInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserStatistic</span> <span class="k">implements</span> <span class="nx">EventListenerInterface</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">implementedEvents</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;Model.Orders.afterPlace&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;updateBuyStatistic&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">updateBuyStatistic</span><span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$order</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Code to update statistics</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Attache l&#39;objet UserStatistic au gestionnaire globale d&#39;événements de la Commande</span>
+<span class="nv">$statistics</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserStatistic</span><span class="p">();</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Orders</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="nv">$statistics</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Comme vous pouvez le voir dans le code ci-dessus, la fonction <code class="docutils literal"><span class="pre">on()</span></code> va
+accepter les instances de l&#8217;interface <code class="docutils literal"><span class="pre">EventListener</span></code>. En interne, le
+gestionnaire d&#8217;événements va utiliser <code class="docutils literal"><span class="pre">implementedEvents()</span></code> pour attacher
+les bons callbacks.</p>
+<div class="section" id="enregistrer-des-ecouteurs-anonymes">
+<h3>Enregistrer des Écouteurs Anonymes<a class="headerlink" href="#enregistrer-des-ecouteurs-anonymes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Alors que les objets listener d&#8217;événement sont généralement une meilleure façon
+d&#8217;intégrer des listeners, vous pouvez aussi lier tout <code class="docutils literal"><span class="pre">callable</span></code> comme un
+listener d&#8217;événement. Par exemple si nous souhaitons mettre toutes les commandes
+dans des fichiers de log, nous pourrions utiliser une simple fonction anonyme
+pour le faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Log\Log</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Orders</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;Model.Orders.afterPlace&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">write</span><span class="p">(</span>
+        <span class="s1">&#39;info&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A new order was placed with id: &#39;</span> <span class="o">.</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>En plus des fonctions anonymes, vous pouvez utiliser tout autre type callable
+que PHP supporte:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$events</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;email-sending&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;EmailSender::sendBuyEmail&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;inventory&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">InventoryManager</span><span class="p">,</span> <span class="s1">&#39;decrement&#39;</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$events</span> <span class="k">as</span> <span class="nv">$callable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$eventManager</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;Model.Orders.afterPlace&#39;</span><span class="p">,</span> <span class="nv">$callable</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quand vous travaillez avec des plugins qui ne déclenchent pas d&#8217;événement
+spécifique, vous pouvez utiliser les listeners d&#8217;événements sur les événements
+utilisés par défaut. Prenons un exemple d&#8217;un plugin &#8216;UserFeedback&#8217; qui gère les
+formulaires de feedback des utilisateurs. A partir de votre application, vous
+voudrez savoir quand un enregistrement Feedback a été enregistré et en
+définitive agir sur lui. Vous pourriez écouter l&#8217;événement global
+<code class="docutils literal"><span class="pre">Model.afterSave</span></code>. Cependant, vous pouvez utiliser une approche plus directe
+et écouter seulement l&#8217;événement dont vous avez réellement besoin:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Vous pouvez créer ce qui suit avant l&#39;opération de sauvegarde</span>
+<span class="c1">// par exemple dans config/bootstrap.php</span>
+<span class="k">use</span> <span class="nx">Cake\ORM\TableRegistry</span><span class="p">;</span>
+<span class="c1">// Si envoi d&#39;emails</span>
+<span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+
+<span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;ThirdPartyPlugin.Feedbacks&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;Model.afterSave&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$entity</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Par exemple nous pouvons envoyer un email à l&#39;admin</span>
+        <span class="c1">// Avant 3.4, utilisez les méthodes from()/to()/subject()</span>
+        <span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">);</span>
+        <span class="nv">$email</span><span class="o">-&gt;</span><span class="na">setFrom</span><span class="p">([</span><span class="s1">&#39;info@yoursite.com&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Your Site&#39;</span><span class="p">])</span>
+            <span class="o">-&gt;</span><span class="na">setTo</span><span class="p">(</span><span class="s1">&#39;admin@yoursite.com&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">setSubject</span><span class="p">(</span><span class="s1">&#39;New Feedback - Your Site&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="s1">&#39;Body of message&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<p>Vous pouvez utiliser cette même approche pour lier les objets listener.</p>
+</div>
+<div class="section" id="interagir-avec-les-listeners-existants">
+<h3>Interagir avec les Listeners Existants<a class="headerlink" href="#interagir-avec-les-listeners-existants" title="Lien permanent vers ce titre">¶</a></h3>
+<p>En supposant que plusieurs écouteurs d&#8217;événements ont été enregistrés, la
+présence ou l&#8217;absence d&#8217;un modèle d&#8217;événements particulier peut être utilisé
+comme base de certaines actions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Attacher les écouteurs au EventManager.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;User.Registration&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;userRegistration&#39;</span><span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;User.Verification&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;userVerification&#39;</span><span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;User.Authorization&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;userAuthorization&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Quelque part ailleurs dans votre application.</span>
+<span class="nv">$events</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">matchingListeners</span><span class="p">(</span><span class="s1">&#39;Verification&#39;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$events</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Perform logic related to presence of &#39;Verification&#39; event listener.</span>
+    <span class="c1">// For example removing the listener if present.</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">off</span><span class="p">(</span><span class="s1">&#39;User.Verification&#39;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Logique liée à l&#39;absence de l&#39;écouteur d&#39;événement &#39;Verification&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Le modèle passé à la méthode <code class="docutils literal"><span class="pre">matchingListeners</span></code> n&#8217;est pas sensible à la
+casse.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.2.3: </span>La méthode <code class="docutils literal"><span class="pre">matchingListeners</span></code> retourne un tableau d&#8217;événements qui
+matchent un patron de recherche.</p>
+</div>
+</div>
+<div class="section" id="etablir-des-priorites">
+<span id="event-priorities"></span><h3>Etablir des Priorités<a class="headerlink" href="#etablir-des-priorites" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans certains cas vous voulez contrôler la commande que les listeners appellent.
+Par exemple, si nous retournons à notre exemple des statistiques d&#8217;utilisateur.
+Ce serait idéal si le listener était appelé à la fin de la pile. En l&#8217;appelant
+à la fin de la pile, nous pouvons assurer que l&#8217;événement n&#8217;a pas été annulé
+et qu&#8217;aucun autre listener ne lève d&#8217;exception. Nous pouvons aussi obtenir
+l&#8217;état final des objets dans le cas où d&#8217;autres listeners ont modifié le sujet
+ou l&#8217;objet event.</p>
+<p>Les priorités sont définies comme un nombre entier lors de l&#8217;ajout d&#8217;un
+listener. Plus le nombre est haut, plus la méthode sera lancée tardivement. La
+priorité par défaut pour tous les listeners est <code class="docutils literal"><span class="pre">10</span></code>. Si vous avez besoin que
+votre méthode soit lancée plus tôt, en utilisant toute valeur avant que celle
+par défaut ne fonctionne. D&#8217;un autre côté, si vous souhaitez lancer le callback
+après les autres, utiliser un nombre au-dessus de <code class="docutils literal"><span class="pre">10</span></code> le fera.</p>
+<p>Si deux callbacks ont la même valeur de priorité, elles seront exécutées selon
+l&#8217;ordre dans lequel elles ont été attachées. Vous définissez les priorités en
+utilisant la méthode <code class="docutils literal"><span class="pre">on</span></code> pour les callbacks et en la déclarant dans la
+fonction <code class="docutils literal"><span class="pre">implementedEvents()</span></code> pour les listeners d&#8217;événement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Définir la priorité pour un callback</span>
+<span class="nv">$callback</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;doSomething&#39;</span><span class="p">];</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span>
+    <span class="s1">&#39;Model.Orders.afterPlace&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;priority&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="nv">$callback</span>
+<span class="p">);</span>
+
+<span class="c1">// Définir la priorité pour un listener</span>
+<span class="k">class</span> <span class="nc">UserStatistic</span> <span class="k">implements</span> <span class="nx">EventListener</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">implementedEvents</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;Model.Orders.afterPlace&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;callable&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;updateBuyStatistic&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;priority&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span>
+            <span class="p">],</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Comme vous le voyez, la principale différence pour les objets <code class="docutils literal"><span class="pre">EventListener</span></code>
+est que vous avez besoin d&#8217;utiliser un tableau pour spécifier la méthode
+callable et la préférence de priorité. La clé <code class="docutils literal"><span class="pre">callable</span></code> est une entrée de
+tableau spécial que le gestionnaire va lire pour savoir quelle fonction dans la
+classe il doit appeler.</p>
+</div>
+<div class="section" id="obtenir-des-donnees-d-event-en-parametres-de-fonction">
+<h3>Obtenir des Données d&#8217;Event en Paramètres de Fonction<a class="headerlink" href="#obtenir-des-donnees-d-event-en-parametres-de-fonction" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Quand les événements ont des données fournies dans leur constructeur, les
+données fournies sont converties en arguments pour les listeners. Un exemple
+de la couche View est la callback afterRender:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;View.afterRender&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;view&#39;</span> <span class="o">=&gt;</span> <span class="nv">$viewFileName</span><span class="p">]));</span>
+</pre></div>
+</div>
+<p>Les listeners de la callback <code class="docutils literal"><span class="pre">View.afterRender</span></code> doivent avoir la signature
+suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">,</span> <span class="nv">$viewFileName</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Chaque valeur fournie au constructeur d&#8217;Event sera convertie dans les paramètres
+de fonction afin qu&#8217;ils apparaissent dans le tableau de données. Si vous
+utilisez un tableau associatif, les résultats de <code class="docutils literal"><span class="pre">array_values</span></code> vont
+déterminer l&#8217;ordre des arguments de la fonction.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Au contraire de 2.x, convertir les données d&#8217;événement en arguments du
+listener est le comportement par défaut et ne peut pas être désactivé.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dispatcher-les-events">
+<h2>Dispatcher les Events<a class="headerlink" href="#dispatcher-les-events" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fois que vous avez obtenu une instance du gestionnaire d&#8217;événements, vous
+pouvez dispatcher les événements en utilisant
+<code class="xref php php-meth docutils literal"><span class="pre">Event\EventManager::dispatch()</span></code>. Cette méthode prend une
+instance de la classe <code class="xref php php-class docutils literal"><span class="pre">Cake\Event\Event</span></code>. Regardons le dispatch
+d&#8217;un événement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Crée un nouvel événement et le dispatch.</span>
+<span class="nv">$event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;Model.Orders.afterPlace&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="nv">$order</span>
+<span class="p">]);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="xref php php-class docutils literal"><span class="pre">Cake\Event\Event</span></code> accepte 3 arguments dans son constructeur. Le
+premier est le nom de l&#8217;événement, vous devriez essayer de garder ce nom aussi
+unique que possible, en le rendant lisible. Nous vous suggérons une convention
+comme suit: <code class="docutils literal"><span class="pre">Layer.eventName</span></code> pour les événements généraux qui arrivent
+au niveau couche (par ex <code class="docutils literal"><span class="pre">Controller.startup</span></code>, <code class="docutils literal"><span class="pre">View.beforeRender</span></code>) et
+<code class="docutils literal"><span class="pre">Layer.Class.eventName</span></code> pour les événements qui arrivent dans des classes
+spécifiques sur une couche, par exemple <code class="docutils literal"><span class="pre">Model.User.afterRegister</span></code> ou
+<code class="docutils literal"><span class="pre">Controller.Courses.invalidAccess</span></code>.</p>
+<p>Le deuxième argument est le <code class="docutils literal"><span class="pre">subject</span></code>, c&#8217;est à dire l&#8217;objet associé à
+l&#8217;événement, comme une classe attrape les événements sur elle-même, utiliser
+<code class="docutils literal"><span class="pre">$this</span></code> sera le cas le plus commun.
+Même si un <code class="xref php php-class docutils literal"><span class="pre">Component</span></code> peut aussi déclencher les événements d&#8217;un
+controller. La classe subject est importante parce que les écouteurs auront un
+accès immédiat aux propriétés de l&#8217;objet et pourront les inspecter ou les
+changer à la volée.</p>
+<p>Au final, le troisième argument est une donnée d&#8217;événement supplémentaire. Ceci
+peut être toute donnée que vous considérez utile de passer pour que les
+écouteurs puissent agir sur eux. Alors que ceci peut être un argument de tout
+type, nous vous recommandons de passer un tableau associatif.</p>
+<p>La méthode <code class="xref php php-meth docutils literal"><span class="pre">Event\EventManager::dispatch()</span></code> accepte un objet
+event en argument et notifie à tous les écouteurs qui sont abonnés.</p>
+<div class="section" id="stopper-les-events">
+<span id="stopping-events"></span><h3>Stopper les Events<a class="headerlink" href="#stopper-les-events" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Un peu comme les événements DOM, vous voulez peut-être stopper un événement pour
+éviter aux autres listeners d&#8217;être notifiés. Vous pouvez voir ceci pendant les
+callbacks de mode(par ex beforeSave) dans lesquels il est possible de stopper
+l&#8217;opération de sauvegarde si le code détecte qu&#8217;il ne peut pas continuer.</p>
+<p>Afin de stopper les événements, vous pouvez soit retourner <code class="docutils literal"><span class="pre">false</span></code> dans vos
+callbacks ou appeler la méthode <code class="docutils literal"><span class="pre">stopPropagation()</span></code> sur l&#8217;objet event:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// stoppe l&#39;event</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">updateBuyStatistic</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">stopPropagation</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Stopper un événement va éviter à toute callback supplémentaire d&#8217;être appelée.
+En plus, le code attrapant l&#8217;événement peut se comporter différemment selon que
+l&#8217;événement est stoppé ou non. Généralement il n&#8217;est pas sensé stopper &#8216;après&#8217;
+les événements, mais stopper &#8216;avant&#8217; les événements est souvent utilisé pour
+empêcher toutes les opérations de se passer.</p>
+<p>Pour vérifier si un événement a été stoppé, vous appelez la méthode
+<code class="docutils literal"><span class="pre">isStopped()</span></code> dans l&#8217;objet event:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">place</span><span class="p">(</span><span class="nv">$order</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;Model.Orders.beforePlace&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="nv">$order</span><span class="p">]);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">isStopped</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Orders</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$order</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans l&#8217;exemple précédent, l&#8217;ordre ne serait pas sauvegardé si l&#8217;événement est
+stoppé pendant le processus <code class="docutils literal"><span class="pre">beforePlace</span></code>.</p>
+</div>
+<div class="section" id="obtenir-des-resultats-d-evenement">
+<h3>Obtenir des Résultats d&#8217;Evenement<a class="headerlink" href="#obtenir-des-resultats-d-evenement" title="Lien permanent vers ce titre">¶</a></h3>
+<p>A chaque fois qu&#8217;un callback retourne une valeur non nulle et non false, elle
+sera stockée dans la propriété <code class="docutils literal"><span class="pre">$result</span></code> de l&#8217;objet event. C&#8217;est utile quand
+vous voulez permettre aux callbacks de modifier l&#8217;exécution de l&#8217;événement.
+Prenons à nouveau notre exemple <code class="docutils literal"><span class="pre">beforePlace</span></code> et laissons les callbacks
+modifier la donnée <code class="docutils literal"><span class="pre">$order</span></code>.</p>
+<p>Les résultats d&#8217;Event peuvent être modifiés soit en utilisant directement la
+propriété de résultat de l&#8217;objet event, soit en retournant la valeur dans le
+callback elle-même:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Un callback listener</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="nv">$alteredData</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">(</span><span class="s1">&#39;order&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nv">$moreData</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$alteredData</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Un autre callback listener</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">doSomethingElse</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">setResult</span><span class="p">([</span><span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="nv">$alteredData</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// Utiliser les résultats d&#39;event</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">place</span><span class="p">(</span><span class="nv">$order</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;Model.Orders.beforePlace&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;order&#39;</span> <span class="o">=&gt;</span> <span class="nv">$order</span><span class="p">]);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()[</span><span class="s1">&#39;order&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$order</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getResult</span><span class="p">()[</span><span class="s1">&#39;order&#39;</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Orders</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$order</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Il est possible de modifier toute propriété d&#8217;un objet event et d&#8217;avoir les
+nouvelles données passées à la prochaine callback. Dans la plupart des cas,
+fournir des objets en données d&#8217;event ou en résultat et directement modifier
+l&#8217;objet est la meilleure solution puisque la référence est la même et les
+modifications sont partagées à travers tous les appels de callback.</p>
+</div>
+<div class="section" id="retirer-les-callbacks-et-les-listeners">
+<h3>Retirer les Callbacks et les Listeners<a class="headerlink" href="#retirer-les-callbacks-et-les-listeners" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si pour certaines raisons, vous voulez retirer toute callback d&#8217;un gestionnaire
+d&#8217;événements, appelez seulement la méthode
+<code class="xref php php-meth docutils literal"><span class="pre">Cake\Event\EventManager::off()</span></code> en utilisant des arguments les deux
+premiers paramètres que vous utilisiez pour l&#8217;attacher:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Attacher une fonction</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;My.event&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;doSomething&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Détacher une fonction</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">off</span><span class="p">([</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;doSomething&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Attacher une fonction anonyme.</span>
+<span class="nv">$myFunction</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">};</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;My.event&#39;</span><span class="p">,</span> <span class="nv">$myFunction</span><span class="p">);</span>
+
+<span class="c1">// Détacher la fonction anonyme</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">off</span><span class="p">(</span><span class="s1">&#39;My.event&#39;</span><span class="p">,</span> <span class="nv">$myFunction</span><span class="p">);</span>
+
+<span class="c1">// Attacher un EventListener</span>
+<span class="nv">$listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyEventLister</span><span class="p">();</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="nv">$listener</span><span class="p">);</span>
+
+<span class="c1">// Détacher une clé d&#39;événement unique d&#39;un listener</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">off</span><span class="p">(</span><span class="s1">&#39;My.event&#39;</span><span class="p">,</span> <span class="nv">$listener</span><span class="p">);</span>
+
+<span class="c1">// Détacher tous les callbacks intégrés par un listener</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">off</span><span class="p">(</span><span class="nv">$listener</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les événements sont une bonne façon de séparer les préoccupations dans votre
+application et rend les classes à la fois cohérentes et découplées des autres,
+néanmoins l&#8217;utilisation des événements n&#8217;est pas la solution à tous les
+problèmes. Les Events peuvent être utilisés pour découpler le code de
+l&#8217;application et rendre les plugins extensibles.</p>
+<p>Gardez à l&#8217;esprit que beaucoup de pouvoir implique beaucoup de responsabilité.
+Utiliser trop d&#8217;événements peut rendre le debug plus difficile et nécessiter des
+tests d&#8217;intégration supplémentaires.</p>
+</div>
+</div>
+<div class="section" id="lecture-supplementaire">
+<h2>Lecture Supplémentaire<a class="headerlink" href="#lecture-supplementaire" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../orm/behaviors.html"><span class="doc">Behaviors (Comportements)</span></a></li>
+<li><a class="reference internal" href="../controllers/components.html"><span class="doc">Components (Composants)</span></a></li>
+<li><a class="reference internal" href="../views/helpers.html"><span class="doc">Helpers (Assistants)</span></a></li>
+<li><a class="reference internal" href="../development/testing.html#testing-events"><span class="std std-ref">Tester les Events</span></a></li>
+</ul>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

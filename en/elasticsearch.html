@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ElasticSearch - 3.x</title>
+    <link href="_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../pt/elasticsearch.html" /><link rel="alternate" hreflang="es" href="../es/elasticsearch.html" /><link rel="alternate" hreflang="ja" href="../ja/elasticsearch.html" /><link rel="alternate" hreflang="fr" href="../fr/elasticsearch.html" /><link rel="alternate" hreflang="zh" href="../zh/elasticsearch.html" /><link rel="alternate" hreflang="tr" href="../tr/elasticsearch.html" /><link rel="alternate" hreflang="ru" href="../ru/elasticsearch.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="index.html" />
+    <link rel="next" title="Upgrade Tool" href="upgrade-tool.html" />
+    <link rel="prev" title="Migrations" href="migrations.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../pt/elasticsearch.html">pt</a></li>
+                                            
+                                                <li><a href="../es/elasticsearch.html">es</a></li>
+                                            
+                                                <li><a href="../ja/elasticsearch.html">ja</a></li>
+                                            
+                                                <li><a href="../fr/elasticsearch.html">fr</a></li>
+                                            
+                                                <li><a href="../zh/elasticsearch.html">zh</a></li>
+                                            
+                                                <li><a href="../tr/elasticsearch.html">tr</a></li>
+                                            
+                                                <li><a href="../ru/elasticsearch.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/elasticsearch.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">ElasticSearch</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#document-objects">Document Objects</a></li>
+<li><a class="reference internal" href="#searching-indexed-documents">Searching Indexed Documents</a></li>
+<li><a class="reference internal" href="#validating-data-using-application-rules">Validating Data &amp; Using Application Rules</a></li>
+<li><a class="reference internal" href="#saving-new-documents">Saving New Documents</a></li>
+<li><a class="reference internal" href="#updating-existing-documents">Updating Existing Documents</a></li>
+<li><a class="reference internal" href="#deleting-documents">Deleting Documents</a></li>
+<li><a class="reference internal" href="#embedding-documents">Embedding Documents</a></li>
+<li><a class="reference internal" href="#getting-type-instances">Getting Type Instances</a><ul>
+<li><a class="reference internal" href="#flushing-the-registry">Flushing the Registry</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#test-fixtures">Test Fixtures</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="elasticsearch">
+<h1>ElasticSearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h1>
+<p>The ElasticSearch plugin provides an ORM-like abstraction on top of
+<a class="reference external" href="https://www.elastic.co/products/elasticsearch">elasticsearch</a>. The plugin
+provides features that make testing, indexing documents and searching your
+indexes easier.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install the ElasticSearch plugin, you can use <code class="docutils literal"><span class="pre">composer</span></code>. From your
+application&#8217;s ROOT directory (where composer.json file is located) run the
+following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">composer</span><span class="o">.</span><span class="nx">phar</span> <span class="k">require</span> <span class="nx">cakephp</span><span class="o">/</span><span class="nx">elastic</span><span class="o">-</span><span class="nx">search</span> <span class="s2">&quot;@stable&quot;</span>
+</pre></div>
+</div>
+<p>You will need to add the following line to your application&#8217;s
+<strong>config/bootstrap.php</strong> file:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Plugin</span><span class="o">::</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;Cake/ElasticSearch&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;bootstrap&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Additionally, you will need to configure the &#8216;elastic&#8217; datasource connection in
+your <strong>config/app.php</strong> file. An example configuration would be:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in config/app.php</span>
+<span class="s1">&#39;Datasources&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="c1">// other datasources</span>
+    <span class="s1">&#39;elastic&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;className&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\ElasticSearch\Datasource\Connection&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Cake\ElasticSearch\Datasource\Connection&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">9200</span><span class="p">,</span>
+        <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_apps_index&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The ElasticSearch plugin makes it easier to interact with an elasticsearch index
+and provides an interface similar to the <a class="reference internal" href="orm.html"><span class="doc">Database Access &amp; ORM</span></a>. To get started you should
+create a <code class="docutils literal"><span class="pre">Type</span></code> object. <code class="docutils literal"><span class="pre">Type</span></code> objects are the &#8220;Repository&#8221; or table-like
+class in elasticsearch:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in src/Model/Type/ArticlesType.php</span>
+<span class="k">namespace</span> <span class="nx">App\Model\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ElasticSearch\Type</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesType</span> <span class="k">extends</span> <span class="nx">Type</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can then use your type class in your controllers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">beforeFilter</span><span class="p">(</span><span class="nx">Event</span> <span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">parent</span><span class="o">::</span><span class="na">beforeFilter</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+    <span class="c1">// Load the Type using the &#39;Elastic&#39; provider.</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadModel</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">,</span> <span class="s1">&#39;Elastic&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">patchEntity</span><span class="p">(</span><span class="nv">$article</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="s1">&#39;It saved&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nb">compact</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We would also need to create a basic view for our indexed articles:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in src/Template/Articles/add.ctp</span>
+<span class="o">&lt;?=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$article</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">control</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">button</span><span class="p">(</span><span class="s1">&#39;Save&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Form</span><span class="o">-&gt;</span><span class="na">end</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>You should now be able to submit the form and have a new document added to
+elasticsearch.</p>
+</div>
+<div class="section" id="document-objects">
+<h2>Document Objects<a class="headerlink" href="#document-objects" title="Permalink to this headline">¶</a></h2>
+<p>Like the ORM, the Elasticsearch ODM uses <a class="reference internal" href="orm/entities.html"><span class="doc">Entities</span></a>-like classes. The
+base class you should inherit from is <code class="docutils literal"><span class="pre">Cake\ElasticSearch\Document</span></code>. Document
+classes are found in the <code class="docutils literal"><span class="pre">Model\Document</span></code> namespace in your application or
+plugin:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Document</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ElasticSearch\Document</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Document</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Outside of constructor logic that makes Documents work with data from
+elasticsearch, the interface and functionality provided by <code class="docutils literal"><span class="pre">Document</span></code> are the
+same as those in <a class="reference internal" href="orm/entities.html"><span class="doc">Entities</span></a></p>
+</div>
+<div class="section" id="searching-indexed-documents">
+<h2>Searching Indexed Documents<a class="headerlink" href="#searching-indexed-documents" title="Permalink to this headline">¶</a></h2>
+<p>After you&#8217;ve indexed some documents you will want to search through them. The
+ElasticSearch plugin provides a query builder that allows you to build search
+queries:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;special&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;or&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;tags in&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;cake&#39;</span><span class="p">,</span> <span class="s1">&#39;php&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;tags not in&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;c#&#39;</span><span class="p">,</span> <span class="s1">&#39;java&#39;</span><span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can use the <code class="docutils literal"><span class="pre">FilterBuilder</span></code> to add filtering conditions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$builder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">and</span><span class="p">(</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">gt</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">),</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">term</span><span class="p">(</span><span class="s1">&#39;author.name&#39;</span><span class="p">,</span> <span class="s1">&#39;sally&#39;</span><span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://github.com/cakephp/elastic-search/blob/master/src/FilterBuilder.php">FilterBuilder source</a>
+has the complete list of methods with examples for many commonly used methods.</p>
+</div>
+<div class="section" id="validating-data-using-application-rules">
+<h2>Validating Data &amp; Using Application Rules<a class="headerlink" href="#validating-data-using-application-rules" title="Permalink to this headline">¶</a></h2>
+<p>Like the ORM, the ElasticSearch plugin lets you validate data when marshalling
+documents. Validating request data, and applying application rules works the
+same as it does with the relational ORM. See the <a class="reference internal" href="orm/validation.html#validating-request-data"><span class="std std-ref">Validating Data Before Building Entities</span></a>
+and <a class="reference internal" href="orm/validation.html#application-rules"><span class="std std-ref">Applying Application Rules</span></a> sections for more information.</p>
+</div>
+<div class="section" id="saving-new-documents">
+<h2>Saving New Documents<a class="headerlink" href="#saving-new-documents" title="Permalink to this headline">¶</a></h2>
+<p>When you&#8217;re ready to index some data into elasticsearch, you&#8217;ll first need to
+convert your data into a <code class="docutils literal"><span class="pre">Document</span></code> that can be indexed:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$article</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Document was indexed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When marshalling a document, you can specify which embedded documents you wish
+to marshall using the <code class="docutils literal"><span class="pre">associated</span></code> key:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;associated&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Comments&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>Saving a document will trigger the following events:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Model.beforeSave</span></code> - Fired before the document is saved. You can prevent the
+save operation from happening by stopping this event.</li>
+<li><code class="docutils literal"><span class="pre">Model.buildRules</span></code> - Fired when the rules checker is built for the first
+time.</li>
+<li><code class="docutils literal"><span class="pre">Model.afterSave</span></code> - Fired after the document is saved.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There are no events for embedded documents, as the parent document and all
+of its embedded documents are saved as one operation.</p>
+</div>
+</div>
+<div class="section" id="updating-existing-documents">
+<h2>Updating Existing Documents<a class="headerlink" href="#updating-existing-documents" title="Permalink to this headline">¶</a></h2>
+<p>When you need to re-index data, you can patch existing entities and re-save
+them:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">([</span><span class="s1">&#39;user.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;jill&#39;</span><span class="p">]);</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span> <span class="k">as</span> <span class="nv">$doc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$newProperties</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$doc</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting-documents">
+<h2>Deleting Documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h2>
+<p>After retrieving a document you can delete it:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$doc</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$doc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also delete documents matching specific conditions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">deleteAll</span><span class="p">([</span><span class="s1">&#39;user.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bob&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="embedding-documents">
+<h2>Embedding Documents<a class="headerlink" href="#embedding-documents" title="Permalink to this headline">¶</a></h2>
+<p>By defining embedded documents, you can attach entity classes to specific
+property paths in your documents. This allows you to provide custom behavior to
+the documents within a parent document. For example, you may want the comments
+embedded in an article to have specific application specific methods. You can
+use <code class="docutils literal"><span class="pre">embedOne</span></code> and <code class="docutils literal"><span class="pre">embedMany</span></code> to define embedded documents:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// in src/Model/Type/ArticlesType.php</span>
+<span class="k">namespace</span> <span class="nx">App\Model\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ElasticSearch\Type</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ArticlesType</span> <span class="k">extends</span> <span class="nx">Type</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">embedOne</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">embedMany</span><span class="p">(</span><span class="s1">&#39;Comments&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;entityClass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyComment&#39;</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above would create two embedded documents on the <code class="docutils literal"><span class="pre">Article</span></code> document. The
+<code class="docutils literal"><span class="pre">User</span></code> embed will convert the <code class="docutils literal"><span class="pre">user</span></code> property to instances of
+<code class="docutils literal"><span class="pre">App\Model\Document\User</span></code>. To get the Comments embed to use a class name
+that does not match the property name, we can use the <code class="docutils literal"><span class="pre">entityClass</span></code> option to
+configure a custom class name.</p>
+<p>Once we&#8217;ve setup our embedded documents, the results of <code class="docutils literal"><span class="pre">find()</span></code> and <code class="docutils literal"><span class="pre">get()</span></code>
+will return objects with the correct embedded document classes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+<span class="c1">// Instance of App\Model\Document\User</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">;</span>
+
+<span class="c1">// Array of App\Model\Document\Comment instances</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-type-instances">
+<h2>Getting Type Instances<a class="headerlink" href="#getting-type-instances" title="Permalink to this headline">¶</a></h2>
+<p>Like the ORM, the ElasticSearch plugin provides a factory/registry for getting
+<code class="docutils literal"><span class="pre">Type</span></code> instances:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\ElasticSearch\TypeRegistry</span><span class="p">;</span>
+
+<span class="nv">$articles</span> <span class="o">=</span> <span class="nx">TypeRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="flushing-the-registry">
+<h3>Flushing the Registry<a class="headerlink" href="#flushing-the-registry" title="Permalink to this headline">¶</a></h3>
+<p>During test cases you may want to flush the registry. Doing so is often useful
+when you are using mock objects, or modifying a type&#8217;s dependencies:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">TypeRegistry</span><span class="o">::</span><span class="na">flush</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-fixtures">
+<h2>Test Fixtures<a class="headerlink" href="#test-fixtures" title="Permalink to this headline">¶</a></h2>
+<p>The ElasticSearch plugin provides seamless test suite integration. Just like
+database fixtures, you can create test fixtures for elasticsearch. We could
+define a test fixture for our Articles type with the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Test\Fixture</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ElasticSearch\TestSuite\TestFixture</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * Articles fixture</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ArticlesFixture</span> <span class="k">extends</span> <span class="nx">TestFixture</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * The table/type for this fixture.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @var string</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="nv">$table</span> <span class="o">=</span> <span class="s1">&#39;articles&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * The mapping data.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @var array</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="nv">$schema</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;integer&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;nested&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;properties&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">],</span>
+    <span class="p">];</span>
+
+    <span class="k">public</span> <span class="nv">$records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;billy&#39;</span>
+            <span class="p">],</span>
+            <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;First Post&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Some content&#39;</span>
+        <span class="p">]</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">schema</span></code> property uses the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/1.5/mapping.html">native elasticsearch mapping format</a>.
+You can safely omit the type name and top level <code class="docutils literal"><span class="pre">properties</span></code> key. Once your
+fixtures are created you can use them in your test cases by including them in
+your test&#8217;s <code class="docutils literal"><span class="pre">fixtures</span></code> properties:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$fixtures</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;app.articles&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrations.html">Migrations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

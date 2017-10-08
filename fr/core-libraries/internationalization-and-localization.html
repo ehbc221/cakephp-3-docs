@@ -1,0 +1,1181 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Internationalization &amp; Localization" lang="fr" name="title" />
+<meta content="internationalization localization,internationalization et localization,localization features,language application,gettext,l10n,daunting task,adaptation,pot,i18n,audience,traduction,languages" lang="fr" name="keywords" />
+
+    <title>Internationalisation &amp; Localisation - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/internationalization-and-localization.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/internationalization-and-localization.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="next" title="Journalisation (logging)" href="logging.html" />
+    <link rel="prev" title="Événements système" href="events.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/core-libraries/internationalization-and-localization.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/internationalization-and-localization.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/internationalization-and-localization.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/internationalization-and-localization.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/internationalization-and-localization.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/internationalization-and-localization.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/internationalization-and-localization.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/core-libraries/internationalization-and-localization.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Internationalisation &amp; Localisation</a><ul>
+<li><a class="reference internal" href="#internationaliser-votre-application">Internationaliser Votre Application</a><ul>
+<li><a class="reference internal" href="#fichiers-de-langues">Fichiers de Langues</a></li>
+<li><a class="reference internal" href="#extraire-les-fichiers-pot-avec-le-shell-i18n">Extraire les Fichiers Pot avec le Shell I18n</a></li>
+<li><a class="reference internal" href="#definir-la-locale-par-defaut">Définir la Locale par Défaut</a></li>
+<li><a class="reference internal" href="#modifier-la-locale-pendant-l-execution">Modifier la Locale pendant l&#8217;Exécution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utiliser-les-fonctions-de-traduction">Utiliser les Fonctions de Traduction</a><ul>
+<li><a class="reference internal" href="#utiliser-des-variables-dans-les-traductions-de-messages">Utiliser des Variables dans les Traductions de Messages</a></li>
+<li><a class="reference internal" href="#pluriels">Pluriels</a><ul>
+<li><a class="reference internal" href="#utiliser-la-selection-plurielle-icu">Utiliser la Sélection Plurielle ICU</a></li>
+<li><a class="reference internal" href="#utiliser-la-selection-plurielle-gettext">Utiliser la Sélection Plurielle Gettext</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creer-vos-propres-traducteurs">Créer Vos Propres Traducteurs</a><ul>
+<li><a class="reference internal" href="#creer-des-parsers-de-messages">Créer des Parsers de Messages</a></li>
+<li><a class="reference internal" href="#creer-des-traducteurs-generiques">Créer des Traducteurs Génériques</a></li>
+<li><a class="reference internal" href="#pluriels-et-contexte-dans-les-traducteurs-personnalises">Pluriels et Contexte dans les Traducteurs Personnalisés</a></li>
+<li><a class="reference internal" href="#utiliser-des-formateurs-differents">Utiliser des Formateurs Différents</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#localiser-les-dates-et-les-nombres">Localiser les Dates et les Nombres</a><ul>
+<li><a class="reference internal" href="#parser-les-donnees-datetime-localisees">Parser les Données Datetime Localisées</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#selection-automatique-de-locale-basee-sur-les-donnees-de-requetes">Sélection Automatique de Locale Basée sur les Données de Requêtes</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="internationalisation-localisation">
+<h1>Internationalisation &amp; Localisation<a class="headerlink" href="#internationalisation-localisation" title="Lien permanent vers ce titre">¶</a></h1>
+<p>L&#8217;une des meilleures façons pour qu&#8217;une application ait une audience plus large
+est de gérer plusieurs langues. Cela peut souvent se révéler être une tâche
+gigantesque, mais les fonctionnalités d&#8217;internationalisation et de localisation
+dans CakePHP rendront cela plus facile.</p>
+<p>D&#8217;abord il est important de comprendre quelques terminologies.
+<em>Internationalisation</em> se réfère à la possibilité qu&#8217;a une application d&#8217;être
+localisée. Le terme <em>localisation</em> se réfère à l&#8217;adaptation qu&#8217;a une application
+de répondre aux besoins d&#8217;une langue (ou culture) spécifique (par ex: un
+&#8220;locale&#8221;). L&#8217;internationalisation et la localisation sont souvent abrégées en
+respectivement i18n et l10n; 18 et 10 correspondent au nombre de caractères
+entre le premier et le dernier caractère respectivement pour
+internationalisation et localisation.</p>
+<div class="section" id="internationaliser-votre-application">
+<h2>Internationaliser Votre Application<a class="headerlink" href="#internationaliser-votre-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il n&#8217;y a que quelques étapes à franchir pour passer d&#8217;une application
+mono-langue à une application multi-langue, la première est d&#8217;utiliser la
+fonction <a class="reference internal" href="global-constants-and-functions.html#__" title="__"><code class="xref php php-func docutils literal"><span class="pre">__()</span></code></a> dans votre code. Ci-dessous un exemple d&#8217;un code pour
+une application mono-langue:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Popular</span> <span class="nx">Articles</span><span class="o">&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Pour internationaliser votre code, la seule chose à faire est d&#8217;entourer
+la chaîne avec <a class="reference internal" href="global-constants-and-functions.html#__" title="__"><code class="xref php php-func docutils literal"><span class="pre">__()</span></code></a> comme ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;&lt;?=</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Popular Articles&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/h2&gt;</span>
+</pre></div>
+</div>
+<p>Si vous ne faîtes rien de plus, ces deux bouts de codes donneront un résultat
+identique - ils renverront le même contenu au navigateur.
+La fonction <a class="reference internal" href="global-constants-and-functions.html#__" title="__"><code class="xref php php-func docutils literal"><span class="pre">__()</span></code></a> traduira la chaîne passée si une traduction est
+disponible, sinon elle la renverra non modifiée.</p>
+<div class="section" id="fichiers-de-langues">
+<h3>Fichiers de Langues<a class="headerlink" href="#fichiers-de-langues" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les traductions peuvent être mises à disposition en utilisant des fichiers de
+langue stockés dans votre application. Le format par défaut pour ces fichiers
+est le format <a class="reference external" href="http://en.wikipedia.org/wiki/Gettext">Gettext</a>.
+Ces fichiers doivent être placés dans <strong>src/Locale/</strong> et dans ce répertoire, il
+devrait y avoir un sous-dossier par langue que l&#8217;application doit prendre en
+charge:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nx">src</span>
+    <span class="o">/</span><span class="nx">Locale</span>
+        <span class="o">/</span><span class="nx">en_US</span>
+            <span class="k">default</span><span class="o">.</span><span class="nx">po</span>
+        <span class="o">/</span><span class="nx">en_GB</span>
+            <span class="k">default</span><span class="o">.</span><span class="nx">po</span>
+            <span class="nx">validation</span><span class="o">.</span><span class="nx">po</span>
+        <span class="o">/</span><span class="nx">es</span>
+            <span class="k">default</span><span class="o">.</span><span class="nx">po</span>
+</pre></div>
+</div>
+<p>Le domaine par défaut est &#8216;default&#8217;, votre dossier <code class="docutils literal"><span class="pre">locale</span></code> devrait donc
+contenir au minimum le fichier <code class="docutils literal"><span class="pre">default.po</span></code> (cf. ci-dessus). Un domaine se
+réfère à un regroupement arbitraire de messages de traduction. Si aucun groupe
+n&#8217;est utilisé, le groupe par défaut est sélectionné.</p>
+<p>Les messages du coeur extraits de la libairie CakePHP peuvent être stockés
+séparément dans un fichier <strong>cake.po</strong> dans <strong>src/Locale/</strong>.
+La <a class="reference external" href="https://github.com/cakephp/localized">librairie localized de CakePHP</a>
+contient des traductions des chaînes de caractère du coeur (du domaine cake)
+pour l&#8217;interface client. Pour utiliser ces fichiers, liez les ou copiez les au
+bon endroit : <strong>src/Locale/&lt;locale&gt;/cake.po</strong>. Si votre locale est incomplète ou
+incorrecte, vous pouvez nous envoyer une PR dans ce dépôt pour corriger les
+erreurs.</p>
+<p>Les plugins peuvent également contenir des fichiers de traduction, la convention
+est d&#8217;utiliser la version <code class="docutils literal"><span class="pre">under_scored</span></code> du nom du plugin comme domaine de la
+traduction des messages:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">MyPlugin</span>
+    <span class="o">/</span><span class="nx">src</span>
+        <span class="o">/</span><span class="nx">Locale</span>
+            <span class="o">/</span><span class="nx">fr</span>
+                <span class="nx">my_plugin</span><span class="o">.</span><span class="nx">po</span>
+            <span class="o">/</span><span class="nx">de</span>
+                <span class="nx">my_plugin</span><span class="o">.</span><span class="nx">po</span>
+</pre></div>
+</div>
+<p>Les dossiers de traduction peuvent être composées d&#8217;un code à deux lettres ISO
+de la langue ou du nom de la locale, par exemple <code class="docutils literal"><span class="pre">fr_FR</span></code>, <code class="docutils literal"><span class="pre">es_AR</span></code>,
+<code class="docutils literal"><span class="pre">da_DK</span></code>, qui contient en même temps la langue et le pays où elle est parlée.</p>
+<p>Un fichier de traduction pourrait ressembler à ceci :</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;My name is {0}&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Je m&#39;appelle {0}&quot;</span>
+
+<span class="nv">msgid</span> <span class="s">&quot;I&#39;m {0,number} years old&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;J&#39;ai {0,number} ans&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extraire-les-fichiers-pot-avec-le-shell-i18n">
+<h3>Extraire les Fichiers Pot avec le Shell I18n<a class="headerlink" href="#extraire-les-fichiers-pot-avec-le-shell-i18n" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour créer les fichiers pot à partir de <cite>__()</cite> et des autres types de messages
+internationalisés qui se trouvent dans votre code, vous pouvez utiliser le shell
+i18n. Vous pouvez consulter le
+<a class="reference internal" href="../console-and-shells/i18n-shell.html"><span class="doc">chapitre suivant</span></a> pour en savoir plus.</p>
+</div>
+<div class="section" id="definir-la-locale-par-defaut">
+<h3>Définir la Locale par Défaut<a class="headerlink" href="#definir-la-locale-par-defaut" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La <code class="docutils literal"><span class="pre">locale</span></code> par défaut se détermine dans le fichier <strong>config/app.php</strong> en
+définissant <code class="docutils literal"><span class="pre">App.defaultLocale</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="s1">&#39;App&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;defaultLocale&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;APP_DEFAULT_LOCALE&#39;</span><span class="p">,</span> <span class="s1">&#39;en_US&#39;</span><span class="p">),</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Cela permet de contrôler plusieurs aspects de votre application, incluant la
+langue de traduction par défaut, le format des dates, des nombres, et devises à
+chaque fois qu&#8217;un de ces éléments s&#8217;affiche, en utilisant les bibliothèques de
+localisation fournies par CakePHP.</p>
+</div>
+<div class="section" id="modifier-la-locale-pendant-l-execution">
+<h3>Modifier la Locale pendant l&#8217;Exécution<a class="headerlink" href="#modifier-la-locale-pendant-l-execution" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour changer la langue des chaines de caractères traduites, vous pouvez appeler
+cette méthode:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\I18n</span><span class="p">;</span>
+
+<span class="c1">// Avant 3.5, utilisez I18n::locale()</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;de_DE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cela changera également le formatage des nombres et des dates lorsque vous
+utilisez les outils de localisation.</p>
+</div>
+</div>
+<div class="section" id="utiliser-les-fonctions-de-traduction">
+<h2>Utiliser les Fonctions de Traduction<a class="headerlink" href="#utiliser-les-fonctions-de-traduction" title="Lien permanent vers ce titre">¶</a></h2>
+<p>CakePHP fournit plusieurs fonctions qui vous aideront à internationaliser votre
+application. La plus fréquemment utilisée est <a class="reference internal" href="global-constants-and-functions.html#__" title="__"><code class="xref php php-func docutils literal"><span class="pre">__()</span></code></a>. Cette fonction
+est utilisée pour récupérer un message de traduction simple ou retourner la
+même chaine si aucune traduction n&#8217;est trouvée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Popular Articles&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Si vous avez besoin de grouper vos messages, par exemple des traduction à
+l&#8217;intérieur d&#8217;un plugin, vous pouvez utiliser la fonction <a class="reference internal" href="global-constants-and-functions.html#__d" title="__d"><code class="xref php php-func docutils literal"><span class="pre">__d()</span></code></a>
+pour récupérer les messages d&#8217;un autre domaine:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__d</span><span class="p">(</span><span class="s1">&#39;my_plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;Trending right now&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous souhaitez traduire vos plugins et qu&#8217;ils ont un &#8220;préfixe&#8221; de
+namespace, vous devez nommer votre chaîne de domaine <code class="docutils literal"><span class="pre">Namespace/PluginName</span></code>.
+Cependant, notez que le chemin du fichier de langage sera, dans votre dossier de
+plugin, <code class="docutils literal"><span class="pre">plugins/Namespace/PluginName/src/Locale/plugin_name.po</span></code>.</p>
+</div>
+<p>Parfois les chaines de traduction peuvent être ambigües pour les personnes
+les traduisant. Cela se produit lorsque deux chaines sont identiques mais
+se réfèrent à des choses différentes. Par exemple &#8216;lettre&#8217; a plusieurs
+significations en français. Pour résoudre ce problème, vous pouvez utiliser
+la fonction <a class="reference internal" href="global-constants-and-functions.html#__x" title="__x"><code class="xref php php-func docutils literal"><span class="pre">__x()</span></code></a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__x</span><span class="p">(</span><span class="s1">&#39;communication écrite&#39;</span><span class="p">,</span> <span class="s1">&#39;He read the first letter&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nx">__x</span><span class="p">(</span><span class="s1">&#39;apprentissage de l alphabet&#39;</span><span class="p">,</span> <span class="s1">&#39;He read the first letter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le premier argument est le contexte du message et le second est le message
+à traduire.</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="nv">msgctxt</span> <span class="s">&quot;communication écrite&quot;</span>
+<span class="nv">msgid</span> <span class="s">&quot;He read the first letter&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Il a lu le premier courrier&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="utiliser-des-variables-dans-les-traductions-de-messages">
+<h3>Utiliser des Variables dans les Traductions de Messages<a class="headerlink" href="#utiliser-des-variables-dans-les-traductions-de-messages" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les fonctions de traduction vous permettent d&#8217;interpoler des variables dans
+les messages en utilisant des marqueurs définis dans le message lui-même
+ou dans la chaine traduite:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;Hello, my name is {0}, I&#39;m {1} years old&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Les marqueurs sont numériques et correspondent aux clés dans le tableau passé.
+Vous pouvez également passer à la fonction les variables en tant qu&#8217;arguments
+indépendants:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;Small step for {0}, Big leap for {1}&quot;</span><span class="p">,</span> <span class="s1">&#39;Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Humanity&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Toutes les fonctions de traduction intègrent le remplacement de placeholder:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__d</span><span class="p">(</span><span class="s1">&#39;validation&#39;</span><span class="p">,</span> <span class="s1">&#39;The field {0} cannot be left empty&#39;</span><span class="p">,</span> <span class="s1">&#39;Name&#39;</span><span class="p">);</span>
+
+<span class="nx">__x</span><span class="p">(</span><span class="s1">&#39;alphabet&#39;</span><span class="p">,</span> <span class="s1">&#39;He read the letter {0}&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>le caractère <code class="docutils literal"><span class="pre">'</span></code> (guillemet simple ou apostrophe) agit comme un caractère
+d&#8217;échappement dans les messages de traduction. Chaque variable entourée de
+guillemets simples ne sera pas remplacée et sera traitée en tant que texte
+littéral. Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__</span><span class="p">(</span><span class="s2">&quot;This variable &#39;{0}&#39; be replaced.&quot;</span><span class="p">,</span> <span class="s1">&#39;will not&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>En utilisant deux guillemets  simples côte à côte, vos variables seront
+remplacées correctement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__</span><span class="p">(</span><span class="s2">&quot;This variable &#39;&#39;{0}&#39;&#39; be replaced.&quot;</span><span class="p">,</span> <span class="s1">&#39;will&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ces fonctions profitent des avantages du <a class="reference external" href="http://php.net/manual/fr/messageformatter.format.php">MessageFormatter ICU</a> pour que vous puissiez
+traduire des messages, des dates, des nombres et des devises en même temps:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__</span><span class="p">(</span>
+    <span class="s1">&#39;Hi {0}, your balance on the {1,date} is {2,number,currency}&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">FrozenTime</span><span class="p">(</span><span class="s1">&#39;2014-01-13 11:12:00&#39;</span><span class="p">),</span> <span class="mf">1354.37</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Retourne</span>
+<span class="nx">Hi</span> <span class="nx">Charles</span><span class="p">,</span> <span class="nx">your</span> <span class="nx">balance</span> <span class="nx">on</span> <span class="nx">the</span> <span class="nx">Jan</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">11</span><span class="o">:</span><span class="mi">12</span> <span class="nx">AM</span> <span class="nx">is</span> <span class="err">$</span> <span class="mi">1</span><span class="p">,</span><span class="mf">354.37</span>
+</pre></div>
+</div>
+<p>Les nombres dans les placeholders peuvent également être formatés avec un
+contrôle fin et précis sur la sortie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">__</span><span class="p">(</span>
+    <span class="s1">&#39;You have traveled {0,number} kilometers in {1,number,integer} weeks&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="mf">5423.344</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// Retourne</span>
+<span class="nx">You</span> <span class="nx">have</span> <span class="nx">traveled</span> <span class="mi">5</span><span class="p">,</span><span class="mf">423.34</span> <span class="nx">kilometers</span> <span class="nx">in</span> <span class="mi">5</span> <span class="nx">weeks</span>
+
+<span class="k">echo</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;There are {0,number,#,###} people on earth&#39;</span><span class="p">,</span> <span class="mf">6.1</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
+
+<span class="c1">// Retourne</span>
+<span class="nx">There</span> <span class="nx">are</span> <span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mo">000</span><span class="p">,</span><span class="mo">000</span> <span class="nx">people</span> <span class="nx">on</span> <span class="nx">earth</span>
+</pre></div>
+</div>
+<p>Voici la liste des balises spécifiques que vous pouvez mettre après le mot
+<code class="docutils literal"><span class="pre">number</span></code>:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">integer</span></code>: Supprime la partie décimale</li>
+<li><code class="docutils literal"><span class="pre">currency</span></code>: Ajoute le symbole de la devise locale et arrondit les décimales</li>
+<li><code class="docutils literal"><span class="pre">percent</span></code>: Formate le nombre en pourcentage</li>
+</ul>
+<p>Les dates peuvent également être formatées en utilisant le mot <code class="docutils literal"><span class="pre">date</span></code> après le
+nombre placeholder. Les options supplémentaires sont les suivantes:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">short</span></code></li>
+<li><code class="docutils literal"><span class="pre">medium</span></code></li>
+<li><code class="docutils literal"><span class="pre">long</span></code></li>
+<li><code class="docutils literal"><span class="pre">full</span></code></li>
+</ul>
+<p>Le mot <code class="docutils literal"><span class="pre">time</span></code> après le nombre placeholder est également accepté et il comprend
+les mêmes options que <code class="docutils literal"><span class="pre">date</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Les placeholders nommés sont supportés dans PHP 5.5+ et sont formatés comme
+<code class="docutils literal"><span class="pre">{name}</span></code>. Quand vous utilisez les placeholders nommés, passez les
+variables dans un tableau en utilisant la paire de clé/valeur, par exemple
+<code class="docutils literal"><span class="pre">['name'</span> <span class="pre">=&gt;</span> <span class="pre">'Sara',</span> <span class="pre">'age'</span> <span class="pre">=&gt;</span> <span class="pre">12]</span></code>.</p>
+<p class="last">Il est recommandé d&#8217;utiliser PHP 5.5 ou supérieur quand vous utilisez les
+fonctionnalités d&#8217;internationalisation de CakePHP. L&#8217;extension <code class="docutils literal"><span class="pre">php5-intl</span></code>
+doit être installée et la version ICU doit être supérieur à 48.x.y (pour
+vérifier la version ICU <code class="docutils literal"><span class="pre">Intl::getIcuVersion()</span></code>).</p>
+</div>
+</div>
+<div class="section" id="pluriels">
+<h3>Pluriels<a class="headerlink" href="#pluriels" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Une partie cruciale de l&#8217;internationalisation de votre application est de
+récupérer vos messages pluralisés correctement suivant les langues affichées.
+CakePHP fournit plusieurs possibilités pour sélectionner correctement les
+pluriels dans vos messages.</p>
+<div class="section" id="utiliser-la-selection-plurielle-icu">
+<h4>Utiliser la Sélection Plurielle ICU<a class="headerlink" href="#utiliser-la-selection-plurielle-icu" title="Lien permanent vers ce titre">¶</a></h4>
+<p>La première tire parti du format de message <code class="docutils literal"><span class="pre">ICU</span></code> qui est fourni par défaut
+dans les fonctions de traductions. Dans les fichiers de traduction vous
+pourriez avoir les chaines suivantes</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;{0,plural,=0{No records found} =1{Found 1 record} other{Found # records}}&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;{0,plural,=0{Ningún resultado} =1{1 resultado} other{# resultados}}&quot;</span>
+
+<span class="nv">msgid</span> <span class="s">&quot;{placeholder,plural,=0{No records found} =1{Found 1 record} other{Found {1} records}}&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;{placeholder,plural,=0{Ningún resultado} =1{1 resultado} other{{1} resultados}}&quot;</span>
+</pre></div>
+</div>
+<p>Et dans votre application utilisez le code suivant pour afficher l&#8217;une des
+traductions pour une telle chaine:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;{0,plural,=0{No records found }=1{Found 1 record} other{Found # records}}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">// Retourne &quot;Ningún resultado&quot; puisque l&#39;argument {0} est 0</span>
+
+<span class="nx">__</span><span class="p">(</span><span class="s1">&#39;{0,plural,=0{No records found} =1{Found 1 record} other{Found # records}}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="c1">// Retourne &quot;1 resultado&quot; puisque l&#39;argument {0} est 1</span>
+
+<span class="nx">__</span><span class="p">(</span><span class="s1">&#39;{placeholder,plural,=0{No records found} =1{Found 1 record} other{Found {1} records}}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;many&#39;</span><span class="p">,</span> <span class="s1">&#39;placeholder&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1">// Retourne &quot;many resultados&quot; puisque l&#39;argument {placeholder} est 2 et</span>
+<span class="c1">// l&#39;argument {1} est &#39;many&#39;</span>
+</pre></div>
+</div>
+<p>Regarder de plus près le format que nous avons juste utilisé, rendra évident
+la méthode de construction des messages:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="p">[</span><span class="nb">count</span> <span class="nx">placeholder</span><span class="p">],</span><span class="nx">plural</span><span class="p">,</span> <span class="nx">case1</span><span class="p">{</span><span class="nx">message</span><span class="p">}</span> <span class="nx">case2</span><span class="p">{</span><span class="nx">message</span><span class="p">}</span> <span class="nx">case3</span><span class="p">{</span><span class="o">...</span><span class="p">}</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Le <code class="docutils literal"><span class="pre">[count</span> <span class="pre">placeholder]</span></code> peut être le numéro de clé du tableau de n&#8217;importe
+quelle variable passée à la fonction de traduction. Il sera utilisé pour
+sélectionner la forme plurielle correcte.</p>
+<p>Noter que pour faire référence à <code class="docutils literal"><span class="pre">[count</span> <span class="pre">placeholder]</span></code> dans <code class="docutils literal"><span class="pre">{message}</span></code>
+vous devez utiliser <code class="docutils literal"><span class="pre">#</span></code>.</p>
+<p>Vous pouvez bien entendu utiliser des id de messages plus simples si vous ne
+voulez pas taper la séquence plurielle complète dans votre code.</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;search.results&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;{0,plural,=0{Ningún resultado} =1{1 resultado} other{{1} resultados}}&quot;</span>
+</pre></div>
+</div>
+<p>Ensuite utilisez la nouvelle chaine dans votre code:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;search.results&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+
+<span class="c1">// Retourne &quot;2 resultados&quot;</span>
+</pre></div>
+</div>
+<p>la dernière version a l&#8217;inconvénient que vous aurez besoin d&#8217;avoir un fichier
+de message de traduction même pour la langue par défaut, mais comporte
+l&#8217;avantage de rendre le code plus lisible et de laisser les chaines de sélection
+de plurielles compliquées dans les fichiers de traduction.</p>
+<p>Parfois utiliser directement la correspondance des nombres vers les pluriels
+est impossible. Par exemple les langues telles que l&#8217;Arabe nécessitent un
+pluriel différent lorsque vous faites référence à une faible quantité et
+un pluriel différent pour une quantité plus importante. Dans ces cas vous
+pouvez utiliser la correspondance d&#8217;alias ICU. Au lieu d&#8217;écrire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">=</span><span class="mi">0</span><span class="p">{</span><span class="nx">No</span> <span class="nx">results</span><span class="p">}</span> <span class="o">=</span><span class="mi">1</span><span class="p">{</span><span class="o">...</span><span class="p">}</span> <span class="nx">other</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">zero</span><span class="p">{</span><span class="nx">No</span> <span class="nx">Results</span><span class="p">}</span> <span class="nx">one</span><span class="p">{</span><span class="nx">One</span> <span class="nx">result</span><span class="p">}</span> <span class="nx">few</span><span class="p">{</span><span class="o">...</span><span class="p">}</span> <span class="nx">many</span><span class="p">{</span><span class="o">...</span><span class="p">}</span> <span class="nx">other</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Assurez-vous de lire le <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">Guide des Règles Plurielles des Langues</a>
+pour obtenir une vue d&#8217;ensemble complète des alias que vous pouvez utiliser pour
+chaque langue.</p>
+</div>
+<div class="section" id="utiliser-la-selection-plurielle-gettext">
+<h4>Utiliser la Sélection Plurielle Gettext<a class="headerlink" href="#utiliser-la-selection-plurielle-gettext" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Le second format de sélection plurielle accepté est d&#8217;utiliser les
+fonctionnalités intégrées de Gettext. Dans ce cas, les pluriels seront
+enregistrés dans le fichier <code class="docutils literal"><span class="pre">.po</span></code> en créant une ligne de traduction séparée
+pour chaque forme plurielle:</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="c1"># Un identificateur de message pour le singulier</span>
+<span class="nv">msgid</span> <span class="s">&quot;One file removed&quot;</span>
+<span class="c1"># Une autre pour le pluriel</span>
+<span class="nv">msgid_plural</span> <span class="s">&quot;{0} files removed&quot;</span>
+<span class="c1"># Traduction au singulier</span>
+<span class="nv">msgstr[</span><span class="mi">0</span><span class="nv">]</span> <span class="s">&quot;Un fichero eliminado&quot;</span>
+<span class="c1"># Traduction au pluriel</span>
+<span class="nv">msgstr[</span><span class="mi">1</span><span class="nv">]</span> <span class="s">&quot;{0} ficheros eliminados&quot;</span>
+</pre></div>
+</div>
+<p>Lorsque vous utilisez cet autre format, vous devez utiliser une autre fonction
+de traduction:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Retourne: &quot;10 ficheros eliminados&quot;</span>
+<span class="nv">$count</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nx">__n</span><span class="p">(</span><span class="s1">&#39;One file removed&#39;</span><span class="p">,</span> <span class="s1">&#39;{0} files removed&#39;</span><span class="p">,</span> <span class="nv">$count</span><span class="p">,</span> <span class="nv">$count</span><span class="p">);</span>
+
+<span class="c1">// Il est également possible de l&#39;utiliser dans un domaine</span>
+<span class="nx">__dn</span><span class="p">(</span><span class="s1">&#39;my_plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;One file removed&#39;</span><span class="p">,</span> <span class="s1">&#39;{0} files removed&#39;</span><span class="p">,</span> <span class="nv">$count</span><span class="p">,</span> <span class="nv">$count</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le nombre à l&#8217;intérieur de <code class="docutils literal"><span class="pre">msgstr[]</span></code> est le nombre assigné par Gettext pour
+la forme plurielle de la langue. Certaines langues ont plus de deux formes
+plurielles, le Croate par exemple:</p>
+<div class="highlight-pot"><div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;One file removed&quot;</span>
+<span class="nv">msgid_plural</span> <span class="s">&quot;{0} files removed&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">0</span><span class="nv">]</span> <span class="s">&quot;{0} datoteka je uklonjena&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">1</span><span class="nv">]</span> <span class="s">&quot;{0} datoteke su uklonjene&quot;</span>
+<span class="nv">msgstr[</span><span class="mi">2</span><span class="nv">]</span> <span class="s">&quot;{0} datoteka je uklonjeno&quot;</span>
+</pre></div>
+</div>
+<p>Merci de visiter la <a class="reference external" href="https://translations.launchpad.net/+languages">page des langues Launchpad</a> pour une explication
+détaillée sur les nombres de formes plurielles de chaque langue.</p>
+</div>
+</div>
+</div>
+<div class="section" id="creer-vos-propres-traducteurs">
+<h2>Créer Vos Propres Traducteurs<a class="headerlink" href="#creer-vos-propres-traducteurs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous devez vous écarter des conventions de CakePHP en ce qui concerne
+l&#8217;emplacement et la manière d&#8217;enregistrer les messages de traduction, vous
+pouvez créer votre propre loader de messages traduits. La manière la plus
+simple de créer votre propre traducteur est de définir un loader pour
+un seul domaine et une seule locale:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Aura\Intl\Package</span><span class="p">;</span>
+
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setTranslator</span><span class="p">(</span><span class="s1">&#39;animals&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$package</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Package</span><span class="p">(</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="c1">// The formatting strategy (ICU)</span>
+        <span class="s1">&#39;default&#39;</span> <span class="c1">// The fallback domain</span>
+    <span class="p">);</span>
+    <span class="nv">$package</span><span class="o">-&gt;</span><span class="na">setMessages</span><span class="p">([</span>
+        <span class="s1">&#39;Dog&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Chien&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Cat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Chat&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Bird&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Oiseau&#39;</span>
+        <span class="o">...</span>
+    <span class="p">]);</span>
+
+    <span class="k">return</span> <span class="nv">$package</span><span class="p">;</span>
+<span class="p">},</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le code ci-dessus peut être ajouté à votre <strong>config/bootstrap.php</strong> pour
+que les traductions soient ajoutées avant qu&#8217;une fonction de traduction ne soit
+utilisée. Le minimum absolu nécessaire pour créer un traducteur est que la
+fonction loader doit retourner un objet <code class="docutils literal"><span class="pre">Aura\Intl\Package</span></code>. Une fois que le
+code est en place vous pouvez utiliser les fonctions de traduction comme
+d&#8217;habitude:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Avant 3.5, utilisez I18n::locale()</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;fr_FR&#39;</span><span class="p">);</span>
+<span class="nx">__d</span><span class="p">(</span><span class="s1">&#39;animals&#39;</span><span class="p">,</span> <span class="s1">&#39;Dog&#39;</span><span class="p">);</span> <span class="c1">// Retourne &quot;Chien&quot;</span>
+</pre></div>
+</div>
+<p>Comme vous pouvez le voir, les objets <code class="docutils literal"><span class="pre">Package</span></code> prennent les messages de
+traduction sous forme de tableau. Vous pouvez passer la méthode
+<code class="docutils literal"><span class="pre">setMessages()</span></code> de la manière qui vous plait: avec du code en ligne, en
+incluant un autre fichier, en appelant une autre fonction, etc. CakePHP fournit
+quelques fonctions de loader que vous pouvez réutiliser si vous devez juste
+changer l&#8217;endroit où sont chargés les messages.
+Par exemple, vous pouvez toujours utiliser les fichiers <code class="docutils literal"><span class="pre">.po</span></code> mais les charger
+depuis un autre endroit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\MessagesFileLoader</span> <span class="k">as</span> <span class="nx">Loader</span><span class="p">;</span>
+
+<span class="c1">// Charge les messages depuis src/Locale/folder/sub_folder/filename.po</span>
+
+<span class="c1">// Avant 3.5, utilisez translator()</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setTranslator</span><span class="p">(</span>
+    <span class="s1">&#39;animals&#39;</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">Loader</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;folder/sub_folder&#39;</span><span class="p">,</span> <span class="s1">&#39;po&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;fr_FR&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="creer-des-parsers-de-messages">
+<h3>Créer des Parsers de Messages<a class="headerlink" href="#creer-des-parsers-de-messages" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il est possible de continuer à utiliser les mêmes conventions que CakePHP
+utilise mais d&#8217;utiliser un autre parser de messages que <code class="docutils literal"><span class="pre">PoFileParser</span></code>.
+Par exemple, si vous vouliez charger les messages de traduction en utilisant
+<code class="docutils literal"><span class="pre">YAML</span></code>, vous auriez d&#8217;abord besoin de créer la classe du parser:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\I18n\Parser</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">YamlFileParser</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">parse</span><span class="p">(</span><span class="nv">$file</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">yaml_parse_file</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Le fichier doit être créé dans le dossier <strong>src/I18n/Parser</strong> de votre
+application. Ensuite, créez les fichiers de traduction sous
+<strong>src/Locale/fr_FR/animals.yaml</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">Dog</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Chien</span>
+<span class="l l-Scalar l-Scalar-Plain">Cat</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Chat</span>
+<span class="l l-Scalar l-Scalar-Plain">Bird</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Oiseau</span>
+</pre></div>
+</div>
+<p>Enfin, configurez le loader de traduction pour le domaine et la locale:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\MessagesFileLoader</span> <span class="k">as</span> <span class="nx">Loader</span><span class="p">;</span>
+
+<span class="c1">// Avant 3.5, utilisez translator()</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setTranslator</span><span class="p">(</span>
+    <span class="s1">&#39;animals&#39;</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">Loader</span><span class="p">(</span><span class="s1">&#39;animals&#39;</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">,</span> <span class="s1">&#39;yaml&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;fr_FR&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creer-des-traducteurs-generiques">
+<span id="creating-generic-translators"></span><h3>Créer des Traducteurs Génériques<a class="headerlink" href="#creer-des-traducteurs-generiques" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Configurer des traducteurs en appelant <code class="docutils literal"><span class="pre">I18n::setTranslator()</span></code> pour chaque
+domaine et locale que vous devez supporter peut être fastidieux, spécialement
+si vous devez supporter plus que quelques locales. Pour éviter ce problème,
+CakePHP vous permet de définir des loaders de traduction génériques pour chaque
+domaine.</p>
+<p>Imaginez que vous vouliez charger toutes les traductions pour le domaine par
+défaut et pour chaque langue depuis un service externe:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Aura\Intl\Package</span><span class="p">;</span>
+
+<span class="nx">I18n</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$domain</span><span class="p">,</span> <span class="nv">$locale</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$locale</span> <span class="o">=</span> <span class="nx">Locale</span><span class="o">::</span><span class="na">parseLocale</span><span class="p">(</span><span class="nv">$locale</span><span class="p">);</span>
+    <span class="nv">$language</span> <span class="o">=</span> <span class="nv">$locale</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">];</span>
+    <span class="nv">$messages</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;http://example.com/translations/</span><span class="si">$lang</span><span class="s2">.json&quot;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Package</span><span class="p">(</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="c1">// Formatter</span>
+        <span class="k">null</span><span class="p">,</span> <span class="c1">// Fallback (none for default domain)</span>
+        <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$messages</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Le code ci-dessus appelle un service externe exemple pour charger un fichier
+JSON avec les traductions puis construit uniquement un objet <code class="docutils literal"><span class="pre">Package</span></code>
+pour chaque locale nécessaire dans l&#8217;application.</p>
+<p>If you&#8217;d like to change how packages are loaded for all packages, that don&#8217;t
+have specific loaders set you can replace the fallback package loader by using
+the <code class="docutils literal"><span class="pre">_fallback</span></code> package:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">I18n</span><span class="o">::</span><span class="na">config</span><span class="p">(</span><span class="s1">&#39;_fallback&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$domain</span><span class="p">,</span> <span class="nv">$locale</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Custom code that yields a package here.</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.4.0: </span>Replacing the <code class="docutils literal"><span class="pre">_fallback</span></code> loader was added in 3.4.0</p>
+</div>
+</div>
+<div class="section" id="pluriels-et-contexte-dans-les-traducteurs-personnalises">
+<h3>Pluriels et Contexte dans les Traducteurs Personnalisés<a class="headerlink" href="#pluriels-et-contexte-dans-les-traducteurs-personnalises" title="Lien permanent vers ce titre">¶</a></h3>
+<p>les tableaux utilisées pour <code class="docutils literal"><span class="pre">setMessages()</span></code> peuvent être conçus pour ordonner
+au traducteur d&#8217;enregistrer les messages sous différents domaines ou de
+déclencher une sélection de pluriel de style Gettext. Ce qui suit est un exemple
+d&#8217;enregistrement de traductions pour la même clé dans différents contextes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;He reads the letter {0}&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;alphabet&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Él lee la letra {0}&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;written communication&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Él lee la carta {0}&#39;</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>De même vous pouvez exprimer des pluriels de style Gettext en utilisant le
+tableau de messages avec une clé de tableau imbriqué par forme plurielle:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;I have read one book&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;He leído un libro&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;I have read {0} books&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;He leído un libro&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;He leído {0} libros&#39;</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-des-formateurs-differents">
+<h3>Utiliser des Formateurs Différents<a class="headerlink" href="#utiliser-des-formateurs-differents" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans les exemples précédents nous avons vu que les Packages sont construits en
+utilisant <code class="docutils literal"><span class="pre">default</span></code> en premier argument, et il était indiqué avec un
+commentaire qu&#8217;il correspondait au formateur à utiliser.
+Les formateurs sont des classes responsables d&#8217;interpoler les variables dans
+les messages de traduction et sélectionner la forme plurielle correcte.</p>
+<p>Si vous avez à faire une application datée, ou que vous n&#8217;avez pas besoin de la
+puissance offerte par le formateur de message ICU, CakePHP fournit également le
+formateur <code class="docutils literal"><span class="pre">sprintf</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="nx">Package</span><span class="p">(</span><span class="s1">&#39;sprintf&#39;</span><span class="p">,</span> <span class="s1">&#39;fallback_domain&#39;</span><span class="p">,</span> <span class="nv">$messages</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les messages à traduire seront passés à la fonction <code class="docutils literal"><span class="pre">sprintf()</span></code> pour
+interpoler les variables:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Hello, my name is %s and I am %d years old&#39;</span><span class="p">,</span> <span class="s1">&#39;José&#39;</span><span class="p">,</span> <span class="mi">29</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Il est possible de définir le formateur par défaut pour tous les traducteurs
+créés par CakePHP avant qu&#8217;ils soient utilisés pour la première fois. Cela
+n&#8217;inclut pas les traducteurs créés manuellement en utilisant les méthodes
+<code class="docutils literal"><span class="pre">setTranslator()</span></code> et <code class="docutils literal"><span class="pre">config()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">I18n</span><span class="o">::</span><span class="na">defaultFormatter</span><span class="p">(</span><span class="s1">&#39;sprintf&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="localiser-les-dates-et-les-nombres">
+<h2>Localiser les Dates et les Nombres<a class="headerlink" href="#localiser-les-dates-et-les-nombres" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lorsque vous affichez des dates et des nombres dans votre application, vous
+voudrez souvent qu&#8217;elles soient formatées conformément au format du pays ou
+de la région dans lequel vous souhaitez afficher la page.</p>
+<p>Pour changer l&#8217;affichage des dates et des nombres, vous devez uniquement changer
+la locale et utiliser les bonnes classes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\I18n</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\I18n\Time</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\I18n\Number</span><span class="p">;</span>
+
+<span class="c1">// Avant 3.5, utilisez I18n::locale()</span>
+<span class="nx">I18n</span><span class="o">::</span><span class="na">setLocale</span><span class="p">(</span><span class="s1">&#39;fr-FR&#39;</span><span class="p">);</span>
+
+<span class="nv">$date</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2015-04-05 23:00:00&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$date</span><span class="p">;</span> <span class="c1">// Affiche 05/04/2015 23:00</span>
+
+<span class="k">echo</span> <span class="nx">Number</span><span class="o">::</span><span class="na">format</span><span class="p">(</span><span class="mf">524.23</span><span class="p">);</span> <span class="c1">// Displays 524,23</span>
+</pre></div>
+</div>
+<p>Assurez vous de lire les sections <a class="reference internal" href="time.html"><span class="doc">Date &amp; Time</span></a> et
+<a class="reference internal" href="number.html"><span class="doc">Number</span></a> pour en apprendre plus sur les options de
+formatage.</p>
+<p>Par défaut, les dates renvoyées par l&#8217;ORM utilisent la classe
+<code class="docutils literal"><span class="pre">Cake\I18n\Time</span></code>, donc leur affichage direct dans votre application sera
+affecté par le changement de la locale.</p>
+<div class="section" id="parser-les-donnees-datetime-localisees">
+<span id="parsing-localized-dates"></span><h3>Parser les Données Datetime Localisées<a class="headerlink" href="#parser-les-donnees-datetime-localisees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Quand vous acceptez les données localisées, c&#8217;est sympa d&#8217;accepter les
+informations de type datetime dans un format localisé pour l&#8217;utilisateur. Dans
+un controller, ou <a class="reference internal" href="../development/dispatch-filters.html"><span class="doc">Filtres du Dispatcher</span></a>, vous pouvez configurer
+les types Date, Time, et DateTime pour parser les formats localisés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Database\Type</span><span class="p">;</span>
+
+<span class="c1">// Permet de parser avec le format de locale par défaut.</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useLocaleParser</span><span class="p">();</span>
+
+<span class="c1">// Configure un parser personnalisé du format de datetime.</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useLocaleParser</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setLocaleFormat</span><span class="p">(</span><span class="s1">&#39;dd-M-y&#39;</span><span class="p">);</span>
+
+<span class="c1">// Vous pouvez aussi utiliser les constantes IntlDateFormatter.</span>
+<span class="nx">Type</span><span class="o">::</span><span class="na">build</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">useLocaleParser</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setLocaleFormat</span><span class="p">([</span><span class="nx">IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Le parsing du format par défaut est le même que le format de chaîne par défaut.</p>
+</div>
+</div>
+<div class="section" id="selection-automatique-de-locale-basee-sur-les-donnees-de-requetes">
+<h2>Sélection Automatique de Locale Basée sur les Données de Requêtes<a class="headerlink" href="#selection-automatique-de-locale-basee-sur-les-donnees-de-requetes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>En utilisant le <code class="docutils literal"><span class="pre">LocaleSelectorFilter</span></code> dans votre application, CakePHP
+définira automatiquement la locale en se basant sur l&#8217;utilisateur actuel:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// dans src/Application.php</span>
+<span class="k">use</span> <span class="nx">Cake\I18n\Middleware\LocaleSelectorMiddleware</span><span class="p">;</span>
+
+<span class="c1">// Mise à jour de la méthode &quot;middleware&quot; pour ajouter le nouveau middleware</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">middleware</span><span class="p">(</span><span class="nv">$middleware</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Add middleware and set the valid locales</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocaleSelectorMiddleware</span><span class="p">([</span><span class="s1">&#39;en_US&#39;</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">]));</span>
+<span class="p">}</span>
+
+
+<span class="c1">// Avant 3.3.0, il faut utiliser un DispatchFilter</span>
+<span class="c1">// dans config/bootstrap.php</span>
+<span class="nx">DispatcherFactory</span><span class="o">::</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;LocaleSelector&#39;</span><span class="p">);</span>
+
+<span class="c1">// Limite les locales à en_US et fr_FR uniquement</span>
+<span class="nx">DispatcherFactory</span><span class="o">::</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;LocaleSelector&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;locales&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;en_US&#39;</span><span class="p">,</span> <span class="s1">&#39;fr_FR&#39;</span><span class="p">]]);</span>
+</pre></div>
+</div>
+<p>Le <code class="docutils literal"><span class="pre">LocaleSelectorFilter</span></code> utilisera l&#8217;entête <code class="docutils literal"><span class="pre">Accept-Language</span></code> pour définir
+automatiquement la locale préférée de l&#8217;utilisateur. Vous pouvez utiliser
+l&#8217;option de liste de locale pour limiter les locales pouvant être utilisées
+automatiquement.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Événements système</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

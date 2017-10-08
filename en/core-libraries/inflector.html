@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Inflector" lang="en" name="title" />
+<meta content="apple orange,word variations,apple pie,person man,latin versions,profile settings,php class,initial state,puree,slug,apples,oranges,user profile,underscore" lang="en" name="keywords" />
+
+    <title>Inflector - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/inflector.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/inflector.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/inflector.html" /><link rel="alternate" hreflang="fr" href="../../fr/core-libraries/inflector.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/inflector.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/inflector.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/inflector.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="../index.html" />
+    <link rel="next" title="Number" href="number.html" />
+    <link rel="prev" title="Http Client" href="httpclient.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/inflector.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/inflector.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/inflector.html">ja</a></li>
+                                            
+                                                <li><a href="../../fr/core-libraries/inflector.html">fr</a></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/inflector.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/inflector.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/inflector.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/core-libraries/inflector.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Inflector</a><ul>
+<li><a class="reference internal" href="#summary-of-inflector-methods-and-their-output">Summary of Inflector Methods and Their Output</a></li>
+<li><a class="reference internal" href="#creating-plural-singular-forms">Creating Plural &amp; Singular Forms</a></li>
+<li><a class="reference internal" href="#creating-camelcase-and-under-scored-forms">Creating CamelCase and under_scored Forms</a></li>
+<li><a class="reference internal" href="#creating-human-readable-forms">Creating Human Readable Forms</a></li>
+<li><a class="reference internal" href="#creating-table-and-class-name-forms">Creating Table and Class Name Forms</a></li>
+<li><a class="reference internal" href="#creating-variable-names">Creating Variable Names</a></li>
+<li><a class="reference internal" href="#creating-url-safe-strings">Creating URL Safe Strings</a></li>
+<li><a class="reference internal" href="#inflection-configuration">Inflection Configuration</a><ul>
+<li><a class="reference internal" href="#loading-custom-inflections">Loading Custom Inflections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Utility">
+<span id="inflector"></span><h1>Inflector<a class="headerlink" href="#namespace-Cake\Utility" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Cake\Utility\Inflector">
+<em class="property">class </em><code class="descclassname">Cake\Utility\</code><code class="descname">Inflector</code><a class="headerlink" href="#Cake\Utility\Inflector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The Inflector class takes a string and can manipulate it to handle word
+variations such as pluralizations or camelizing and is normally accessed
+statically. Example:
+<code class="docutils literal"><span class="pre">Inflector::pluralize('example')</span></code> returns &#8220;examples&#8221;.</p>
+<p>You can try out the inflections online at <a class="reference external" href="https://inflector.cakephp.org/">inflector.cakephp.org</a>.</p>
+<div class="section" id="summary-of-inflector-methods-and-their-output">
+<span id="inflector-methods-summary"></span><h2>Summary of Inflector Methods and Their Output<a class="headerlink" href="#summary-of-inflector-methods-and-their-output" title="Permalink to this headline">¶</a></h2>
+<p>Quick summary of the Inflector built-in methods and the results they output
+when provided a multi-word argument:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="31%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Argument</th>
+<th class="head">Output</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">pluralize()</span></code></td>
+<td>BigApple</td>
+<td>BigApples</td>
+</tr>
+<tr class="row-odd"><td>big_apple</td>
+<td>big_apples</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">singularize()</span></code></td>
+<td>BigApples</td>
+<td>BigApple</td>
+</tr>
+<tr class="row-odd"><td>big_apples</td>
+<td>big_apple</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">camelize()</span></code></td>
+<td>big_apples</td>
+<td>BigApples</td>
+</tr>
+<tr class="row-odd"><td>big apple</td>
+<td>BigApple</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">underscore()</span></code></td>
+<td>BigApples</td>
+<td>big_apples</td>
+</tr>
+<tr class="row-odd"><td>Big Apples</td>
+<td>big apples</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">humanize()</span></code></td>
+<td>big_apples</td>
+<td>Big Apples</td>
+</tr>
+<tr class="row-odd"><td>bigApple</td>
+<td>BigApple</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">classify()</span></code></td>
+<td>big_apples</td>
+<td>BigApple</td>
+</tr>
+<tr class="row-odd"><td>big apple</td>
+<td>BigApple</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">dasherize()</span></code></td>
+<td>BigApples</td>
+<td>big-apples</td>
+</tr>
+<tr class="row-odd"><td>big apple</td>
+<td>big apple</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">tableize()</span></code></td>
+<td>BigApple</td>
+<td>big_apples</td>
+</tr>
+<tr class="row-odd"><td>Big Apple</td>
+<td>big apples</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">variable()</span></code></td>
+<td>big_apple</td>
+<td>bigApple</td>
+</tr>
+<tr class="row-odd"><td>big apples</td>
+<td>bigApples</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><code class="docutils literal"><span class="pre">slug()</span></code></td>
+<td>Big Apple</td>
+<td>big-apple</td>
+</tr>
+<tr class="row-odd"><td>BigApples</td>
+<td>BigApples</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="creating-plural-singular-forms">
+<h2>Creating Plural &amp; Singular Forms<a class="headerlink" href="#creating-plural-singular-forms" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::singularize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">singularize</code><span class="sig-paren">(</span><em>$singular</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::singularize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::pluralize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">pluralize</code><span class="sig-paren">(</span><em>$singular</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::pluralize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Both <code class="docutils literal"><span class="pre">pluralize</span></code> and <code class="docutils literal"><span class="pre">singularize()</span></code> work on most English nouns. If you need
+to support other languages, you can use <a class="reference internal" href="#inflection-configuration"><span class="std std-ref">Inflection Configuration</span></a> to
+customize the rules used:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Apples</span>
+<span class="k">echo</span> <span class="nx">Inflector</span><span class="o">::</span><span class="na">pluralize</span><span class="p">(</span><span class="s1">&#39;Apple&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">pluralize()</span></code> may not always correctly convert a noun that is already in its plural form.</p>
+</div>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">// Person</span>
+<span class="x">echo Inflector::singularize(&#39;People&#39;);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">singularize()</span></code> may not always correctly convert a noun that is already in its singular form.</p>
+</div>
+</div>
+<div class="section" id="creating-camelcase-and-under-scored-forms">
+<h2>Creating CamelCase and under_scored Forms<a class="headerlink" href="#creating-camelcase-and-under-scored-forms" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::camelize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">camelize</code><span class="sig-paren">(</span><em>$underscored</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::camelize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::underscore">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">underscore</code><span class="sig-paren">(</span><em>$camelCase</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::underscore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>These methods are useful when creating class names, or property names:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// ApplePie</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">camelize</span><span class="p">(</span><span class="s1">&#39;Apple_pie&#39;</span><span class="p">)</span>
+
+<span class="c1">// apple_pie</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">underscore</span><span class="p">(</span><span class="s1">&#39;ApplePie&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It should be noted that underscore will only convert camelCase formatted words.
+Words that contains spaces will be lower-cased, but will not contain an
+underscore.</p>
+</div>
+<div class="section" id="creating-human-readable-forms">
+<h2>Creating Human Readable Forms<a class="headerlink" href="#creating-human-readable-forms" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::humanize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">humanize</code><span class="sig-paren">(</span><em>$underscored</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::humanize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This method is useful when converting underscored forms into &#8220;Title Case&#8221; forms
+for human readable values:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Apple Pie</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">humanize</span><span class="p">(</span><span class="s1">&#39;apple_pie&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-table-and-class-name-forms">
+<h2>Creating Table and Class Name Forms<a class="headerlink" href="#creating-table-and-class-name-forms" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::classify">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">classify</code><span class="sig-paren">(</span><em>$underscored</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::classify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::dasherize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">dasherize</code><span class="sig-paren">(</span><em>$dashed</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::dasherize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::tableize">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">tableize</code><span class="sig-paren">(</span><em>$camelCase</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::tableize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>When generating code, or using CakePHP&#8217;s conventions you may need to inflect
+table names or class names:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// UserProfileSetting</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">classify</span><span class="p">(</span><span class="s1">&#39;user_profile_settings&#39;</span><span class="p">);</span>
+
+<span class="c1">// user-profile-setting</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">dasherize</span><span class="p">(</span><span class="s1">&#39;UserProfileSetting&#39;</span><span class="p">);</span>
+
+<span class="c1">// user_profile_settings</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">tableize</span><span class="p">(</span><span class="s1">&#39;UserProfileSetting&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-variable-names">
+<h2>Creating Variable Names<a class="headerlink" href="#creating-variable-names" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::variable">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">variable</code><span class="sig-paren">(</span><em>$underscored</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Variable names are often useful when doing meta-programming tasks that involve
+generating code or doing work based on conventions:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// applePie</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">variable</span><span class="p">(</span><span class="s1">&#39;apple_pie&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-url-safe-strings">
+<h2>Creating URL Safe Strings<a class="headerlink" href="#creating-url-safe-strings" title="Permalink to this headline">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::slug">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">slug</code><span class="sig-paren">(</span><em>$word</em>, <em>$replacement = '-'</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::slug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Slug converts special characters into latin versions and converting unmatched
+characters and spaces to dashes. The slug method expects UTF-8 encoding:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// apple-puree</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">slug</span><span class="p">(</span><span class="s1">&#39;apple purée&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">Inflector::slug()</span></code> has been deprecated since 3.2.7. Use <code class="docutils literal"><span class="pre">Text::slug()</span></code>
+instead.</p>
+</div>
+</div>
+<div class="section" id="inflection-configuration">
+<span id="id1"></span><h2>Inflection Configuration<a class="headerlink" href="#inflection-configuration" title="Permalink to this headline">¶</a></h2>
+<p>CakePHP&#8217;s naming conventions can be really nice - you can name your database
+table <code class="docutils literal"><span class="pre">big_boxes</span></code>, your model <code class="docutils literal"><span class="pre">BigBoxes</span></code>, your controller
+<code class="docutils literal"><span class="pre">BigBoxesController</span></code>, and everything just works together automatically. The
+way CakePHP knows how to tie things together is by <em>inflecting</em> the words
+between their singular and plural forms.</p>
+<p>There are occasions (especially for our non-English speaking friends) where you
+may run into situations where CakePHP&#8217;s inflector (the class that pluralizes,
+singularizes, camelCases, and under_scores) might not work as you&#8217;d like. If
+CakePHP won&#8217;t recognize your Foci or Fish, you can tell CakePHP about your
+special cases.</p>
+<div class="section" id="loading-custom-inflections">
+<h3>Loading Custom Inflections<a class="headerlink" href="#loading-custom-inflections" title="Permalink to this headline">¶</a></h3>
+<dl class="staticmethod">
+<dt id="Cake\Utility\Inflector::rules">
+<em class="property">static </em><code class="descclassname">Cake\Utility\Inflector::</code><code class="descname">rules</code><span class="sig-paren">(</span><em>$type</em>, <em>$rules</em>, <em>$reset = false</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Utility\Inflector::rules" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Define new inflection and transliteration rules for Inflector to use.  Often,
+this method is used in your <strong>config/bootstrap.php</strong>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Inflector</span><span class="o">::</span><span class="na">rules</span><span class="p">(</span><span class="s1">&#39;singular&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;/^(bil)er$/i&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;\1&#39;</span><span class="p">,</span> <span class="s1">&#39;/^(inflec|contribu)tors$/i&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;\1ta&#39;</span><span class="p">]);</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">rules</span><span class="p">(</span><span class="s1">&#39;uninflected&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;singulars&#39;</span><span class="p">]);</span>
+<span class="nx">Inflector</span><span class="o">::</span><span class="na">rules</span><span class="p">(</span><span class="s1">&#39;irregular&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;phylum&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;phyla&#39;</span><span class="p">]);</span> <span class="c1">// The key is singular form, value is plural form</span>
+</pre></div>
+</div>
+<p>The supplied rules will be merged into the respective inflection sets defined in
+<code class="docutils literal"><span class="pre">Cake/Utility/Inflector</span></code>, with the added rules taking precedence over the core
+rules. You can use <code class="docutils literal"><span class="pre">Inflector::reset()</span></code> to clear rules and restore the
+original Inflector state.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Http Client</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

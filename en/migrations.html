@@ -1,0 +1,1515 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Migrations - 3.x</title>
+    <link href="_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="_static/app.js"></script>
+
+    <link rel="alternate" hreflang="pt_BR" href="../pt/migrations.html" /><link rel="alternate" hreflang="es" href="../es/migrations.html" /><link rel="alternate" hreflang="ja" href="../ja/migrations.html" /><link rel="alternate" hreflang="fr" href="../fr/migrations.html" /><link rel="alternate" hreflang="zh" href="../zh/migrations.html" /><link rel="alternate" hreflang="tr" href="../tr/migrations.html" /><link rel="alternate" hreflang="ru" href="../ru/migrations.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within CakePHP Cookbook 3.5 documentation" href="_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="CakePHP Cookbook 3.5 documentation" href="index.html" />
+    <link rel="next" title="ElasticSearch" href="elasticsearch.html" />
+    <link rel="prev" title="Debug Kit" href="debug-kit.html" />
+
+    <script type="text/javascript">
+    window.lang = "en";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Search" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        en
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../pt/migrations.html">pt</a></li>
+                                            
+                                                <li><a href="../es/migrations.html">es</a></li>
+                                            
+                                                <li><a href="../ja/migrations.html">ja</a></li>
+                                            
+                                                <li><a href="../fr/migrations.html">fr</a></li>
+                                            
+                                                <li><a href="../zh/migrations.html">zh</a></li>
+                                            
+                                                <li><a href="../tr/migrations.html">tr</a></li>
+                                            
+                                                <li><a href="../ru/migrations.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/en">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/en">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/en/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/en/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/en/migrations.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Migrations</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#creating-migrations">Creating Migrations</a><ul>
+<li><a class="reference internal" href="#syntax">Syntax</a><ul>
+<li><a class="reference internal" href="#migrations-file-name">Migrations file name</a></li>
+<li><a class="reference internal" href="#columns-definition">Columns definition</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-table">Creating a table</a></li>
+<li><a class="reference internal" href="#adding-columns-to-an-existing-table">Adding columns to an existing table</a></li>
+<li><a class="reference internal" href="#adding-a-column-as-index-to-a-table">Adding a column as index to a table</a></li>
+<li><a class="reference internal" href="#specifying-field-length">Specifying field length</a></li>
+<li><a class="reference internal" href="#removing-a-column-from-a-table">Removing a column from a table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generating-migrations-from-an-existing-database">Generating migrations from an existing database</a></li>
+<li><a class="reference internal" href="#generating-a-diff-between-two-database-states">Generating a diff between two database states</a></li>
+<li><a class="reference internal" href="#the-commands">The commands</a><ul>
+<li><a class="reference internal" href="#migrate-applying-migrations"><code class="docutils literal"><span class="pre">migrate</span></code> : Applying Migrations</a></li>
+<li><a class="reference internal" href="#rollback-reverting-migrations"><code class="docutils literal"><span class="pre">rollback</span></code> : Reverting Migrations</a></li>
+<li><a class="reference internal" href="#status-migrations-status"><code class="docutils literal"><span class="pre">status</span></code> : Migrations Status</a></li>
+<li><a class="reference internal" href="#mark-migrated-marking-a-migration-as-migrated"><code class="docutils literal"><span class="pre">mark_migrated</span></code> : Marking a migration as migrated</a></li>
+<li><a class="reference internal" href="#seed-seeding-your-database"><code class="docutils literal"><span class="pre">seed</span></code> : Seeding your database</a><ul>
+<li><a class="reference internal" href="#calling-a-seeder-from-another-seeder">Calling a Seeder from another Seeder</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dump-generating-a-dump-file-for-the-diff-baking-feature"><code class="docutils literal"><span class="pre">dump</span></code> : Generating a dump file for the diff baking feature</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-migrations-in-plugins">Using Migrations In Plugins</a></li>
+<li><a class="reference internal" href="#running-migrations-in-a-non-shell-environment">Running Migrations in a non-shell environment</a></li>
+<li><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a><ul>
+<li><a class="reference internal" href="#creating-custom-primary-keys">Creating Custom Primary Keys</a></li>
+<li><a class="reference internal" href="#collations">Collations</a></li>
+<li><a class="reference internal" href="#updating-columns-name-and-using-table-objects">Updating columns name and using Table objects</a></li>
+<li><a class="reference internal" href="#migrations-and-deployment">Migrations and Deployment</a></li>
+<li><a class="reference internal" href="#renaming-a-table">Renaming a table</a></li>
+<li><a class="reference internal" href="#skipping-the-schema-lock-file-generation">Skipping the <code class="docutils literal"><span class="pre">schema.lock</span></code> file generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="migrations">
+<h1>Migrations<a class="headerlink" href="#migrations" title="Permalink to this headline">¶</a></h1>
+<p>Migrations is a plugin supported by the core team that helps you do schema
+changes in your database by writing PHP files that can be tracked using your
+version control system.</p>
+<p>It allows you to evolve your database tables over time. Instead of writing
+schema modifications in SQL, this plugin allows you to use an intuitive set of
+methods to implement your database changes.</p>
+<p>This plugin is a wrapper for the database migrations library <a class="reference external" href="https://phinx.org/">Phinx</a>.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>By default Migrations is installed with the default application skeleton. If
+you&#8217;ve removed it and want to re-install it, you can do so by running the
+following from your application&#8217;s ROOT directory (where composer.json file is
+located):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">php</span> <span class="nx">composer</span><span class="o">.</span><span class="nx">phar</span> <span class="k">require</span> <span class="nx">cakephp</span><span class="o">/</span><span class="nx">migrations</span> <span class="s2">&quot;@stable&quot;</span>
+
+<span class="c1">// Or if composer is installed globally</span>
+
+<span class="err">$</span> <span class="nx">composer</span> <span class="k">require</span> <span class="nx">cakephp</span><span class="o">/</span><span class="nx">migrations</span> <span class="s2">&quot;@stable&quot;</span>
+</pre></div>
+</div>
+<p>To use the plugin you&#8217;ll need to load it in your application&#8217;s
+<strong>config/bootstrap.php</strong> file. You can use
+<a class="reference internal" href="console-and-shells/plugin-shell.html#plugin-shell"><span class="std std-ref">CakePHP&#8217;s Plugin shell</span></a> to load and unload plugins from
+your <strong>config/bootstrap.php</strong>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">plugin</span> <span class="nx">load</span> <span class="nx">Migrations</span>
+</pre></div>
+</div>
+<p>Or you can load the plugin by editing your <strong>config/bootstrap.php</strong> file and
+adding the following statement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Plugin</span><span class="o">::</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;Migrations&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Additionally, you will need to configure the default database configuration for your
+application in your <strong>config/app.php</strong> file as explained in the
+<a class="reference internal" href="orm/database-basics.html#database-configuration"><span class="std std-ref">Database Configuration section</span></a>.</p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>A migration is basically a single PHP file that describes the changes to operate
+to the database. A migration file can create or drop tables, add or remove
+columns, create indexes and even insert data into your database.</p>
+<p>Here&#8217;s an example of a migration:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Change Method.</span>
+<span class="sd">     *</span>
+<span class="sd">     * More information on this method is available here:</span>
+<span class="sd">     * http://docs.phinx.org/en/latest/migrations.html#the-change-method</span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">255</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;modified&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This migration will add a table to your database named <code class="docutils literal"><span class="pre">products</span></code> with the
+following column definitions:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">id</span></code> column of type <code class="docutils literal"><span class="pre">integer</span></code> as primary key</li>
+<li><code class="docutils literal"><span class="pre">name</span></code> column of type <code class="docutils literal"><span class="pre">string</span></code></li>
+<li><code class="docutils literal"><span class="pre">description</span></code> column of type <code class="docutils literal"><span class="pre">text</span></code></li>
+<li><code class="docutils literal"><span class="pre">created</span></code> column of type <code class="docutils literal"><span class="pre">datetime</span></code></li>
+<li><code class="docutils literal"><span class="pre">modified</span></code> column of type <code class="docutils literal"><span class="pre">datetime</span></code></li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The primary key column named <code class="docutils literal"><span class="pre">id</span></code> will be added <strong>implicitly</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note that this file describes how the database will look <strong>after</strong>
+applying the migration. At this point no <code class="docutils literal"><span class="pre">products</span></code> table exists in
+your database, we have merely created a file that is able to both create
+the <code class="docutils literal"><span class="pre">products</span></code> table with the specified columns as well as drop it
+when a <code class="docutils literal"><span class="pre">rollback</span></code> operation of the migration is performed.</p>
+</div>
+<p>Once the file has been created in the <strong>config/Migrations</strong> folder, you will be
+able to execute the following <code class="docutils literal"><span class="pre">migrations</span></code> command to create the table in
+your database:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span>
+</pre></div>
+</div>
+<p>The following <code class="docutils literal"><span class="pre">migrations</span></code> command will perform a <code class="docutils literal"><span class="pre">rollback</span></code> and drop the
+table from your database:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">rollback</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-migrations">
+<h2>Creating Migrations<a class="headerlink" href="#creating-migrations" title="Permalink to this headline">¶</a></h2>
+<p>Migration files are stored in the <strong>config/Migrations</strong> directory of your
+application. The name of the migration files are prefixed with the date in
+which they were created, in the format <strong>YYYYMMDDHHMMSS_MigrationName.php</strong>.
+Here are examples of migration filenames:</p>
+<ul class="simple">
+<li>20160121163850_CreateProducts.php</li>
+<li>20160210133047_AddRatingToProducts.php</li>
+</ul>
+<p>The easiest way to create a migrations file is by using the
+<a class="reference internal" href="bake/usage.html"><span class="doc">Code Generation with Bake</span></a> CLI command.</p>
+<p>Please make sure you read the official
+<a class="reference external" href="http://docs.phinx.org/en/latest/migrations.html">Phinx documentation</a>
+in order to know the complete list of methods you can use for writing migration
+files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When using the <code class="docutils literal"><span class="pre">bake</span></code> option, you can still modify the migration before
+running them if so desired.</p>
+</div>
+<div class="section" id="syntax">
+<h3>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">bake</span></code> command syntax follows the form below:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">CreateProducts</span> <span class="nx">name</span><span class="o">:</span><span class="nx">string</span> <span class="nx">description</span><span class="o">:</span><span class="nx">text</span> <span class="nx">created</span> <span class="nx">modified</span>
+</pre></div>
+</div>
+<p>When using <code class="docutils literal"><span class="pre">bake</span></code> to create tables, add columns and so on, to your
+database, you will usually provide two things:</p>
+<ul class="simple">
+<li>the name of the migration you will generate (<code class="docutils literal"><span class="pre">CreateProducts</span></code> in our
+example)</li>
+<li>the columns of the table that will be added or removed in the migration
+(<code class="docutils literal"><span class="pre">name:string</span> <span class="pre">description:text</span> <span class="pre">created</span> <span class="pre">modified</span></code> in our example)</li>
+</ul>
+<p>Due to the conventions, not all schema changes can be performed via these shell
+commands.</p>
+<p>Additionally you can create an empty migrations file if you want full control
+over what needs to be executed, by omitting to specify a columns definition:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">create</span> <span class="nx">MyCustomMigration</span>
+</pre></div>
+</div>
+<div class="section" id="migrations-file-name">
+<h4>Migrations file name<a class="headerlink" href="#migrations-file-name" title="Permalink to this headline">¶</a></h4>
+<p>Migration names can follow any of the following patterns:</p>
+<ul class="simple">
+<li>(<code class="docutils literal"><span class="pre">/^(Create)(.*)/</span></code>) Creates the specified table.</li>
+<li>(<code class="docutils literal"><span class="pre">/^(Drop)(.*)/</span></code>) Drops the specified table.
+Ignores specified field arguments</li>
+<li>(<code class="docutils literal"><span class="pre">/^(Add).*(?:To)(.*)/</span></code>) Adds fields to the specified
+table</li>
+<li>(<code class="docutils literal"><span class="pre">/^(Remove).*(?:From)(.*)/</span></code>) Removes fields from the
+specified table</li>
+<li>(<code class="docutils literal"><span class="pre">/^(Alter)(.*)/</span></code>) Alters the specified table. An alias
+for CreateTable and AddField.</li>
+</ul>
+<p>You can also use the <code class="docutils literal"><span class="pre">underscore_form</span></code> as the name for your migrations i.e.
+<code class="docutils literal"><span class="pre">create_products</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.5.2</p>
+<p>As of v1.5.2 of the <a class="reference external" href="https://github.com/cakephp/migrations/">migrations plugin</a>,
+the migration filename will be automatically camelized. This version of the
+plugin is only available with a release of CakePHP &gt;= to 3.1. Prior to this
+version of the plugin the migration name would be in the underscore form,
+i.e. <code class="docutils literal"><span class="pre">20160121164955_create_products.php</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Migration names are used as migration class names, and thus may collide with
+other migrations if the class names are not unique. In this case, it may be
+necessary to manually override the name at a later date, or simply change
+the name you are specifying.</p>
+</div>
+</div>
+<div class="section" id="columns-definition">
+<h4>Columns definition<a class="headerlink" href="#columns-definition" title="Permalink to this headline">¶</a></h4>
+<p>When using columns in the command line, it may be handy to remember that they
+follow the following pattern:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">fieldName</span><span class="o">:</span><span class="nx">fieldType</span><span class="o">?</span><span class="p">[</span><span class="nx">length</span><span class="p">]</span><span class="o">:</span><span class="nx">indexType</span><span class="o">:</span><span class="nx">indexName</span>
+</pre></div>
+</div>
+<p>For instance, the following are all valid ways of specifying an email field:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">email:string?</span></code></li>
+<li><code class="docutils literal"><span class="pre">email:string:unique</span></code></li>
+<li><code class="docutils literal"><span class="pre">email:string?[50]</span></code></li>
+<li><code class="docutils literal"><span class="pre">email:string:unique:EMAIL_INDEX</span></code></li>
+<li><code class="docutils literal"><span class="pre">email:string[120]:unique:EMAIL_INDEX</span></code></li>
+</ul>
+<p>The question mark following the fieldType will make the column nullable.</p>
+<p>The <code class="docutils literal"><span class="pre">length</span></code> parameter for the <code class="docutils literal"><span class="pre">fieldType</span></code> is optional and should always be
+written between bracket.</p>
+<p>Fields named <code class="docutils literal"><span class="pre">created</span></code> and <code class="docutils literal"><span class="pre">modified</span></code>, as well as any field with a <code class="docutils literal"><span class="pre">_at</span></code>
+suffix, will automatically be set to the type <code class="docutils literal"><span class="pre">datetime</span></code>.</p>
+<p>Field types are those generically made available by the <code class="docutils literal"><span class="pre">Phinx</span></code> library. Those
+can be:</p>
+<ul class="simple">
+<li>string</li>
+<li>text</li>
+<li>integer</li>
+<li>biginteger</li>
+<li>float</li>
+<li>decimal</li>
+<li>datetime</li>
+<li>timestamp</li>
+<li>time</li>
+<li>date</li>
+<li>binary</li>
+<li>boolean</li>
+<li>uuid</li>
+</ul>
+<p>There are some heuristics to choosing fieldtypes when left unspecified or set to
+an invalid value. Default field type is <code class="docutils literal"><span class="pre">string</span></code>:</p>
+<ul class="simple">
+<li>id: integer</li>
+<li>created, modified, updated: datetime</li>
+</ul>
+</div>
+</div>
+<div class="section" id="creating-a-table">
+<h3>Creating a table<a class="headerlink" href="#creating-a-table" title="Permalink to this headline">¶</a></h3>
+<p>You can use <code class="docutils literal"><span class="pre">bake</span></code> to create a table:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">CreateProducts</span> <span class="nx">name</span><span class="o">:</span><span class="nx">string</span> <span class="nx">description</span><span class="o">:</span><span class="nx">text</span> <span class="nx">created</span> <span class="nx">modified</span>
+</pre></div>
+</div>
+<p>The command line above will generate a migration file that resembles:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Change Method.</span>
+<span class="sd">     *</span>
+<span class="sd">     * More information on this method is available here:</span>
+<span class="sd">     * http://docs.phinx.org/en/latest/migrations.html#the-change-method</span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">255</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;modified&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-columns-to-an-existing-table">
+<h3>Adding columns to an existing table<a class="headerlink" href="#adding-columns-to-an-existing-table" title="Permalink to this headline">¶</a></h3>
+<p>If the migration name in the command line is of the form &#8220;AddXXXToYYY&#8221; and is
+followed by a list of column names and types then a migration file containing
+the code for creating the columns will be generated:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">AddPriceToProducts</span> <span class="nx">price</span><span class="o">:</span><span class="nx">decimal</span>
+</pre></div>
+</div>
+<p>Executing the command line above will generate:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AddPriceToProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;decimal&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-column-as-index-to-a-table">
+<h3>Adding a column as index to a table<a class="headerlink" href="#adding-a-column-as-index-to-a-table" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to add indexes to columns:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">AddNameIndexToProducts</span> <span class="nx">name</span><span class="o">:</span><span class="nx">string</span><span class="o">:</span><span class="nx">index</span>
+</pre></div>
+</div>
+<p>will generate:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AddNameIndexToProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+              <span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-field-length">
+<h3>Specifying field length<a class="headerlink" href="#specifying-field-length" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.4</p>
+</div>
+<p>If you need to specify a field length, you can do it within brackets in the
+field type, ie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">AddFullDescriptionToProducts</span> <span class="nx">full_description</span><span class="o">:</span><span class="nx">string</span><span class="p">[</span><span class="mi">60</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Executing the command line above will generate:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AddFullDescriptionToProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;full_description&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+            <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">60</span><span class="p">,</span>
+            <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">])</span>
+        <span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If no length is specified, lengths for certain type of columns are defaulted:</p>
+<ul class="simple">
+<li>string: 255</li>
+<li>integer: 11</li>
+<li>biginteger: 20</li>
+</ul>
+</div>
+<div class="section" id="removing-a-column-from-a-table">
+<h3>Removing a column from a table<a class="headerlink" href="#removing-a-column-from-a-table" title="Permalink to this headline">¶</a></h3>
+<p>In the same way, you can generate a migration to remove a column by using the
+command line, if the migration name is of the form &#8220;RemoveXXXFromYYY&#8221;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">RemovePriceFromProducts</span> <span class="nx">price</span>
+</pre></div>
+</div>
+<p>creates the file:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RemovePriceFromProducts</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">removeColumn</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <cite>removeColumn</cite> command is not reversible, so must be called in the
+<cite>up</cite> method. A corresponding <cite>addColumn</cite> call should be added to the
+<cite>down</cite> method.</p>
+</div>
+</div>
+</div>
+<div class="section" id="generating-migrations-from-an-existing-database">
+<h2>Generating migrations from an existing database<a class="headerlink" href="#generating-migrations-from-an-existing-database" title="Permalink to this headline">¶</a></h2>
+<p>If you are dealing with a pre-existing database and want to start using
+migrations, or to version control the initial schema of your application&#8217;s
+database, you can run the <code class="docutils literal"><span class="pre">migration_snapshot</span></code> command:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_snapshot</span> <span class="nx">Initial</span>
+</pre></div>
+</div>
+<p>It will generate a migration file called <strong>YYYYMMDDHHMMSS_Initial.php</strong>
+containing all the create statements for all tables in your database.</p>
+<p>By default, the snapshot will be created by connecting to the database defined
+in the <code class="docutils literal"><span class="pre">default</span></code> connection configuration.
+If you need to bake a snapshot from a different datasource, you can use the
+<code class="docutils literal"><span class="pre">--connection</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_snapshot</span> <span class="nx">Initial</span> <span class="o">--</span><span class="nx">connection</span> <span class="nx">my_other_connection</span>
+</pre></div>
+</div>
+<p>You can also make sure the snapshot includes only the tables for which you have
+defined the corresponding model classes by using the <code class="docutils literal"><span class="pre">--require-table</span></code> flag:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_snapshot</span> <span class="nx">Initial</span> <span class="o">--</span><span class="k">require</span><span class="o">-</span><span class="nx">table</span>
+</pre></div>
+</div>
+<p>When using the <code class="docutils literal"><span class="pre">--require-table</span></code> flag, the shell will look through your
+application <code class="docutils literal"><span class="pre">Table</span></code> classes and will only add the model tables in the snapshot
+.</p>
+<p>The same logic will be applied implicitly if you wish to bake a snapshot for a
+plugin. To do so, you need to use the <code class="docutils literal"><span class="pre">--plugin</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_snapshot</span> <span class="nx">Initial</span> <span class="o">--</span><span class="nx">plugin</span> <span class="nx">MyPlugin</span>
+</pre></div>
+</div>
+<p>Only the tables which have a <code class="docutils literal"><span class="pre">Table</span></code> object model class defined will be added
+to the snapshot of your plugin.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When baking a snapshot for a plugin, the migration files will be created
+in your plugin&#8217;s <strong>config/Migrations</strong> directory.</p>
+</div>
+<p>Be aware that when you bake a snapshot, it is automatically added to the phinx
+log table as migrated.</p>
+</div>
+<div class="section" id="generating-a-diff-between-two-database-states">
+<h2>Generating a diff between two database states<a class="headerlink" href="#generating-a-diff-between-two-database-states" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.6.0</p>
+</div>
+<p>You can generate a migrations file that will group all the differences between
+two database states using the <code class="docutils literal"><span class="pre">migration_diff</span></code> bake template. To do so, you
+can use the following command:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_diff</span> <span class="nx">NameOfTheMigrations</span>
+</pre></div>
+</div>
+<p>In order to have a point of comparison from your current database state, the
+migrations shell will generate a &#8220;dump&#8221; file after each <code class="docutils literal"><span class="pre">migrate</span></code> or
+<code class="docutils literal"><span class="pre">rollback</span></code> call. The dump file is a file containing the full schema state of
+your database at a given point in time.</p>
+<p>Once a dump file is generated, every modifications you do directly in your
+database management system will be added to the migration file generated when
+you call the <code class="docutils literal"><span class="pre">bake</span> <span class="pre">migration_diff</span></code> command.</p>
+<p>By default, the diff will be created by connecting to the database defined
+in the <code class="docutils literal"><span class="pre">default</span></code> connection configuration.
+If you need to bake a diff from a different datasource, you can use the
+<code class="docutils literal"><span class="pre">--connection</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_diff</span> <span class="nx">NameOfTheMigrations</span> <span class="o">--</span><span class="nx">connection</span> <span class="nx">my_other_connection</span>
+</pre></div>
+</div>
+<p>If you want to use the diff feature on an application that already has a
+migrations history, you need to manually create the dump file that will be used
+as comparison:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">dump</span>
+</pre></div>
+</div>
+<p>The database state must be the same as it would be if you just migrated all
+your migrations before you create a dump file.
+Once the dump file is generated, you can start doing changes in your database
+and use the <code class="docutils literal"><span class="pre">bake</span> <span class="pre">migration_diff</span></code> command whenever you see fit.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The migrations shell can not detect column renamings.</p>
+</div>
+</div>
+<div class="section" id="the-commands">
+<h2>The commands<a class="headerlink" href="#the-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrate-applying-migrations">
+<h3><code class="docutils literal"><span class="pre">migrate</span></code> : Applying Migrations<a class="headerlink" href="#migrate-applying-migrations" title="Permalink to this headline">¶</a></h3>
+<p>Once you have generated or written your migration file, you need to execute the
+following command to apply the changes to your database:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># Run all the migrations</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span>
+
+<span class="c1"># Migrate to a specific version using the ``--target`` option</span>
+<span class="c1"># or ``-t`` for short.</span>
+<span class="c1"># The value is the timestamp that is prefixed to the migrations file name::</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">t</span> <span class="mi">20150103081132</span>
+
+<span class="c1"># By default, migration files are looked for in the **config/Migrations**</span>
+<span class="c1"># directory. You can specify the directory using the ``--source`` option</span>
+<span class="c1"># or ``-s`` for short.</span>
+<span class="c1"># The following example will run migrations in the **config/Alternate**</span>
+<span class="c1"># directory</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">s</span> <span class="nx">Alternate</span>
+
+<span class="c1"># You can run migrations to a different connection than the ``default`` one</span>
+<span class="c1"># using the ``--connection`` option or ``-c`` for short</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">c</span> <span class="nx">my_custom_connection</span>
+
+<span class="c1"># Migrations can also be run for plugins. Simply use the ``--plugin`` option</span>
+<span class="c1"># or ``-p`` for short</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">p</span> <span class="nx">MyAwesomePlugin</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rollback-reverting-migrations">
+<h3><code class="docutils literal"><span class="pre">rollback</span></code> : Reverting Migrations<a class="headerlink" href="#rollback-reverting-migrations" title="Permalink to this headline">¶</a></h3>
+<p>The Rollback command is used to undo previous migrations executed by this
+plugin. It is the reverse action of the <code class="docutils literal"><span class="pre">migrate</span></code> command:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># You can rollback to the previous migration by using the</span>
+<span class="c1"># ``rollback`` command::</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">rollback</span>
+
+<span class="c1"># You can also pass a migration version number to rollback</span>
+<span class="c1"># to a specific version::</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">rollback</span> <span class="o">-</span><span class="nx">t</span> <span class="mi">20150103081132</span>
+</pre></div>
+</div>
+<p>You can also use the <code class="docutils literal"><span class="pre">--source</span></code>, <code class="docutils literal"><span class="pre">--connection</span></code> and <code class="docutils literal"><span class="pre">--plugin</span></code> options
+just like for the <code class="docutils literal"><span class="pre">migrate</span></code> command.</p>
+</div>
+<div class="section" id="status-migrations-status">
+<h3><code class="docutils literal"><span class="pre">status</span></code> : Migrations Status<a class="headerlink" href="#status-migrations-status" title="Permalink to this headline">¶</a></h3>
+<p>The Status command prints a list of all migrations, along with their current
+status. You can use this command to determine which migrations have been run:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">status</span>
+</pre></div>
+</div>
+<p>You can also output the results as a JSON formatted string using the
+<code class="docutils literal"><span class="pre">--format</span></code> option (or <code class="docutils literal"><span class="pre">-f</span></code> for short):</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">status</span> <span class="o">--</span><span class="nx">format</span> <span class="nx">json</span>
+</pre></div>
+</div>
+<p>You can also use the <code class="docutils literal"><span class="pre">--source</span></code>, <code class="docutils literal"><span class="pre">--connection</span></code> and <code class="docutils literal"><span class="pre">--plugin</span></code> options
+just like for the <code class="docutils literal"><span class="pre">migrate</span></code> command.</p>
+</div>
+<div class="section" id="mark-migrated-marking-a-migration-as-migrated">
+<h3><code class="docutils literal"><span class="pre">mark_migrated</span></code> : Marking a migration as migrated<a class="headerlink" href="#mark-migrated-marking-a-migration-as-migrated" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<p>It can sometimes be useful to mark a set of migrations as migrated without
+actually running them.
+In order to do this, you can use the <code class="docutils literal"><span class="pre">mark_migrated</span></code> command.
+The command works seamlessly as the other commands.</p>
+<p>You can mark all migrations as migrated using this command:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span>
+</pre></div>
+</div>
+<p>You can also mark all migrations up to a specific version as migrated using
+the <code class="docutils literal"><span class="pre">--target</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span> <span class="o">--</span><span class="nx">target</span><span class="o">=</span><span class="mi">20151016204000</span>
+</pre></div>
+</div>
+<p>If you do not want the targeted migration to be marked as migrated during the
+process, you can use the <code class="docutils literal"><span class="pre">--exclude</span></code> flag with it:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span> <span class="o">--</span><span class="nx">target</span><span class="o">=</span><span class="mi">20151016204000</span> <span class="o">--</span><span class="nx">exclude</span>
+</pre></div>
+</div>
+<p>Finally, if you wish to mark only the targeted migration as migrated, you can
+use the <code class="docutils literal"><span class="pre">--only</span></code> flag:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span> <span class="o">--</span><span class="nx">target</span><span class="o">=</span><span class="mi">20151016204000</span> <span class="o">--</span><span class="nx">only</span>
+</pre></div>
+</div>
+<p>You can also use the <code class="docutils literal"><span class="pre">--source</span></code>, <code class="docutils literal"><span class="pre">--connection</span></code> and <code class="docutils literal"><span class="pre">--plugin</span></code> options
+just like for the <code class="docutils literal"><span class="pre">migrate</span></code> command.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When you bake a snapshot with the <code class="docutils literal"><span class="pre">cake</span> <span class="pre">bake</span> <span class="pre">migration_snapshot</span></code>
+command, the created migration will automatically be marked as migrated.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.4.0: </span>The following way of using the command has been deprecated. Use it only
+if you are using a version of the plugin &lt; 1.4.0.</p>
+</div>
+<p>This command expects the migration version number as argument:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span> <span class="mi">20150420082532</span>
+</pre></div>
+</div>
+<p>If you wish to mark all migrations as migrated, you can use the <code class="docutils literal"><span class="pre">all</span></code> special
+value. If you use it, it will mark all found migrations as migrated:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">mark_migrated</span> <span class="nx">all</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="seed-seeding-your-database">
+<h3><code class="docutils literal"><span class="pre">seed</span></code> : Seeding your database<a class="headerlink" href="#seed-seeding-your-database" title="Permalink to this headline">¶</a></h3>
+<p>As of 1.5.5, you can use the <code class="docutils literal"><span class="pre">migrations</span></code> shell to seed your database. This
+leverages the <a class="reference external" href="http://docs.phinx.org/en/latest/seeding.html">Phinx library seed feature</a>.
+By default, seed files will be looked for in the <code class="docutils literal"><span class="pre">config/Seeds</span></code> directory of
+your application. Please make sure you follow
+<a class="reference external" href="http://docs.phinx.org/en/latest/seeding.html#creating-a-new-seed-class">Phinx instructions to build your seed files</a>.</p>
+<p>As for migrations, a <code class="docutils literal"><span class="pre">bake</span></code> interface is provided for seed files:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># This will create a ArticlesSeed.php file in the directory config/Seeds of your application</span>
+<span class="c1"># By default, the table the seed will try to alter is the &quot;tableized&quot; version of the seed filename</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="nx">Articles</span>
+
+<span class="c1"># You specify the name of the table the seed files will alter by using the ``--table`` option</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="nx">Articles</span> <span class="o">--</span><span class="nx">table</span> <span class="nx">my_articles_table</span>
+
+<span class="c1"># You can specify a plugin to bake into</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="nx">Articles</span> <span class="o">--</span><span class="nx">plugin</span> <span class="nx">PluginName</span>
+
+<span class="c1"># You can specify an alternative connection when generating a seeder.</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="nx">Articles</span> <span class="o">--</span><span class="nx">connection</span> <span class="nx">connection</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.6.4</p>
+<p>Options <code class="docutils literal"><span class="pre">--data</span></code>, <code class="docutils literal"><span class="pre">--limit</span></code> and <code class="docutils literal"><span class="pre">--fields</span></code> were added to export
+data from your database.</p>
+</div>
+<p>As of 1.6.4, the <code class="docutils literal"><span class="pre">bake</span> <span class="pre">seed</span></code> command allows you to create a seed file with
+data exported from your database by using the <code class="docutils literal"><span class="pre">--data</span></code> flag:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">data</span> <span class="nx">Articles</span>
+</pre></div>
+</div>
+<p>By default, it will export all the rows found in your table. You can limit the
+number of rows exported by using the <code class="docutils literal"><span class="pre">--limit</span></code> option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># Will only export the first 10 rows found</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">data</span> <span class="o">--</span><span class="nx">limit</span> <span class="mi">10</span> <span class="nx">Articles</span>
+</pre></div>
+</div>
+<p>If you only want to include a selection of fields from the table in your seed
+file, you can use the <code class="docutils literal"><span class="pre">--fields</span></code> option. It takes the list of fields to
+include as a comma separated value string:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># Will only export the fields `id`, `title` and `excerpt`</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">data</span> <span class="o">--</span><span class="nx">fields</span> <span class="nx">id</span><span class="p">,</span><span class="nx">title</span><span class="p">,</span><span class="nx">excerpt</span> <span class="nx">Articles</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Of course you can use both the <code class="docutils literal"><span class="pre">--limit</span></code> and <code class="docutils literal"><span class="pre">--fields</span></code> options in the
+same command call.</p>
+</div>
+<p>To seed your database, you can use the <code class="docutils literal"><span class="pre">seed</span></code> subcommand:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># Without parameters, the seed subcommand will run all available seeders</span>
+<span class="c1"># in the target directory, in alphabetical order.</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">seed</span>
+
+<span class="c1"># You can specify only one seeder to be run using the `--seed` option</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">seed</span> <span class="nx">ArticlesSeed</span>
+
+<span class="c1"># You can run seeders from an alternative directory</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">source</span> <span class="nx">AlternativeSeeds</span>
+
+<span class="c1"># You can run seeders from a plugin</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">plugin</span> <span class="nx">PluginName</span>
+
+<span class="c1"># You can run seeders from a specific connection</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">seed</span> <span class="o">--</span><span class="nx">connection</span> <span class="nx">connection</span>
+</pre></div>
+</div>
+<p>Be aware that, as opposed to migrations, seeders are not tracked, which means
+that the same seeder can be applied multiple times.</p>
+<div class="section" id="calling-a-seeder-from-another-seeder">
+<h4>Calling a Seeder from another Seeder<a class="headerlink" href="#calling-a-seeder-from-another-seeder" title="Permalink to this headline">¶</a></h4>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.6.2</p>
+</div>
+<p>Usually when seeding, the order in which to insert the data must be respected
+to not encounter constraints violations. Since Seeders are executed in the
+alphabetical order by default, you can use the <code class="docutils literal"><span class="pre">\Migrations\AbstractSeed::call()</span></code>
+method to define your own sequence of seeders execution:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Migrations\AbstractSeed</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">DatabaseSeed</span> <span class="k">extends</span> <span class="nx">AbstractSeed</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;AnotherSeed&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;YetAnotherSeed&#39;</span><span class="p">);</span>
+
+        <span class="c1">// You can use the plugin dot syntax to call seeders from a plugin</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;PluginName.FromPluginSeed&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure to extend the Migrations plugin <code class="docutils literal"><span class="pre">AbstractSeed</span></code> class if you want
+to be able to use the <code class="docutils literal"><span class="pre">call()</span></code> method. This class was added with release
+1.6.2.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dump-generating-a-dump-file-for-the-diff-baking-feature">
+<h3><code class="docutils literal"><span class="pre">dump</span></code> : Generating a dump file for the diff baking feature<a class="headerlink" href="#dump-generating-a-dump-file-for-the-diff-baking-feature" title="Permalink to this headline">¶</a></h3>
+<p>The Dump command creates a file to be used with the <code class="docutils literal"><span class="pre">migration_diff</span></code> bake
+template:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">dump</span>
+</pre></div>
+</div>
+<p>Each generated dump file is specific to the Connection it is generated from (and
+is suffixed as such). This allows the <code class="docutils literal"><span class="pre">bake</span> <span class="pre">migration_diff</span></code> command to
+properly compute diff in case your application is dealing with multiple database
+possibly from different database vendors.</p>
+<p>Dump files are created in the same directory as your migrations files.</p>
+<p>You can also use the <code class="docutils literal"><span class="pre">--source</span></code>, <code class="docutils literal"><span class="pre">--connection</span></code> and <code class="docutils literal"><span class="pre">--plugin</span></code> options
+just like for the <code class="docutils literal"><span class="pre">migrate</span></code> command.</p>
+</div>
+</div>
+<div class="section" id="using-migrations-in-plugins">
+<h2>Using Migrations In Plugins<a class="headerlink" href="#using-migrations-in-plugins" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can also provide migration files. This makes plugins that are intended
+to be distributed much more portable and easy to install. All commands in the
+Migrations plugin support the <code class="docutils literal"><span class="pre">--plugin</span></code> or <code class="docutils literal"><span class="pre">-p</span></code> option that will scope the
+execution to the migrations relative to that plugin:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">status</span> <span class="o">-</span><span class="nx">p</span> <span class="nx">PluginName</span>
+
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">-</span><span class="nx">p</span> <span class="nx">PluginName</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-migrations-in-a-non-shell-environment">
+<h2>Running Migrations in a non-shell environment<a class="headerlink" href="#running-migrations-in-a-non-shell-environment" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.2.0</p>
+</div>
+<p>Since the release of version 1.2 of the migrations plugin, you can run
+migrations from a non-shell environment, directly from an app, by using the new
+<code class="docutils literal"><span class="pre">Migrations</span></code> class. This can be handy in case you are developing a plugin
+installer for a CMS for instance.
+The <code class="docutils literal"><span class="pre">Migrations</span></code> class allows you to run the following commands from the
+migrations shell:</p>
+<ul class="simple">
+<li>migrate</li>
+<li>rollback</li>
+<li>markMigrated</li>
+<li>status</li>
+<li>seed</li>
+</ul>
+<p>Each of these commands has a method defined in the <code class="docutils literal"><span class="pre">Migrations</span></code> class.</p>
+<p>Here is how to use it:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Migrations\Migrations</span><span class="p">;</span>
+
+<span class="nv">$migrations</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Migrations</span><span class="p">();</span>
+
+<span class="c1">// Will return an array of all migrations and their status</span>
+<span class="nv">$status</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+
+<span class="c1">// Will return true if success. If an error occurred, an exception will be thrown</span>
+<span class="nv">$migrate</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">migrate</span><span class="p">();</span>
+
+<span class="c1">// Will return true if success. If an error occurred, an exception will be thrown</span>
+<span class="nv">$rollback</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">rollback</span><span class="p">();</span>
+
+<span class="c1">// Will return true if success. If an error occurred, an exception will be thrown</span>
+<span class="nv">$markMigrated</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">markMigrated</span><span class="p">(</span><span class="mi">20150804222900</span><span class="p">);</span>
+
+<span class="c1">// Will return true if success. If an error occurred, an exception will be thrown</span>
+<span class="nv">$seeded</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">seed</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The methods can accept an array of parameters that should match options from
+the commands:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Migrations\Migrations</span><span class="p">;</span>
+
+<span class="nv">$migrations</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Migrations</span><span class="p">();</span>
+
+<span class="c1">// Will return an array of all migrations and their status</span>
+<span class="nv">$status</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">([</span><span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyMigrationsFolder&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>You can pass any options the shell commands would take.
+The only exception is the <code class="docutils literal"><span class="pre">markMigrated</span></code> command which is expecting the
+version number of the migrations to mark as migrated as first argument. Pass
+the array of parameters as the second argument for this method.</p>
+<p>Optionally, you can pass these parameters in the constructor of the class.
+They will be used as default and this will prevent you from having to pass
+them on each method call:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Migrations\Migrations</span><span class="p">;</span>
+
+<span class="nv">$migrations</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Migrations</span><span class="p">([</span><span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyMigrationsFolder&#39;</span><span class="p">]);</span>
+
+<span class="c1">// All the following calls will be done with the parameters passed to the Migrations class constructor</span>
+<span class="nv">$status</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<span class="nv">$migrate</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">migrate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>If you need to override one or more default parameters for one call, you can
+pass them to the method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Migrations\Migrations</span><span class="p">;</span>
+
+<span class="nv">$migrations</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Migrations</span><span class="p">([</span><span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyMigrationsFolder&#39;</span><span class="p">]);</span>
+
+<span class="c1">// This call will be made with the &quot;custom&quot; connection</span>
+<span class="nv">$status</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<span class="c1">// This one with the &quot;default&quot; connection</span>
+<span class="nv">$migrate</span> <span class="o">=</span> <span class="nv">$migrations</span><span class="o">-&gt;</span><span class="na">migrate</span><span class="p">([</span><span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tips-and-tricks">
+<h2>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-custom-primary-keys">
+<h3>Creating Custom Primary Keys<a class="headerlink" href="#creating-custom-primary-keys" title="Permalink to this headline">¶</a></h3>
+<p>If you need to avoid the automatic creation of the <code class="docutils literal"><span class="pre">id</span></code> primary key when
+adding new tables to the database, you can use the second argument of the
+<code class="docutils literal"><span class="pre">table()</span></code> method:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateProductsTable</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;primary_key&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]]);</span>
+        <span class="nv">$table</span>
+              <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;uuid&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
+              <span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above will create a <code class="docutils literal"><span class="pre">CHAR(36)</span></code> <code class="docutils literal"><span class="pre">id</span></code> column that is also the primary key.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When specifying a custom primary key on the command line, you must note
+it as the primary key in the id field, otherwise you may get an error
+regarding duplicate id fields, i.e.:</p>
+<div class="last highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration</span> <span class="nx">CreateProducts</span> <span class="nx">id</span><span class="o">:</span><span class="nx">uuid</span><span class="o">:</span><span class="nx">primary</span> <span class="nx">name</span><span class="o">:</span><span class="nx">string</span> <span class="nx">description</span><span class="o">:</span><span class="nx">text</span> <span class="nx">created</span> <span class="nx">modified</span>
+</pre></div>
+</div>
+</div>
+<p>Additionally, since Migrations 1.3, a new way to deal with primary key was
+introduced. To do so, your migration class should extend the new
+<code class="docutils literal"><span class="pre">Migrations\AbstractMigration</span></code> class.
+You can specify a <code class="docutils literal"><span class="pre">autoId</span></code> property in the Migration class and set it to
+<code class="docutils literal"><span class="pre">false</span></code>, which will turn off the automatic <code class="docutils literal"><span class="pre">id</span></code> column creation. You will
+need to manually create the column that will be used as a primary key and add
+it to the table declaration:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateProductsTable</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$autoId</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;products&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span>
+            <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">&#39;autoIncrement&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+                <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">11</span>
+            <span class="p">])</span>
+            <span class="o">-&gt;</span><span class="na">addPrimaryKey</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Compared to the previous way of dealing with primary key, this method gives you
+the ability to have more control over the primary key column definition:
+unsigned or not, limit, comment, etc.</p>
+<p>All baked migrations and snapshot will use this new way when necessary.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Dealing with primary key can only be done on table creation operations.
+This is due to limitations for some database servers the plugin supports.</p>
+</div>
+</div>
+<div class="section" id="collations">
+<h3>Collations<a class="headerlink" href="#collations" title="Permalink to this headline">¶</a></h3>
+<p>If you need to create a table with a different collation than the database
+default one, you can define it with the <code class="docutils literal"><span class="pre">table()</span></code> method, as an option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Migrations\AbstractMigration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateCategoriesTable</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">change</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$this</span>
+            <span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;categories&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">&#39;collation&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;latin1_german1_ci&#39;</span>
+            <span class="p">])</span>
+            <span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>
+                <span class="s1">&#39;limit&#39;</span> <span class="o">=&gt;</span> <span class="mi">255</span><span class="p">,</span>
+                <span class="s1">&#39;null&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+            <span class="p">])</span>
+            <span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note however this can only be done on table creation : there is currently
+no way of adding a column to an existing table with a different collation than
+the table or the database.
+Only <code class="docutils literal"><span class="pre">MySQL</span></code> and <code class="docutils literal"><span class="pre">SqlServer</span></code> supports this configuration key for the time
+being.</p>
+</div>
+<div class="section" id="updating-columns-name-and-using-table-objects">
+<h3>Updating columns name and using Table objects<a class="headerlink" href="#updating-columns-name-and-using-table-objects" title="Permalink to this headline">¶</a></h3>
+<p>If you use a CakePHP ORM Table object to manipulate values from your database
+along with renaming or removing a column, make sure you create a new instance of
+your Table object after the <code class="docutils literal"><span class="pre">update()</span></code> call. The Table object registry is
+cleared after an <code class="docutils literal"><span class="pre">update()</span></code> call in order to refresh the schema that is
+reflected and stored in the Table object upon instantiation.</p>
+</div>
+<div class="section" id="migrations-and-deployment">
+<h3>Migrations and Deployment<a class="headerlink" href="#migrations-and-deployment" title="Permalink to this headline">¶</a></h3>
+<p>If you use the plugin when deploying your application, be sure to clear the ORM
+cache so it renews the column metadata of your tables.
+Otherwise, you might end up having errors about columns not existing when
+performing operations on those new columns.
+The CakePHP Core includes a <a class="reference internal" href="console-and-shells/orm-cache.html"><span class="doc">ORM Cache Shell</span></a>
+that you can use to perform this operation:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">orm_cache</span> <span class="nx">clear</span>
+</pre></div>
+</div>
+<p>Be sure to read the <a class="reference internal" href="console-and-shells/orm-cache.html"><span class="doc">ORM Cache Shell</span></a>
+section of the cookbook if you want to know more about this shell.</p>
+</div>
+<div class="section" id="renaming-a-table">
+<h3>Renaming a table<a class="headerlink" href="#renaming-a-table" title="Permalink to this headline">¶</a></h3>
+<p>The plugin gives you the ability to rename a table, using the <code class="docutils literal"><span class="pre">rename()</span></code>
+method.
+In your migration file, you can do the following:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;old_table_name&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">rename</span><span class="p">(</span><span class="s1">&#39;new_table_name&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="skipping-the-schema-lock-file-generation">
+<h3>Skipping the <code class="docutils literal"><span class="pre">schema.lock</span></code> file generation<a class="headerlink" href="#skipping-the-schema-lock-file-generation" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">New in version cakephp/migrations: </span>1.6.5</p>
+</div>
+<p>In order for the diff feature to work, a <strong>.lock</strong> file is generated everytime
+you migrate, rollback or bake a snapshot, to keep track of the state of your
+database schema at any given point in time. You can skip this file generation,
+for instance when deploying on your production environment, by using the
+<code class="docutils literal"><span class="pre">--no-lock</span></code> option for the aforementioned command:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">migrate</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">lock</span>
+
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="nx">rollback</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">lock</span>
+
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">migration_snapshot</span> <span class="nx">MyMigration</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">lock</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="en">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Preface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">CakePHP at a Glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/3-x-migration-guide.html">3.x Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples.html">Tutorials &amp; Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/request-response.html">Request &amp; Response Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orm.html">Database Access &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Using CakePHP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bake.html">Bake Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/caching.html">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells.html">Console Tools, Shells &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/errors.html">Error &amp; Exception Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/events.html">Events System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/internationalization-and-localization.html">Internationalization &amp; Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/form.html">Modelless Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utility Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/app.html">App Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/httpclient.html">Http Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/registry-objects.html">Registry Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Plugins</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-tool.html">Upgrade Tool</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/global-constants-and-functions.html">Constants &amp; Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices.html">Appendices</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Last updated on Aug 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1119 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Entities - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/orm/entities.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/orm/entities.html" /><link rel="alternate" hreflang="es" href="../../es/orm/entities.html" /><link rel="alternate" hreflang="ja" href="../../ja/orm/entities.html" /><link rel="alternate" hreflang="zh" href="../../zh/orm/entities.html" /><link rel="alternate" hreflang="tr" href="../../tr/orm/entities.html" /><link rel="alternate" hreflang="ru" href="../../ru/orm/entities.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="Accès Base de Données &amp; ORM" href="../orm.html" />
+    <link rel="next" title="Récupérer les Données et les Ensembles de Résultats" href="retrieving-data-and-resultsets.html" />
+    <link rel="prev" title="Les Objets Table" href="table-objects.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/orm/entities.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/orm/entities.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/orm/entities.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/orm/entities.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/orm/entities.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/orm/entities.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/orm/entities.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/orm/entities.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Entities</a><ul>
+<li><a class="reference internal" href="#creer-des-classes-entity">Créer des Classes Entity</a></li>
+<li><a class="reference internal" href="#creer-des-entities">Créer des Entities</a></li>
+<li><a class="reference internal" href="#acceder-aux-donnees-de-l-entity">Accéder aux Données de l&#8217;Entity</a></li>
+<li><a class="reference internal" href="#accesseurs-mutateurs">Accesseurs &amp; Mutateurs</a><ul>
+<li><a class="reference internal" href="#creer-des-proprietes-virtuelles">Créer des Propriétés Virtuelles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#verifier-si-une-entity-a-ete-modifiee">Vérifier si une Entity a été Modifiée</a></li>
+<li><a class="reference internal" href="#erreurs-de-validation">Erreurs de Validation</a></li>
+<li><a class="reference internal" href="#assignement-de-masse">Assignement de Masse</a><ul>
+<li><a class="reference internal" href="#eviter-la-protection-contre-l-assignement-de-masse">Eviter la Protection Contre l&#8217;Assignement de Masse</a></li>
+<li><a class="reference internal" href="#modifier-les-champs-proteges-a-l-execution">Modifier les Champs Protégés à l&#8217;Exécution</a></li>
+<li><a class="reference internal" href="#outrepasser-la-protection-de-champ">Outrepasser la Protection de Champ</a></li>
+<li><a class="reference internal" href="#verifier-si-une-entity-a-ete-sauvegardee">Vérifier si une Entity a été Sauvegardée</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lazy-loading-des-associations">Lazy Loading des Associations</a></li>
+<li><a class="reference internal" href="#creer-du-code-reutilisable-avec-les-traits">Créer du Code Réutilisable avec les Traits</a></li>
+<li><a class="reference internal" href="#convertir-en-tableaux-json">Convertir en Tableaux/JSON</a><ul>
+<li><a class="reference internal" href="#montrer-les-proprietes-virtuelles">Montrer les Propriétés Virtuelles</a></li>
+<li><a class="reference internal" href="#cacher-les-proprietes">Cacher les Propriétés</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stocker-des-types-complexes">Stocker des Types Complexes</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\ORM">
+<span id="entities"></span><h1>Entities<a class="headerlink" href="#namespace-Cake\ORM" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt id="Cake\ORM\Entity">
+<em class="property">class </em><code class="descclassname">Cake\ORM\</code><code class="descname">Entity</code><a class="headerlink" href="#Cake\ORM\Entity" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Alors que les <a class="reference internal" href="table-objects.html"><span class="doc">objets Table</span></a> représentent et
+fournissent un accès à une collection d&#8217;objets, les entities représentent des
+lignes individuelles ou des objets de domaine dans votre application. Les
+entities contiennent des propriétés et des méthodes persistantes pour manipuler
+et accéder aux données qu&#8217;ils contiennent.</p>
+<p>Les entities sont créées pour vous par CakePHP à chaque fois que vous utilisez
+<code class="docutils literal"><span class="pre">find()</span></code> sur un objet table.</p>
+<div class="section" id="creer-des-classes-entity">
+<h2>Créer des Classes Entity<a class="headerlink" href="#creer-des-classes-entity" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous n&#8217;avez pas besoin de créer des classes entity pour utiliser l&#8217;ORM dans
+CakePHP. Cependant si vous souhaitez avoir de la logique personnalisée dans
+vos entities, vous devrez créer des classes. Par convention, les classes
+entity se trouvent dans <strong>src/Model/Entity/</strong>. Si notre application a une
+table <code class="docutils literal"><span class="pre">articles</span></code>, nous pourrions créer l&#8217;entity suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// src/Model/Entity/Article.php</span>
+<span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Pour l&#8217;instant cette entity ne fait pas grand chose. Cependant quand nous
+chargeons les données de notre table articles, nous obtenons des instances
+de cette classe.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous ne définissez pas de classe entity, CakePHP va utiliser la classe
+de base Entity.</p>
+</div>
+</div>
+<div class="section" id="creer-des-entities">
+<h2>Créer des Entities<a class="headerlink" href="#creer-des-entities" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les Entities peuvent être instanciées directement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Model\Entity\Article</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Lorsque vous instanciez une entity, vous pouvez lui passer des propriétés avec
+les données que vous voulez y stocker:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Model\Entity\Article</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">([</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Article&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">)</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Une autre approche pour récupérer une nouvelle entity est d&#8217;utiliser la méthode
+<code class="docutils literal"><span class="pre">newEntity()</span></code> de l&#8217;objet <code class="docutils literal"><span class="pre">Table</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\ORM\TableRegistry</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">();</span>
+<span class="nv">$article</span> <span class="o">=</span> <span class="nx">TableRegistry</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;Articles&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">newEntity</span><span class="p">([</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Article&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;created&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">DateTime</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">)</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acceder-aux-donnees-de-l-entity">
+<h2>Accéder aux Données de l&#8217;Entity<a class="headerlink" href="#acceder-aux-donnees-de-l-entity" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les entities fournissent quelques façons d&#8217;accéder aux données qu&#8217;elles
+contiennent. La plupart du temps, vous accéderez aux données dans une entity
+en utilisant la notation objet:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Model\Entity\Article</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;Ceci est mon premier post&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi utiliser les méthodes <code class="docutils literal"><span class="pre">get()</span></code> et <code class="docutils literal"><span class="pre">set()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Ceci est mon premier post&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Quand vous utilisez <code class="docutils literal"><span class="pre">set()</span></code>, vous pouvez mettre à jour plusieurs propriétés
+en une fois en utilisant un tableau:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">([</span>
+    <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Mon premier post&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;C&#39;est le meilleur de tous!&quot;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Lors de la mise à jour des entities avec des données requêtées, vous
+devriez faire une liste des champs qui peuvent être définis par
+assignement de masse.</p>
+</div>
+</div>
+<div class="section" id="accesseurs-mutateurs">
+<h2>Accesseurs &amp; Mutateurs<a class="headerlink" href="#accesseurs-mutateurs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>En plus de l&#8217;interface simple get/set, les entities vous permettent de fournir
+des méthodes accesseurs et mutateurs. Ces méthodes vous laissent personnaliser
+la façon dont les propriétés sont lues ou définies.</p>
+<p>Les accesseurs utilisent la convention <code class="docutils literal"><span class="pre">_get</span></code> suivi par la version en camel
+case du nom du champ.</p>
+<dl class="method">
+<dt id="Cake\ORM\Entity::get">
+<code class="descclassname">Cake\ORM\Entity::</code><code class="descname">get</code><span class="sig-paren">(</span><em>$field</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Entity::get" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Ils reçoivent la valeur basique stockée dans le tableau <code class="docutils literal"><span class="pre">_properties</span></code> pour
+seul argument.
+Les accesseurs seront utilisés lors de la sauvegarde des entities. Faites donc
+attention lorsque vous définissez des méthodes qui formatent les données car ce
+sont ces données formatées qui seront sauvegardées. Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_getTitle</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">ucwords</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les accesseurs seront utilisés quand vous récupérerez la propriété via une de
+ces deux manières:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez personnaliser la façon dont les propriétés sont récupérées/définies
+en définissant un mutateur:</p>
+<dl class="method">
+<dt id="Cake\ORM\Entity::set">
+<code class="descclassname">Cake\ORM\Entity::</code><code class="descname">set</code><span class="sig-paren">(</span><em>$field = null</em>, <em>$value = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Entity::set" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les méthodes mutateurs doivent toujours retourner la valeur qui doit être
+stockée dans la propriété. Comme vous pouvez le voir au-dessus, vous pouvez
+aussi utiliser les mutateurs pour définir d&#8217;autres propriétés calculées. En
+faisant cela, attention à ne pas introduire de boucles, puisque CakePHP
+n&#8217;empêchera pas les méthodes mutateur de faire des boucles infinies. Les
+mutateurs vous permettent de convertir les propriétés lorsqu&#8217;elles sont définies
+ou de créer des données calculées. Les mutateurs et accesseurs sont appliqués
+quand les propriétés sont lues en utilisant la notation objet ou en utilisant
+get() et set(). Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Utility\Text</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_setTitle</span><span class="p">(</span><span class="nv">$title</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Text</span><span class="o">::</span><span class="na">slug</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les mutateurs seront utilisés lorsque vous définirez une propriété via une de
+ces deux manières:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span> <span class="c1">// slug sera aussi défini</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">);</span> <span class="c1">// slug sera aussi défini</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Les accesseurs sont également appelés avant que l&#8217;entity ne soit persistée
+en base. Si vous souhaitez transformer un champ mais ne pas persister la
+transformation, il est recommandé d&#8217;utiliser les propriétés virtuelles car
+ces dernières ne seront pas persistées.</p>
+</div>
+<div class="section" id="creer-des-proprietes-virtuelles">
+<span id="entities-virtual-properties"></span><h3>Créer des Propriétés Virtuelles<a class="headerlink" href="#creer-des-proprietes-virtuelles" title="Lien permanent vers ce titre">¶</a></h3>
+<p>En définissant des accesseurs, vous pouvez fournir un accès aux
+champs/propriétés qui n&#8217;existent pas réellement. Par exemple si votre table
+users a <code class="docutils literal"><span class="pre">first_name</span></code> et <code class="docutils literal"><span class="pre">last_name</span></code>, vous pouvez créer une méthode pour le
+nom complet:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_getFullName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_properties</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;  &#39;</span> <span class="o">.</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_properties</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">];</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez accéder aux propriétés virtuelles puisqu&#8217;elles existent sur
+l&#8217;entity. Le nom de la propriété sera la version en minuscule et en underscore
+de la méthode:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">full_name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Souvenez-vous que les propriétés virtuelles ne peuvent pas être utilisées dans
+les finds. Si vous voulez que les propriétés virtuelles fassent parties des
+données affichées lorsque vous affichez les représentations JSON ou en tableau
+de vos entités, reportez-vous à la section <a class="reference internal" href="#exposing-virtual-properties"><span class="std std-ref">Montrer les Propriétés Virtuelles</span></a>.</p>
+</div>
+</div>
+<div class="section" id="verifier-si-une-entity-a-ete-modifiee">
+<h2>Vérifier si une Entity a été Modifiée<a class="headerlink" href="#verifier-si-une-entity-a-ete-modifiee" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Entity::dirty">
+<code class="descclassname">Cake\ORM\Entity::</code><code class="descname">dirty</code><span class="sig-paren">(</span><em>$field = null</em>, <em>$dirty = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Entity::dirty" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Vous pourriez vouloir écrire du code conditionnel basé sur si oui ou non
+les propriétés ont été modifiées dans l&#8217;entity. Par exemple, vous pourriez
+vouloir valider uniquement les champs lorsqu&#8217;ils ont été modifiés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Vérifie si le champ title n&#39;a pas été modifié.</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez également marquer un champ comme ayant été modifié. C&#8217;est pratique
+lorsque vous ajoutez des données dans un tableau de propriétés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Ajoute un commentaire et marque le champ comme modifié.</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$newComment</span><span class="p">;</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>De plus, vous pouvez également baser votre code conditionnel sur les valeurs
+initiales des propriétés en utilisant la méthode <code class="docutils literal"><span class="pre">getOriginal()</span></code>. Cette
+méthode retournera soit la valeur initiale de la propriété si elle a été
+modifiée soit la valeur actuelle.</p>
+<p>Vous pouvez également vérifier si une des propriétés de l&#8217;entity a été
+modifiée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Vérifier si l&#39;entity a changé</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">dirty</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Pour retirer le marquage dirty des champs d&#8217;une entity, vous pouvez utiliser
+la méthode <code class="docutils literal"><span class="pre">clean()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">clean</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Lors de la création d&#8217;un nouvelle entity, vous pouvez empêcher les champs
+d&#8217;être marqués dirty en passant une option supplémentaire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">([</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Article&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;markClean&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Pour récupérer la liste des propriétés <em>dirty</em> (modifiées) d&#8217;une <code class="docutils literal"><span class="pre">Entity</span></code>,
+vous pouvez utiliser la méthode <code class="docutils literal"><span class="pre">getDirty()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$dirtyFields</span> <span class="o">=</span> <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">getDirty</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.4.3: </span><code class="docutils literal"><span class="pre">getDirty()</span></code> a été ajoutée.</p>
+</div>
+</div>
+<div class="section" id="erreurs-de-validation">
+<h2>Erreurs de Validation<a class="headerlink" href="#erreurs-de-validation" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\ORM\Entity::errors">
+<code class="descclassname">Cake\ORM\Entity::</code><code class="descname">errors</code><span class="sig-paren">(</span><em>$field = null</em>, <em>$errors = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\ORM\Entity::errors" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Après avoir <a class="reference internal" href="saving-data.html#saving-entities"><span class="std std-ref">sauvegardé une entity</span></a> toute erreur de
+validation sera stockée sur l&#8217;entity elle-même. Vous pouvez accéder à toutes
+les erreurs de validation en utilisant les méthodes <code class="docutils literal"><span class="pre">getErrors()</span></code> et
+<code class="docutils literal"><span class="pre">getError()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Récupère toutes les erreurs</span>
+<span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">();</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">();</span>
+
+<span class="c1">// Récupère les erreurs pour un champ unique.</span>
+<span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">getError</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$errors</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les méthodes <code class="docutils literal"><span class="pre">setErrors()</span></code> et <code class="docutils literal"><span class="pre">setError()</span></code> peuvent aussi être utilisées
+pour définir les erreurs sur une entity, facilitant les tests du code qui
+fonctionne avec les messages d&#8217;erreur:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">setError</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Password is required.&#39;</span><span class="p">]);</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">setErrors</span><span class="p">([</span><span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Password is required&#39;</span><span class="p">],</span> <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;Username is required&#39;</span><span class="p">]]);</span>
+
+<span class="c1">// Avant 3.4.0</span>
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">errors</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Password is required.&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assignement-de-masse">
+<span id="entities-mass-assignment"></span><h2>Assignement de Masse<a class="headerlink" href="#assignement-de-masse" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Alors que la définition des propriétés des entities en masse est simple et
+pratique, elle peut créer des problèmes importants de sécurité.
+Assigner en masse les données d&#8217;utilisateur à partir de la requête dans une
+entity permet à l&#8217;utilisateur de modifier n&#8217;importe quelles (voir toutes) les
+colonnes. Quand vous utilisez les classes entity anonymes, CakePHP ne protège
+pas contre l&#8217;assignement en masse. Vous pouvez vous protéger de l&#8217;assignement de
+masse en utilisant <a class="reference internal" href="../bake.html"><span class="doc">la commande bake</span></a> pour générer vos entities.</p>
+<p>La propriété <code class="docutils literal"><span class="pre">_accessible</span></code> vous permet de fournir une liste des champs et
+si oui ou non ils peuvent être assignés en masse. Les valeurs <code class="docutils literal"><span class="pre">true</span></code> et
+<code class="docutils literal"><span class="pre">false</span></code> indiquent si un champ peut ou ne peut pas être assigné massivement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$_accessible</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En plus des champs réels, il existe un champ spécial <code class="docutils literal"><span class="pre">*</span></code> qui définit le
+comportement par défaut si un champ n&#8217;est pas nommé spécifiquement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$_accessible</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s1">&#39;*&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si la propriété <code class="docutils literal"><span class="pre">*</span></code> n&#8217;est pas définie, elle sera par défaut à <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</div>
+<div class="section" id="eviter-la-protection-contre-l-assignement-de-masse">
+<h3>Eviter la Protection Contre l&#8217;Assignement de Masse<a class="headerlink" href="#eviter-la-protection-contre-l-assignement-de-masse" title="Lien permanent vers ce titre">¶</a></h3>
+<p>lors de la création d&#8217;un nouvelle entity via le mot clé <code class="docutils literal"><span class="pre">new</span></code> vous pouvez
+lui spécifier de ne pas se protéger contre l&#8217;assignement de masse:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">App\Model\Entity\Article</span><span class="p">;</span>
+
+<span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">([</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Foo&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;guard&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modifier-les-champs-proteges-a-l-execution">
+<h3>Modifier les Champs Protégés à l&#8217;Exécution<a class="headerlink" href="#modifier-les-champs-proteges-a-l-execution" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez modifier la liste des champs protégés à la volée en utilisant la
+méthode <code class="docutils literal"><span class="pre">accessible</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Rendre user_id accessible.</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">accessible</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Rendre title protégé.</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">accessible</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Modifier des champs accessibles agit seulement sur l&#8217;instance de la
+méthode sur laquelle il est appelé.</p>
+</div>
+<p>Lorsque vous utilisez les méthodes <code class="docutils literal"><span class="pre">newEntity()</span></code> et <code class="docutils literal"><span class="pre">patchEntity()</span></code> dans
+les objets <code class="docutils literal"><span class="pre">Table</span></code> vous avez également le contrôle sur la protection de
+masse. Référez vous à la section to the <a class="reference internal" href="saving-data.html#changing-accessible-fields"><span class="std std-ref">Changer les Champs Accessibles</span></a>
+pour plus d&#8217;information.</p>
+</div>
+<div class="section" id="outrepasser-la-protection-de-champ">
+<h3>Outrepasser la Protection de Champ<a class="headerlink" href="#outrepasser-la-protection-de-champ" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il arrive parfois que vous souhaitiez permettre un assignement en masse aux
+champs protégés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$properties</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;guard&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>En définissant l&#8217;option <code class="docutils literal"><span class="pre">guard</span></code> à <code class="docutils literal"><span class="pre">false</span></code>. vous pouvez ignorer la liste des
+champs accessibles pour un appel unique de <code class="docutils literal"><span class="pre">set()</span></code>.</p>
+</div>
+<div class="section" id="verifier-si-une-entity-a-ete-sauvegardee">
+<h3>Vérifier si une Entity a été Sauvegardée<a class="headerlink" href="#verifier-si-une-entity-a-ete-sauvegardee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il est souvent nécessaire de savoir si une entity représente une ligne qui
+est déjà présente en base de données. Pour cela, utilisez la méthode
+<code class="docutils literal"><span class="pre">isNew()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Cette article a déjà été sauvegardé!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si vous êtes certains qu&#8217;une entity a déjà été sauvegardée, vous pouvez
+utiliser <code class="docutils literal"><span class="pre">isNew()</span></code> en tant que setter:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">isNew</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="lazy-loading-des-associations">
+<span id="lazy-load-associations"></span><h2>Lazy Loading des Associations<a class="headerlink" href="#lazy-loading-des-associations" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Alors que les associations chargées en eager loading sont généralement la
+façon la plus efficace pour accéder à vos associations, il peut arriver que
+vous ayez besoin d&#8217;utiliser le lazy loading des données associées. Avant de
+voir comment utiliser le Lazy loading d&#8217;associations, nous devrions
+discuter des différences entre le chargement des associations eager et lazy:</p>
+<dl class="docutils">
+<dt>Eager loading</dt>
+<dd>Le Eager loading utilise les joins (si possible) pour récupérer les
+données de la base de données avec aussi <em>peu</em> de requêtes que possible.
+Quand une requête séparée est nécessaire comme dans le cas d&#8217;une
+association HasMany, une requête unique est émise pour récupérer <em>toutes</em>
+les données associées pour l&#8217;ensemble courant d&#8217;objets.</dd>
+<dt>Lazy loading</dt>
+<dd>Le Lazy loading diffère le chargement des données de l&#8217;association jusqu&#8217;à
+ce que ce soit complètement nécessaire. Alors que ceci peut sauver du temps
+CPU car des données possiblement non utilisées ne sont pas hydratées dans
+les objets, cela peut résulter en plus de requêtes émises vers la base de
+données. Par exemple faire des boucles sur un ensemble d&#8217;articles et leurs
+commentaires va fréquemment émettre N requêtes où N est le nombre d&#8217;articles
+étant itérés.</dd>
+</dl>
+<p>Bien que le lazy loading n&#8217;est pas inclus dans l&#8217;ORM de CakePHP, vous pouvez
+utiliser un des plugins de la communauté. Nous recommandons le <a class="reference external" href="https://github.com/jeremyharris/cakephp-lazyload">plugin LazyLoad</a></p>
+<p>Après avoir ajouté le plugin à votre entity, vous pourrez le faire avec ce qui
+suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$article</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Articles</span><span class="o">-&gt;</span><span class="na">findById</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+<span class="c1">// La propriété comments a été chargé en lazy</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$article</span><span class="o">-&gt;</span><span class="na">comments</span> <span class="k">as</span> <span class="nv">$comment</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creer-du-code-reutilisable-avec-les-traits">
+<h2>Créer du Code Réutilisable avec les Traits<a class="headerlink" href="#creer-du-code-reutilisable-avec-les-traits" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez vous retrouver dans un cas où vous avez besoin de la même logique
+dans plusieurs classes d&#8217;entity. Les traits de PHP sont parfaits pour cela.
+Vous pouvez mettre les traits de votre application dans <strong>src/Model/Entity</strong>.
+Par convention, les traits dans CakePHP sont suffixés avec <code class="docutils literal"><span class="pre">Trait</span></code> pour
+qu&#8217;ils soient discernables des classes ou des interfaces. Les traits sont
+souvent un bon allié des behaviors, vous permettant de fournir des
+fonctionnalités pour la table et les objets entity.</p>
+<p>Par exemple si nous avons un plugin SoftDeletable, il pourrait fournir un trait.
+Ce trait pourrait donner des méthodes pour rendre les entities comme
+&#8216;supprimé&#8217;, la méthode <code class="docutils literal"><span class="pre">softDelete</span></code> pourrait être fournie par un trait:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// SoftDelete/Model/Entity/SoftDeleteTrait.php</span>
+
+<span class="k">namespace</span> <span class="nx">SoftDelete\Model\Entity</span><span class="p">;</span>
+
+<span class="k">trait</span> <span class="nx">SoftDeleteTrait</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">softDelete</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;deleted&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pourriez ensuite utiliser ce trait dans votre classe entity en l&#8217;intégrant
+et en l&#8217;incluant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">SoftDelete\Model\Entity\SoftDeleteTrait</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">SoftDeleteTrait</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="convertir-en-tableaux-json">
+<h2>Convertir en Tableaux/JSON<a class="headerlink" href="#convertir-en-tableaux-json" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lors de la construction d&#8217;APIs, vous avez peut-être besoin de convertir des
+entities en tableaux ou en données JSON. CakePHP facilite cela:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Obtenir un tableau.</span>
+<span class="c1">// Les associations seront aussi converties avec toArray().</span>
+<span class="nv">$array</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+<span class="c1">// Convertir en JSON</span>
+<span class="c1">// Les associations seront aussi converties avec le hook jsonSerialize.</span>
+<span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors de la conversion d&#8217;une entity en JSON, les listes de champ virtuel &amp; caché
+sont utilisées. Les entities sont converties aussi de façon récursive en JSON.
+Cela signifie que si les entities et leurs associations sont chargées en eager
+loading, CakePHP va correctement gérer la conversion des données associées dans
+le bon format.</p>
+<div class="section" id="montrer-les-proprietes-virtuelles">
+<span id="exposing-virtual-properties"></span><h3>Montrer les Propriétés Virtuelles<a class="headerlink" href="#montrer-les-proprietes-virtuelles" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Par défaut, les propriétés virtuelles ne sont pas exportées lors de la
+conversion des entities en tableaux ou JSON. Afin de montrer les propriétés
+virtuelles, vous devez les rendre visibles. Lors de la définition de votre
+classe entity, vous pouvez fournir une liste de propriétés virtuelles qui
+doivent être exposées:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$_virtual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">];</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette liste peut être modifiée à la volée en utilisant <code class="docutils literal"><span class="pre">virtualProperties</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">virtualProperties</span><span class="p">([</span><span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="s1">&#39;is_admin&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cacher-les-proprietes">
+<h3>Cacher les Propriétés<a class="headerlink" href="#cacher-les-proprietes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il arrive souvent que vous ne souhaitiez pas exporter certains champs dans
+des formats JSON ou tableau. Par exemple il n&#8217;est souvent pas sage de montrer
+les hashs de mot de passe ou les questions pour retrouver son compte. Lors
+de la définition d&#8217;une classe entity, définissez les propriétés qui doivent
+être cachées:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Model\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\ORM\Entity</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Entity</span>
+<span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$_hidden</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">];</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette liste peut être modifiée à la volée en utilisant <code class="docutils literal"><span class="pre">hiddenProperties</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">hiddenProperties</span><span class="p">([</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;recovery_question&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stocker-des-types-complexes">
+<h2>Stocker des Types Complexes<a class="headerlink" href="#stocker-des-types-complexes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les méthodes &#8220;accesseurs&#8221; et &#8220;mutateurs&#8221; n&#8217;ont pas pour objectif de contenir de
+la logique pour sérialiser et desérialiser les données complexes venant de la
+base de données. Consultez la section <a class="reference internal" href="saving-data.html#saving-complex-types"><span class="std std-ref">Sauvegarder les Types Complexes</span></a> pour
+comprendre la façon dont votre application peut stocker des types de données
+complexes comme les tableaux et les objets.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="database-basics.html">Notions de Base de Base de Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query-builder.html">Query Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table-objects.html">Les Objets Table</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieving-data-and-resultsets.html">Récupérer les Données et les Ensembles de Résultats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Valider des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving-data.html">Sauvegarder les Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deleting-data.html">Supprimer des Données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="associations.html">Associations - Lier les Tables Ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviors.html">Behaviors (Comportements)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="schema-system.html">Système de Schéma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../console-and-shells/orm-cache.html">Shell du Cache de l&#8217;ORM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

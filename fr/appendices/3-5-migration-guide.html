@@ -1,0 +1,970 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.5 Guide de Migration - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="es" href="../../es/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="ja" href="../../ja/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="zh" href="../../zh/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="tr" href="../../tr/appendices/3-5-migration-guide.html" /><link rel="alternate" hreflang="ru" href="../../ru/appendices/3-5-migration-guide.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="3.x Guide de Migration" href="3-x-migration-guide.html" />
+    <link rel="next" title="3.4 Guide de Migration" href="3-4-migration-guide.html" />
+    <link rel="prev" title="3.x Guide de Migration" href="3-x-migration-guide.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/appendices/3-5-migration-guide.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/appendices/3-5-migration-guide.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/appendices/3-5-migration-guide.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/appendices/3-5-migration-guide.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/appendices/3-5-migration-guide.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/appendices/3-5-migration-guide.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/appendices/3-5-migration-guide.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/appendices/3-5-migration-guide.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">3.5 Guide de Migration</a><ul>
+<li><a class="reference internal" href="#depreciations">Dépréciations</a><ul>
+<li><a class="reference internal" href="#depreciation-des-methodes-get-set-combinees">Dépréciation des Méthodes Get / Set combinées</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changement-de-comportements">Changement de Comportements</a></li>
+<li><a class="reference internal" href="#nouvelles-fonctionnalites">Nouvelles Fonctionnalités</a><ul>
+<li><a class="reference internal" href="#middleware-sur-scopes">Middleware sur Scopes</a></li>
+<li><a class="reference internal" href="#nouveau-lanceur-de-console">Nouveau Lanceur de Console</a></li>
+<li><a class="reference internal" href="#fallbacks-pour-les-moteurs-de-cache">Fallbacks pour les Moteurs de Cache</a></li>
+<li><a class="reference internal" href="#support-de-dotenv-au-squelette-d-application">Support de dotenv au squelette d&#8217;Application</a></li>
+<li><a class="reference internal" href="#console-integration-testing">Console Integration Testing</a></li>
+<li><a class="reference internal" href="#collection">Collection</a></li>
+<li><a class="reference internal" href="#core">Core</a></li>
+<li><a class="reference internal" href="#console">Console</a></li>
+<li><a class="reference internal" href="#database">Database</a></li>
+<li><a class="reference internal" href="#datasource">Datasource</a></li>
+<li><a class="reference internal" href="#event">Event</a></li>
+<li><a class="reference internal" href="#http">Http</a></li>
+<li><a class="reference internal" href="#instanceconfigtrait">InstanceConfigTrait</a></li>
+<li><a class="reference internal" href="#orm">ORM</a></li>
+<li><a class="reference internal" href="#routing">Routing</a></li>
+<li><a class="reference internal" href="#testsuite">TestSuite</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#view">View</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="guide-de-migration">
+<h1>3.5 Guide de Migration<a class="headerlink" href="#guide-de-migration" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CakePHP 3.5 est une mise à jour de CakePHP 3.4 dont la compatibilité API est
+complète. Cette page souligne les changements et améliorations faits dans 3.5.</p>
+<p>Pour mettre à jour vers 3.5.x, lancez la commande suivante :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php composer.phar require --update-with-dependencies <span class="s2">&quot;cakephp/cakephp:3.5.*&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="depreciations">
+<h2>Dépréciations<a class="headerlink" href="#depreciations" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La liste qui suit regroupe les méthodes, les propriétés et les comportements
+dépréciés. Ces différents éléments continueront de fonctionner jusqu&#8217;à la
+version 4.0.0, à partir de laquelle ils seront supprimés.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Http\Client\CookieCollection</span></code> est dépréciée. Utilisez
+<code class="docutils literal"><span class="pre">Cake\Http\Cookie\CookieCollection</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\View\Helper\RssHelper</span></code> est dépréciée. Vu son peu d&#8217;utilisation, le
+RssHelper est déprécié.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Controller\Component\CsrfComponent</span></code> est dépréciée. Utilisez
+le <a class="reference internal" href="../controllers/middleware.html#csrf-middleware"><span class="std std-ref">Middleware Cross Site Request Forgery (CSRF)</span></a> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Datasource\TableSchemaInterface</span></code> est dépréciée. Utilisez
+<code class="docutils literal"><span class="pre">Cake\Database\TableSchemaAwareInterface</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Console\ShellDispatcher</span></code> est dépréciée. Vous devez mettre à jour vos
+Applications pour qu&#8217;elles utilisent <code class="docutils literal"><span class="pre">Cake\Console\CommandRunner</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::column()</span></code> est dépréciée. Utilisez
+<code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::getColumn()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::constraint()</span></code> est dépréciée. Utilisez
+<code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::getConstraint()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::index()</span></code> est dépréciée. Utilisez
+<code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema::getIndex()</span></code> à la place.</li>
+</ul>
+<div class="section" id="depreciation-des-methodes-get-set-combinees">
+<h3>Dépréciation des Méthodes Get / Set combinées<a class="headerlink" href="#depreciation-des-methodes-get-set-combinees" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans le passé, CakePHP a utilisé des méthodes &#8216;modal&#8217; qui proposaient à la fois
+un mode get et un mode set. Ces méthodes compliquent l&#8217;auto-complétion des IDE
+et notre capacité à ajouter des <em>return type</em> stricts dans le futur. Pour ces
+raisons, ces méthodes get / set combinées sont scindées en méthodes get et set
+séparées.</p>
+<p>La liste suivante regroupe les méthodes dépréciées et qu&#8217;il faudra remplacer
+par des méthodes <code class="docutils literal"><span class="pre">getX()</span></code> et <code class="docutils literal"><span class="pre">setX()</span></code> :</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">Cake\Cache\Cache</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">config()</span></code></li>
+<li><code class="docutils literal"><span class="pre">registry()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Console\Shell</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">io()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Console\ConsoleIo</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">outputAs()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Console\ConsoleOutput</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">outputAs()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\Connection</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">logger()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\TypedResultInterface</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">returnType()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\TypedResultTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">returnType()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\Log\LoggingStatement</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">logger()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Datasource\ModelAwareTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">modelType()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\Query</span></code></dt>
+<dd><ul class="first last simple">
+<li>la partie &#8220;getter&#8221; de <code class="docutils literal"><span class="pre">valueBinder()</span></code> (maintenant <code class="docutils literal"><span class="pre">getValueBinder()</span></code>)</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">columnType()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Datasource\QueryTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li>la partie &#8220;getter&#8221; de <code class="docutils literal"><span class="pre">eagerLoaded()</span></code> (maintenant <code class="docutils literal"><span class="pre">isEagerLoaded()</span></code>)</li>
+<li><code class="docutils literal"><span class="pre">eagerLoaded()</span></code> (maintenant <code class="docutils literal"><span class="pre">isEagerLoaded()</span></code>)</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Event\EventDispatcherInterface</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">eventManager()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Event\EventDispatcherTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">eventManager()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Error\Debugger</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">outputAs()</span></code> (maintenant <code class="docutils literal"><span class="pre">getOutputFormat()</span></code> / <code class="docutils literal"><span class="pre">setOutputFormat()</span></code>)</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Http\ServerRequest</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">env()</span></code> (maintenant <code class="docutils literal"><span class="pre">getEnv()</span></code> / <code class="docutils literal"><span class="pre">withEnv()</span></code>)</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\I18n\I18n</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">locale()</span></code></li>
+<li><code class="docutils literal"><span class="pre">translator()</span></code></li>
+<li><code class="docutils literal"><span class="pre">defaultLocale()</span></code></li>
+<li><code class="docutils literal"><span class="pre">defaultFormatter()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Association\BelongsToMany</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sort()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\LocatorAwareTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">tableLocator()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\EntityTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">invalid()</span></code> (maintenant <code class="docutils literal"><span class="pre">getInvalid()</span></code>, <code class="docutils literal"><span class="pre">setInvalid()</span></code>,
+<code class="docutils literal"><span class="pre">setInvalidField()</span></code>, maintenant <code class="docutils literal"><span class="pre">getInvalidField()</span></code>)</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Table</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">validator()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Routing\RouteBuilder</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">extensions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">routeClass()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Routing\RouteCollection</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">extensions()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\TestSuite\TestFixture</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">schema()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Utility\Security</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">salt()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\View\View</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">template()</span></code></li>
+<li><code class="docutils literal"><span class="pre">layout()</span></code></li>
+<li><code class="docutils literal"><span class="pre">theme()</span></code></li>
+<li><code class="docutils literal"><span class="pre">templatePath()</span></code></li>
+<li><code class="docutils literal"><span class="pre">layoutPath()</span></code></li>
+<li><code class="docutils literal"><span class="pre">autoLayout()</span></code> (maintenant <code class="docutils literal"><span class="pre">isAutoLayoutEnabled()</span></code> / <code class="docutils literal"><span class="pre">enableAutoLayout()</span></code>)</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="changement-de-comportements">
+<h2>Changement de Comportements<a class="headerlink" href="#changement-de-comportements" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Bien que ces changements garde la compatibilité API, ce sont tout de même des
+variations mineures qui pourraient avoir un impact sur votre application.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">BehaviorRegistry</span></code>, <code class="docutils literal"><span class="pre">HelperRegistry</span></code> et <code class="docutils literal"><span class="pre">ComponentRegistry</span></code> lanceront
+maintenant une exception quand <code class="docutils literal"><span class="pre">unload()</span></code> est appelé avec un nom d&#8217;objet
+inconnu. Ce changement devrait aider à trouver plus rapidement les erreurs.</li>
+<li>Les associations <code class="docutils literal"><span class="pre">HasMany</span></code> gèrent maintenant mieux les valeurs &#8216;vides&#8217; pour
+les propriétés d&#8217;associations, de la même manière que <code class="docutils literal"><span class="pre">BelongsToMany</span></code> :
+elles traitent maintenant <code class="docutils literal"><span class="pre">false</span></code>, <code class="docutils literal"><span class="pre">null</span></code> et les chaînes vides comme des
+tableaux vides. Pour les associations <code class="docutils literal"><span class="pre">HasMany</span></code>, cela veut dire que les résultats
+des enregistrements associés sont maintenant supprimés / déliés quand la stratégie
+de sauvegarde <code class="docutils literal"><span class="pre">replace</span></code> est utilisée.
+Ce qui veut dire vous pouvez maintenant supprimer / déliés des enregistrements
+associés en passant une chaîne vide : vous auriez dû utiliser une logique spécifique
+de marshalling pour faire cela auparavant.</li>
+<li><code class="docutils literal"><span class="pre">ORM\Table::newEntity()</span></code> marque maintenant <em>dirty</em> les propriétés correspondant
+à des associations si les enregistrements de l&#8217;association <em>marshallé</em> sont <em>dirty</em>.
+Dans les cas où une entity d&#8217;association est créée et qu&#8217;elle ne contient aucune
+propriété, elle ne sera pas marquée pour être persistée.</li>
+<li><code class="docutils literal"><span class="pre">Http\Client</span></code> n&#8217;utilise plus le résultat de la méthode <code class="docutils literal"><span class="pre">cookie()</span></code> lors de la
+construction de requêtes. A la place, le header <code class="docutils literal"><span class="pre">Cookie</span></code> et la <code class="docutils literal"><span class="pre">CookieCollection</span></code>
+interne sont utilisés. Cela ne devrait affecter que les applications qui ont des
+adapter HTTP personnalisés dans leurs clients.</li>
+<li>Les sous-commandes composées de plusieurs mots devaient impérativement être
+appelées avec leur nom camelBacked pour être utilisées. Les sous-commandes
+peuvent maintenant être appelées via leur nom au format <em>underscored_names</em>.
+Par exemple : <code class="docutils literal"><span class="pre">cake</span> <span class="pre">tool</span> <span class="pre">initMyDb</span></code> peut maintenant être appelée via
+<code class="docutils literal"><span class="pre">cake</span> <span class="pre">tool</span> <span class="pre">init_my_db</span></code>. Si vos Shells liaient 2 sous-commandes avec le même
+nom mais 2 inflections différentes, seule la dernière commande liée fonctionnera.</li>
+<li><code class="docutils literal"><span class="pre">SecurityComponent</span></code> bloquera les requête POST qui ne passent pas de données
+dans la requête (pas de <em>request data</em>). Cela aide à la protection des actions
+qui créent des enregistrements en base en utilisant seulement les <em>defaults</em> de
+la base de données.</li>
+<li><code class="docutils literal"><span class="pre">Cake\ORM\Table::addBehavior()</span></code> et <code class="docutils literal"><span class="pre">removeBehavior()</span></code> retournent maintenant
+<code class="docutils literal"><span class="pre">$this</span></code> pour faciliter la définition d&#8217;objets Table avec une interface fluide.</li>
+<li>Les moteurs de Cache ne lancent maintenant plus d&#8217;exception quand ils échouent ou
+qu&#8217;ils sont mals configurés. Ils se rabattent, à la place, sur le moteur <em>noop</em>
+<code class="docutils literal"><span class="pre">NullEngine</span></code>. Les <em>fallbacks</em> peuvent aussi être configurés par moteur.</li>
+</ul>
+</div>
+<div class="section" id="nouvelles-fonctionnalites">
+<h2>Nouvelles Fonctionnalités<a class="headerlink" href="#nouvelles-fonctionnalites" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="middleware-sur-scopes">
+<h3>Middleware sur Scopes<a class="headerlink" href="#middleware-sur-scopes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les middlewares peuvent maintenant être appliqués conditionnellement à des routes
+sur des URL &#8216;scopées&#8217;. Cela vous permet de construire des stacks de middlewares
+spécifiques pour différentes parties de votre application sans avoir à faire des
+tests sur l&#8217;URL dans le code de vos middlewares. Plus d&#8217;informations dans la section
+<a class="reference internal" href="../development/routing.html#connecting-scoped-middleware"><span class="std std-ref">Connecter des Middlewares à un scope</span></a>.</p>
+</div>
+<div class="section" id="nouveau-lanceur-de-console">
+<h3>Nouveau Lanceur de Console<a class="headerlink" href="#nouveau-lanceur-de-console" title="Lien permanent vers ce titre">¶</a></h3>
+<p>3.5.0 ajoute <code class="docutils literal"><span class="pre">Cake\Console\CommandRunner</span></code>. Cette classe, avec <code class="docutils literal"><span class="pre">Cake\Console\CommandCollection</span></code>,
+intègre l&#8217;environnement CLI dans la nouvelle classe <code class="docutils literal"><span class="pre">Application</span></code>.
+Les classes <code class="docutils literal"><span class="pre">Application</span></code> peuvent maintenant implémenter un hook <code class="docutils literal"><span class="pre">console()</span></code>
+qui permet d&#8217;avoir un contrôle complet sur les commandes CLI exposées, comment
+elles sont nommées et comment les shells récupèrent leurs dépendances. Adopter
+cette nouvelle classe nécessite que vous remplaciez le contenu de votre fichier
+<code class="docutils literal"><span class="pre">bin/cake.php</span></code> par le <a class="reference external" href="https://github.com/cakephp/app/tree/3.next/bin/cake.php">fichier suivant</a>.</p>
+</div>
+<div class="section" id="fallbacks-pour-les-moteurs-de-cache">
+<h3>Fallbacks pour les Moteurs de Cache<a class="headerlink" href="#fallbacks-pour-les-moteurs-de-cache" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les moteurs de cache peuvent maintenant être configurés avec une clé <code class="docutils literal"><span class="pre">fallback</span></code>
+qui permet de définir une configuration de cache sur laquelle se rabattre si
+le moteur était mal configuré ou indisponible. Reportez-vous à la section
+<a class="reference internal" href="../core-libraries/caching.html#cache-configuration-fallback"><span class="std std-ref">Configurer un Fallback de Cache</span></a> pour plus d&#8217;informations sur la configuration
+de &#8216;fallbacks&#8217; pour vos configurations de cache.</p>
+</div>
+<div class="section" id="support-de-dotenv-au-squelette-d-application">
+<h3>Support de dotenv au squelette d&#8217;Application<a class="headerlink" href="#support-de-dotenv-au-squelette-d-application" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le squelette d&#8217;application possède maintenant une intégration &#8220;dotenv&#8221;, facilitant
+l&#8217;utilisation de variables d&#8217;environnement pour configurer votre application.
+Référez-vous à la section <a class="reference internal" href="../development/configuration.html#environment-variables"><span class="std std-ref">Variables d&#8217;Environnement</span></a> pour plus d&#8217;informations.</p>
+</div>
+<div class="section" id="console-integration-testing">
+<h3>Console Integration Testing<a class="headerlink" href="#console-integration-testing" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La classe <code class="docutils literal"><span class="pre">Cake\TestSuite\ConsoleIntegrationTestCase</span></code> a été ajoutée pour
+faciliter les tests d&#8217;intégration des applications console. Pour plus d&#8217;informations
+rendez-vous à la section <a class="reference internal" href="../development/testing.html#console-integration-testing"><span class="std std-ref">Tests d&#8217;Intégration de la Console</span></a>. Cette classe de
+test est compatible avec le dispatcher de shell actuel mais aussi avec le
+nouveau <code class="docutils literal"><span class="pre">Cake\Console\CommandRunner</span></code>.</p>
+</div>
+<div class="section" id="collection">
+<h3>Collection<a class="headerlink" href="#collection" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Collection\Collection::avg()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Collection\Collection::median()</span></code> a été ajoutée.</li>
+</ul>
+</div>
+<div class="section" id="core">
+<h3>Core<a class="headerlink" href="#core" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Core\ObjectRegistry</span></code> implémente maintenant les interfaces <code class="docutils literal"><span class="pre">Countable</span></code> et
+<code class="docutils literal"><span class="pre">IteratorAggregate</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="console">
+<h3>Console<a class="headerlink" href="#console" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Console\ConsoleOptionParser::setHelpAlias()</span></code> a été ajoutée. Cette méthode
+permet de définir le nom de la commande à utiliser lors de l&#8217;affichage des aides.
+Par défaut, la valeur est <code class="docutils literal"><span class="pre">cake</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cake\Console\CommandRunnner</span></code> a été ajoutée en remplacement de
+<code class="docutils literal"><span class="pre">Cake\Console\ShellDispatcher</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Console\CommandCollection</span></code> a été ajouté afin de fournir une interface pour
+que les applications puissent définir les outils en ligne de commande qu&#8217;elles
+offrent.</li>
+</ul>
+</div>
+<div class="section" id="database">
+<h3>Database<a class="headerlink" href="#database" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Une nouvelle option <code class="docutils literal"><span class="pre">mask</span></code> pour le driver SQLite a été ajoutée. Cette option
+vous permet de définir les droits sur le fichier de la base SQLite quand il est
+créé.</li>
+</ul>
+</div>
+<div class="section" id="datasource">
+<h3>Datasource<a class="headerlink" href="#datasource" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Datasource\SchemaInterface</span></code> a été ajoutée.</li>
+<li>De nouveaux types abstraits ont été définis pour <code class="docutils literal"><span class="pre">smallinteger</span></code> et <code class="docutils literal"><span class="pre">tinyinteger</span></code>.
+Les colonnes existantes en <code class="docutils literal"><span class="pre">SMALLINT</span></code> and <code class="docutils literal"><span class="pre">TINYINT</span></code> seront maintenant
+introspectées via ces nouveaux types abstraits. Les colonnes <code class="docutils literal"><span class="pre">TINYINT(1)</span></code>
+continueront à être traitées comme des booléen dans MySQL.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Datasource\PaginatorInterface</span></code> a été ajoutée. Le <code class="docutils literal"><span class="pre">PaginatorComponent</span></code>
+utilise maintenant cette interface pour intéragir avec les paginators. Cela
+permet à des implémentations <em>ORM-like</em> d&#8217;être paginées par le component.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Datasource\Paginator</span></code> a été ajouté pour paginer les instances des requêtes
+ORM/Database.</li>
+</ul>
+</div>
+<div class="section" id="event">
+<h3>Event<a class="headerlink" href="#event" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les méthodes <code class="docutils literal"><span class="pre">Cake\Event\EventManager::on()</span></code> et <code class="docutils literal"><span class="pre">off()</span></code> peuvent maintenant être
+chainées ce qui rend plus simple la définition de plusieurs événements à la fois.</li>
+</ul>
+</div>
+<div class="section" id="http">
+<h3>Http<a class="headerlink" href="#http" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les classes <code class="docutils literal"><span class="pre">Cookie</span></code> &amp; <code class="docutils literal"><span class="pre">CookieCollection</span></code> ont été ajoutées. Ces classes vous
+permettent de travailler avec les cookies de manière orientée objet et sont
+disponibles dans <code class="docutils literal"><span class="pre">Cake\Http\ServerRequest</span></code>, <code class="docutils literal"><span class="pre">Cake\Http\Response</span></code>, et
+<code class="docutils literal"><span class="pre">Cake\Http\Client\Response</span></code>. Référez-vous aux sections <a class="reference internal" href="../controllers/request-response.html#request-cookies"><span class="std std-ref">Cookies</span></a> et
+<a class="reference internal" href="../controllers/request-response.html#response-cookies"><span class="std std-ref">Définir des Cookies</span></a> pour plus d&#8217;informations.</li>
+<li>Un nouveau middleware a été ajouté pour permettre d&#8217;appliquer des headers de
+sécurité plus facilement. Référez-vous à <a class="reference internal" href="../controllers/middleware.html#security-header-middleware"><span class="std std-ref">Ajouter des Headers de Sécurité</span></a> pour
+plus d&#8217;informations.</li>
+<li>Un nouveau middleware a été ajouté pour chiffrer de manière transparente les
+données de cookie. Référez-vous à <a class="reference internal" href="../controllers/middleware.html#encrypted-cookie-middleware"><span class="std std-ref">Middleware de Gestion de Cookies Chiffrés</span></a> pour
+plus d&#8217;informations.</li>
+<li>Un nouveau middleware a été ajouté pour permettre une protection CSRF plus simple.
+Référez-vous à <a class="reference internal" href="../controllers/middleware.html#csrf-middleware"><span class="std std-ref">Middleware Cross Site Request Forgery (CSRF)</span></a> pour plus d&#8217;informations.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Http\Client::addCookie()</span></code> a été ajoutée pour faciliter l&#8217;ajoute de cookies
+à une instance d&#8217;un client.</li>
+</ul>
+</div>
+<div class="section" id="instanceconfigtrait">
+<h3>InstanceConfigTrait<a class="headerlink" href="#instanceconfigtrait" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">InstanceConfigTrait::getConfig()</span></code> accepte maintenant un second paramètre
+<code class="docutils literal"><span class="pre">$default</span></code>. Si aucune valeur n&#8217;est disponible pour la <code class="docutils literal"><span class="pre">$key</span></code> spécifiée, la
+valeur de <code class="docutils literal"><span class="pre">$default</span></code> sera retournée.</li>
+</ul>
+</div>
+<div class="section" id="orm">
+<h3>ORM<a class="headerlink" href="#orm" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\ORM\Query::contain()</span></code> vous permet de l&#8217;appeler sans le tableau quand vous
+faites un contain() sur une seule association.
+<code class="docutils literal"><span class="pre">contain('Comments',</span> <span class="pre">function</span> <span class="pre">()</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">});</span></code> fonctionnera maintenant. Cela
+rend <code class="docutils literal"><span class="pre">contain()</span></code> plus cohérent avec d&#8217;autres méthodes d&#8217;eagerloading comme
+<code class="docutils literal"><span class="pre">leftJoinWith()</span></code> et <code class="docutils literal"><span class="pre">matching()</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="routing">
+<h3>Routing<a class="headerlink" href="#routing" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Routing\Router::reverseToArray()</span></code> a été ajoutée. Cette méthode vous permet
+de convertir des objets de requête en tableau qui peuvent être utilisés pour
+générer des URL sous forme de chaîne.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\RouteBuilder::resources()</span></code> s&#8217;est vue ajouter une option <code class="docutils literal"><span class="pre">path</span></code>.
+Cette option vous permet de faire en sorte que le chemin de la ressource et le
+nom du controller ne correspondent pas.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\RouteBuilder</span></code> a maintenant des méthodes pour créer des routes
+spécifiques à des méthodes HTTP comme <code class="docutils literal"><span class="pre">get()</span></code> et <code class="docutils literal"><span class="pre">post()</span></code> par exemple.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\RouteBuilder::loadPlugin()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Routing\Route</span></code> a maintenant des méthodes &#8220;fluide&#8221; (<em>fluent interface</em>)
+pour définir ses options.</li>
+</ul>
+</div>
+<div class="section" id="testsuite">
+<h3>TestSuite<a class="headerlink" href="#testsuite" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TestCase::loadFixtures()</span></code> chargera maintenant toutes les fixtures si aucun
+argument n&#8217;est passé.</li>
+<li><code class="docutils literal"><span class="pre">IntegrationTestCase::head()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">IntegrationTestCase::options()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">IntegrationTestCase::disableErrorHandlerMiddleware()</span></code> a été ajoutée pour
+faciliter le debugging des tests d&#8217;intégration.</li>
+</ul>
+</div>
+<div class="section" id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\Validation\Validator::regex()</span></code> a été ajoutée afin de permettre de faire
+de la validation par regex plus facilement.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Validation\Validator::addDefaultProvider()</span></code> a été ajoutée. Cette méthode
+vous permet d&#8217;injecter des providers de validation dans tous les validators créés
+dans votre application.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Validation\ValidatorAwareInterface</span></code> a été ajouté pour définir les méthodes
+implémentées par <code class="docutils literal"><span class="pre">Cake\Validation\ValidatorAwareTrait</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="view">
+<h3>View<a class="headerlink" href="#view" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cake\View\Helper\PaginatorHelper::limitControl()</span></code> a été ajoutée. Cette méthode
+vous permet de créer un formulaire avec un select qui permet de mettre à jour
+la valeur &#8220;limite&#8221; d&#8217;un résultat paginé.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="3-x-migration-guide.html">3.x Guide de Migration</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-4-migration-guide.html">3.4 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-migration-guide.html">3.3 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-migration-guide.html">3.2 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-1-migration-guide.html">3.1 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-0-migration-guide.html">3.0 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orm-migration.html">Guide de Migration du Nouvel ORM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

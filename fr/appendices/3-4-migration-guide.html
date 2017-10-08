@@ -1,0 +1,1138 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.4 Guide de Migration - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="es" href="../../es/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="ja" href="../../ja/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="zh" href="../../zh/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="tr" href="../../tr/appendices/3-4-migration-guide.html" /><link rel="alternate" hreflang="ru" href="../../ru/appendices/3-4-migration-guide.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="up" title="3.x Guide de Migration" href="3-x-migration-guide.html" />
+    <link rel="next" title="3.3 Guide de Migration" href="3-3-migration-guide.html" />
+    <link rel="prev" title="3.5 Guide de Migration" href="3-5-migration-guide.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/appendices/3-4-migration-guide.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/appendices/3-4-migration-guide.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/appendices/3-4-migration-guide.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/appendices/3-4-migration-guide.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/appendices/3-4-migration-guide.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/appendices/3-4-migration-guide.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/appendices/3-4-migration-guide.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/appendices/3-4-migration-guide.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">3.4 Guide de Migration</a><ul>
+<li><a class="reference internal" href="#php-5-6-devient-le-minimum-requis">PHP 5.6 devient le minimum requis</a></li>
+<li><a class="reference internal" href="#depreciations">Dépréciations</a><ul>
+<li><a class="reference internal" href="#depreciations-sur-request-response">Dépréciations sur Request &amp; Response</a></li>
+<li><a class="reference internal" href="#autres-depreciations">Autres dépréciations</a></li>
+<li><a class="reference internal" href="#depreciation-des-getters-setters-combines">Dépréciation des getters / setters combinés</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adopter-les-responses-immutable">Adopter les Responses Immutable</a><ul>
+<li><a class="reference internal" href="#astuces-pour-migrer-vos-components">Astuces pour Migrer vos Components</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changement-de-comportements">Changement de comportements</a></li>
+<li><a class="reference internal" href="#visibility-changes">Visibility Changes</a></li>
+<li><a class="reference internal" href="#collection">Collection</a></li>
+<li><a class="reference internal" href="#erreur">Erreur</a></li>
+<li><a class="reference internal" href="#event">Event</a></li>
+<li><a class="reference internal" href="#i18n">I18n</a></li>
+<li><a class="reference internal" href="#routing">Routing</a></li>
+<li><a class="reference internal" href="#email">Email</a></li>
+<li><a class="reference internal" href="#htmlhelper">HtmlHelper</a></li>
+<li><a class="reference internal" href="#breadcrumbshelper">BreadcrumbsHelper</a></li>
+<li><a class="reference internal" href="#paginatorhelper">PaginatorHelper</a></li>
+<li><a class="reference internal" href="#formhelper">FormHelper</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#translatebehavior">TranslateBehavior</a></li>
+<li><a class="reference internal" href="#pluginshell">PluginShell</a></li>
+<li><a class="reference internal" href="#testsuite">TestSuite</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="guide-de-migration">
+<h1>3.4 Guide de Migration<a class="headerlink" href="#guide-de-migration" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CakePHP 3.4 est une mise à jour de CakePHP 3.3 dont la compatibilité API est
+complète. Cette page souligne les changements et améliorations faits dans 3.4.</p>
+<div class="section" id="php-5-6-devient-le-minimum-requis">
+<h2>PHP 5.6 devient le minimum requis<a class="headerlink" href="#php-5-6-devient-le-minimum-requis" title="Lien permanent vers ce titre">¶</a></h2>
+<p>CakePHP 3.4 a maintenant besoin d&#8217;au minimum PHP 5.6.0 puisque PHP 5.5 n&#8217;est
+plus supporté et ne recevra plus de correctifs de sécurité.</p>
+</div>
+<div class="section" id="depreciations">
+<h2>Dépréciations<a class="headerlink" href="#depreciations" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La liste qui suit regroupe les méthodes, les propriétés et les comportements
+dépréciés. Ces différents éléments continueront de fonctionner jusqu&#8217;à la
+version 4.0.0, à partir de laquelle ils seront supprimés.</p>
+<div class="section" id="depreciations-sur-request-response">
+<h3>Dépréciations sur Request &amp; Response<a class="headerlink" href="#depreciations-sur-request-response" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La majorité des dépréciations de la version 3.4 se trouve sur les objets
+<code class="docutils literal"><span class="pre">Request</span></code> et <code class="docutils literal"><span class="pre">Response</span></code>. Les méthodes existantes qui modifient directement
+les objets sont maintenant dépréciées et remplacées par les méthodes qui
+suivent le pattern des &#8220;objets immutables&#8221; décrit dans le standard PSR-7.</p>
+<p>Plusieurs propriétés de <code class="docutils literal"><span class="pre">Cake\Network\Request</span></code> ont été dépréciées :</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Request::$params</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getAttribute('params')</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$data</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getData()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$query</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getQueryParams()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$cookies</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getCookie()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$base</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getAttribute('base')</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$webroot</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getAttribute('webroot')</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$here</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Request::getRequestTarget()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Request::$_session</span></code> a été renommée <code class="docutils literal"><span class="pre">Request::$session</span></code>.</li>
+</ul>
+<p>Certaines méthodes de <code class="docutils literal"><span class="pre">Cake\Network\Request</span></code> ont été dépréciées :</p>
+<ul class="simple">
+<li>Les méthodes <code class="docutils literal"><span class="pre">__get()</span></code> &amp; <code class="docutils literal"><span class="pre">__isset()</span></code> sont dépréciées. Utilisez
+<code class="docutils literal"><span class="pre">getParam()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">method()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">getMethod()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">setInput()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">withBody()</span></code>.</li>
+<li>Les méthodes <code class="docutils literal"><span class="pre">ArrayAccess</span></code> ont toutes été dépréciées.</li>
+<li><code class="docutils literal"><span class="pre">Request::param()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Request::getParam()</span></code> .</li>
+<li><code class="docutils literal"><span class="pre">Request::data()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Request::getData()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Request::query()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Request::getQuery()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Request::cookie()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Request::getCookie()</span></code>.</li>
+</ul>
+<p>Plusieurs méthodes de <code class="docutils literal"><span class="pre">Cake\Network\Response</span></code> ont été dépréciées soit parce
+qu&#8217;elles faisaient doublon avec les méthodes PSR-7, soit parce qu&#8217;elles ont été
+rendues obsolètes du fait de l&#8217;introduction du stack PSR-7 :</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Response::header()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">getHeaderLine()</span></code>,
+<code class="docutils literal"><span class="pre">hasHeader()</span></code> ou <code class="docutils literal"><span class="pre">Response::getHeader()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Response::body()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Response::withBody()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Response::statusCode()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Response::getStatusCode()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Response::httpCodes()</span></code> Cette méthode ne devrait plus être utilisée.
+CakePHP supporte maintenant tous les statuts standards recommandés.</li>
+<li><code class="docutils literal"><span class="pre">Response::protocol()</span></code> est dépréciée. Utilisez plutôt <code class="docutils literal"><span class="pre">Response::getProtocolVersion()</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">send()</span></code>, <code class="docutils literal"><span class="pre">sendHeaders()</span></code>, <code class="docutils literal"><span class="pre">_sendHeader()</span></code>, <code class="docutils literal"><span class="pre">_sendContent()</span></code>,
+<code class="docutils literal"><span class="pre">_setCookies()</span></code>, <code class="docutils literal"><span class="pre">_setContentType()</span></code>, et <code class="docutils literal"><span class="pre">stop()</span></code> sont dépréciées et
+rendues obsolètes par le stack HTTP PSR-7.</li>
+</ul>
+<p>Du fait que les <code class="docutils literal"><span class="pre">responses</span></code> sont maintenant des objets immutables du fait des
+recommandations du standard PSR-7, de nombreuses méthodes &#8220;helper&#8221; de l&#8217;objet
+<code class="docutils literal"><span class="pre">Response</span></code> ont été dépréciées. Leurs variantes immutables sont maintenant
+recommandées :</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Response::location()</span></code> devient <code class="docutils literal"><span class="pre">Response::withLocation()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::disableCache()</span></code> devient <code class="docutils literal"><span class="pre">Response::withDisabledCache()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::type()</span></code> devient <code class="docutils literal"><span class="pre">Response::withType()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::charset()</span></code> devient <code class="docutils literal"><span class="pre">Response::withCharset()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::cache()</span></code> devient <code class="docutils literal"><span class="pre">Response::withCache()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::modified()</span></code> devient <code class="docutils literal"><span class="pre">Response::withModified()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::expires()</span></code> devient <code class="docutils literal"><span class="pre">Response::withExpires()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::sharable()</span></code> devient <code class="docutils literal"><span class="pre">Response::withSharable()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::maxAge()</span></code> devient <code class="docutils literal"><span class="pre">Response::withMaxAge()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::vary()</span></code> devient <code class="docutils literal"><span class="pre">Response::withVary()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::etag()</span></code> devient <code class="docutils literal"><span class="pre">Response::withEtag()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::compress()</span></code> devient <code class="docutils literal"><span class="pre">Response::withCompression()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::length()</span></code> devient <code class="docutils literal"><span class="pre">Response::withLength()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::mustRevalidate()</span></code> devient <code class="docutils literal"><span class="pre">Response::withMustRevalidate()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::notModified()</span></code> devient <code class="docutils literal"><span class="pre">Response::withNotModified()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::cookie()</span></code> devient <code class="docutils literal"><span class="pre">Response::withCookie()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::file()</span></code> devient <code class="docutils literal"><span class="pre">Response::withFile()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Response::download()</span></code> devient <code class="docutils literal"><span class="pre">Response::withDownload()</span></code></li>
+</ul>
+<p>Veuillez vous référez à la section <a class="reference internal" href="#adopting-immutable-responses"><span class="std std-ref">Adopter les Responses Immutable</span></a> pour
+plus d&#8217;informations avant de mettre à jour votre code car utiliser les méthodes
+immutables va demander plus de changements que le simple remplacement des
+méthodes.</p>
+</div>
+<div class="section" id="autres-depreciations">
+<h3>Autres dépréciations<a class="headerlink" href="#autres-depreciations" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Les propriétés _public_ de <code class="docutils literal"><span class="pre">Cake\Event\Event</span></code> sont dépréciées, de nouvelles
+méthodes ont été ajoutées pour lire et écrire ces propriétés.</li>
+<li><code class="docutils literal"><span class="pre">Event::name()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Event::getName()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Event::subject()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Event::getSubject()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Event::result()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Event::getResult()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Event::data()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Event::getData()</span></code> à la place.</li>
+<li>La valeur de <code class="docutils literal"><span class="pre">Auth.redirect</span></code> stockée en session n&#8217;est plus utilisée. Un
+paramètre d&#8217;URL est maintenant utilisé pour stocker l&#8217;URL de redirection.
+Ceci retire cependant la possibilité de définir une URL de redirection en
+session en dehors des scénarios de login.</li>
+<li><code class="docutils literal"><span class="pre">AuthComponent</span></code> ne stocke plus les URLs de redirection quand l&#8217;URL non
+autorisée n&#8217;est pas une action <code class="docutils literal"><span class="pre">GET</span></code>.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">ajaxLogin</span></code> du <code class="docutils literal"><span class="pre">AuthComponent</span></code> est dépréciée. Vous devez maintenant
+utiliser le code de statut HTTP <code class="docutils literal"><span class="pre">403</span></code> pour déclencher le bon comportement côté
+client.</li>
+<li>La méthode <code class="docutils literal"><span class="pre">beforeRedirect</span></code> du <code class="docutils literal"><span class="pre">RequestHandlerComponent</span></code> est dépréciée.</li>
+<li>Le code de statut HTTP <code class="docutils literal"><span class="pre">306</span></code> de <code class="docutils literal"><span class="pre">Cake\Network\Response</span></code> est dépréciée. Sa
+phrase de statut est maintenant &#8216;Unused&#8217; car ce code de statut n&#8217;est pas
+standard.</li>
+<li><code class="docutils literal"><span class="pre">Cake\Database\Schema\Table</span></code> a été renommée en
+<code class="docutils literal"><span class="pre">Cake\Database\Schema\TableSchema</span></code>. Le nom précédent portait à confusion
+pour de nombreux utilisateurs.</li>
+<li>L&#8217;option <code class="docutils literal"><span class="pre">fieldList</span></code> pour <code class="docutils literal"><span class="pre">Cake\ORM\Table::newEntity()</span></code> et
+<code class="docutils literal"><span class="pre">patchEntity()</span></code> a été renommée en <code class="docutils literal"><span class="pre">fields</span></code> pour être plus cohérent avec
+les autres parties de l&#8217;ORM.</li>
+<li><code class="docutils literal"><span class="pre">Router::parse()</span></code> est dépréciée. <code class="docutils literal"><span class="pre">Router::parseRequest()</span></code> est maintenant
+la méthode recommandée car elle accepte une request en argument et donne plus
+de contrôle et de flexibilité dans la manipulation des requêtes entrantes.</li>
+<li><code class="docutils literal"><span class="pre">Route::parse()</span></code> est dépréciée. <code class="docutils literal"><span class="pre">Route::parseRequest()</span></code> est maintenant
+la méthode recommandée car elle accepte une request en argument et donne plus
+de contrôle et de flexibilité dans la manipulation des requêtes entrantes.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::input()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">FormHelper::control()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::inputs()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">FormHelper::controls()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::allInputs()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">FormHelper::allControls()</span></code> à la place.</li>
+<li><code class="docutils literal"><span class="pre">Mailer::layout()</span></code> est dépréciée. Utilisez <code class="docutils literal"><span class="pre">Mailer::setLayout()</span></code> exposée par
+<code class="docutils literal"><span class="pre">Mailer::__call()</span></code> à la place.</li>
+</ul>
+</div>
+<div class="section" id="depreciation-des-getters-setters-combines">
+<h3>Dépréciation des getters / setters combinés<a class="headerlink" href="#depreciation-des-getters-setters-combines" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Par le passé, CakePHP a exposé des méthodes combinées qui opéraient à la fois
+comme getter et comme setter. Ces méthodes compliquaient l&#8217;auto-complétion de
+certains IDE et auraient compliqué la mise en place de typage strictes sur les
+retours des méthodes dans le futur. Pour ces raisons, les getters / setters
+combinés sont maintenant séparés dans différentes méthodes.</p>
+<p>La liste qui suit regroupe les méthodes qui sont dépréciées et remplacées par
+des méthodes <code class="docutils literal"><span class="pre">getX()</span></code> et <code class="docutils literal"><span class="pre">setX()</span></code> :</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">Cake\Core\InstanceConfigTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">config()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\Core\StaticConfigTrait</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">config()</span></code></li>
+<li><code class="docutils literal"><span class="pre">dsnClassMap()</span></code></li>
+</ul>
+</dd>
+<dt>CakeConsoleConsoleOptionParse</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">command()</span></code></li>
+<li><code class="docutils literal"><span class="pre">description()</span></code></li>
+<li><code class="docutils literal"><span class="pre">epliog()</span></code></li>
+</ul>
+</dd>
+<dt>CakeDatabaseConnection</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">driver()</span></code></li>
+<li><code class="docutils literal"><span class="pre">schemaCollection()</span></code></li>
+<li><code class="docutils literal"><span class="pre">useSavePoints()</span></code> (devenue <code class="docutils literal"><span class="pre">enableSavePoints()</span></code> / <code class="docutils literal"><span class="pre">isSavePointsEnabled()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeDatabaseDriver</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">autoQuoting</span></code> (devenue <code class="docutils literal"><span class="pre">enableAutoQuoting()</span></code> / <code class="docutils literal"><span class="pre">isAutoQuotingEnabled()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeDatabaseExpressionFunctionExpression</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">name()</span></code></li>
+</ul>
+</dd>
+<dt>CakeDatabaseExpressionQueryExpression</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">tieWith()</span></code> (devenue <code class="docutils literal"><span class="pre">setConjunction()</span></code> / <code class="docutils literal"><span class="pre">getConjunction()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeDatabaseExpressionValuesExpression</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">columns()</span></code></li>
+<li><code class="docutils literal"><span class="pre">values()</span></code></li>
+<li><code class="docutils literal"><span class="pre">query()</span></code></li>
+</ul>
+</dd>
+<dt>CakeDatabaseQuery</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">connection()</span></code></li>
+<li><code class="docutils literal"><span class="pre">selectTypeMap()</span></code></li>
+<li><code class="docutils literal"><span class="pre">bufferResults()</span></code> (devenue <code class="docutils literal"><span class="pre">enableBufferedResults()</span></code> / <code class="docutils literal"><span class="pre">isBufferedResultsEnabled()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeDatabaseSchemaCachedCollection</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">cacheMetadata()</span></code></li>
+</ul>
+</dd>
+<dt>CakeDatabaseSchemaTableSchema</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">options()</span></code></li>
+<li><code class="docutils literal"><span class="pre">temporary()</span></code> (devenue <code class="docutils literal"><span class="pre">setTemporary()</span></code> / <code class="docutils literal"><span class="pre">isTemporary()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeDatabaseTypeMap</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">defaults()</span></code></li>
+<li><code class="docutils literal"><span class="pre">types()</span></code></li>
+</ul>
+</dd>
+<dt>CakeDatabaseTypeMapTrait</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">typeMap()</span></code></li>
+<li><code class="docutils literal"><span class="pre">defaultTypes()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Association</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">name()</span></code></li>
+<li><code class="docutils literal"><span class="pre">cascadeCallbacks()</span></code></li>
+<li><code class="docutils literal"><span class="pre">source()</span></code></li>
+<li><code class="docutils literal"><span class="pre">target()</span></code></li>
+<li><code class="docutils literal"><span class="pre">conditions()</span></code></li>
+<li><code class="docutils literal"><span class="pre">bindingKey()</span></code></li>
+<li><code class="docutils literal"><span class="pre">foreignKey()</span></code></li>
+<li><code class="docutils literal"><span class="pre">dependent()</span></code></li>
+<li><code class="docutils literal"><span class="pre">joinType()</span></code></li>
+<li><code class="docutils literal"><span class="pre">property()</span></code></li>
+<li><code class="docutils literal"><span class="pre">strategy()</span></code></li>
+<li><code class="docutils literal"><span class="pre">finder()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Association\BelongsToMany</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">targetForeignKey()</span></code></li>
+<li><code class="docutils literal"><span class="pre">saveStrategy()</span></code></li>
+<li><code class="docutils literal"><span class="pre">conditions()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Association\HasMany</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">saveStrategy()</span></code></li>
+<li><code class="docutils literal"><span class="pre">foreignKey()</span></code></li>
+<li><code class="docutils literal"><span class="pre">sort()</span></code></li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">Cake\ORM\Association\HasOne</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">foreignKey()</span></code></li>
+</ul>
+</dd>
+<dt>CakeORMEagerLoadable</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">config()</span></code></li>
+<li>setter part of <code class="docutils literal"><span class="pre">canBeJoined()</span></code> (devenue <code class="docutils literal"><span class="pre">setCanBeJoined()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeORMEagerLoader</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">matching()</span></code> (<code class="docutils literal"><span class="pre">getMatching()</span></code> devra être appelée après <code class="docutils literal"><span class="pre">setMatching()</span></code>
+pour conserver l&#8217;ancien comportement)</li>
+<li><code class="docutils literal"><span class="pre">autoFields()</span></code> (devenue <code class="docutils literal"><span class="pre">enableAutoFields()</span></code> / <code class="docutils literal"><span class="pre">isAutoFieldsEnabled()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeORMLocatorTableLocator</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">config()</span></code></li>
+</ul>
+</dd>
+<dt>CakeORMQuery</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">eagerLoader()</span></code></li>
+<li><code class="docutils literal"><span class="pre">hydrate()</span></code> (now <code class="docutils literal"><span class="pre">enableHydration()</span></code>/<code class="docutils literal"><span class="pre">isHydrationEnabled()</span></code>)</li>
+<li><code class="docutils literal"><span class="pre">autoFields()</span></code> (now <code class="docutils literal"><span class="pre">enableAutoFields()</span></code>/<code class="docutils literal"><span class="pre">isAutoFieldsEnabled()</span></code>)</li>
+</ul>
+</dd>
+<dt>CakeORMTable</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">table()</span></code></li>
+<li><code class="docutils literal"><span class="pre">alias()</span></code></li>
+<li><code class="docutils literal"><span class="pre">registryAlias()</span></code></li>
+<li><code class="docutils literal"><span class="pre">connection()</span></code></li>
+<li><code class="docutils literal"><span class="pre">schema()</span></code></li>
+<li><code class="docutils literal"><span class="pre">primaryKey()</span></code></li>
+<li><code class="docutils literal"><span class="pre">displayField()</span></code></li>
+<li><code class="docutils literal"><span class="pre">entityClass()</span></code></li>
+</ul>
+</dd>
+<dt>CakeMailerEmail</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">from()</span></code></li>
+<li><code class="docutils literal"><span class="pre">sender()</span></code></li>
+<li><code class="docutils literal"><span class="pre">replyTo()</span></code></li>
+<li><code class="docutils literal"><span class="pre">readReceipt()</span></code></li>
+<li><code class="docutils literal"><span class="pre">returnPath()</span></code></li>
+<li><code class="docutils literal"><span class="pre">to()</span></code></li>
+<li><code class="docutils literal"><span class="pre">cc()</span></code></li>
+<li><code class="docutils literal"><span class="pre">bcc()</span></code></li>
+<li><code class="docutils literal"><span class="pre">charset()</span></code></li>
+<li><code class="docutils literal"><span class="pre">headerCharset()</span></code></li>
+<li><code class="docutils literal"><span class="pre">emailPattern()</span></code></li>
+<li><code class="docutils literal"><span class="pre">subject()</span></code></li>
+<li><code class="docutils literal"><span class="pre">template()</span></code> (devenue <code class="docutils literal"><span class="pre">setTemplate()</span></code> / <code class="docutils literal"><span class="pre">getTemplate()</span></code> et <code class="docutils literal"><span class="pre">setLayout()</span></code> / <code class="docutils literal"><span class="pre">getLayout()</span></code>)</li>
+<li><code class="docutils literal"><span class="pre">viewRender()</span></code> (devenue <code class="docutils literal"><span class="pre">setViewRenderer()</span></code> / <code class="docutils literal"><span class="pre">getViewRenderer()</span></code>)</li>
+<li><code class="docutils literal"><span class="pre">viewVars()</span></code></li>
+<li><code class="docutils literal"><span class="pre">theme()</span></code></li>
+<li><code class="docutils literal"><span class="pre">helpers()</span></code></li>
+<li><code class="docutils literal"><span class="pre">emailFormat()</span></code></li>
+<li><code class="docutils literal"><span class="pre">transport()</span></code></li>
+<li><code class="docutils literal"><span class="pre">messageId()</span></code></li>
+<li><code class="docutils literal"><span class="pre">domain()</span></code></li>
+<li><code class="docutils literal"><span class="pre">attachments()</span></code></li>
+<li><code class="docutils literal"><span class="pre">configTransport()</span></code></li>
+<li><code class="docutils literal"><span class="pre">profile()</span></code></li>
+</ul>
+</dd>
+<dt>CakeValidationValidator</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">provider()</span></code></li>
+</ul>
+</dd>
+<dt>CakeViewStringTemplateTrait</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">templates()</span></code></li>
+</ul>
+</dd>
+<dt>CakeViewViewBuilder</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">templatePath()</span></code></li>
+<li><code class="docutils literal"><span class="pre">layoutPath()</span></code></li>
+<li><code class="docutils literal"><span class="pre">plugin()</span></code></li>
+<li><code class="docutils literal"><span class="pre">helpers()</span></code></li>
+<li><code class="docutils literal"><span class="pre">theme()</span></code></li>
+<li><code class="docutils literal"><span class="pre">template()</span></code></li>
+<li><code class="docutils literal"><span class="pre">layout()</span></code></li>
+<li><code class="docutils literal"><span class="pre">options()</span></code></li>
+<li><code class="docutils literal"><span class="pre">name()</span></code></li>
+<li><code class="docutils literal"><span class="pre">className()</span></code></li>
+<li><code class="docutils literal"><span class="pre">autoLayout()</span></code> (devenue <code class="docutils literal"><span class="pre">enableAutoLayout()</span></code> / <code class="docutils literal"><span class="pre">isAutoLayoutEnabled()</span></code>)</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="adopter-les-responses-immutable">
+<span id="adopting-immutable-responses"></span><h2>Adopter les Responses Immutable<a class="headerlink" href="#adopter-les-responses-immutable" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Avant de migrer votre code pour qu&#8217;il utilise les nouvelles méthodes de l&#8217;objet
+Response, sachez que les nouvelles méthodes sont bâties sur un concept
+différent. Les objets immutables sont généralement indiquées par le préfixe
+<code class="docutils literal"><span class="pre">with</span></code> (par exemple : <code class="docutils literal"><span class="pre">withLocation()</span></code>). Du fait que ces méthodes évoluent
+dans un contexte immutable, elles retournent de nouvelles instances que vous
+devez assigner à des variables ou des propriétés. Partons du principe que vous
+aviez du code de Controller similaire à celui-ci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">;</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">location</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">)</span>
+<span class="nv">$response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;X-something&#39;</span><span class="p">,</span> <span class="s1">&#39;a value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Si vous faites un simple &#8220;rechercher / remplacer&#8221; pour changer le nom des
+méthodes, cela ne fonctionnera pas. Vous devriez plutôt remplacer votre code
+pour qu&#8217;il ressemble à ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span>
+    <span class="o">-&gt;</span><span class="na">withLocation</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-something&#39;</span><span class="p">,</span> <span class="s1">&#39;a value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Voici les points clés à comprendre :</p>
+<ol class="arabic simple">
+<li>Le résultat de vos changements doit être ré-assigné à <code class="docutils literal"><span class="pre">$this-&gt;response</span></code>.
+C&#8217;est le point le plus important pour conserver le fonctionnement souhaité.</li>
+<li>Les méthodes &#8220;setter&#8221; peuvent être chaînées. Cela vous permet d&#8217;éviter de
+stocker tous les états intermédiaires.</li>
+</ol>
+<div class="section" id="astuces-pour-migrer-vos-components">
+<h3>Astuces pour Migrer vos Components<a class="headerlink" href="#astuces-pour-migrer-vos-components" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans les versions précédentes de CakePHP, les Components possédaient souvent
+des références aux objets Request et Response pour pouvoir les modifier. Avant
+d&#8217;utiliser les méthodes immutable, vous devriez utiliser les Response attachées
+au Controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans une méthode de Component (or callback)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;X-Rate-Limit&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">remaining</span><span class="p">);</span>
+
+<span class="c1">// Deviendrait</span>
+<span class="nv">$controller</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getController</span><span class="p">();</span>
+<span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-Rate-Limit&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">remaining</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dans les callbacks des Components, vous pouvez utiliser l&#8217;objet Event pour
+accéder à la Response / au Controller:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">beforeRender</span><span class="p">(</span><span class="nv">$event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$controller</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">();</span>
+    <span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">response</span> <span class="o">=</span> <span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">response</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;X-Teapot&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Astuce</p>
+<p class="last">Plutôt que conserver une référence aux Responses, récupérez plutôt la Response
+actuelle stockée dans le Controller et modifiez la propriété <code class="docutils literal"><span class="pre">response</span></code>
+quand vous avez terminé vos modifications.</p>
+</div>
+</div>
+</div>
+<div class="section" id="changement-de-comportements">
+<h2>Changement de comportements<a class="headerlink" href="#changement-de-comportements" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Bien que ces changements garde la compatibilité API, ce sont tout de même des
+variations mineures qui pourraient avoir un impact sur votre application :</p>
+<ul class="simple">
+<li>Les résultats de <code class="docutils literal"><span class="pre">ORM\Query</span></code> ne feront plus de typecast sur les alias de
+colonnes basé sur le type de colonne original. Par exemple, si vous faites
+un alias de <code class="docutils literal"><span class="pre">created</span></code> en <code class="docutils literal"><span class="pre">created_time</span></code>, vous obtiendrez maintenant une
+instance de <code class="docutils literal"><span class="pre">Time</span></code> plutôt qu&#8217;une chaîne de caractères.</li>
+<li>Le <code class="docutils literal"><span class="pre">AuthComponent</span></code> utilise maintenant un paramètre URL pour stocker
+l&#8217;adresse de redirection quand un utilisateur non identifié est redirigé sur
+la page de connexion. Auparavant, l&#8217;URL de redirection était stockée en
+session. Utiliser un paramètre d&#8217;URL permet une meilleure compatibilité avec
+les différents navigateurs.</li>
+<li>Le système de <em>reflection</em> de base de données traite maintenant les types de
+colonnes inconnus comme <code class="docutils literal"><span class="pre">string</span></code> et non plus comme <code class="docutils literal"><span class="pre">text</span></code>. L&#8217;impact de ce
+changement est notamment visible sur le <code class="docutils literal"><span class="pre">FormHelper</span></code> qui va générer des
+inputs à la place de textarea pour les types de colonnes inconnus.</li>
+<li><code class="docutils literal"><span class="pre">AuthComponent</span></code> ne va plus stocker ses messages Flash via la clé &#8216;auth&#8217;.
+Ils seront maintenant rendu avec le template &#8216;error&#8217; et sous la clé flash
+&#8216;default&#8217;. Ceci a été fait dans le but de simplifier <code class="docutils literal"><span class="pre">AuthComponent</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">Mailer\Email</span></code> va maintenant automatiquement détecter les types de contenus
+des pièces jointes en utilisant <code class="docutils literal"><span class="pre">mime_content_type</span></code> si le &#8220;content-type&#8221;
+n&#8217;est pas spécifié. Auparavant, les pièces jointes étaient considérées comme
+&#8216;application/octet-stream&#8217; par défaut.</li>
+<li>CakePHP utilise maintenant l&#8217;opérateur <code class="docutils literal"><span class="pre">...</span></code> à la place de <code class="docutils literal"><span class="pre">call_user_func_array()</span></code>.
+Si vous passez des tableaux associatifs, vous devez mettre à jour votre code
+pour passer des tableaux à index numériques en utilisant la méthode <code class="docutils literal"><span class="pre">array_values()</span></code>
+pour les méthodes suivantes :<ul>
+<li><code class="docutils literal"><span class="pre">Cake\Mailer\Mailer::send()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cake\Controller\Controller::setAction()</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cake\Http\ServerRequest::is()</span></code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="visibility-changes">
+<h2>Visibility Changes<a class="headerlink" href="#visibility-changes" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">MailerAwareTrait::getMailer()</span></code> est maintenant <code class="docutils literal"><span class="pre">protected</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">CellTrait::cell()</span></code> est maintenant <code class="docutils literal"><span class="pre">protected</span></code>.</li>
+</ul>
+<p>Si les traits ci-dessus sont utilisés dans vos controllers, leurs méthodes
+publiques pouvaient être appelées par les règles de routing par défaut en
+tant qu&#8217;actions. Ces changements permettent d&#8217;apporter une sécurité à vos
+controllers. Si vous avez besoin que ces méthodes conservent une visibilité
+<code class="docutils literal"><span class="pre">public</span></code>, vous aurez besoin de mettre à jour les instructions <code class="docutils literal"><span class="pre">use</span></code> comme
+ceci:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">CellTrait</span> <span class="p">{</span>
+    <span class="nx">cell</span> <span class="k">as</span> <span class="k">public</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">use</span> <span class="nx">MailerAwareTrait</span> <span class="p">{</span>
+    <span class="nx">getMailer</span> <span class="k">as</span> <span class="k">public</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collection">
+<h2>Collection<a class="headerlink" href="#collection" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">CollectionInterface::chunkWithKeys()</span></code> a été ajoutée. Les implémentations
+de <code class="docutils literal"><span class="pre">CollectionInterface</span></code> des utilisateurs devront maintenant implémenter
+cette méthode.</li>
+<li><code class="docutils literal"><span class="pre">Collection::chunkWithKeys()</span></code> a été ajoutée.</li>
+</ul>
+</div>
+<div class="section" id="erreur">
+<h2>Erreur<a class="headerlink" href="#erreur" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Debugger::setOutputMask()</span></code> et <code class="docutils literal"><span class="pre">Debugger::outputMask()</span></code> ont été ajoutées.
+Ces méthodes vous permettent de configurer des propriétés / clés de tableau
+qui devraient être masquées lors d&#8217;affichages générés par le <code class="docutils literal"><span class="pre">Debugger</span></code>
+(lors d&#8217;un appel à <code class="docutils literal"><span class="pre">debug()</span></code> par exemple).</li>
+</ul>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Event::getName()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Event::getSubject()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Event::getData()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Event::setData()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Event::getResult()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">Event::setResult()</span></code> a été ajoutée.</li>
+</ul>
+</div>
+<div class="section" id="i18n">
+<h2>I18n<a class="headerlink" href="#i18n" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Vous pouvez maintenant personnaliser le comportement du loader de messages
+de fallback. Reportez-vous à <a class="reference internal" href="../core-libraries/internationalization-and-localization.html#creating-generic-translators"><span class="std std-ref">Créer des Traducteurs Génériques</span></a> pour plus
+d&#8217;information.</li>
+</ul>
+</div>
+<div class="section" id="routing">
+<h2>Routing<a class="headerlink" href="#routing" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">RouteBuilder::prefix()</span></code> accepte maintenant un tableau de paramètres par
+défaut à ajouter à chaque route &#8220;connectée&#8221;.</li>
+<li>Les routes peuvent maintenant être &#8220;matché&#8221; sur des hosts spécifiques à
+l&#8217;aide de l&#8217;option <code class="docutils literal"><span class="pre">_host</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="email">
+<h2>Email<a class="headerlink" href="#email" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Email::setPriority()</span></code>/<code class="docutils literal"><span class="pre">Email::getPriority()</span></code> ont été ajoutées.</li>
+</ul>
+</div>
+<div class="section" id="htmlhelper">
+<h2>HtmlHelper<a class="headerlink" href="#htmlhelper" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">HtmlHelper::scriptBlock()</span></code> n&#8217;englobe plus le Javascript dans un tag
+<code class="docutils literal"><span class="pre">&lt;![CDATA[</span> <span class="pre">]]</span></code> par défaut. L&#8217;option <code class="docutils literal"><span class="pre">safe</span></code> qui contrôle ce comportement
+a maintenant sa valeur par défaut à <code class="docutils literal"><span class="pre">false</span></code>. Utiliser le tag <code class="docutils literal"><span class="pre">&lt;![CDATA[</span> <span class="pre">]]</span></code>
+était seulement requis pour le XHTML qui n&#8217;est plus le doctype prédominant
+pour les pages web actuellement.</li>
+</ul>
+</div>
+<div class="section" id="breadcrumbshelper">
+<h2>BreadcrumbsHelper<a class="headerlink" href="#breadcrumbshelper" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">BreadcrumbsHelper::reset()</span></code> a été ajoutée. Cette méthode vous permet de
+supprimer les éléments déjà présents.</li>
+</ul>
+</div>
+<div class="section" id="paginatorhelper">
+<h2>PaginatorHelper<a class="headerlink" href="#paginatorhelper" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">PaginatorHelper::numbers()</span></code> utilise maintenant une ellipse HTML au lieu de
+&#8216;...&#8217; dans les templates par défaut.</li>
+<li><code class="docutils literal"><span class="pre">PaginatorHelper::total()</span></code> a été ajoutée et permet de lire le nombre total
+de pages pour le résultat de requête actuellement paginé.</li>
+<li><code class="docutils literal"><span class="pre">PaginatorHelper::generateUrlParams()</span></code> a été ajoutée et est utilisée comme
+méthode de construction d&#8217;URL &#8220;bas niveau&#8221;.</li>
+<li><code class="docutils literal"><span class="pre">PaginatorHelper::meta()</span></code> peut maintenant créer des liens pour &#8216;first&#8217; et
+&#8216;last&#8217;.</li>
+</ul>
+</div>
+<div class="section" id="formhelper">
+<h2>FormHelper<a class="headerlink" href="#formhelper" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Vous pouvez maintenant configurer les sources à partir desquelles FormHelper
+lit. Ceci simplifie la création des formulaires GET. Consultez <a class="reference internal" href="../views/helpers/form.html#form-values-from-query-string"><span class="std std-ref">Récupérer les valeurs du formulaire depuis la query string</span></a> pour plus d&#8217;informations.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::control()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::controls()</span></code> a été ajoutée.</li>
+<li><code class="docutils literal"><span class="pre">FormHelper::allControls()</span></code> a été ajoutée.</li>
+</ul>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Validation::falsey()</span></code> et <code class="docutils literal"><span class="pre">Validation::truthy()</span></code> ont été ajoutées.</li>
+</ul>
+</div>
+<div class="section" id="translatebehavior">
+<h2>TranslateBehavior<a class="headerlink" href="#translatebehavior" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">TranslateBehavior::translationField()</span></code> a été ajoutée.</li>
+</ul>
+</div>
+<div class="section" id="pluginshell">
+<h2>PluginShell<a class="headerlink" href="#pluginshell" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cake</span> <span class="pre">plugin</span> <span class="pre">load</span></code> et <code class="docutils literal"><span class="pre">cake</span> <span class="pre">plugin</span> <span class="pre">unload</span></code> supportent maintenant une
+option <code class="docutils literal"><span class="pre">--cli</span></code> qui permet de mettre à jour <code class="docutils literal"><span class="pre">bootstrap_cli.php</span></code> à la place
+de <code class="docutils literal"><span class="pre">bootstrap.php</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="testsuite">
+<h2>TestSuite<a class="headerlink" href="#testsuite" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Le support de <code class="docutils literal"><span class="pre">PHPUnit</span> <span class="pre">6</span></code> a été ajouté. Puisque cette version du framework
+a au minimum besoin de PHP 5.6.0, les versions supportées de PHPUnit sont
+maintenant <code class="docutils literal"><span class="pre">^5.7|^6.0</span></code></li>
+</ul>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="3-x-migration-guide.html">3.x Guide de Migration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3-5-migration-guide.html">3.5 Guide de Migration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-migration-guide.html">3.3 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-migration-guide.html">3.2 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-1-migration-guide.html">3.1 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-0-migration-guide.html">3.0 Guide de Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orm-migration.html">Guide de Migration du Nouvel ORM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

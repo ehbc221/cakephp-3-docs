@@ -1,0 +1,1918 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Shells, Tasks &amp; Outils de Console" lang="fr" name="title" />
+<meta content="scripts de shell,système shell,classes application,tâches de fond,script en ligne,tâche cron,réponse requête request response,système path,acl,nouveaux projets,shells,spécifiques,paramètres,i18n,cakephp,répertoire,maintenance,idéal,applications,mvc" lang="fr" name="keywords" />
+
+    <title>Outils de Console, Shells, &amp; Tasks - 3.x</title>
+    <link href="_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../en/console-and-shells.html" /><link rel="alternate" hreflang="pt_BR" href="../pt/console-and-shells.html" /><link rel="alternate" hreflang="es" href="../es/console-and-shells.html" /><link rel="alternate" hreflang="ja" href="../ja/console-and-shells.html" /><link rel="alternate" hreflang="zh" href="../zh/console-and-shells.html" /><link rel="alternate" hreflang="tr" href="../tr/console-and-shells.html" /><link rel="alternate" hreflang="ru" href="../ru/console-and-shells.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="index.html" />
+    <link rel="next" title="Shell Helpers" href="console-and-shells/helpers.html" />
+    <link rel="prev" title="La mise en cache" href="core-libraries/caching.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../en/console-and-shells.html">en</a></li>
+                                            
+                                                <li><a href="../pt/console-and-shells.html">pt</a></li>
+                                            
+                                                <li><a href="../es/console-and-shells.html">es</a></li>
+                                            
+                                                <li><a href="../ja/console-and-shells.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../zh/console-and-shells.html">zh</a></li>
+                                            
+                                                <li><a href="../tr/console-and-shells.html">tr</a></li>
+                                            
+                                                <li><a href="../ru/console-and-shells.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/console-and-shells.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Outils de Console, Shells, &amp; Tasks</a><ul>
+<li><a class="reference internal" href="#la-console-de-cakephp">La console de CakePHP</a></li>
+<li><a class="reference internal" href="#creer-un-shell">Créer un Shell</a></li>
+<li><a class="reference internal" href="#les-taches-shell">Les Tâches Shell</a><ul>
+<li><a class="reference internal" href="#chargement-a-la-volee-des-taches-avec-taskcollection">Chargement à la volée des tâches avec TaskCollection</a></li>
+<li><a class="reference internal" href="#utiliser-les-models-dans-vos-shells">Utiliser les Models dans vos shells</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#shell-helpers">Shell Helpers</a></li>
+<li><a class="reference internal" href="#appeler-d-autres-shells-a-partir-de-votre-shell">Appeler d&#8217;autres Shells à partir de votre Shell</a><ul>
+<li><a class="reference internal" href="#passer-des-parametres-supplementaires-au-shell-appele">Passer des paramètres supplémentaires au Shell appelé</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recuperer-les-entrees-de-l-utilisateur">Récupérer les Entrées de l&#8217;Utilisateur</a></li>
+<li><a class="reference internal" href="#creer-des-fichiers">Créer des Fichiers</a></li>
+<li><a class="reference internal" href="#sortie-de-la-console">Sortie de la Console</a></li>
+<li><a class="reference internal" href="#niveaux-de-sortie-de-la-console">Niveaux de sortie de la Console</a></li>
+<li><a class="reference internal" href="#style-de-sortie">Style de sortie</a><ul>
+<li><a class="reference internal" href="#enlever-la-coloration">Enlever la coloration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arreter-l-execution-d-un-shell">Arrêter l&#8217;Exécution d&#8217;un Shell</a><ul>
+<li><a class="reference internal" href="#statuts-et-codes-d-erreur">Statuts et Codes d&#8217;Erreur</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methodes-hook">Méthodes Hook</a></li>
+<li><a class="reference internal" href="#configurer-les-options-et-generer-de-l-aide">Configurer les options et générer de l&#8217;aide</a><ul>
+<li><a class="reference internal" href="#configurer-un-option-parser-avec-l-interface-chainee">Configurer un option parser avec l&#8217;interface chainée</a><ul>
+<li><a class="reference internal" href="#definir-la-description">Définir la description</a></li>
+<li><a class="reference internal" href="#set-a-help-alias">Set a help alias</a></li>
+<li><a class="reference internal" href="#definir-un-epilog">Définir un &#8220;Epilog&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ajouter-des-arguments">Ajouter des Arguments</a></li>
+<li><a class="reference internal" href="#validation-des-arguments">Validation des Arguments</a></li>
+<li><a class="reference internal" href="#ajouter-des-options">Ajouter des Options</a></li>
+<li><a class="reference internal" href="#validation-des-options">Validation des Options</a></li>
+<li><a class="reference internal" href="#utiliser-les-options-booleennes">Utiliser les Options Booléennes</a></li>
+<li><a class="reference internal" href="#ajouter-des-sous-commandes">Ajouter des sous-commandes</a></li>
+<li><a class="reference internal" href="#construire-un-consoleoptionparser-a-partir-d-un-tableau">Construire un ConsoleOptionParser à partir d&#8217;un Tableau</a></li>
+<li><a class="reference internal" href="#fusionner-les-consoleoptionparsers">Fusionner les ConsoleOptionParsers</a></li>
+<li><a class="reference internal" href="#obtenir-de-l-aide-dans-les-shells">Obtenir de l&#8217;Aide dans les Shells</a></li>
+<li><a class="reference internal" href="#obtenir-de-l-aide-en-xml">Obtenir de l&#8217;Aide en XML</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#renommer-des-commandes">Renommer des Commandes</a></li>
+<li><a class="reference internal" href="#routing-dans-shells-cli">Routing dans shells / CLI</a></li>
+<li><a class="reference internal" href="#plus-de-sujets">Plus de sujets</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\Console">
+<span id="outils-de-console-shells-tasks"></span><h1>Outils de Console, Shells, &amp; Tasks<a class="headerlink" href="#namespace-Cake\Console" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CakePHP n&#8217;est pas seulement un framework web, c&#8217;est aussi une console de
+framework pour la création d&#8217;applications. Les applications par la console sont
+idéales pour la gestion des tâches d&#8217;arrière-plan comme la maintenance et
+l&#8217;achèvement du travail en-dehors du cycle de requête-réponse.
+Les applications par la console CakePHP vous permettent de réutiliser les
+classes de votre application à partir de lignes de commande.</p>
+<p>CakePHP dispose d&#8217;un certain nombre d&#8217;applications fournies pour la console.
+Certaines de ces applications sont utilisées de concert avec les fonctionnalités
+de CakePHP (comme i18n), et d&#8217;autres sont pour une utilisation générale pour que
+votre travail se fasse plus vite.</p>
+<div class="section" id="la-console-de-cakephp">
+<h2>La console de CakePHP<a class="headerlink" href="#la-console-de-cakephp" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cette section est une introduction sur la ligne de commande dans CakePHP.
+Les outils de la Console sont idéals pour l&#8217;utilisation de tâches cron, ou pour
+les utilitaires basés sur les lignes de commandes qui n&#8217;ont pas besoin d&#8217;être
+accessibles par un navigateur.</p>
+<p>PHP fournit un puissant client CLI qui rend l&#8217;interfaçage avec votre système de
+fichier et vos applications plus facile. La Console CakePHP fournit un framework
+de création de scripts shell. La console utilise un ensemble de répartiteur de
+types pour charger un shell ou une tâche, et lui passer des paramètres.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Une installation de PHP construite avec la ligne de commande (CLI) doit
+être disponible sur le système si vous prévoyez d&#8217;utiliser la Console.</p>
+</div>
+<p>Avant d&#8217;entrer dans les spécificités, assurons-nous que vous pouvez exécuter
+la console CakePHP. Tout d&#8217;abord, vous devrez ouvrir un shell système. Les
+exemples présentés dans cette section seront en bash, mais la console
+CakePHP est également compatible avec Windows. Exécutons le programme Console
+depuis le bash. Cet exemple suppose que l&#8217;utilisateur est actuellement
+connecté dans l&#8217;invité bash et qu&#8217;il est en root sur une installation CakePHP.</p>
+<p>Une application CakePHP contient les répertoires <strong>src/Shell</strong> et
+<strong>src/Shell/Task</strong> qui contiennent tous ses shells et tasks. Il est aussi livré
+avec un exécutable dans le répertoire <strong>bin</strong>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">cd</span> <span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">app</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sur Windows, cette commande doit être <code class="docutils literal"><span class="pre">bin\cake</span></code> (notez l&#8217;antislash).</p>
+</div>
+<p>Quand vous lancez la Console sans argument, cela affiche ce message d&#8217;aide:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">CakePHP</span> <span class="nx">v3</span><span class="o">.</span><span class="mf">5.0</span> <span class="nx">Console</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="nx">App</span> <span class="o">:</span> <span class="nx">App</span>
+<span class="nx">Path</span><span class="o">:</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">markstory</span><span class="o">/</span><span class="nx">Sites</span><span class="o">/</span><span class="nx">cakephp</span><span class="o">-</span><span class="nx">app</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="nx">Current</span> <span class="nx">Paths</span><span class="o">:</span>
+
+ <span class="o">-</span><span class="nx">app</span><span class="o">:</span> <span class="nx">src</span>
+ <span class="o">-</span><span class="nx">root</span><span class="o">:</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">markstory</span><span class="o">/</span><span class="nx">Sites</span><span class="o">/</span><span class="nx">cakephp</span><span class="o">-</span><span class="nx">app</span>
+ <span class="o">-</span><span class="nx">core</span><span class="o">:</span> <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">markstory</span><span class="o">/</span><span class="nx">Sites</span><span class="o">/</span><span class="nx">cakephp</span><span class="o">-</span><span class="nx">app</span><span class="o">/</span><span class="nx">vendor</span><span class="o">/</span><span class="nx">cakephp</span><span class="o">/</span><span class="nx">cakephp</span>
+
+<span class="nx">Changing</span> <span class="nx">Paths</span><span class="o">:</span>
+
+<span class="nx">Votre</span> <span class="nx">working</span> <span class="nx">path</span> <span class="nx">devrait</span> <span class="nx">être</span> <span class="nx">le</span> <span class="nx">même</span> <span class="nx">que</span> <span class="nx">celui</span> <span class="nx">de</span> <span class="nx">votre</span> <span class="nx">application</span><span class="o">.</span> <span class="nx">Pour</span>
+<span class="nx">changer</span> <span class="nx">votre</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">utilisez</span> <span class="nx">le</span> <span class="nx">paramètre</span> <span class="s1">&#39;-app&#39;</span><span class="o">.</span>
+<span class="nx">Exemple</span><span class="o">:</span> <span class="o">-</span><span class="nx">app</span> <span class="nx">relative</span><span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">myapp</span> <span class="nx">ou</span> <span class="o">-</span><span class="nx">app</span> <span class="o">/</span><span class="nx">absolute</span><span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">myapp</span>
+
+<span class="nx">Shells</span> <span class="nx">disponibles</span><span class="o">:</span>
+
+<span class="p">[</span><span class="nx">Bake</span><span class="p">]</span> <span class="nx">bake</span>
+
+<span class="p">[</span><span class="nx">Migrations</span><span class="p">]</span> <span class="nx">migrations</span>
+
+<span class="p">[</span><span class="nx">CORE</span><span class="p">]</span> <span class="nx">i18n</span><span class="p">,</span> <span class="nx">orm_cache</span><span class="p">,</span> <span class="nx">plugin</span><span class="p">,</span> <span class="nx">routes</span><span class="p">,</span> <span class="nx">server</span>
+
+<span class="p">[</span><span class="nx">app</span><span class="p">]</span> <span class="nx">behavior_time</span><span class="p">,</span> <span class="nx">console</span><span class="p">,</span> <span class="nx">orm</span>
+
+<span class="nx">Pour</span> <span class="nx">lancer</span> <span class="nx">une</span> <span class="nx">commande</span> <span class="nx">de</span> <span class="nx">app</span> <span class="nx">ou</span> <span class="nx">du</span> <span class="nx">cœur</span><span class="p">,</span> <span class="nx">tapez</span> <span class="nx">cake</span> <span class="nx">shell_name</span> <span class="p">[</span><span class="nx">args</span><span class="p">]</span>
+<span class="nx">Pour</span> <span class="nx">lancer</span> <span class="nx">une</span> <span class="nx">commande</span> <span class="nx">d</span><span class="s1">&#39;un plugin, tapez cake Plugin.shell_name [args]</span>
+<span class="s1">Pour avoir de l&#39;</span><span class="nx">aide</span> <span class="nx">sur</span> <span class="nx">une</span> <span class="nx">commande</span> <span class="nx">spécifique</span><span class="p">,</span> <span class="nx">tapez</span> <span class="nx">cake</span> <span class="nx">shell_name</span> <span class="o">--</span><span class="nx">help</span>
+</pre></div>
+</div>
+<p>La première information affichée est en rapport avec les chemins. Ceci est
+particulièrement pratique si vous exécutez la Console depuis différents
+endroits de votre système de fichier.</p>
+<p>Vous pouvez lancer n&#8217;importe quel shell listé en utilisant son nom:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1"># lance le shell server</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">server</span>
+
+<span class="c1"># lance le shell migrations</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">migrations</span> <span class="o">-</span><span class="nx">h</span>
+
+<span class="c1"># lance le shell bake (avec le préfixe plugin)</span>
+<span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">bake</span><span class="o">.</span><span class="nx">bake</span> <span class="o">-</span><span class="nx">h</span>
+</pre></div>
+</div>
+<p>Les shells de plugins peuvent être invoqués sans le préfixe du plugin si le nom
+du shell n&#8217;entre pas en collision avec un shell de l&#8217;application ou du
+framework. Dans le cas où deux plugins fournissent un shell du même nom, c&#8217;est
+le premier chargé qui récupérera l&#8217;alias court. Vous pouvez toujours
+utiliser le format <code class="docutils literal"><span class="pre">plugin.shell</span></code> pour référencer un shell sans ambiguïté.</p>
+<dl class="class">
+<dt id="Cake\Console\Shell">
+<em class="property">class </em><code class="descclassname">Cake\Console\</code><code class="descname">Shell</code><a class="headerlink" href="#Cake\Console\Shell" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="creer-un-shell">
+<h2>Créer un Shell<a class="headerlink" href="#creer-un-shell" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Créons un shell pour l&#8217;utilisation dans la Console. Pour cet exemple, nous
+créerons un simple shell Hello world. Dans le répertoire <strong>src/Shell</strong>
+de votre application, créez <strong>HelloShell.php</strong>. Mettez le code suivant
+dedans:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Shell</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Console\Shell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Hello world.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les conventions pour les classes de shell sont que les noms de classe doivent
+correspondre au nom du fichier, avec Shell en suffixe. Dans notre shell, nous
+avons créé une méthode <code class="docutils literal"><span class="pre">main()</span></code>.
+Cette méthode est appelée quand un shell est appelé avec aucune commande
+supplémentaire. Nous allons ajouter quelques commandes en plus dans un moment,
+mais pour l&#8217;instant lançons juste notre shell. Depuis le répertoire de votre
+application, lancez:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">hello</span>
+</pre></div>
+</div>
+<p>Vous devriez voir la sortie suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Hello</span> <span class="nx">world</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Comme mentionné précédemment, la méthode <code class="docutils literal"><span class="pre">main()</span></code> dans les shells est une
+méthode spéciale appelée tant qu&#8217;il n&#8217;y a pas d&#8217;autres commandes ou arguments
+donnés au shell. Comme notre méthode principale n&#8217;était pas très intéressante,
+ajoutons une autre commande qui fait quelque chose:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Shell</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Console\Shell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Hello world.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">heyThere</span><span class="p">(</span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Anonymous&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Hey there &#39;</span> <span class="o">.</span> <span class="nv">$name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Après avoir enregistré ce fichier, vous devriez pouvoir lancer la commande
+suivante et voir votre nom affiché:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">hello</span> <span class="nx">hey_there</span> <span class="nx">your</span><span class="o">-</span><span class="nx">name</span>
+</pre></div>
+</div>
+<p>Toute méthode publique non préfixée par un <code class="docutils literal"><span class="pre">_</span></code> peut être appelée d&#8217;une
+ligne de commande. Comme vous pouvez le voir, les méthodes appelées avec la
+ligne de commande sont transformées d&#8217;un argument en underscore du shell en
+un bon nom de méthode en camel-case de la classe.</p>
+<p>Dans notre méthode <code class="docutils literal"><span class="pre">heyThere()</span></code>, nous pouvons voir que les arguments de
+position sont envoyés à notre fonction <code class="docutils literal"><span class="pre">heyThere()</span></code>. Les arguments de
+position sont aussi disponible dans la propriété <code class="docutils literal"><span class="pre">args</span></code>.
+Vous pouvez accéder switches ou aux options des applications du shell, qui sont
+disponibles dans <code class="docutils literal"><span class="pre">$this-&gt;params</span></code>, mais nous étudierons ce point plus tard.</p>
+<p>Lorsque vous utilisez la méthode <code class="docutils literal"><span class="pre">main()</span></code>, vous ne pouvez pas utiliser
+les arguments de position ou les paramètres. Cela parce que le premier argument
+de position ou l&#8217;option est interprété en tant que nom de commande. Si vous
+voulez utiliser des arguments et des options, vous devriez utiliser un autre
+nom de méthode que <code class="docutils literal"><span class="pre">main</span></code>.</p>
+</div>
+<div class="section" id="les-taches-shell">
+<h2>Les Tâches Shell<a class="headerlink" href="#les-taches-shell" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il y aura des fois où quand vous construirez des applications plus poussées
+via la console, vous voudrez composer des fonctionnalités dans des classes
+réutilisables qui peuvent être partagées à travers plusieurs shells. Les
+tâches vous permettent d&#8217;extraire des commandes dans des classes. Par exemple,
+la commande <code class="docutils literal"><span class="pre">bake</span></code> est fait entièrement de tâches. Vous définissez les tâches
+d&#8217;un shell en utilisant la propriété <code class="docutils literal"><span class="pre">$tasks</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$tasks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Template&#39;</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez utiliser les tâches à partir de plugins en utilisant la
+<a class="reference internal" href="appendices/glossary.html#term-syntaxe-de-plugin"><span class="xref std std-term">syntaxe de plugin</span></a> standard. Les tâches sont stockées dans
+<strong>src/Shell/Task/</strong> dans les fichiers nommées d&#8217;après leur classe. Ainsi si vous
+étiez sur le point de créer une nouvelle tâche &#8216;FileGenerator&#8217;, vous pourriez
+créer <strong>src/Shell/Task/FileGeneratorTask.php</strong>.</p>
+<p>Chaque tâche doit au moins intégrer une méthode <code class="docutils literal"><span class="pre">main()</span></code>. Le ShellDispatcher
+appellera cette méthode quand la tâche est invoquée. Une classe de tâche
+ressemble à cela:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Shell\Task</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Console\Shell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FileGeneratorTask</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Un shell peut aussi accéder à ses tâches en tant que propriétés, ce qui rend les
+tâches meilleures pour la réutilisation de fonctions identiques à
+<a class="reference internal" href="controllers/components.html"><span class="doc">Components (Composants)</span></a>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans src/Console/Command/SeaShell.php</span>
+<span class="k">class</span> <span class="nc">SeaShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="c1">// Se trouve dans src/Shell/Task/SoundTask.php</span>
+    <span class="k">public</span> <span class="nv">$tasks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sound&#39;</span><span class="p">];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Sound</span><span class="o">-&gt;</span><span class="na">main</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi accéder aux tâches directement à partir de la ligne de
+commande:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">cake</span> <span class="nx">sea</span> <span class="nx">sound</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Afin d&#8217;accéder aux tâches directement à partir de ligne de commande, la
+tâche <strong>doit</strong> être inclue dans la propriété $tasks de la classe shell.</p>
+</div>
+<p>De plus, le nom de la task doit être ajouté en tout que sous commande dans
+l&#8217;OptionParser du Shell:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$parser</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">getOptionParser</span><span class="p">();</span>
+    <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addSubcommand</span><span class="p">(</span><span class="s1">&#39;sound&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="c1">// Fournit un texte d&#39;aide pour la liste des commandes</span>
+        <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Execute The Sound Task.&#39;</span><span class="p">,</span>
+        <span class="c1">// Lie les parsers d&#39;option.</span>
+        <span class="s1">&#39;parser&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Sound</span><span class="o">-&gt;</span><span class="na">getOptionParser</span><span class="p">(),</span>
+    <span class="p">]);</span>
+    <span class="k">return</span> <span class="nv">$parser</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="chargement-a-la-volee-des-taches-avec-taskcollection">
+<h3>Chargement à la volée des tâches avec TaskCollection<a class="headerlink" href="#chargement-a-la-volee-des-taches-avec-taskcollection" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez charger les tâches à la volée en utilisant l&#8217;objet Task Collection.
+Vous pouvez charger les tâches qui ne sont pas déclarées dans $tasks de cette
+façon:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$project</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Tasks</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;Project&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Chargera et retournera une instance ProjectTask. Vous pouvez charger les tâches
+à partir des plugins en utilisant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$progressBar</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Tasks</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;ProgressBar.ProgressBar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-les-models-dans-vos-shells">
+<h3>Utiliser les Models dans vos shells<a class="headerlink" href="#utiliser-les-models-dans-vos-shells" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous avez souvent besoin d&#8217;accéder à la logique métier de votre application
+dans les utilitaires de shell. CakePHP rend cela super facile. Vous pouvez
+charger les models dans les shells, juste comme vous le feriez dans un
+controller en utilisant <code class="docutils literal"><span class="pre">loadModel()</span></code>. Les models définis sont chargés en
+propriétés attachées à votre shell:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Shell</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Console\Shell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadModel</span><span class="p">(</span><span class="s1">&#39;Users&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">show</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="c1">// Utilisez error() avant CakePHP 3.2</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">abort</span><span class="p">(</span><span class="s2">&quot;Merci de rentrer un nom d&#39;utilisateur.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">findByUsername</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="k">true</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Le shell ci-dessus récupérera un utilisateur par son username et affichera
+l&#8217;information stockée dans la base de données.</p>
+</div>
+</div>
+<div class="section" id="shell-helpers">
+<h2>Shell Helpers<a class="headerlink" href="#shell-helpers" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous avez une logique complexe de génération de sortie, vous pouvez utiliser
+les <a class="reference internal" href="console-and-shells/helpers.html"><span class="doc">Shell Helpers</span></a> pour encapsuler cette logique d&#8217;une
+manière réutilisable.</p>
+</div>
+<div class="section" id="appeler-d-autres-shells-a-partir-de-votre-shell">
+<span id="invoking-other-shells-from-your-shell"></span><h2>Appeler d&#8217;autres Shells à partir de votre Shell<a class="headerlink" href="#appeler-d-autres-shells-a-partir-de-votre-shell" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il y a effectivement beaucoup de cas où vous voulez appeler un shell à partir
+d&#8217;un autre. <code class="docutils literal"><span class="pre">Shell::dispatchShell()</span></code> vous donne la possibilité d&#8217;appeler
+d&#8217;autres shells en fournissant le <code class="docutils literal"><span class="pre">argv</span></code> pour le shell sub. Vous pouvez
+fournir des arguments et des options soit en variables args ou en chaînes de
+caractères:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// En chaînes de caractère</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatchShell</span><span class="p">(</span><span class="s1">&#39;schema create Blog --plugin Blog&#39;</span><span class="p">);</span>
+
+<span class="c1">// En tableau</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatchShell</span><span class="p">(</span><span class="s1">&#39;schema&#39;</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span>  <span class="s1">&#39;Blog&#39;</span><span class="p">,</span> <span class="s1">&#39;--plugin&#39;</span><span class="p">,</span>  <span class="s1">&#39;Blog&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus montre comment vous pouvez appeler le shell schema pour un
+plugin à partir du shell de votre plugin.</p>
+<div class="section" id="passer-des-parametres-supplementaires-au-shell-appele">
+<h3>Passer des paramètres supplémentaires au Shell appelé<a class="headerlink" href="#passer-des-parametres-supplementaires-au-shell-appele" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1.</span></p>
+</div>
+<p>Il peut parfois être utile de passer des paramètres supplémentaires (qui ne
+seraient pas des arguments du Shell) aux Shells appelés.
+Pour ce faire, vous pouvez maintenant passer un tableau à <code class="docutils literal"><span class="pre">dispatchShell()</span></code>.
+Le tableau devra avoir une clé <code class="docutils literal"><span class="pre">command</span></code> ainsi qu&#8217;une clé <code class="docutils literal"><span class="pre">extra</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// En passant la commande via une chaîne</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatchShell</span><span class="p">([</span>
+   <span class="s1">&#39;command&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;schema create Blog --plugin Blog&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;extra&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+
+<span class="c1">// En passant la commande via un tableau</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatchShell</span><span class="p">([</span>
+   <span class="s1">&#39;command&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;schema&#39;</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog&#39;</span><span class="p">,</span> <span class="s1">&#39;--plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;Blog&#39;</span><span class="p">],</span>
+   <span class="s1">&#39;extra&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Les paramètres ajoutés via <code class="docutils literal"><span class="pre">extra</span></code> seront fusionnés dans la propriété
+<code class="docutils literal"><span class="pre">Shell::$params</span></code> et accessibles via la méthode <code class="docutils literal"><span class="pre">Shell::param()</span></code>.
+Par défaut, un paramètre supplémentaire <code class="docutils literal"><span class="pre">requested</span></code> est automatiquement
+ajouté quand un Shell est appelé via <code class="docutils literal"><span class="pre">dispatchShell()</span></code>. Ce paramètre
+empêche la console de CakePHP d&#8217;afficher le message de bienvenue à chaque
+Shell appelé via <code class="docutils literal"><span class="pre">dispatchShell()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="recuperer-les-entrees-de-l-utilisateur">
+<h2>Récupérer les Entrées de l&#8217;Utilisateur<a class="headerlink" href="#recuperer-les-entrees-de-l-utilisateur" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Console\Shell::in">
+<code class="descclassname">Cake\Console\Shell::</code><code class="descname">in</code><span class="sig-paren">(</span><em>$question</em>, <em>$choices = null</em>, <em>$default = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\Shell::in" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Quand vous construisez des applications pour console, vous avez besoin des
+entrées de l&#8217;utilisateur. CakePHP a un moyen facile de le faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Récupère un texte arbitraire de l&#39;utilisateur.</span>
+<span class="nv">$color</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">in</span><span class="p">(</span><span class="s1">&#39;What color do you like?&#39;</span><span class="p">);</span>
+
+<span class="c1">// Récupère un choix de l&#39;utilisateur.</span>
+<span class="nv">$selection</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">in</span><span class="p">(</span><span class="s1">&#39;Red or Green?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">],</span> <span class="s1">&#39;R&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La validation de la sélection est sensible à la casse.</p>
+</div>
+<div class="section" id="creer-des-fichiers">
+<h2>Créer des Fichiers<a class="headerlink" href="#creer-des-fichiers" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Console\Shell::createFile">
+<code class="descclassname">Cake\Console\Shell::</code><code class="descname">createFile</code><span class="sig-paren">(</span><em>$path</em>, <em>$contents</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\Shell::createFile" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Beaucoup d&#8217;applications Shell aident à automatiser les tâches de développement
+et de déploiement. Créer des fichiers est souvent important dans ces cas
+d&#8217;utilisation. CakePHP fournit un moyen facile pour créer un fichier pour un
+chemin donné:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createFile</span><span class="p">(</span><span class="s1">&#39;bower.json&#39;</span><span class="p">,</span> <span class="nv">$stuff</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Si le Shell est interactif, un avertissement sera généré, et il sera demandé
+à l&#8217;utilisateur s&#8217;il veut écraser le fichier s&#8217;il existe déjà. Si la propriété
+interactive du shell est à <code class="docutils literal"><span class="pre">false</span></code>, aucune question ne sera posée et le
+fichier sera simplement écrasé.</p>
+</div>
+<div class="section" id="sortie-de-la-console">
+<h2>Sortie de la Console<a class="headerlink" href="#sortie-de-la-console" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La classe <code class="docutils literal"><span class="pre">Shell</span></code> fournit quelques méthodes pour afficher le contenu:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Ecrire avec stdout</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Message Normal&#39;</span><span class="p">);</span>
+
+<span class="c1">// Ecrire avec stderr</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">err</span><span class="p">(</span><span class="s1">&#39;Message d\&#39;erreur&#39;</span><span class="p">);</span>
+
+<span class="c1">// Ecrire avec stderr et lancer une exception</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">abort</span><span class="p">(</span><span class="s1">&#39;Fatal error&#39;</span><span class="p">);</span>
+
+<span class="c1">// Avant CakePHP 3.2. Ecrire avec stderr et exit()</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;Erreur Fatale&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Elle fournit aussi deux méthodes pratiques en ce qui concerne le niveau de
+sortie:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Apparaîtrait seulement quand la sortie verbeuse est activée (-v)</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">verbose</span><span class="p">(</span><span class="s1">&#39;Message verbeux&#39;</span><span class="p">);</span>
+
+<span class="c1">// Apparaîtrait à tous les niveaux.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">quiet</span><span class="p">(</span><span class="s1">&#39;Message silencieux&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le Shell a aussi quelques méthodes pour nettoyer la sortie, créer des lignes
+blanches, ou dessiner une ligne de tirets:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Affiche 2 newlines</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nl</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="c1">// Nettoie l&#39;écran de l&#39;utilisateur</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
+
+<span class="c1">// Dessine une ligne horizontale</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hr</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Enfin, vous pouvez mettre à jour la ligne courante du texte sur l&#8217;écran en
+utilisant <code class="docutils literal"><span class="pre">_io-&gt;overwrite()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Counting down&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_io</span><span class="o">-&gt;</span><span class="na">overwrite</span><span class="p">(</span><span class="nv">$i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Il est important de se rappeler que vous ne pouvez pas écraser le texte une fois
+qu&#8217;une nouvelle ligne a été affichée.</p>
+</div>
+<div class="section" id="niveaux-de-sortie-de-la-console">
+<span id="shell-output-level"></span><h2>Niveaux de sortie de la Console<a class="headerlink" href="#niveaux-de-sortie-de-la-console" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les Shells ont souvent besoin de différents niveaux de verbosité. Quand vous
+lancez une tâche cron, la plupart des sorties ne sont pas nécessaires. Et il
+y a des fois où vous n&#8217;êtes pas intéressés dans tout ce qu&#8217;un shell a à dire.
+Vous pouvez utiliser des niveaux de sortie pour signaler la sortie de façon
+appropriée. L&#8217;utilisateur du shell peut ensuite décider pour quel niveau de
+détail ils sont intéressés en configurant le bon flag quand on appelle le
+shell. <code class="xref php php-meth docutils literal"><span class="pre">Cake\Console\Shell::out()</span></code> supporte 3 types de sortie par
+défaut.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">QUIET</span></code> - Seulement des informations importantes doivent être marquées pour
+une paisible.</li>
+<li><code class="docutils literal"><span class="pre">NORMAL</span></code> - Le niveau par défaut, et un usage normal.</li>
+<li><code class="docutils literal"><span class="pre">VERBOSE</span></code> - Les messages marqués qui peuvent être trop ennuyeux pour une
+utilisation quotidienne, mais aide au debugging en <code class="docutils literal"><span class="pre">VERBOSE</span></code>.</li>
+</ul>
+<p>Vous pouvez marquer la sortie comme suit:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// apparaitra à tous les niveaux.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;Quiet message&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">Shell</span><span class="o">::</span><span class="na">QUIET</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">quiet</span><span class="p">(</span><span class="s1">&#39;Quiet message&#39;</span><span class="p">);</span>
+
+<span class="c1">// n&#39;apparaitra pas quand une sortie quiet est togglé</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;message normal&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">Shell</span><span class="o">::</span><span class="na">NORMAL</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;message loud&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">Shell</span><span class="o">::</span><span class="na">VERBOSE</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">verbose</span><span class="p">(</span><span class="s1">&#39;Verbose output&#39;</span><span class="p">);</span>
+
+<span class="c1">// would only appear when verbose output is enabled.</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">out</span><span class="p">(</span><span class="s1">&#39;extra message&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">Shell</span><span class="o">::</span><span class="na">VERBOSE</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">verbose</span><span class="p">(</span><span class="s1">&#39;Verbose output&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez contrôler le niveau de sortie des shells, en utilisant les options
+<code class="docutils literal"><span class="pre">--quiet</span></code> et <code class="docutils literal"><span class="pre">--verbose</span></code>. Ces options sont ajoutées par défaut, et vous
+autorise à contrôler la cohérence du niveau de sortie à l&#8217;intérieur de vos
+shells CakePHP.</p>
+<p>Les options de console <code class="docutils literal"><span class="pre">--quiet</span></code> et <code class="docutils literal"><span class="pre">--verbose</span></code> contrôlent également les
+données sont loguées sont envoyées à stdout/stderr. Normalement, info et les
+message de log de plus haut niveau sont envoyés vers stdout/stderr. Lorsque
+<code class="docutils literal"><span class="pre">--verbose</span></code> est utilisé, les logs de debug seront envoyés à stdout. Lorsque
+<code class="docutils literal"><span class="pre">--quiet</span></code> est utilisé, seulement les warning et messages plus haut seront
+envoyés à stderr.</p>
+</div>
+<div class="section" id="style-de-sortie">
+<h2>Style de sortie<a class="headerlink" href="#style-de-sortie" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La Style de sortie est fait en incluant les tags - juste comme le HTML - dans
+votre sortie.</p>
+<p>ConsoleOutput remplacera ces tags avec la bonne séquence de code ansi, ou
+supprimera les tags si vous êtes sur une console qui ne supporte pas les
+codes ansi. Il y a plusieurs styles intégrés, et vous pouvez en créer plus.
+Ceux intégrés sont:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">success</span></code> Message de succès. Texte vert.</li>
+<li><code class="docutils literal"><span class="pre">error</span></code> Messages d&#8217;Erreur. Texte rouge.</li>
+<li><code class="docutils literal"><span class="pre">warning</span></code> Messages d&#8217;avertissement. Texte jaune.</li>
+<li><code class="docutils literal"><span class="pre">info</span></code> Messages d&#8217;informations. Texte cyan.</li>
+<li><code class="docutils literal"><span class="pre">comment</span></code> Texte supplémentaire. Texte bleu.</li>
+<li><code class="docutils literal"><span class="pre">question</span></code> Texte qui est une question, ajouté automatiquement par shell.</li>
+</ul>
+<p>Vous pouvez créer des styles supplémentaires en utilisant
+<code class="docutils literal"><span class="pre">$this-&gt;stdout-&gt;styles()</span></code>. Pour déclarer un nouveau style de sortie,
+vous pouvez faire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_io</span><span class="o">-&gt;</span><span class="na">styles</span><span class="p">(</span><span class="s1">&#39;flashy&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;blink&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Cela vous permettra d&#8217;utiliser un tag <code class="docutils literal"><span class="pre">&lt;flashy&gt;</span></code> dans la sortie de votre
+shell, et si les couleurs ansi sont activées, ce qui suit sera rendu en texte
+magenta clignotant
+<code class="docutils literal"><span class="pre">$this-&gt;out('&lt;flashy&gt;Whoooa&lt;/flashy&gt;</span> <span class="pre">Quelque</span> <span class="pre">chose</span> <span class="pre">a</span> <span class="pre">posé</span> <span class="pre">problème');</span></code>. Quand
+vous définissez les styles, vous pouvez utiliser les couleurs suivantes pour
+les attributs <code class="docutils literal"><span class="pre">text</span></code> et <code class="docutils literal"><span class="pre">background</span></code>:</p>
+<ul class="simple">
+<li>black</li>
+<li>blue</li>
+<li>cyan</li>
+<li>green</li>
+<li>magenta</li>
+<li>red</li>
+<li>white</li>
+<li>yellow</li>
+</ul>
+<p>Vous pouvez aussi utiliser les options suivantes en commutateurs booléens, en
+les définissant à une valeur <code class="docutils literal"><span class="pre">true</span></code> qui les active.</p>
+<ul class="simple">
+<li>blink</li>
+<li>bold</li>
+<li>reverse</li>
+<li>underline</li>
+</ul>
+<p>Ajouter un style le rend aussi disponible pour toutes les instances de
+ConsoleOutput, donc vous n&#8217;avez pas à re-déclarer les styles pour les
+deux objets stdout et stderr.</p>
+<div class="section" id="enlever-la-coloration">
+<h3>Enlever la coloration<a class="headerlink" href="#enlever-la-coloration" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Bien que la coloration soit vraiment géniale, il peut y avoir des fois où vous
+voulez l&#8217;arrêter, ou forcer à l&#8217;avoir:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_io</span><span class="o">-&gt;</span><span class="na">outputAs</span><span class="p">(</span><span class="nx">ConsoleOutput</span><span class="o">::</span><span class="na">RAW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus met la sortie objet dans un mode de sortie en ligne. Dans
+le mode de sortie en ligne, il n&#8217;y a aucun style du tout. Il y a trois modes
+que vous pouvez utiliser:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ConsoleOutput::COLOR</span></code> - La sortie avec couleur enlève les codes en place.</li>
+<li><code class="docutils literal"><span class="pre">ConsoleOutput::PLAIN</span></code> - Sortie en texte plein, les tags de style connus
+seront enlevés de la sortie.</li>
+<li><code class="docutils literal"><span class="pre">ConsoleOutput::RAW</span></code> - Sortie en ligne, aucun style ou format ne sera fait
+C&#8217;est un bon mode à utiliser si vous sortez du XML ou si voulez débugger
+pourquoi votre style ne marche pas.</li>
+</ul>
+<p>Par défaut sur les systèmes *nix, les objets ConsoleOutput ont par défaut
+de la couleur. Sur les systèmes Windows, la sortie simple est mise par défaut
+sauf si la variable d&#8217;environnement <code class="docutils literal"><span class="pre">ANSICON</span></code> est présente.</p>
+</div>
+</div>
+<div class="section" id="arreter-l-execution-d-un-shell">
+<h2>Arrêter l&#8217;Exécution d&#8217;un Shell<a class="headerlink" href="#arreter-l-execution-d-un-shell" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lorsque vos commandes shell ont atteint une condition où vous souhaitez que
+l&#8217;exécution s&#8217;arrête, vous pouvez utiliser <code class="docutils literal"><span class="pre">abort()</span></code> pour lancer une
+<code class="docutils literal"><span class="pre">StopException</span></code> qui arrêtera le process:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Users</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Arrête avec un message et un code d&#39;erreur.</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">abort</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">Utilisateur</span> <span class="nx">non</span> <span class="nx">trouvé</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.2: </span>La méthode <code class="docutils literal"><span class="pre">abort()</span></code> a été ajoutée`dans 3.2. Dans les versions
+précédentes, vous pouvez utiliser <code class="docutils literal"><span class="pre">error()</span></code> pour afficher un message et
+arrêter l&#8217;exécution.</p>
+</div>
+<div class="section" id="statuts-et-codes-d-erreur">
+<h3>Statuts et Codes d&#8217;Erreur<a class="headerlink" href="#statuts-et-codes-d-erreur" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les outils en ligne de commande devraient retourner 0 en cas de succès, ou une
+valeur différente de zéro en cas d&#8217;erreur. Puisque les méthodes PHP retournent
+généralement <code class="docutils literal"><span class="pre">true</span></code> ou <code class="docutils literal"><span class="pre">false</span></code>, la fonction <code class="docutils literal"><span class="pre">dispatch</span></code> du shell Cake
+permet de régler cela en convertissant vos valeurs de retour <code class="docutils literal"><span class="pre">null</span></code> et
+<code class="docutils literal"><span class="pre">true</span></code> en 0, et toutes les autres valeurs en 1.</p>
+<p>La fonction <code class="docutils literal"><span class="pre">dispatch</span></code> du shell de Cake attrape aussi les <code class="docutils literal"><span class="pre">StopException</span></code>
+et utilise la valeur de son code d&#8217;exception en code de sortie de l&#8217;exception.
+Comme décrit ci-dessus, vous pouvez utiliser la méthode <code class="docutils literal"><span class="pre">abort()</span></code> pour
+afficher un message et sortir avec un code spécifique, ou lancer la
+<code class="docutils literal"><span class="pre">StopException</span></code> directement comme montré dans l&#8217;exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App\Shell\Task</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Cake\Console\Shell</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ErroneousShell</span> <span class="k">extends</span> <span class="nx">Shell</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">itFails</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">itFailsSpecifically</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">StopException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>L&#8217;exemple ci-dessus va retourner les codes de sortie suivants lorsqu&#8217;il est
+exécuté en ligne de commande:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">erroneousshell</span> <span class="p">;</span> <span class="k">echo</span> <span class="err">$</span><span class="o">?</span>
+<span class="mi">0</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">erroneousshell</span> <span class="nx">itFails</span> <span class="p">;</span> <span class="k">echo</span> <span class="err">$</span><span class="o">?</span>
+<span class="mi">1</span>
+<span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">erroneousshell</span> <span class="nx">itFailsSpecifically</span> <span class="p">;</span> <span class="k">echo</span> <span class="err">$</span><span class="o">?</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Astuce</p>
+<p class="last">Éviter les codes de sortie 64 - 78, car ils ont une signification spécifique
+décrite par <code class="docutils literal"><span class="pre">sysexits.h</span></code>.
+Éviter les codes de sortie au-dessus de 127, car ils sont utilisés pour
+indiquer un processus de sortie par signal, tel que SIGKILL ou SIGSEGV.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Vous pouvez en lire plus sur les conventions des codes de sorties dans la
+page du manuel sysexit sur la plupart des systèmes Unix (<code class="docutils literal"><span class="pre">man</span> <span class="pre">sysexits</span></code>),
+ou la page d&#8217;aide <code class="docutils literal"><span class="pre">System</span> <span class="pre">Error</span> <span class="pre">Codes</span></code> dans Windows.</p>
+</div>
+</div>
+</div>
+<div class="section" id="methodes-hook">
+<h2>Méthodes Hook<a class="headerlink" href="#methodes-hook" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\Console\Shell::initialize">
+<code class="descclassname">Cake\Console\Shell::</code><code class="descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\Shell::initialize" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Initialize le constructeur du shell pour les sous-classes et permet la
+configuration de tâches avant l&#8217;exécution du shell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Cake\Console\Shell::startup">
+<code class="descclassname">Cake\Console\Shell::</code><code class="descname">startup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\Shell::startup" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Démarre le Shell et affiche le message d&#8217;accueil. Permet de vérifier et de
+configurer avant de faire la commande ou l&#8217;exécution principale.</p>
+</dd></dl>
+
+<div class="admonition tip">
+<p class="first admonition-title">Astuce</p>
+<p class="last">Redéfinit cette méthode si vous voulez retirer l&#8217;information de bienvenue,
+ou sinon modifier le pre-command flow.</p>
+</div>
+</div>
+<div class="section" id="configurer-les-options-et-generer-de-l-aide">
+<h2>Configurer les options et générer de l&#8217;aide<a class="headerlink" href="#configurer-les-options-et-generer-de-l-aide" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\Console\ConsoleOptionParser">
+<em class="property">class </em><code class="descclassname">Cake\Console\</code><code class="descname">ConsoleOptionParser</code><a class="headerlink" href="#Cake\Console\ConsoleOptionParser" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal"><span class="pre">ConsoleOptionParser</span></code> helps provide a more familiar command line option and
+argument parser.</p>
+<p>OptionParsers vous permet d&#8217;accomplir deux buts en même temps.
+Premièrement, il vous permet de définir les options et arguments, séparant
+la validation basique des entrées et votre code. Deuxièmement, il vous permet
+de fournir de la documentation, qui est utilisée pour bien générer le fichier
+d&#8217;aide formaté.</p>
+<p>La console du framework récupère votre parser d&#8217;option du shell en appelant
+<code class="docutils literal"><span class="pre">$this-&gt;getOptionParser()</span></code>. Surcharger cette méthode vous permet de
+configurer l&#8217;OptionParser pour faire correspondre les entrées attendues de
+votre shell.
+Vous pouvez aussi configurer les parsers d&#8217;option des sous-commandes, ce qui
+vous permet d&#8217;avoir des parsers d&#8217;option différents pour les sous-commandes
+et les tâches.
+ConsoleOptionParser implémente une interface courant et inclut les méthodes
+pour configurer les multiple options/arguments en une fois:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$parser</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">getOptionParser</span><span class="p">();</span>
+    <span class="c1">//configure parser</span>
+    <span class="k">return</span> <span class="nv">$parser</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="configurer-un-option-parser-avec-l-interface-chainee">
+<h3>Configurer un option parser avec l&#8217;interface chainée<a class="headerlink" href="#configurer-un-option-parser-avec-l-interface-chainee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Toutes les méthodes utilisées pour configurer le parser peuvent
+être chainées, vous permettant de définir l&#8217;intégralité des options du
+parser en une unique série d&#8217;appel de méthodes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$parser</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">getOptionParser</span><span class="p">();</span>
+    <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addArgument</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Either a full path or type of class.&#39;</span>
+    <span class="p">])</span><span class="o">-&gt;</span><span class="na">addArgument</span><span class="p">(</span><span class="s1">&#39;className&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A CakePHP core class name (e.g: Component, HtmlHelper).&#39;</span>
+    <span class="p">])</span><span class="o">-&gt;</span><span class="na">addOption</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;short&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;The specific method you want help on.&#39;</span><span class="p">)</span>
+    <span class="p">])</span><span class="o">-&gt;</span><span class="na">setDescription</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Lookup doc block comments for classes in CakePHP.&#39;</span><span class="p">));</span>
+    <span class="k">return</span> <span class="nv">$parser</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Les méthodes autorisant le chainage sont:</p>
+<ul class="simple">
+<li>addArgument()</li>
+<li>addArguments()</li>
+<li>addOption()</li>
+<li>addOptions()</li>
+<li>addSubcommand()</li>
+<li>addSubcommands()</li>
+<li>setCommand()</li>
+<li>setDescription()</li>
+<li>setEpilog()</li>
+</ul>
+<div class="section" id="definir-la-description">
+<h4>Définir la description<a class="headerlink" href="#definir-la-description" title="Lien permanent vers ce titre">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::setDescription">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">setDescription</code><span class="sig-paren">(</span><em>$text</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::setDescription" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>La description s&#8217;affiche au dessus des arguments et des options. En passant
+soit un tableau ou une chaîne de caractère, vous pouvez définir la valeur de
+la description:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Définit plusieurs lignes en une fois</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setDescription</span><span class="p">([</span><span class="s1">&#39;line one&#39;</span><span class="p">,</span> <span class="s1">&#39;line two&#39;</span><span class="p">]);</span>
+<span class="c1">// Avant 3.4</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">([</span><span class="s1">&#39;line one&#39;</span><span class="p">,</span> <span class="s1">&#39;line two&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Lit la valeur actuelle</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">getDescription</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>src/Shell/ConsoleShell.php</strong> est un bon exemple de la méthode
+<code class="docutils literal"><span class="pre">description()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Display help for this console.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return ConsoleOptionParser</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConsoleOptionParser</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">);</span>
+    <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setDescription</span><span class="p">(</span>
+        <span class="s1">&#39;This shell provides a REPL that you can use to interact &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;with your application in an interactive fashion. You can use &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;it to run adhoc queries with your models, or experiment &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;and explore the features of CakePHP and your application.&#39;</span> <span class="o">.</span>
+        <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">.</span>
+        <span class="s1">&#39;You will need to have psysh installed for this Shell to work.&#39;</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$parser</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La sortie <code class="docutils literal"><span class="pre">description</span></code> de la console peut être vue en exécutant la commande
+suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">console</span> <span class="o">--</span><span class="nx">help</span>
+
+<span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">CakePHP</span> <span class="nx">v3</span><span class="o">.</span><span class="mf">0.13</span> <span class="nx">Console</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="nx">App</span> <span class="o">:</span> <span class="nx">src</span>
+<span class="nx">Path</span><span class="o">:</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="nx">cakeblog</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="k">This</span> <span class="nx">shell</span> <span class="nx">provides</span> <span class="nx">a</span> <span class="nx">REPL</span> <span class="nx">that</span> <span class="nx">you</span> <span class="nx">can</span> <span class="k">use</span> <span class="nx">to</span> <span class="nx">interact</span> <span class="nx">with</span> <span class="nx">your</span>
+<span class="nx">application</span> <span class="nx">in</span> <span class="nx">an</span> <span class="nx">interactive</span> <span class="nx">fashion</span><span class="o">.</span> <span class="nx">You</span> <span class="nx">can</span> <span class="k">use</span> <span class="nx">it</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">adhoc</span>
+<span class="nx">queries</span> <span class="nx">with</span> <span class="nx">your</span> <span class="nx">models</span><span class="p">,</span> <span class="k">or</span> <span class="nx">experiment</span> <span class="k">and</span> <span class="nx">explore</span> <span class="nx">the</span> <span class="nx">features</span> <span class="nx">of</span>
+<span class="nx">CakePHP</span> <span class="k">and</span> <span class="nx">your</span> <span class="nx">application</span><span class="o">.</span>
+
+<span class="nx">You</span> <span class="nx">will</span> <span class="nx">need</span> <span class="nx">to</span> <span class="nx">have</span> <span class="nx">psysh</span> <span class="nx">installed</span> <span class="k">for</span> <span class="k">this</span> <span class="nx">Shell</span> <span class="nx">to</span> <span class="nx">work</span><span class="o">.</span>
+
+<span class="nx">Usage</span><span class="o">:</span>
+<span class="nx">cake</span> <span class="nx">console</span> <span class="p">[</span><span class="o">-</span><span class="nx">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">v</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">q</span><span class="p">]</span>
+
+<span class="nx">Options</span><span class="o">:</span>
+
+<span class="o">--</span><span class="nx">help</span><span class="p">,</span> <span class="o">-</span><span class="nx">h</span>     <span class="nx">Display</span> <span class="k">this</span> <span class="nx">help</span><span class="o">.</span>
+<span class="o">--</span><span class="nx">verbose</span><span class="p">,</span> <span class="o">-</span><span class="nx">v</span>  <span class="nx">Enable</span> <span class="nx">verbose</span> <span class="nx">output</span><span class="o">.</span>
+<span class="o">--</span><span class="nx">quiet</span><span class="p">,</span> <span class="o">-</span><span class="nx">q</span>    <span class="nx">Enable</span> <span class="nx">quiet</span> <span class="nx">output</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-a-help-alias">
+<h4>Set a help alias<a class="headerlink" href="#set-a-help-alias" title="Lien permanent vers ce titre">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::setHelpAlias">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">setHelpAlias</code><span class="sig-paren">(</span><em>$alias</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::setHelpAlias" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Si vous souhaitez changer le nom de la commande, vous pouvez utiliser la méthode
+<code class="docutils literal"><span class="pre">setHelpAlias()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setHelpAlias</span><span class="p">(</span><span class="s1">&#39;my-shell&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cela changera la phrase de &#8216;Usage&#8217; pour <code class="docutils literal"><span class="pre">my-shell</span></code> à la place de la valeur par
+défaut <code class="docutils literal"><span class="pre">cake</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Usage</span><span class="o">:</span>
+<span class="nx">my</span><span class="o">-</span><span class="nx">shell</span> <span class="nx">console</span> <span class="p">[</span><span class="o">-</span><span class="nx">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">v</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">q</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.5.0: </span>La méthode <code class="docutils literal"><span class="pre">setHelpAlias</span></code> a été ajoutée dans 3.5.0</p>
+</div>
+</div>
+<div class="section" id="definir-un-epilog">
+<h4>Définir un &#8220;Epilog&#8221;<a class="headerlink" href="#definir-un-epilog" title="Lien permanent vers ce titre">¶</a></h4>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::setEpilog">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">setEpilog</code><span class="sig-paren">(</span><em>$text = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::setEpilog" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Récupère ou définit l&#8217;epilog pour le parser d&#8217;option. L&#8217;epilog
+est affichée après l&#8217;argument et l&#8217;information d&#8217;option. En passant un tableau
+ou une chaîne, vous pouvez définir la valeur de epilog.
+L&#8217;appeler avec aucun argument va retourner la valeur actuelle:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Définit plusieurs lignes en une fois</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setEpilog</span><span class="p">([</span><span class="s1">&#39;line one&#39;</span><span class="p">,</span> <span class="s1">&#39;line two&#39;</span><span class="p">]);</span>
+<span class="c1">// Avant 3.4</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">epilog</span><span class="p">([</span><span class="s1">&#39;line one&#39;</span><span class="p">,</span> <span class="s1">&#39;line two&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Lit la valeur actuelle</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">getEpilog</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Pour illustrer la méthode <code class="docutils literal"><span class="pre">epilog()</span></code>, ajoutons un appel à la méthode
+<code class="docutils literal"><span class="pre">getOptionParser()</span></code> utilisée ci-dessus dans <strong>src/Shell/ConsoleShell.php</strong>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * Display help for this console.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return ConsoleOptionParser</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConsoleOptionParser</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">);</span>
+    <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setDescription</span><span class="p">(</span>
+        <span class="s1">&#39;This shell provides a REPL that you can use to interact &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;with your application in an interactive fashion. You can use &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;it to run adhoc queries with your models, or experiment &#39;</span> <span class="o">.</span>
+        <span class="s1">&#39;and explore the features of CakePHP and your application.&#39;</span> <span class="o">.</span>
+        <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">.</span>
+        <span class="s1">&#39;You will need to have psysh installed for this Shell to work.&#39;</span>
+    <span class="p">);</span>
+    <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">setEpilog</span><span class="p">(</span><span class="s1">&#39;Thank you for baking with CakePHP!&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$parser</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Le texte ajouté avec la méthode <code class="docutils literal"><span class="pre">setEpilog()</span></code> peut être vue dans la sortie
+avec la commande de console suivante:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">bin</span><span class="o">/</span><span class="nx">cake</span> <span class="nx">console</span> <span class="o">--</span><span class="nx">help</span>
+
+<span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">CakePHP</span> <span class="nx">v3</span><span class="o">.</span><span class="mf">0.13</span> <span class="nx">Console</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="nx">App</span> <span class="o">:</span> <span class="nx">src</span>
+<span class="nx">Path</span><span class="o">:</span> <span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="nx">cakeblog</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span>
+<span class="o">---------------------------------------------------------------</span>
+<span class="k">This</span> <span class="nx">shell</span> <span class="nx">provides</span> <span class="nx">a</span> <span class="nx">REPL</span> <span class="nx">that</span> <span class="nx">you</span> <span class="nx">can</span> <span class="k">use</span> <span class="nx">to</span> <span class="nx">interact</span> <span class="nx">with</span> <span class="nx">your</span>
+<span class="nx">application</span> <span class="nx">in</span> <span class="nx">an</span> <span class="nx">interactive</span> <span class="nx">fashion</span><span class="o">.</span> <span class="nx">You</span> <span class="nx">can</span> <span class="k">use</span> <span class="nx">it</span> <span class="nx">to</span> <span class="nx">run</span> <span class="nx">adhoc</span>
+<span class="nx">queries</span> <span class="nx">with</span> <span class="nx">your</span> <span class="nx">models</span><span class="p">,</span> <span class="k">or</span> <span class="nx">experiment</span> <span class="k">and</span> <span class="nx">explore</span> <span class="nx">the</span> <span class="nx">features</span> <span class="nx">of</span>
+<span class="nx">CakePHP</span> <span class="k">and</span> <span class="nx">your</span> <span class="nx">application</span><span class="o">.</span>
+
+<span class="nx">You</span> <span class="nx">will</span> <span class="nx">need</span> <span class="nx">to</span> <span class="nx">have</span> <span class="nx">psysh</span> <span class="nx">installed</span> <span class="k">for</span> <span class="k">this</span> <span class="nx">Shell</span> <span class="nx">to</span> <span class="nx">work</span><span class="o">.</span>
+
+<span class="nx">Usage</span><span class="o">:</span>
+<span class="nx">cake</span> <span class="nx">console</span> <span class="p">[</span><span class="o">-</span><span class="nx">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">v</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="nx">q</span><span class="p">]</span>
+
+<span class="nx">Options</span><span class="o">:</span>
+
+<span class="o">--</span><span class="nx">help</span><span class="p">,</span> <span class="o">-</span><span class="nx">h</span>     <span class="nx">Display</span> <span class="k">this</span> <span class="nx">help</span><span class="o">.</span>
+<span class="o">--</span><span class="nx">verbose</span><span class="p">,</span> <span class="o">-</span><span class="nx">v</span>  <span class="nx">Enable</span> <span class="nx">verbose</span> <span class="nx">output</span><span class="o">.</span>
+<span class="o">--</span><span class="nx">quiet</span><span class="p">,</span> <span class="o">-</span><span class="nx">q</span>    <span class="nx">Enable</span> <span class="nx">quiet</span> <span class="nx">output</span><span class="o">.</span>
+
+<span class="nx">Thank</span> <span class="nx">you</span> <span class="k">for</span> <span class="nx">baking</span> <span class="nx">with</span> <span class="nx">CakePHP</span><span class="o">!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ajouter-des-arguments">
+<h3>Ajouter des Arguments<a class="headerlink" href="#ajouter-des-arguments" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::addArgument">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">addArgument</code><span class="sig-paren">(</span><em>$name</em>, <em>$params = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::addArgument" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les arguments de position sont fréquemment utilisés dans les outils en ligne
+de commande, et <code class="docutils literal"><span class="pre">ConsoleOptionParser</span></code> vous permet de définir les arguments
+de position ainsi que de les rendre obligatoires. Vous pouvez ajouter des
+arguments un à la fois avec <code class="docutils literal"><span class="pre">$parser-&gt;addArgument();</span></code> ou plusieurs à la fois
+avec <code class="docutils literal"><span class="pre">$parser-&gt;addArguments();</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addArgument</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The model to bake&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Vous pouvez utiliser les options suivantes lors de la création d&#8217;un argument:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">help</span></code> Le texte d&#8217;aide à afficher pour cet argument.</li>
+<li><code class="docutils literal"><span class="pre">required</span></code> Si le paramètre est obligatoire.</li>
+<li><code class="docutils literal"><span class="pre">index</span></code> L&#8217;index pour l&#8217;argument, si non défini à gauche, l&#8217;argument sera
+mis à la fin des arguments. Si vous définissez le même index deux fois, la
+première option sera écrasée.</li>
+<li><code class="docutils literal"><span class="pre">choices</span></code> Un tableau de choix valides pour cet argument. Si vide à gauche,
+toutes les valeurs sont valides. Une exception sera lancée quand parse()
+rencontre une valeur non valide.</li>
+</ul>
+<p>Les arguments qui ont été marqués comme nécessaires vont lancer une exception
+lors du parsing de la commande s&#8217;ils ont été omis. Donc vous n&#8217;avez pas à
+gérer cela dans votre shell.</p>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::addArguments">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">addArguments</code><span class="sig-paren">(</span><em>array $args</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::addArguments" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Si vous avez un tableau avec plusieurs arguments, vous pouvez utiliser
+<code class="docutils literal"><span class="pre">$parser-&gt;addArguments()</span></code> pour ajouter plusieurs arguments en une fois:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addArguments</span><span class="p">([</span>
+    <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The node to create&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+    <span class="s1">&#39;parent&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The parent node&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Comme avec toutes les méthodes de construction avec ConsoleOptionParser,
+addArguments peuvent être utilisés comme des parties d&#8217;une chaîne de méthode
+courante.</p>
+</div>
+<div class="section" id="validation-des-arguments">
+<h3>Validation des Arguments<a class="headerlink" href="#validation-des-arguments" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Lors de la création d&#8217;arguments de position, vous pouvez utiliser le flag
+<code class="docutils literal"><span class="pre">required</span></code>, pour indiquer qu&#8217;un argument doit être présent quand un shell
+est appelé. De plus, vous pouvez utiliser <code class="docutils literal"><span class="pre">choices</span></code> pour forcer un argument
+pour qu&#8217;il soit une liste de choix valides:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addArgument</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Le type de nœud avec lequel interagir.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">&#39;choices&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;aro&#39;</span><span class="p">,</span> <span class="s1">&#39;aco&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus va créer un argument qui est nécessaire et a une
+validation sur l&#8217;entrée. Si l&#8217;argument est soit manquant, soit a une valeur
+incorrecte, une exception sera levée et le shell sera arrêté.</p>
+</div>
+<div class="section" id="ajouter-des-options">
+<h3>Ajouter des Options<a class="headerlink" href="#ajouter-des-options" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::addOption">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">addOption</code><span class="sig-paren">(</span><em>$name</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::addOption" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les options ou les flags sont aussi fréquemment utilisés avec les outils de
+ligne de commande. <code class="docutils literal"><span class="pre">ConsoleOptionParser</span></code> supporte la création d&#8217;options avec
+les deux verbose et short aliases, fournissant les valeurs par défaut
+et créant des switches en booléen. Les options sont créées avec soit
+<code class="docutils literal"><span class="pre">$parser-&gt;addOption()</span></code>, soit <code class="docutils literal"><span class="pre">$parser-&gt;addOptions()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addOption</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;short&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;c&#39;</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;connection&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus vous permet l&#8217;utilisation soit de
+<code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span> <span class="pre">--connection=other</span></code>, soit de
+<code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span> <span class="pre">--connection</span> <span class="pre">other</span></code>, ou soit de <code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span> <span class="pre">-c</span> <span class="pre">other</span></code> lors
+de l&#8217;appel au shell. Vous pouvez aussi créer des switches de booléen, ces
+switches ne consomment pas de valeurs, et leur présence les active juste dans
+les paramètres parsés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addOption</span><span class="p">(</span><span class="s1">&#39;no-commit&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;boolean&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>Avec cette option, lors de l&#8217;appel d&#8217;un shell comme
+<code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span> <span class="pre">--no-commit</span> <span class="pre">something</span></code> le paramètre no-commit aurait une valeur
+à true, et &#8216;something&#8217; serait traité comme un argument de position.
+Les options intégrées <code class="docutils literal"><span class="pre">--help</span></code>, <code class="docutils literal"><span class="pre">--verbose</span></code>, et <code class="docutils literal"><span class="pre">--quiet</span></code> utilisent cette
+fonctionnalité.</p>
+<p>Lors de la création d&#8217;options, vous pouvez utiliser les options suivantes
+pour définir le comportement de l&#8217;option:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">short</span></code> - La variante de la lettre unique pour cette option, laissez
+à non définie pour n&#8217;en avoir aucun.</li>
+<li><code class="docutils literal"><span class="pre">help</span></code> - Le texte d&#8217;aide pour cette option. Utilisé lors de la génération
+d&#8217;aide pour l&#8217;option.</li>
+<li><code class="docutils literal"><span class="pre">default</span></code> - La valeur par défaut pour cette option. Si elle n&#8217;est pas
+définie, la valeur par défaut sera <code class="docutils literal"><span class="pre">true</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">boolean</span></code> - L&#8217;option n&#8217;utilise aucune valeur, c&#8217;est juste un switch de
+booléen.
+Par défaut à <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">choices</span></code> - Un tableau de choix valides pour cette option. Si elle est vide,
+toutes les valeurs sont valides. Une exception sera lancée lorsque parse()
+rencontre une valeur non valide.</li>
+</ul>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::addOptions">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">addOptions</code><span class="sig-paren">(</span><em>array $options</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::addOptions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Si vous avez un tableau avec plusieurs options, vous pouvez utiliser
+<code class="docutils literal"><span class="pre">$parser-&gt;addOptions()</span></code> pour ajouter plusieurs options en une fois:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addOptions</span><span class="p">([</span>
+    <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;short&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The node to create&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;parent&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;short&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;The parent node&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Comme avec toutes les méthodes de construction de ConsoleOptionParser,
+addOptions peut être utilisée comme une partie de la chaîne de méthode courante.</p>
+<p>Les valeurs des options sont stockées dans le tableau <code class="docutils literal"><span class="pre">$this-&gt;params</span></code>. Vous
+pouvez également utiliser la méthode <code class="docutils literal"><span class="pre">$this-&gt;param()</span></code> pour éviter les erreurs
+lorsque vous essayez d&#8217;accéder à une option qui n&#8217;est pas présente.</p>
+</div>
+<div class="section" id="validation-des-options">
+<h3>Validation des Options<a class="headerlink" href="#validation-des-options" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les options peuvent être fournies avec un ensemble de choix un peu comme les
+arguments de position peuvent l&#8217;être. Quand une option a défini les choix,
+ceux-ci sont les seuls choix valides pour une option. Toutes les autres valeurs
+vont lancer une <code class="docutils literal"><span class="pre">InvalidArgumentException</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addOption</span><span class="p">(</span><span class="s1">&#39;accept&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;What version to accept.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;choices&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;working&#39;</span><span class="p">,</span> <span class="s1">&#39;theirs&#39;</span><span class="p">,</span> <span class="s1">&#39;mine&#39;</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-les-options-booleennes">
+<h3>Utiliser les Options Booléennes<a class="headerlink" href="#utiliser-les-options-booleennes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les options peuvent être définies en options booléennes, qui sont utiles quand
+vous avez besoin de créer des options de flag. Comme les options par défaut,
+les options booléennes les incluent toujours dans les paramètres parsés. Quand
+les flags sont présents, ils sont définis à <code class="docutils literal"><span class="pre">true</span></code>, quand ils sont absents à
+<code class="docutils literal"><span class="pre">false</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addOption</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Enable verbose output.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boolean&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>L&#8217;option suivante fera que <code class="docutils literal"><span class="pre">$this-&gt;params['verbose']</span></code> sera toujours
+disponible. Cela vous permet d&#8217;oublier <code class="docutils literal"><span class="pre">empty()</span></code> ou <code class="docutils literal"><span class="pre">isset()</span></code>
+pour vérifier les flags de booléens:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">])</span> <span class="p">{</span>
+    <span class="c1">// faire quelque chose</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Puisque les options booléennes sont toujours définies à <code class="docutils literal"><span class="pre">true</span></code> ou à
+<code class="docutils literal"><span class="pre">false</span></code>, vous pouvez omettre les méthodes de vérification supplémentaires
+lorsque vous utilisez l&#8217;accès via le tableau. La méthode <code class="docutils literal"><span class="pre">$this-&gt;param()</span></code>
+rend ces vérifications inutiles dans tous les cas.</p>
+</div>
+<div class="section" id="ajouter-des-sous-commandes">
+<h3>Ajouter des sous-commandes<a class="headerlink" href="#ajouter-des-sous-commandes" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::addSubcommand">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">addSubcommand</code><span class="sig-paren">(</span><em>$name</em>, <em>$options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::addSubcommand" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Les applications de Console sont souvent faites de sous-commandes, et ces
+sous-commandes nécessiteront un parsing d&#8217;options spéciales et ont leur propre
+aide. Un exemple parfait de cela est <code class="docutils literal"><span class="pre">bake</span></code>. Bake est fait de plusieurs
+tâches séparées qui ont toutes leur propre aide et options.
+<code class="docutils literal"><span class="pre">ConsoleOptionParser</span></code> vous permet de définir les sous-commandes et
+de fournir les parsers d&#8217;option spécifiques donc le shell sait comment parser
+les commandes pour ses tâches:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addSubcommand</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Bake a model&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;parser&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Model</span><span class="o">-&gt;</span><span class="na">getOptionParser</span><span class="p">()</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Ce qui est au-dessus est un exemple de la façon dont vous pouvez fournir de
+l&#8217;aide et un parser d&#8217;option spécialisé pour une tâche du shell. En appelant
+le <code class="docutils literal"><span class="pre">getOptionParser()</span></code> de la tâche, nous n&#8217;avons pas à dupliquer la
+génération du parser d&#8217;option, ou mixer les tâches concernées dans notre shell.
+Ajoutez des sous-commandes de cette façon a deux avantages.
+Premièrement, cela laisse votre shell documenter ces sous-commandes dans l&#8217;aide
+générée, et cela vous permet aussi un accès facile à l&#8217;aide de la sous-commande.
+Avec la sous-commande créée ci-dessus, vous pouvez appeler <code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span>
+<span class="pre">--help</span></code> et regarder la liste des sous-commandes, et aussi lancer <code class="docutils literal"><span class="pre">cake</span> <span class="pre">myshell</span>
+<span class="pre">model</span> <span class="pre">--help</span></code> pour voir l&#8217;aide uniquement pour la tâche model.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Une fois que votre Shell définit des sous-commandes, toutes les
+sous-commandes doivent être explicitement définies.</p>
+</div>
+<p>Quand vous définissez une sous-commande, vous pouvez utiliser les options
+suivantes:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">help</span></code> - Le texte d&#8217;aide pour la sous-commande.</li>
+<li><code class="docutils literal"><span class="pre">parser</span></code> - Un ConsoleOptionParser pour la sous-commande. Cela vous permet
+de créer des méthodes de parsers d&#8217;options spécifiques. Quand l&#8217;aide est
+générée pour une sous-commande, si un parser est présent, il sera utilisé.
+Vous pouvez aussi fournir le parser en tableau qui est compatible avec
+<a class="reference internal" href="#Cake\Console\ConsoleOptionParser::buildFromArray" title="Cake\Console\ConsoleOptionParser::buildFromArray"><code class="xref php php-meth docutils literal"><span class="pre">Cake\Console\ConsoleOptionParser::buildFromArray()</span></code></a></li>
+</ul>
+<p>Ajouter des sous-commandes peut être fait comme une partie de la chaîne de
+méthode courante.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Modifié dans la version 3.5.0: </span>Lorsque vous ajouter des sous-commandes composées de plusieurs mots, vous
+pouvez maintenant les appeler en <code class="docutils literal"><span class="pre">snake_case</span></code> en plus de la forme en
+camelBack.</p>
+</div>
+</div>
+<div class="section" id="construire-un-consoleoptionparser-a-partir-d-un-tableau">
+<h3>Construire un ConsoleOptionParser à partir d&#8217;un Tableau<a class="headerlink" href="#construire-un-consoleoptionparser-a-partir-d-un-tableau" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::buildFromArray">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">buildFromArray</code><span class="sig-paren">(</span><em>$spec</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::buildFromArray" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Comme mentionné précédemment, lors de la création de parsers d&#8217;option de la
+sous-commande, vous pouvez définir le parser spec en tableau pour cette
+méthode. Ceci peut faciliter la construction de parsers de sous-commande,
+puisque tout est un tableau:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">addSubcommand</span><span class="p">(</span><span class="s1">&#39;check&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Check the permissions between an ACO and ARO.&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;parser&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;Use this command to grant ACL permissions. Once executed, the &quot;</span><span class="p">),</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;ARO specified (and its children, if any) will have ALLOW access &quot;</span><span class="p">),</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;to the specified ACO action (and the ACO&#39;s children, if any).&quot;</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;arguments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;aro&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;ARO to check.&#39;</span><span class="p">),</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+            <span class="s1">&#39;aco&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;ACO to check.&#39;</span><span class="p">),</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+            <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Action to check&#39;</span><span class="p">)]</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>A l&#8217;intérieur du parser spec, vous pouvez définir les clés pour <cite>arguments`</cite>,
+<code class="docutils literal"><span class="pre">options</span></code>, <code class="docutils literal"><span class="pre">description</span></code> et <code class="docutils literal"><span class="pre">epilog</span></code>. Vous ne pouvez pas définir les
+<code class="docutils literal"><span class="pre">sous-commandes</span></code> dans un constructeur de type tableau. Les valeurs pour les
+arguments, et les options, doivent suivre le format que
+<a class="reference internal" href="#Cake\Console\ConsoleOptionParser::addArguments" title="Cake\Console\ConsoleOptionParser::addArguments"><code class="xref php php-func docutils literal"><span class="pre">Cake\Console\ConsoleOptionParser::addArguments()</span></code></a> et
+<a class="reference internal" href="#Cake\Console\ConsoleOptionParser::addOptions" title="Cake\Console\ConsoleOptionParser::addOptions"><code class="xref php php-func docutils literal"><span class="pre">Cake\Console\ConsoleOptionParser::addOptions()</span></code></a> utilisent. Vous
+pouvez aussi utiliser buildFromArray lui-même, pour construire un parser
+d&#8217;option:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionParser</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ConsoleOptionParser</span><span class="o">::</span><span class="na">buildFromArray</span><span class="p">([</span>
+        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;Use this command to grant ACL permissions. Once executed, the &quot;</span><span class="p">),</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;ARO specified (and its children, if any) will have ALLOW access &quot;</span><span class="p">),</span>
+            <span class="nx">__</span><span class="p">(</span><span class="s2">&quot;to the specified ACO action (and the ACO&#39;s children, if any).&quot;</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;arguments&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;aro&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;ARO to check.&#39;</span><span class="p">),</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+            <span class="s1">&#39;aco&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;ACO to check.&#39;</span><span class="p">),</span> <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+            <span class="s1">&#39;action&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;help&#39;</span> <span class="o">=&gt;</span> <span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Action to check&#39;</span><span class="p">)]</span>
+        <span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fusionner-les-consoleoptionparsers">
+<h3>Fusionner les ConsoleOptionParsers<a class="headerlink" href="#fusionner-les-consoleoptionparsers" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\Console\ConsoleOptionParser::merge">
+<code class="descclassname">Cake\Console\ConsoleOptionParser::</code><code class="descname">merge</code><span class="sig-paren">(</span><em>$spec</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\Console\ConsoleOptionParser::merge" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Lorsque vous construisez un groupe de commandes, vous voudrez peut-être combiner
+plusieurs parsers:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">merge</span><span class="p">(</span><span class="nv">$anotherParser</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Notez que l&#8217;ordre des arguments de chaque parser doit être identique, et que
+les options doivent être compatibles pour que cela fonctionne. N&#8217;utilisez donc
+pas les mêmes clés pour des choses différentes.</p>
+</div>
+<div class="section" id="obtenir-de-l-aide-dans-les-shells">
+<h3>Obtenir de l&#8217;Aide dans les Shells<a class="headerlink" href="#obtenir-de-l-aide-dans-les-shells" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Avec l&#8217;ajout de ConsoleOptionParser, récupérer l&#8217;aide des shells est faite
+d&#8217;une façon cohérente et uniforme. En utilisant l&#8217;option <code class="docutils literal"><span class="pre">--help</span></code> ou -<code class="docutils literal"><span class="pre">h</span></code>,
+vous pouvez voir l&#8217;aide pour tout shell du cœur, et tout shell qui implémente
+un ConsoleOptionParser:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">cake</span> <span class="nx">bake</span> <span class="o">--</span><span class="nx">help</span>
+<span class="nx">cake</span> <span class="nx">bake</span> <span class="o">-</span><span class="nx">h</span>
+</pre></div>
+</div>
+<p>Les deux généreraient l&#8217;aide pour bake. Si le shell supporte les sous-commandes,
+vous pouvez obtenir de l&#8217;aide pour ceux-là d&#8217;un façon similaire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">model</span> <span class="o">--</span><span class="nx">help</span>
+<span class="nx">cake</span> <span class="nx">bake</span> <span class="nx">model</span> <span class="o">-</span><span class="nx">h</span>
+</pre></div>
+</div>
+<p>Cela vous ramènera l&#8217;aide spécifique pour la tâche model de bake.</p>
+</div>
+<div class="section" id="obtenir-de-l-aide-en-xml">
+<h3>Obtenir de l&#8217;Aide en XML<a class="headerlink" href="#obtenir-de-l-aide-en-xml" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Lorsque vous réalisez des outils d&#8217;automatisation ou de développement qui
+ont besoin d&#8217;interagir avec les shells de CakePHP, il est appréciable d&#8217;obtenir
+de l&#8217;aide dans un format parsable par une machine. ConsoleOptionParser peut
+fournir de l&#8217;aide au format XML en définissant un argument supplémentaire:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">cake</span> <span class="nx">bake</span> <span class="o">--</span><span class="nx">help</span> <span class="nx">xml</span>
+<span class="nx">cake</span> <span class="nx">bake</span> <span class="o">-</span><span class="nx">h</span> <span class="nx">xml</span>
+</pre></div>
+</div>
+<p>Les commandes ci-dessus vont retourner un document XML contenant de l&#8217;aide
+à propos des options, arguments et sous-commandes du shell sélectionné. Voici
+un exemple de documentation:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;shell&gt;</span>
+    <span class="nt">&lt;command&gt;</span>bake fixture<span class="nt">&lt;/command&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Generate fixtures for use with the test suite. You can use
+        `bake fixture all` to bake all fixtures.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;epilog&gt;</span>
+        Omitting all arguments and options will enter into an interactive
+        mode.
+    <span class="nt">&lt;/epilog&gt;</span>
+    <span class="nt">&lt;subcommands/&gt;</span>
+    <span class="nt">&lt;options&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--help&quot;</span> <span class="na">short=</span><span class="s">&quot;-h&quot;</span> <span class="na">boolean=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default/&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--verbose&quot;</span> <span class="na">short=</span><span class="s">&quot;-v&quot;</span> <span class="na">boolean=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default/&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--quiet&quot;</span> <span class="na">short=</span><span class="s">&quot;-q&quot;</span> <span class="na">boolean=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default/&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--count&quot;</span> <span class="na">short=</span><span class="s">&quot;-n&quot;</span> <span class="na">boolean=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default&gt;</span>10<span class="nt">&lt;/default&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--connection&quot;</span> <span class="na">short=</span><span class="s">&quot;-c&quot;</span> <span class="na">boolean=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default&gt;</span>default<span class="nt">&lt;/default&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--plugin&quot;</span> <span class="na">short=</span><span class="s">&quot;-p&quot;</span> <span class="na">boolean=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default/&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">&quot;--records&quot;</span> <span class="na">short=</span><span class="s">&quot;-r&quot;</span> <span class="na">boolean=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;default/&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/options&gt;</span>
+    <span class="nt">&lt;arguments&gt;</span>
+        <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">help=</span><span class="s">&quot;Name of the fixture to bake.</span>
+<span class="s">            Can use Plugin.name to bake plugin fixtures.&quot;</span> <span class="na">required=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;choices/&gt;</span>
+        <span class="nt">&lt;/argument&gt;</span>
+    <span class="nt">&lt;/arguments&gt;</span>
+<span class="nt">&lt;/shell&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="renommer-des-commandes">
+<h2>Renommer des Commandes<a class="headerlink" href="#renommer-des-commandes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut, CakePHP va automatiquement chercher et mettre à disposition
+toutes les commandes dans votre application et ses plugins. Il est possible
+que vous souhaitiez réduire le nombre de commandes exposées lorsque vous
+construisez une application console indépendante. Pour cela, vous pouvez utiliser
+le hook <code class="docutils literal"><span class="pre">console()</span></code> de votre Application pour limiter le nombre de commandes
+qui sont exposées:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Shell\UserShell</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Shell\VersionShell</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Cake\Http\BaseApplication</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Application</span> <span class="k">extends</span> <span class="nx">BaseApplication</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">console</span><span class="p">(</span><span class="nv">$commands</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Ajout par nom de de classe</span>
+        <span class="nv">$commands</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">UserShell</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+        <span class="c1">// Ajout par une instance</span>
+        <span class="nv">$commands</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">VersionShell</span><span class="p">());</span>
+
+        <span class="k">return</span> <span class="nv">$commands</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans l&#8217;exemple ci-dessus, les seules commandes qui seront disponibles seront
+<code class="docutils literal"><span class="pre">help</span></code>, <code class="docutils literal"><span class="pre">version</span></code> and <code class="docutils literal"><span class="pre">user</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.5.0: </span>Le hook <code class="docutils literal"><span class="pre">console</span></code> a été ajouté.</p>
+</div>
+</div>
+<div class="section" id="routing-dans-shells-cli">
+<h2>Routing dans shells / CLI<a class="headerlink" href="#routing-dans-shells-cli" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans l&#8217;interface en ligne de commande (CLI), spécialement dans vos shells et
+tasks, <code class="docutils literal"><span class="pre">env('HTTP_HOST')</span></code> et les autres variables d&#8217;environnement spécifiques
+à votre navigateur ne sont pas définies.</p>
+<p>Si vous générez des rapports ou envoyez des emails qui utilisent
+<code class="docutils literal"><span class="pre">Router::url()</span></code>, ceux-ci vont contenir l&#8217;hôte par défaut
+<code class="docutils literal"><span class="pre">http://localhost/</span></code>  et cela va entrainer des URLs invalides. Dans ce cas,
+vous devrez spécifier le domaine manuellement. Vous pouvez faire cela en
+utilisant la valeur de Configure <code class="docutils literal"><span class="pre">App.fullBaseUrl</span></code> de votre bootstrap ou
+config, par exemple.</p>
+<p>Pour envoyer des emails, vous devrez fournir à la classe Email l&#8217;hôte avec
+lequel vous souhaitez envoyer l&#8217;email en faisant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\Mailer\Email</span><span class="p">;</span>
+
+<span class="nv">$email</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Email</span><span class="p">();</span>
+<span class="c1">// Avant 3.4 utilisez domain()</span>
+<span class="nv">$email</span><span class="o">-&gt;</span><span class="na">setDomain</span><span class="p">(</span><span class="s1">&#39;www.example.org&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cela suppose que les ID du message généré sont valides et correspondent au
+domaine duquel les emails sont envoyés.</p>
+</div>
+<div class="section" id="plus-de-sujets">
+<h2>Plus de sujets<a class="headerlink" href="#plus-de-sujets" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/helpers.html">Shell Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/repl.html">Console Interactive (REPL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/cron-jobs.html">Exécuter des Shells en Tâches Cron (Cron Jobs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/i18n-shell.html">Shell I18N</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/completion-shell.html">Complétion du Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/plugin-shell.html">Shell Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/routes-shell.html">Shell Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/upgrade-shell.html">Shell de Mise à Jour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/server-shell.html">Serveur Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console-and-shells/cache.html">Shell Cache</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/caching.html">La mise en cache</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Outils de Console, Shells, &amp; Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/helpers.html">Shell Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/repl.html">Console Interactive (REPL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/cron-jobs.html">Exécuter des Shells en Tâches Cron (Cron Jobs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/i18n-shell.html">Shell I18N</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/completion-shell.html">Complétion du Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/plugin-shell.html">Shell Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/routes-shell.html">Shell Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/upgrade-shell.html">Shell de Mise à Jour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/server-shell.html">Serveur Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console-and-shells/cache.html">Shell Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/time.html">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core-libraries/global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>

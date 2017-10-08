@@ -1,0 +1,1016 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="Time" lang="fr" name="title" />
+<meta content="Classe Time vous aide à formater le temps et à tester le temps." lang="fr" name="description" />
+<meta content="time,format time,timezone,unix epoch,time strings,time zone offset,utc,gmt, temps" lang="fr" name="keywords" />
+
+    <title>Date &amp; Time - 3.x</title>
+    <link href="../_static/favicon.png" type="image/png" rel="icon" />
+
+    
+    <link rel="stylesheet" href="../_static/css/app.css" type="text/css" />
+    
+    <script type="text/javascript" src="../_static/app.js"></script>
+
+    <link rel="alternate" hreflang="en" href="../../en/core-libraries/time.html" /><link rel="alternate" hreflang="pt_BR" href="../../pt/core-libraries/time.html" /><link rel="alternate" hreflang="es" href="../../es/core-libraries/time.html" /><link rel="alternate" hreflang="ja" href="../../ja/core-libraries/time.html" /><link rel="alternate" hreflang="zh" href="../../zh/core-libraries/time.html" /><link rel="alternate" hreflang="tr" href="../../tr/core-libraries/time.html" /><link rel="alternate" hreflang="ru" href="../../ru/core-libraries/time.html" />
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within documentation CakePHP Cookbook 3.5" href="../_static/opensearchdescription-book-3-x.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="top" title="documentation CakePHP Cookbook 3.5" href="../index.html" />
+    <link rel="next" title="Xml" href="xml.html" />
+    <link rel="prev" title="Text" href="text.html" />
+
+    <script type="text/javascript">
+    window.lang = "fr";
+    </script>
+  </head>
+  <body>
+
+<div id="container">
+    
+    <header class="nav-down">
+        <div class="container-fluid hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-9 col-md-9">
+                    <nav class="navbar-right">
+                        <ul class="menu">
+                            <li class="first">
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Documentation</a>
+                                <ul class="submenu">
+                                    
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://cakephp.org/business-solutions">Business Solutions</a></li>
+                            <li><a href="https://cakephp.org/writers">Get Paid To Write</a></li>
+                            <li><a href="https://cakephp.org/pages/team">Team</a></li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-menu fa-chevron-down"></i>Community</a>
+                                <div class="megamenu full">
+                                    <div class="row">
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6 pl30">
+                                            <ul class="megamenu-list">
+                                                
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid hidden-md hidden-lg">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="logo-cake" href="https://cakephp.org">
+                        <img src="../_static/logo-cake.png" alt="CakePHP" />
+                    </a>
+                </div>
+
+                <div class="col-sm-6 col-xs-6">
+                    <div class="navbar-right">
+                        <button id="btn-menu" class="btn-menu" data-toggle="modal" data-target="#modal">
+                            <i class="fa fa-bars toggle-modal"></i>
+                        </button>
+                    </div>
+                    <div id="wrap">
+                        <form class="search" action="../search.html" method="get">
+                            <input name="q" type="search" placeholder="What are you looking for?">
+                            <input id="search_submit" value="Recherche" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section id="nav-cook" class="hidden-xs hidden-sm">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 back-book">
+                        <div class="col-md-5 text-center t-cook-nav p0 hidden-sm hidden-xs">
+                            <h2>
+                                <a href="../contents.html">
+                                    <span class="glyph_range icon-submenu icon-submenu-cook">B</span>
+                                    CakePHP 3.5 Red Velvet <strong>Cookbook</strong>
+                                </a>
+                            </h2>
+                        </div>
+
+                        <div class="col-md-4 hidden-sm">
+                            <form class="search" action="../search.html" method="get">
+                                <input type="hidden" name="check_keywords" value="yes" />
+                                <input type="hidden" name="area" value="default" />
+
+                                <div class="col-md-10 p0">
+                                    <input class="form-control form-cook" autocomplete="off" type="search" name="q" size="18" placeholder='Cookbook Search' />
+                                </div>
+                                <div class="col-md-2 p0 search-cook">
+                                    <button type="submit">
+                                        <span class="glyph_range icon-submenu icon-submenu-cook">A</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="col-md-3">
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Language:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
+                                                    role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                                                        fr
+                                                        <i class="fa fa-menu-en fa-chevron-down"></i>
+                                                    </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><a href="../../en/core-libraries/time.html">en</a></li>
+                                            
+                                                <li><a href="../../pt/core-libraries/time.html">pt</a></li>
+                                            
+                                                <li><a href="../../es/core-libraries/time.html">es</a></li>
+                                            
+                                                <li><a href="../../ja/core-libraries/time.html">ja</a></li>
+                                            
+                                                <li></li>
+                                            
+                                                <li><a href="../../zh/core-libraries/time.html">zh</a></li>
+                                            
+                                                <li><a href="../../tr/core-libraries/time.html">tr</a></li>
+                                            
+                                                <li><a href="../../ru/core-libraries/time.html">ru</a></li>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 p0">
+                                <div class="col-md-7 t-language p0">
+                                    <h6>Version:</h6>
+                                </div>
+                                <div class="col-md-5 p0">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3.x <i class="fa fa-menu-en fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="https://book.cakephp.org/3.0/fr">3.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/2.0/fr">2.x Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.3/fr/">1.3 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.2/fr/">1.2 Book</a></li>
+                                                <li><a href="https://book.cakephp.org/1.1/en">1.1 Book</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </header>
+
+    
+    <section class="nav-btn visible-sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-nav" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Nav</strong></button>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 text-center">
+                    <button id="btn-toc" class="btn btn-b btn-nav" data-toggle="modal" data-target="#modal"><strong>Table of Contents</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title-cookbook" id="modal-header"></h4>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="container page-container "><div id="improve-slideout">
+        <i class="fa fa-pencil icon-improve"></i>
+        <a href="https://github.com/cakephp/docs/edit/3.0/fr/core-libraries/time.rst" target="_blank">
+            <div id="improve-slideout-inner"><h6>Improve This Doc <i class="fa fa-github git-improve"></i></h6></div>
+        </a>
+    </div><a id="back-to-contents" href="#page-contents"><i class="fa fa-arrow-circle-up icon-improve" title="Back to Contents"></i></a>
+
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-md-push-3"><div class="page-contents col-sm-5">
+                <h3>Page Contents</h3>
+                <ul>
+<li><a class="reference internal" href="#">Date &amp; Time</a><ul>
+<li><a class="reference internal" href="#creer-des-instances-time">Créer des Instances Time</a></li>
+<li><a class="reference internal" href="#manipulation">Manipulation</a></li>
+<li><a class="reference internal" href="#formatage">Formatage</a><ul>
+<li><a class="reference internal" href="#definir-la-locale-par-defaut-et-la-chaine-format">Définir la Locale par défaut et la Chaîne Format</a></li>
+<li><a class="reference internal" href="#formater-les-temps-relatifs">Formater les Temps Relatifs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conversion">Conversion</a></li>
+<li><a class="reference internal" href="#comparer-avec-le-present">Comparer Avec le Present</a></li>
+<li><a class="reference internal" href="#comparer-avec-les-intervals">Comparer Avec les Intervals</a></li>
+<li><a class="reference internal" href="#dates">Dates</a></li>
+<li><a class="reference internal" href="#dates-et-heures-immutables">Dates et Heures Immutables</a></li>
+<li><a class="reference internal" href="#accepter-des-donnees-requetees-localisees">Accepter des Données Requêtées Localisées</a></li>
+</ul>
+</li>
+</ul>
+
+            </div><div class="document-body">
+            
+  <div class="section" id="namespace-Cake\I18n">
+<span id="date-time"></span><h1>Date &amp; Time<a class="headerlink" href="#namespace-Cake\I18n" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="class">
+<dt id="Cake\I18n\Time">
+<em class="property">class </em><code class="descclassname">Cake\I18n\</code><code class="descname">Time</code><a class="headerlink" href="#Cake\I18n\Time" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Si vous avez besoin de fonctionnalités <code class="xref php php-class docutils literal"><span class="pre">TimeHelper</span></code> en-dehors
+d&#8217;une <code class="docutils literal"><span class="pre">View</span></code>, utilisez la classe <code class="docutils literal"><span class="pre">Time</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\Time</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UsersController</span> <span class="k">extends</span> <span class="nx">AppController</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">initialize</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">loadComponent</span><span class="p">(</span><span class="s1">&#39;Auth&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">afterLogin</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Auth</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(</span><span class="s1">&#39;date_of_birth&#39;</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isToday</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">// accueillir l&#39;utilisateur avec un message de bon anniversaire</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Flash</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="nx">__</span><span class="p">(</span><span class="s1">&#39;Bon anniversaire à toi...&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En interne, CakePHP utilise <a class="reference external" href="https://github.com/cakephp/chronos">Chronos</a>
+pour faire fonctionner l&#8217;utilitaire <code class="docutils literal"><span class="pre">Time</span></code>. Tout ce que vous pouvez faire
+avec <code class="docutils literal"><span class="pre">Chronos</span></code> et <code class="docutils literal"><span class="pre">DateTime</span></code>, vous pouvez le faire avec <code class="docutils literal"><span class="pre">Time</span></code> et <code class="docutils literal"><span class="pre">Date</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Avant 3.2.0, CakePHP utilisait <a class="reference external" href="https://github.com/briannesbitt/Carbon">Carbon</a>.</p>
+</div>
+<p>Pour plus d&#8217;informations sur Chronos, rendez-vous sur
+<a class="reference external" href="https://api.cakephp.org/chronos/1.0/">la documentation de l&#8217;API</a>.</p>
+<div class="section" id="creer-des-instances-time">
+<h2>Créer des Instances Time<a class="headerlink" href="#creer-des-instances-time" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il y a plusieurs façons de créer des instances <code class="docutils literal"><span class="pre">Time</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\Time</span><span class="p">;</span>
+
+<span class="c1">// Crée à partir d&#39;une chaîne datetime.</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromFormat</span><span class="p">(</span>
+    <span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">,</span>
+    <span class="nv">$datetime</span><span class="p">,</span>
+    <span class="s1">&#39;America/New_York&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// Crée à partir d&#39;un timestamp</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">createFromTimestamp</span><span class="p">(</span><span class="nv">$ts</span><span class="p">);</span>
+
+<span class="c1">// Récupère le temps actuel.</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+
+<span class="c1">// Ou utilise juste &#39;new&#39;</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2014-01-10 11:11&#39;</span><span class="p">,</span> <span class="s1">&#39;America/New_York&#39;</span><span class="p">);</span>
+
+<span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2 hours ago&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le constructeur de la classe <code class="docutils literal"><span class="pre">Time</span></code> peut prendre les mêmes paramètres que
+la classe PHP interne <code class="docutils literal"><span class="pre">DateTime</span></code>. Quand vous passez un nombre ou une valeur
+numérique, elle sera interprétée comme un timestamp UNIX.</p>
+<p>Dans les cas de test, vous pouvez mock out <code class="docutils literal"><span class="pre">now()</span></code> en utilisant
+<code class="docutils literal"><span class="pre">setTestNow()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Fixe le temps.</span>
+<span class="nv">$now</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2014-04-12 12:22:30&#39;</span><span class="p">);</span>
+<span class="nx">Time</span><span class="o">::</span><span class="na">setTestNow</span><span class="p">(</span><span class="nv">$now</span><span class="p">);</span>
+
+<span class="c1">// Retourne &#39;2014-04-12 12:22:30&#39;</span>
+<span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+
+<span class="c1">// Retourne &#39;2014-04-12 12:22:30&#39;</span>
+<span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manipulation">
+<h2>Manipulation<a class="headerlink" href="#manipulation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fois créées, vous pouvez manipuler les instances <code class="docutils literal"><span class="pre">Time</span></code> en utilisant les
+méthodes setter:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">year</span><span class="p">(</span><span class="mi">2013</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">month</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">day</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez aussi utiliser les méthodes fournies nativement par la classe PHP
+<code class="docutils literal"><span class="pre">DateTime</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span><span class="o">-&gt;</span><span class="na">setDate</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">31</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les dates peuvent être modifiées à travers la soustraction et l&#8217;addition de
+leurs composantes:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">subDays</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">addMonth</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Utilisation des chaînes strtotime.</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+5 days&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Vous pouvez obtenir des composantes internes d&#8217;une date en accédant à ses
+propriétés:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">now</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">year</span><span class="p">;</span> <span class="c1">// 2014</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">month</span><span class="p">;</span> <span class="c1">// 5</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">day</span><span class="p">;</span> <span class="c1">// 10</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">timezone</span><span class="p">;</span> <span class="c1">// America/New_York</span>
+</pre></div>
+</div>
+<p>Il est aussi permis d&#8217;assigner directement ces propriétés pour modifier la
+date:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$time</span><span class="o">-&gt;</span><span class="na">year</span> <span class="o">=</span> <span class="mi">2015</span><span class="p">;</span>
+<span class="nv">$time</span><span class="o">-&gt;</span><span class="na">timezone</span> <span class="o">=</span> <span class="s1">&#39;Europe/Paris&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="formatage">
+<h2>Formatage<a class="headerlink" href="#formatage" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="staticmethod">
+<dt id="Cake\I18n\Time::setJsonEncodeFormat">
+<em class="property">static </em><code class="descclassname">Cake\I18n\Time::</code><code class="descname">setJsonEncodeFormat</code><span class="sig-paren">(</span><em>$format</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::setJsonEncodeFormat" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Cette méthode définit le format par défaut utilisé lors de la conversion d&#8217;un
+objet en json:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Time</span><span class="o">::</span><span class="na">setJsonEncodeFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>  <span class="c1">// For any mutable DateTime</span>
+<span class="nx">FrozenTime</span><span class="o">::</span><span class="na">setJsonEncodeFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>  <span class="c1">// For any immutable DateTime</span>
+<span class="nx">Date</span><span class="o">::</span><span class="na">setJsonEncodeFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>  <span class="c1">// For any mutable Date</span>
+<span class="nx">FrozenDate</span><span class="o">::</span><span class="na">setJsonEncodeFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>  <span class="c1">// For any immutable Date</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Cette méthode doit être appelée statiquement.</p>
+</div>
+<dl class="method">
+<dt id="Cake\I18n\Time::i18nFormat">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">i18nFormat</code><span class="sig-paren">(</span><em>$format = null</em>, <em>$timezone = null</em>, <em>$locale = null</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::i18nFormat" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Une chose habituelle à faire avec les instances <code class="docutils literal"><span class="pre">Time</span></code> est d&#8217;afficher les
+dates formatées. CakePHP facilite cela:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;2014-10-31&#39;</span><span class="p">);</span>
+
+<span class="c1">// Affiche un stamp datetime localisé.</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="p">;</span>
+
+<span class="c1">// Affiche &#39;10/31/14, 12:00 AM&#39; pour la locale en-US</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">();</span>
+
+<span class="c1">// Utilise la date complète et le format time</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">);</span>
+
+<span class="c1">// Utilise la date complète mais un format court de temps</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">([</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">,</span> <span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">]);</span>
+
+<span class="c1">// affiche &#39;2014-10-31 00:00:00&#39;</span>
+<span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Il est possible de spécifier le format d&#8217;affichage désiré. Vous pouvez soit
+passer une <a class="reference external" href="http://www.php.net/manual/en/class.intldateformatter.php">constante IntlDateFormatter</a> ou une chaine
+complète de formatage tel que spécifié dans cette ressource:
+<a class="reference external" href="http://www.icu-project.org/apiref/icu4c/classSimpleDateFormat.html#details">http://www.icu-project.org/apiref/icu4c/classSimpleDateFormat.html#details</a>.</p>
+<p>Vous pouvez aussi formater les dates avec des calendriers non-grégoriens:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Affiche &#39;Friday, Aban 9, 1393 AP at 12:00:00 AM GMT&#39;</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;en-IR@calendar=persian&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les types de calendrier suivants sont supportés:</p>
+<ul class="simple">
+<li>japanese</li>
+<li>buddhist</li>
+<li>chinese</li>
+<li>persian</li>
+<li>indian</li>
+<li>islamic</li>
+<li>hebrew</li>
+<li>coptic</li>
+<li>ethiopic</li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.1: </span>Le support des calendriers non-grégoriens a été ajouté dans 3.1</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pour les chaînes constantes, par exemple pour IntlDateFormatter::FULL, Intl
+utilise la librairie ICU qui alimente ses données à partir de CLDR
+(http://cldr.unicode.org/) dont la version peut varier selon l&#8217;installation
+PHP et donner des résultats différents.</p>
+</div>
+<dl class="method">
+<dt id="Cake\I18n\Time::nice">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">nice</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::nice" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Affiche un format prédéfini &#8216;nice&#8217;:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="nx">Time</span><span class="o">::</span><span class="na">parse</span><span class="p">(</span><span class="s1">&#39;2014-10-31&#39;</span><span class="p">);</span>
+
+<span class="c1">// Affiche &#39;Oct 31, 2014 12:32pm&#39; en en-US</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">nice</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Vous pouvez modifier le timezone avec lequel la date est affichée sans
+modifier l&#8217;objet <code class="docutils literal"><span class="pre">Time</span></code> lui-même. C&#8217;est utile quand vous stockez des dates
+dans un timezone, mais que vous voulez les afficher dans un timezone propre
+à un utilisateur:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">,</span> <span class="s1">&#39;Europe/Paris&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Laisser le premier paramètre à <code class="docutils literal"><span class="pre">null</span></code> va utiliser la chaine de formatage par
+défaut:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="s1">&#39;Europe/Paris&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Enfin, il est possible d&#8217;utiliser une locale différente pour l&#8217;affichage d&#8217;une
+date:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">i18nFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">,</span> <span class="s1">&#39;Europe/Paris&#39;</span><span class="p">,</span> <span class="s1">&#39;fr-FR&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">nice</span><span class="p">(</span><span class="s1">&#39;Europe/Paris&#39;</span><span class="p">,</span> <span class="s1">&#39;fr-FR&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="definir-la-locale-par-defaut-et-la-chaine-format">
+<h3>Définir la Locale par défaut et la Chaîne Format<a class="headerlink" href="#definir-la-locale-par-defaut-et-la-chaine-format" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La locale par défaut avec laquelle les dates sont affichées quand vous utilisez
+<code class="docutils literal"><span class="pre">nice</span></code> <code class="docutils literal"><span class="pre">i18nFormat</span></code> est prise à partir de la directive
+<a class="reference external" href="http://www.php.net/manual/en/intl.configuration.php#ini.intl.default-locale">intl.default_locale</a>.
+Vous pouvez cependant modifier ceci par défaut à la volée:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Time</span><span class="o">::</span><span class="na">setDefaultLocale</span><span class="p">(</span><span class="s1">&#39;es-ES&#39;</span><span class="p">);</span> <span class="c1">// For any mutable DateTime</span>
+<span class="nx">FrozenTime</span><span class="o">::</span><span class="na">setDefaultLocale</span><span class="p">(</span><span class="s1">&#39;es-ES&#39;</span><span class="p">);</span> <span class="c1">// For any immutable DateTime</span>
+<span class="nx">Date</span><span class="o">::</span><span class="na">setDefaultLocale</span><span class="p">(</span><span class="s1">&#39;es-ES&#39;</span><span class="p">);</span> <span class="c1">// For any mutable Date</span>
+<span class="nx">FrozenDate</span><span class="o">::</span><span class="na">setDefaultLocale</span><span class="p">(</span><span class="s1">&#39;es-ES&#39;</span><span class="p">);</span> <span class="c1">// For any immutable Date</span>
+</pre></div>
+</div>
+<p>A partir de maintenant, les datetimes vont s&#8217;afficher avec un format de
+préférence Espagnol, à moins qu&#8217;une locale différente ne soit spécifiée
+directement dans la méthode de formatage.</p>
+<p>De même, il est possible de modifier la chaîne de formatage par défaut à
+utiliser pour le format <code class="docutils literal"><span class="pre">i18nFormat</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nx">Time</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">);</span> <span class="c1">// For any mutable DateTime</span>
+<span class="nx">FrozenTime</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">);</span> <span class="c1">// For any immutable DateTime</span>
+<span class="nx">Date</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">);</span> <span class="c1">// For any mutable Date</span>
+<span class="nx">FrozenDate</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">(</span><span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span><span class="p">);</span> <span class="c1">// For any immutable Date</span>
+
+<span class="c1">// La même méthode existe pour les Date, FrozenDate, et FrozenTime</span>
+<span class="nx">Time</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">([</span>
+    <span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">FULL</span><span class="p">,</span>
+    <span class="nx">\IntlDateFormatter</span><span class="o">::</span><span class="na">SHORT</span>
+<span class="p">]);</span>
+
+<span class="c1">// La même méthode existe pour les Date, FrozenDate, et FrozenTime</span>
+<span class="nx">Time</span><span class="o">::</span><span class="na">setToStringFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd HH:mm:ss&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Il est recommandé de toujours utiliser les constantes plutôt que de directement
+passer une date en format chaîne de caractère.</p>
+</div>
+<div class="section" id="formater-les-temps-relatifs">
+<h3>Formater les Temps Relatifs<a class="headerlink" href="#formater-les-temps-relatifs" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="method">
+<dt id="Cake\I18n\Time::timeAgoInWords">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">timeAgoInWords</code><span class="sig-paren">(</span><em>array $options = []</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::timeAgoInWords" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Souvent, il est utile d&#8217;afficher les temps liés au présent:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$now</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;Aug 22, 2011&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$now</span><span class="o">-&gt;</span><span class="na">timeAgoInWords</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;format&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MMM d, YYY&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;+1 year&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+<span class="c1">// On Nov 10th, 2011 this would display: 2 months, 2 weeks, 6 days ago</span>
+</pre></div>
+</div>
+<p>L&#8217;option <code class="docutils literal"><span class="pre">end</span></code> vous laisse définir à partir de quel point les temps relatifs
+doivent être formatés en utilisant l&#8217;option <code class="docutils literal"><span class="pre">format</span></code>. L&#8217;option <code class="docutils literal"><span class="pre">accuracy</span></code>
+nous laisse contrôler le niveau de détail qui devra être utilisé pour chaque
+intervalle:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Si $timestamp est 1 month, 1 week, 5 days et 6 hours ago</span>
+<span class="k">echo</span> <span class="nv">$timestamp</span><span class="o">-&gt;</span><span class="na">timeAgoInWords</span><span class="p">([</span>
+    <span class="s1">&#39;accuracy&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;month&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;month&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;end&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;1 year&#39;</span>
+<span class="p">]);</span>
+<span class="c1">// Affiche &#39;1 month ago&#39;</span>
+</pre></div>
+</div>
+<p>En configurant <code class="docutils literal"><span class="pre">accuracy</span></code> en une chaîne, vous pouvez spécifier le niveau
+maximum de détail que vous souhaitez afficher:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;+23 hours&#39;</span><span class="p">);</span>
+<span class="c1">// Affiche &#39;in about a day&#39;</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">timeAgoInWords</span><span class="p">([</span>
+    <span class="s1">&#39;accuracy&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;day&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="conversion">
+<h2>Conversion<a class="headerlink" href="#conversion" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\I18n\Time::toQuarter">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">toQuarter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::toQuarter" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Une fois créées, vous pouvez convertir les instances <code class="docutils literal"><span class="pre">Time</span></code> en timestamps ou
+valeurs quarter:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2014-06-15&#39;</span><span class="p">);</span>
+<span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toQuarter</span><span class="p">();</span>
+<span class="nv">$time</span><span class="o">-&gt;</span><span class="na">toUnixString</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparer-avec-le-present">
+<h2>Comparer Avec le Present<a class="headerlink" href="#comparer-avec-le-present" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\I18n\Time::isYesterday">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">isYesterday</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::isYesterday" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cake\I18n\Time::isThisWeek">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">isThisWeek</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::isThisWeek" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cake\I18n\Time::isThisMonth">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">isThisMonth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::isThisMonth" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Cake\I18n\Time::isThisYear">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">isThisYear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::isThisYear" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Vous pouvez comparer une instance <code class="docutils literal"><span class="pre">Time</span></code> avec le temps présent de plusieurs
+façons:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2014-06-15&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isYesterday</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isThisWeek</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isThisMonth</span><span class="p">();</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isThisYear</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Chacune des méthodes ci-dessus va retourner <code class="docutils literal"><span class="pre">true</span></code>/<code class="docutils literal"><span class="pre">false</span></code> selon si oui ou
+non l&#8217;instance <code class="docutils literal"><span class="pre">Time</span></code> correspond au temps présent.</p>
+</div>
+<div class="section" id="comparer-avec-les-intervals">
+<h2>Comparer Avec les Intervals<a class="headerlink" href="#comparer-avec-les-intervals" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="method">
+<dt id="Cake\I18n\Time::isWithinNext">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">isWithinNext</code><span class="sig-paren">(</span><em>$interval</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::isWithinNext" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Vous pouvez regarder si une instance <code class="docutils literal"><span class="pre">Time</span></code> tombe dans un intervalle en
+utilisant <code class="docutils literal"><span class="pre">wasWithinLast()</span></code> et <code class="docutils literal"><span class="pre">isWithinNext()</span></code>:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2014-06-15&#39;</span><span class="p">);</span>
+
+<span class="c1">// A moins de 2 jours.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isWithinNext</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">// A moins de 2 semaines.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">isWithinNext</span><span class="p">(</span><span class="s1">&#39;2 weeks&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="Cake\I18n\Time::wasWithinLast">
+<code class="descclassname">Cake\I18n\Time::</code><code class="descname">wasWithinLast</code><span class="sig-paren">(</span><em>$interval</em><span class="sig-paren">)</span><a class="headerlink" href="#Cake\I18n\Time::wasWithinLast" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Vous pouvez aussi comparer une instance <code class="docutils literal"><span class="pre">Time</span></code> dans un intervalle dans le
+passé:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Dans les 2 derniers jours.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">wasWithinLast</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">// Dans les 2 dernières semaines.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">wasWithinLast</span><span class="p">(</span><span class="s1">&#39;2 weeks&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dates">
+<h2>Dates<a class="headerlink" href="#dates" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">Nouveau dans la version 3.2.</span></p>
+</div>
+<p>La classe <code class="docutils literal"><span class="pre">Date</span></code> dans CakePHP implémente les mêmes API et méthodes que
+<a class="reference internal" href="#Cake\I18n\Time" title="Cake\I18n\Time"><code class="xref php php-class docutils literal"><span class="pre">Cake\I18n\Time</span></code></a>. La différence principale entre <code class="docutils literal"><span class="pre">Time</span></code> et
+<code class="docutils literal"><span class="pre">Date</span></code> est que <code class="docutils literal"><span class="pre">Date</span></code> ne suit pas les composants liés à l&#8217;heure et est
+toujours en UTC.
+Par exemple:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\Date</span><span class="p">;</span>
+<span class="nv">$date</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Date</span><span class="p">(</span><span class="s1">&#39;2015-06-15&#39;</span><span class="p">);</span>
+
+<span class="nv">$date</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+2 hours&#39;</span><span class="p">);</span>
+<span class="c1">// Affiche 2015-06-15 00:00:00</span>
+<span class="k">echo</span> <span class="nv">$date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+
+<span class="nv">$date</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+36 hours&#39;</span><span class="p">);</span>
+<span class="c1">// Affiche 2015-06-15 00:00:00</span>
+<span class="k">echo</span> <span class="nv">$date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les tentatives de modification de timezone sur une instance de <code class="docutils literal"><span class="pre">Date</span></code> seront
+toujours ignorées:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\Date</span><span class="p">;</span>
+<span class="nv">$date</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Date</span><span class="p">(</span><span class="s1">&#39;2015-06-15&#39;</span><span class="p">);</span>
+<span class="nv">$date</span><span class="o">-&gt;</span><span class="na">setTimezone</span><span class="p">(</span><span class="k">new</span> <span class="nx">\DateTimeZone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">));</span>
+
+<span class="c1">// Affiche UTC</span>
+<span class="k">echo</span> <span class="nv">$date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dates-et-heures-immutables">
+<span id="immutable-time"></span><h2>Dates et Heures Immutables<a class="headerlink" href="#dates-et-heures-immutables" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="Cake\I18n\FrozenTime">
+<em class="property">class </em><code class="descclassname">Cake\I18n\</code><code class="descname">FrozenTime</code><a class="headerlink" href="#Cake\I18n\FrozenTime" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Cake\I18n\FrozenDate">
+<em class="property">class </em><code class="descclassname">Cake\I18n\</code><code class="descname">FrozenDate</code><a class="headerlink" href="#Cake\I18n\FrozenDate" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<p>CakePHP offre des classes de date et d&#8217;heure immutables qui implémentent la
+même interface que leurs équivalents mutables. Les objets immutables sont
+utiles pour éviter les modifications accidentelles de données, ou lorsque vous
+voulez éviter les problèmes liés à l&#8217;ordre de dépendances. Prenez le code
+suivant:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\Time</span><span class="p">;</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Time</span><span class="p">(</span><span class="s1">&#39;2015-06-15 08:23:45&#39;</span><span class="p">);</span>
+<span class="nv">$time</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+2 hours&#39;</span><span class="p">);</span>
+
+<span class="c1">// Cette méthode modifie également l&#39;instance $time</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">someOtherFunction</span><span class="p">(</span><span class="nv">$time</span><span class="p">);</span>
+
+<span class="c1">// La sorie ici est inconnue.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Si les appels aux méthodes sont réordonnés, ou si <code class="docutils literal"><span class="pre">someOtherFunction</span></code>
+évolue la sortie peut être inattendue. La mutabilité de vos objets crée un
+couplage temporal. Si nous utilisions des objets immutables, nous pourrions
+éviter ce type de problème:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Cake\I18n\FrozenTime</span><span class="p">;</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrozenTime</span><span class="p">(</span><span class="s1">&#39;2015-06-15 08:23:45&#39;</span><span class="p">);</span>
+<span class="nv">$time</span> <span class="o">=</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+2 hours&#39;</span><span class="p">);</span>
+
+<span class="c1">// La modification de cette méthode ne change pas $time</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">someOtherFunction</span><span class="p">(</span><span class="nv">$time</span><span class="p">);</span>
+
+<span class="c1">// La sortie est connue.</span>
+<span class="k">echo</span> <span class="nv">$time</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Les Date et heures immutables sont utiles dans les entities car elles
+évitent les modifications accidentelles, et forcent les modifications à être
+explicitement exprimées. Utiliser des objets immutables aide l&#8217;ORM à mieux
+suivre les modifications et assurer que les colones date/datetime sont
+persistées correctement:</p>
+<div class="highlight-phpinline"><div class="highlight"><pre><span></span><span class="c1">// Cette modification sera perdue lrsque l&#39;article sera enregistré.</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">updated</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+1 hour&#39;</span><span class="p">);</span>
+
+<span class="c1">// En remplaçant l&#39;objet time, la propriété sera auvegardée</span>
+<span class="nv">$article</span><span class="o">-&gt;</span><span class="na">updated</span> <span class="o">=</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">updated</span><span class="o">-&gt;</span><span class="na">modify</span><span class="p">(</span><span class="s1">&#39;+1 hour&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accepter-des-donnees-requetees-localisees">
+<h2>Accepter des Données Requêtées Localisées<a class="headerlink" href="#accepter-des-donnees-requetees-localisees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Quand vous créez des inputs de texte qui manipulent des dates, vous voudrez
+probablement accepter et parser des chaînes datetime localisées. Consultez
+<a class="reference internal" href="internationalization-and-localization.html#parsing-localized-dates"><span class="std std-ref">Parser les Données Datetime Localisées</span></a>.</p>
+</div>
+</div>
+
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3 col-md-pull-9 hidden-xs hidden-sm" lang="fr">
+            <aside class="sidebar">
+                <div class="mb30 row">
+<div id="sidebar-navigation" class="hidden-xs">
+	<p class="caption"><span class="caption-text">Préface</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">CakePHP en un Coup d&#8217;Oeil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3-x-migration-guide.html">3.x Guide de Migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-and-examples.html">Tutoriels et exemples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Pour Commencer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/routing.html">Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/request-response.html">Les Objets Request &amp; Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/middleware.html">Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers.html">Controllers (Contrôleurs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views (Vues)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orm.html">Accès Base de Données &amp; ORM</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Généralités</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/authentication.html">Authentification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bake.html">Console Bake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">La mise en cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../console-and-shells.html">Outils de Console, Shells, &amp; Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/debugging.html">Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/errors.html">Gestion des Erreurs &amp; Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Événements système</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internationalization-and-localization.html">Internationalisation &amp; Localisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Journalisation (logging)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form.html">Formulaires Sans Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controllers/components/pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/rest.html">REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Sécurité</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/sessions.html">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Utilitaires</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Classe App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-folder.html">Folder &amp; File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hash.html">Hash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="httpclient.html">Client Http</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflector.html">Inflector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="number.html">Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-objects.html">Objets Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Date &amp; Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xml.html">Xml</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Divers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-constants-and-functions.html">Globales &amp; Fonctions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chronos.html">Chronos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debug-kit.html">Debug Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrations.html">Migrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch.html">ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade-tool.html">Outil d&#8217;Upgrade</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices.html">Annexes</a></li>
+</ul>
+
+</div>
+
+                </div>
+            </aside>
+            <aside class="sidebar">
+                <div class="mb30 row">
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<section id="socials" class="back-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5  social text-center">
+                <div class="col-sm-3 col-xs-3">
+                    <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
+                        <div id="fb-root-face" class="fb-like" data-href="https://www.facebook.com/CakePHP/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=cakephp&amp;repo=cakephp&amp;type=fork&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <a href="https://twitter.com/CakePHP" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @CakePHP</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-7 social-footer text-center ">
+                <a href="https://twitter.com/cakephp" data-toggle="tooltip" title="Twitter"><i class="fa icon-social fa-twitter"></i>
+                <a href="https://www.facebook.com/groups/cake.community" data-toggle="tooltip" title="Facebook"><i class="fa icon-social fa-facebook"></i></a>
+                <a href="https://goo.gl/mSC0s" data-toggle="tooltip" title="Google Plus"><i class="fa icon-social  fa-google-plus"></i></a>
+                <a href="https://www.youtube.com/user/CakePHP" data-toggle="tooltip" title="Youtube"><i class="fa icon-social fa-youtube-play"></i></a>
+                <a href="https://github.com/cakephp" data-toggle="tooltip" title="Github"><i class="fa icon-social fa-git"></i></a>
+                <a href="https://cakesf.herokuapp.com/" target="_blank" title="Slack" data-toggle="tooltip"><i class="fa fa-slack icon-social"></i></a>
+                <a href="https://stackoverflow.com/tags/cakephp" data-toggle="tooltip" title="Stack Overflow"><i class="fa icon-social fa-stack-overflow"></i></a>
+                <a href="https://webchat.freenode.net/?channels=cakephp" data-toggle="tooltip" title="IRC" class="icon-irc">#IRC</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer-wrapper">
+    <div class="container">
+
+        <div class="row col-p30">
+            <div class="col-sm-12 col-md-3">
+                <div class="footer-widget t-footer">
+                    <div class="col-md-12">
+                        <a href="https://www.openhub.net/p/cakephp">
+                            <img src="../_static/open-hub.png">
+                        </a>
+                        <div class="mt10">
+                            <a href="https://www.rackspace.com/">
+                                <img src="../_static/rackspace.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-9">
+                <div class="col-md-3 col-sm-6 business-solution">
+                    <ul class="footer-menu">
+                        <li class="menu-title">
+    <a href="https://cakephp.org/business-solutions"><i class="fa fa-menu-title fa-briefcase"></i>Business Solutions</a>
+</li>
+<li class="menu-title mt30">
+    <a href="https://cakephp.org/showcase"><i class="fa fa-menu-title fa-desktop"></i>Showcase</a>
+</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title">
+	<i class="fa fa-menu-title fa-book"></i>Documentation
+</li>
+
+<li><a href="https://book.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Book</a></li>
+<li><a href="https://api.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>API</a></li>
+
+<li><a href="https://cakephp.org/documentation/videos"><i class="fa fa-menu fa-chevron-right"></i>Videos</a></li>
+<li><a href="https://cakephp.org/privacy"><i class="fa fa-menu fa-chevron-right"></i>Privacy Policy</a></li>
+<li><a href="https://cakephp.org/pages/trademark"><i class="fa fa-menu fa-chevron-right"></i>Logos &amp; Trademarks</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-users"></i>Community</li>
+
+<li><a href="https://cakephp.org/team"><i class="fa fa-menu fa-chevron-right"></i>Team</a></li>
+<li><a href="https://github.com/cakephp/cakephp/issues"><i class="fa fa-menu fa-chevron-right"></i>Issues (Github)</a></li>
+<li><a href="https://www.youtube.com/user/CakePHP"><i class="fa fa-menu fa-chevron-right"></i>YouTube Channel</a></li>
+<li><a href="https://cakephp.org/get-involved"><i class="fa fa-menu fa-chevron-right"></i>Get Involved</a></li>
+
+<li><a href="https://bakery.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Bakery</a></li>
+<li><a href="https://github.com/FriendsOfCake/awesome-cakephp"><i class="fa fa-menu fa-chevron-right"></i>Featured Resources</a></li>
+<li><a href="https://cakephp.org/newsletter/signup"><i class="fa fa-menu fa-chevron-right"></i>Newsletter</a></li>
+<li><a href="http://certification.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Certification</a></li>
+<li><a href="http://my.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>My CakePHP</a></li>
+<li><a href="http://cakefest.org"><i class="fa fa-menu fa-chevron-right"></i>CakeFest</a></li>
+<li><a href="https://www.facebook.com/groups/cake.community"><i class="fa fa-menu fa-chevron-right"></i>Facebook</a></li>
+<li><a href="https://twitter.com/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Twitter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <ul class="footer-menu">
+                        
+<li class="menu-title"><i class="fa fa-menu-title fa-comments-o"></i>Help &amp; Support</li>
+
+<li><a href="http://discourse.cakephp.org"><i class="fa fa-menu fa-chevron-right"></i>Forum</a></li>
+<li><a href="https://stackoverflow.com/tags/cakephp"><i class="fa fa-menu fa-chevron-right"></i>Stack Overflow</a></li>
+<li><a href="https://webchat.freenode.net/?channels=cakephp"><i class="fa fa-menu fa-chevron-right"></i>IRC</a></li>
+<li><a href="https://cakesf.herokuapp.com/"><i class="fa fa-menu fa-chevron-right"></i>Slack</a></li>
+<li><a href="https://www.cakedc.com/"><i class="fa fa-menu fa-chevron-right"></i>Paid Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt30">
+                <p class="copyright">
+                            &copy; Copyright 2017, Cake Software Foundation, Inc.
+                        Mis à jour le août 30, 2017.
+                        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.4.5.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="inline-search-results"></div>
+
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-743287-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+  </body>
+</html>
